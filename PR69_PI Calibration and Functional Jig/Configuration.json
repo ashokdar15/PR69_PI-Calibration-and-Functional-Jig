@@ -1,0 +1,197 @@
+{
+  "ConfigurationData" : [
+   {
+      "DeviceType": "Single Acting_48x48",
+      "CatIDLists": [
+        {
+           "DeviceId": 2,
+           "DeviceName": "151A12B",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY",
+            "START_DISP_TEST",
+            "START_KEYPAD_TEST",
+            "START_REL_TEST_PI",
+            "SET_DFALT_1MA_CNT",
+			"READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY",
+            "START_DISP_TEST",
+            "START_KEYPAD_TEST",
+            "START_REL_TEST_PI",
+            "SET_DFALT_1MA_CNT",
+            "SLAVE1_SP1_VALUE",
+            "SLAVE2_SP1_VALUE",
+            "SLAVE3_SP1_VALUE",
+            "SLAVE1_SENS_VALUE",
+            "SLAVE2_SENS_VALUE",
+            "SLAVE3_SENS_VALUE",
+            "SLAVE1_OUTPUT_CONFIG",
+            "SLAVE2_OUTPUT_CONFIG",
+            "SLAVE3_OUTPUT_CONFIG",
+            "SLAVE1_CONT_TYPE_SET",
+            "SLAVE2_CONT_TYPE_SET",
+            "SLAVE3_CONT_TYPE_SET",
+            "SLAVE1_FUNC_TYPE_SET"
+          ]  
+        },   
+        {
+           "DeviceId": 3,
+           "DeviceName": "151B12B",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY"
+          ]
+        }
+     ]
+   },
+   {
+      "DeviceType": "Single Acting_96x96",
+      "CatIDLists": [
+        {
+           "DeviceId": 2,
+           "DeviceName": "151F43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY",
+            "START_DISP_TEST",
+            "START_KEYPAD_TEST"
+          ]
+        },
+        {
+           "DeviceId": 3,
+           "DeviceName": "151G43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY",
+            "START_DISP_TEST",
+            "START_KEYPAD_TEST",
+            "START_REL_TEST_PI",
+            "SET_DFALT_1MA_CNT"
+          ]
+        }
+     ]
+   },
+   {
+      "DeviceType": "Double Acting_48x48",
+      "CatIDLists": [
+        {
+           "DeviceId": 2,
+           "DeviceName": "151A13B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "READ_CALIB_CONST_STATUS",
+            "SWITCH_SENSOR_RELAY",
+            "START_DISP_TEST",
+            "START_KEYPAD_TEST",
+            "START_REL_TEST_PI"
+          ]
+        },
+        {
+           "DeviceId": 3,
+           "DeviceName": "151B13B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "SET_12MA_ANLOP"
+          ]
+        }
+     ]
+   },
+   {
+      "DeviceType": "Double Acting_96x96",
+      "CatIDLists": [
+        {
+           "DeviceId": 2,
+           "DeviceName": "151F43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "SET_12MA_ANLOP"
+          ]
+        },
+        {
+           "DeviceId": 3,
+           "DeviceName": "151G43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "SET_12MA_ANLOP"
+          ]
+        }
+     ]
+   },
+   {
+      "DeviceType": "Process Indicator",
+      "CatIDLists": [
+        {
+           "DeviceId": 2,
+           "DeviceName": "151F43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "READ_DEVICE_ID",
+            "SET_12MA_ANLOP"
+          ]
+        },
+        {
+           "DeviceId": 3,
+           "DeviceName": "151G43B1",
+           "TypesOfOP ": "Relay,Relay,Analog",
+           "DUT_Calibration": true,
+           "PLCRequired": true,
+           "CJC_Support": true,
+           "Test_24_volt_output": true,
+           "TotalTests": [
+            "",
+            ""
+          ]
+        }
+     ]
+   }
+  ]
+}
