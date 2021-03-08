@@ -169,10 +169,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string strgComPortCalibratorDUT6 = "";
         public static string strgComPortPLC = "";
         public static string strgCJCsupport = "";
-        public static string CLIBRATOR_SR1 = "HKX1SA003";
+        public static string CLIBRATOR_SR1 = "HKX1SA006";
         public static string CLIBRATOR_SR2 = "HKX1SA004";
         public static string CLIBRATOR_SR3 = "HKX1SA005";
-        public static string CLIBRATOR_SR4 = "HKX1SA006";
+        public static string CLIBRATOR_SR4 = "HKX1SA003";
         public static string CLIBRATOR_SR5 = "HKX1SA007";
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;

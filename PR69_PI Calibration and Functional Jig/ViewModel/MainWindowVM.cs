@@ -4,6 +4,7 @@ using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.Views;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -699,22 +701,210 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
+            
+            //clsModelSettings.igDutID  need to set deive iD
 
+
+            //Type type = clsGlobalVariables.Selectedcatid.AnalogIpTests[0].GetType();
+            //PropertyInfo[] props = type.GetProperties();
             StartStopWatch(true);
 
             clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             EnableDisableUI(false);
             clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+            //If usr change number of device then need to find com port again.
+            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
+            {
+                clsGlobalVariables.blngIsComportDetected = false;
+                clsGlobalVariables.blngIsComportDetectedForPLC = false;
+            }
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
-
-            }
-            else
-            {
+                //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+                //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
                 FailurHandel();
                 //PLC off
             }
+            else
+            {
+                
+            }
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false);
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
+            OpenJigCOMPort();
+            byte btmRetVal;
+            int imLoopCntr;
+            int imNumOfTests;
+            ArrayList almTempTestList = null;
+            //    btmRetVal = JIGInitializationTests();.
+            
+            
+            
+            //PIB12C
+            clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
+            clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
+            clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_PI");
+            clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_MODBUS_TEST");
+            clsGlobalVariables.algTests_Auto.Add("CJC_TEST");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
+            clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
+            clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_9V_CNT_PI");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1V_CNT_PI");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_20mA_CNT_PI");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1mA_CNT_PI");
+            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
 
+
+           imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+           almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
+            
+           
+            //Data log object is cleared here. Default data will be written into all the data menbers of this object.
+            //clsGlobalVariables.objDataLog.Clear();
+            //--------Changed By Shubham
+            //Date:- 30-03-2018
+            //Version:- V16
+            //statement:- VREF text box value is cleared here.
+            //txtVREF.Text = "";
+            //-------Changes End.
+
+            //prgbar.Maximum = imNumOfTests;
+            //prgbar.Value = prgbar.Minimum;
+            //This timeout is resseted here to original.
+            clsGlobalVariables.ig_Query_TimeOut = 16000;
+            for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
+            {
+                if (clsGlobalVariables._StopFlag)
+                {
+                    
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    EnableDisableUI(true);
+                    return;
+                }
+                btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
+
+                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
+                {
+                   
+                   // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+                    clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
+                   
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    //CA 55
+                    //if (mnuAutoCalibration.Checked == true)
+                    //{
+                    //    objfrmAccTest.ShowDialog();
+                    //}
+                    EnableDisableUI(true);
+                    return;
+                }
+                else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                {
+                    //In case of error response below changes are done in the software.
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    EnableDisableUI(true);
+                    //txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+                    clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
+                    
+                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_FAILED);
+                    
+                   //CA55 ClearSerialComPort();
+
+                    return;
+                }
+                else
+                {
+                    //CA55  txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Pass." + "(" + almTempTestList[imLoopCntr] + ")";
+                    //CA55  txtProgressInfo.SelectionStart = txtProgressInfo.Text.Length - 1;
+                    //Fix delay of 300msec is applied here to maintain query and response timeout compatibility with VB6.0 software.
+                    //This delay is added by observing the query and response of the old VB software.
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(300);
+                }
+                //CA55 prgbar.Value = imLoopCntr;
+            }
+            //CA55 
+            //This function performs JIG Initialization tests. this is only for PR69 devices and not for PI.
+            //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
+            //{
+            //    //This function performs JIG Initialization tests.
+            //    btmRetVal = JIGInitializationTests();
+            //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+            //    {
+            //        clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
+            //        frmMain.objCalibratorSerialComm.CloseCommPort();
+            //        frmMain.objJIGSerialComm.CloseCommPort();
+            //        ClearSerialComPort();
+            //        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.JIG_INITIALZATION_FAILED);
+            //        EnableControls(true);
+            //        return;
+            //    }
+            //}
+
+        }
+
+        private void OpenJigCOMPort()
+        {
+            switch (clsGlobalVariables.NUMBER_OF_DUTS)
+            {
+                case 1:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    break;
+                case 2:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT2, true);
+                    break;
+                case 3:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT2, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT3, true);
+                    break;
+                case 4:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT2, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT3, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT4, true);
+                    break;
+                case 5:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT2, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT3, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT4, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT5, true);
+                    break;
+                case 6:
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT1, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT2, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT3, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT4, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT5, true);
+                    MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(clsGlobalVariables.strgComPortCalibratorDUT6, true);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void FailurHandel()

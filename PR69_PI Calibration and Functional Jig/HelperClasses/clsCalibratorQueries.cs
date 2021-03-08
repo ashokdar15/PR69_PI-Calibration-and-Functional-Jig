@@ -201,7 +201,58 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
+        public byte CheckSourceSetPosition(byte btmKnobPos, string strmKnob, Byte knobData)
+        {
+            byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            int imRetryCounter = 0;
+            try
+            {
+                //Three retires are provided to keep knob at correct position.
+                while (imRetryCounter < 3)
+                {
+                    //frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
+                    Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
+                    clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
+                    clsGlobalVariables.btgTxBuffer[1] = (byte)'F';
+                    clsGlobalVariables.btgTxBuffer[2] = (byte)Convert.ToChar(knobData.ToString());
+                    clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
+                    clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
+
+                    btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
+
+                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        if ((clsGlobalVariables.btgRxBuffer[2] - clsGlobalVariables.igCONST_FOR_ASCII) == btmKnobPos)
+                        {
+                            imRetryCounter = 3;
+                            return (byte)clsGlobalVariables.enmResponseError.Success;
+                        }
+                        else
+                        {
+                            imRetryCounter = imRetryCounter + 1;
+                            if (imRetryCounter == 3)
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
+                            MessageBox.Show("Set Source Knob to " + strmKnob + " Position.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        imRetryCounter = 3;
+                        return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                    }
+                }
+                return btmRetVal;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         ///<MemberName>MakeCalibratorMeasureOnAndReadKnobPos</MemberName>
         ///<MemberType>Function</MemberType>
         ///<CreatedBy>Shubham</CreatedBy>
@@ -223,7 +274,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
             try
             {
-                //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
+                //frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
@@ -237,7 +288,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-                    //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                    //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
 
                     clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                     clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
@@ -258,11 +309,47 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                    //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+
+
+
+
+
                     //Three retires are provided to keep knob at correct position.
                     while (imRetryCounter < 3)
                     {
-                        //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
+
+                        Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                        Array.Resize(ref clsGlobalVariables.btgTxBuffer, 7);
+
+                        clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
+                        clsGlobalVariables.btgTxBuffer[1] = (byte)'F';
+                        clsGlobalVariables.btgTxBuffer[2] = (byte)'0';
+                        clsGlobalVariables.btgTxBuffer[3] = (byte)',';
+
+                        if (clsGlobalVariables.MEASURE_mA_KNOB_POS == btmKnobPos)
+                        {
+                            clsGlobalVariables.btgTxBuffer[4] = (byte)'1';
+                        }
+                        else
+                        {
+                            clsGlobalVariables.btgTxBuffer[4] = (byte)'0';
+                        }
+
+                        clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.CR;
+                        clsGlobalVariables.btgTxBuffer[6] = clsGlobalVariables.LF;
+
+                        btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            imRetryCounter = 3;
+                            return btmRetVal;
+                        }
+                        Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                        Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
+                        //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                        //frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                         clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                         clsGlobalVariables.btgTxBuffer[1] = (byte)'F';
                         clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.Question_MARK;
@@ -276,8 +363,96 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             if ((clsGlobalVariables.btgRxBuffer[2] - clsGlobalVariables.igCONST_FOR_ASCII) == btmKnobPos)
                             {
-                                imRetryCounter = 3;
-                                return (byte)clsGlobalVariables.enmResponseError.Success;
+                                //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 7);
+
+                                clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
+                                clsGlobalVariables.btgTxBuffer[1] = (byte)'R';
+                                clsGlobalVariables.btgTxBuffer[2] = (byte)'0';
+                                clsGlobalVariables.btgTxBuffer[3] = (byte)',';
+
+                                if (clsGlobalVariables.MEASURE_mA_KNOB_POS == btmKnobPos)
+                                {
+                                    clsGlobalVariables.btgTxBuffer[4] = (byte)'0';
+                                }
+                                else
+                                {
+                                    clsGlobalVariables.btgTxBuffer[4] = (byte)'2';
+                                }
+
+                                clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.CR;
+                                clsGlobalVariables.btgTxBuffer[6] = clsGlobalVariables.LF;
+
+                                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+
+
+
+                                    imRetryCounter = 3;
+                                    return btmRetVal;
+                                }
+                                else
+                                {
+                                    imRetryCounter = 3;
+                                    return (byte)clsGlobalVariables.enmResponseError.Success;
+                                }
+
+
+                                ////Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                                ////Array.Resize(ref clsGlobalVariables.btgTxBuffer, 6);
+
+                                //////frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
+                                ////clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
+                                ////clsGlobalVariables.btgTxBuffer[1] = (byte)'R';
+                                ////clsGlobalVariables.btgTxBuffer[2] = (byte)'m';
+                                ////clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.Question_MARK;
+                                ////clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.CR;
+                                ////clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.LF;
+
+                                ////btmRetVal = frmMain.objCalibratorSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
+
+
+                                //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                //{
+                                //    //if (clsGlobalVariables.MEASURE_mA_KNOB_POS == btmKnobPos)
+                                //    {
+                                //        imRetryCounter = 3;
+                                //        return (byte)clsGlobalVariables.enmResponseError.Success;
+                                //        //if (clsGlobalVariables.btgRxBuffer[2] == (byte)'0' && clsGlobalVariables.btgRxBuffer[4] == (byte)'0')
+                                //        //{
+                                //        //    imRetryCounter = 3;
+                                //        //    return (byte)clsGlobalVariables.enmResponseError.Success;
+
+                                //        //}
+                                //        //else
+                                //        //{
+                                //        //    imRetryCounter = 3;
+                                //        //    return btmRetVal;
+                                //        //}
+
+                                //   // }
+                                //   // else
+                                //   // {
+                                //        //if (clsGlobalVariables.btgRxBuffer[2] == (byte)'0' && clsGlobalVariables.btgRxBuffer[4] == (byte)'2')
+                                //        //{
+                                //        //    imRetryCounter = 3;
+                                //        //    return (byte)clsGlobalVariables.enmResponseError.Success;
+                                //        //}
+                                //        //else
+                                //        //{
+                                //        //    imRetryCounter = 3;
+                                //        //    return btmRetVal;
+                                //        //}
+                                //        imRetryCounter = 3;
+                                //        return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                //    }
+
+                                //}
+                                //imRetryCounter = 3;
+                                //return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
                             else
                             {

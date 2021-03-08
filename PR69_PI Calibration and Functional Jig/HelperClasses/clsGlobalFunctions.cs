@@ -673,16 +673,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
             if (PLCCOM_Detection())
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-           
-
-            if (clsGlobalVariables.objGlobalFunction.AutoComPortDetection()==2)
-            {
-
-            }
+            if (clsGlobalVariables.objGlobalFunction.AutoComPortDetection()!= (byte)clsGlobalVariables.enmResponseError.Success)
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             //Calibrator Port detection
             //Jig
             //PLC port detections
-            return 4;
+            return (byte)clsGlobalVariables.enmResponseError.Success;
         }
         public bool PLCCOM_Detection()
         {
@@ -1169,7 +1165,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         {
             try
             {
-                if (clsGlobalVariables.blngIsComportDetectedForPLC == false)
+                if (clsGlobalVariables.blngIsComportDetected == false)
                 {
 
 
@@ -1182,6 +1178,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
 
                         clsGlobalVariables.strgComPortCalibratorDUT1 = "";
+                        clsGlobalVariables.strgComPortCalibratorDUT2 = "";
+                        clsGlobalVariables.strgComPortCalibratorDUT3 = "";
+                        clsGlobalVariables.strgComPortCalibratorDUT4 = "";
+                        clsGlobalVariables.strgComPortCalibratorDUT5 = "";
+                        clsGlobalVariables.strgComPortCalibratorDUT6 = "";
                         foreach (var item in clsGlobalVariables.algAvailableComPorts)
                         {
                             if (MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.OpenCommPort(item.ToString(), true))
@@ -1233,17 +1234,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     }
                 }
                 
-                if (CheckAllCalibratorConnected())
-                {
-                    return (byte)clsGlobalVariables.enmResponseError.Invalid_data; 
-                }
-                else if (clsGlobalVariables.strgComPortJIG == "")
+                if (clsGlobalVariables.strgComPortJIG == "")
                 {
                     return (byte)clsGlobalVariables.enmResponseError.Invalid_data; 
                 }
                 else
                 {
                     clsGlobalVariables.blngIsComportDetectedForPLC = true;
+                    clsGlobalVariables.blngIsComportDetected = true;
+
                     return (byte)clsGlobalVariables.enmResponseError.Success; 
                 }
             }
@@ -1274,39 +1273,39 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             switch(clsGlobalVariables.NUMBER_OF_DUTS)
             {
                 case 6:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT5 != "" ||
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT5 != "" &&
                         clsGlobalVariables.strgComPortCalibratorDUT6 != "")
                         return false;
                     break;
                 case 5:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" ||
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" &&
                         clsGlobalVariables.strgComPortCalibratorDUT5 != "" )
                         
                         return false;
                     break;
                 case 4:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" ||
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
                         clsGlobalVariables.strgComPortCalibratorDUT4 != "" )
 
                         return false;
                     break;
                 case 3:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" ||
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" ||
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
+                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
                         clsGlobalVariables.strgComPortCalibratorDUT3 != "" )
                         return false;
                     break;
                 case 2:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" ||
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
                         clsGlobalVariables.strgComPortCalibratorDUT2 != "")
                         return false;
                     break;
