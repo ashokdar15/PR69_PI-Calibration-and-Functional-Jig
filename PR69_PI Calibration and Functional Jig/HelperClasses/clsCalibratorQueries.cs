@@ -236,7 +236,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
-                            MessageBox.Show("Set Source Knob to " + strmKnob + " Position.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show("Set Source Knob to " + strmKnob + " Position.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
@@ -786,33 +786,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             byte btmRetVal;
             try
             {
-                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
-
-                clsGlobalVariables.btgTxBuffer[0] = (byte)'B';
-                clsGlobalVariables.btgTxBuffer[1] = (byte)'S';
-                clsGlobalVariables.btgTxBuffer[2] = (byte)'N';
-                clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.Question_MARK;
-                clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.CR;
-                clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.LF;
-
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                Byte retryCount = 0;
+                while (retryCount < 3)
                 {
-                    if (clsGlobalVariables.btgRxBuffer.Length == 11)
+                    Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
+
+                    clsGlobalVariables.btgTxBuffer[0] = (byte)'B';
+                    clsGlobalVariables.btgTxBuffer[1] = (byte)'S';
+                    clsGlobalVariables.btgTxBuffer[2] = (byte)'N';
+                    clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.Question_MARK;
+                    clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.CR;
+                    clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.LF;
+
+                    btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
+                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
-                        for (int i = 0; i < clsGlobalVariables.btgRxBuffer.Length-2; i++)
+                        if (clsGlobalVariables.btgRxBuffer.Length == 11)
                         {
-                            SerialNumber += (Convert.ToChar(clsGlobalVariables.btgRxBuffer[i])).ToString();
+                            for (int i = 0; i < clsGlobalVariables.btgRxBuffer.Length - 2; i++)
+                            {
+                                SerialNumber += (Convert.ToChar(clsGlobalVariables.btgRxBuffer[i])).ToString();
+                            }
+                            return btmRetVal;
                         }
+                        
                     }
-                }
-                return btmRetVal;
+                    else
+                        return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                    retryCount++;
+                }               
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
         }
 
         ///<MemberName>CheckSourceOFF</MemberName>
@@ -931,19 +940,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-                Array.Resize(ref clsGlobalVariables.btgTxBuffer, (5 + strValue.Length));
+                Array.Resize(ref clsGlobalVariables.btgTxBuffer, (4 + strValue.Length));
 
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'D';
-                clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.PLUS;
+               // clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.PLUS;
 
                 foreach (char item in strValue)
                 {
-                    clsGlobalVariables.btgTxBuffer[2 + imCounter] = (byte)item;
+                    clsGlobalVariables.btgTxBuffer[1 + imCounter] = (byte)item;
                     imCounter++;
                 }
-                clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.CR;
-                clsGlobalVariables.btgTxBuffer[imCounter + 3] = clsGlobalVariables.LF;
+                clsGlobalVariables.btgTxBuffer[imCounter + 1] = clsGlobalVariables.CR;
+                clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.LF;
 
                 btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 

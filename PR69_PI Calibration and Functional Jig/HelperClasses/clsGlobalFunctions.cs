@@ -1204,7 +1204,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         //Clibrator remove port.
 
-                        if (CheckAllCalibratorConnected())
+                        if (!CheckAllCalibratorConnected())
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
 
 
@@ -1273,50 +1273,49 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             switch(clsGlobalVariables.NUMBER_OF_DUTS)
             {
                 case 6:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT5 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT6 != "")
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT2 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT3 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT4 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT5 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT6 == "")
                         return false;
                     break;
                 case 5:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT5 != "" )
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT2 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT3 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT4 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT5 == "" )
                         
                         return false;
                     break;
                 case 4:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT4 != "" )
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT2 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT3 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT4 == "" )
 
                         return false;
                     break;
                 case 3:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT3 != "" )
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT2 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT3 == "" )
                         return false;
                     break;
                 case 2:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "" &&
-                        clsGlobalVariables.strgComPortCalibratorDUT2 != "")
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
+                        clsGlobalVariables.strgComPortCalibratorDUT2 == "")
                         return false;
                     break;
                 case 1:
-                    if (clsGlobalVariables.strgComPortCalibratorDUT1 != "")
+                    if (clsGlobalVariables.strgComPortCalibratorDUT1 == "")
                         return false;
                     break;
-                default:
-                    return false;
+                
             }
-            return false;
+            return true;
         }
 
         private void SetCalibratorCOMPort(string ComPort, string calibratorSerialNumber)

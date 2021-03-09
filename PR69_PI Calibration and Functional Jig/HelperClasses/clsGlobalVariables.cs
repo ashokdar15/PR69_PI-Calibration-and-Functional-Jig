@@ -8,15 +8,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
     public class clsGlobalVariables
     {
-        public static SelectedDeviceType selectedDeviceType;
+       
               
-        public enum SelectedDeviceType
-        {
-            PR69_48x48 = 1,
-            PR69_96x96 = 2,
-            PI = 3,
-            PR69_43x43 = 4
-        }
+        
         #region"-----Enum------"
         //This enum is used for response error handling
         public enum enmResponseError
@@ -115,12 +109,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             Question = 3
         }
 
+        public static SelectedDeviceType selectedDeviceType;
+
         public static int FAILURE = -1;
         public static int SUCCESS = 0;
 
         public static CatIdList Selectedcatid = new CatIdList();
         public static string SelectedDeviceNameOfTreeView = "";
         public static string configJsonfilepath = "";
+
+        public enum SelectedDeviceType
+        {
+            PR69_48x48 = 1,
+            PR69_96x96 = 2,
+            PI = 3,
+            PR69_43x43 = 4
+        }
 
         #region"-----Variables and constants------"
         public static string WorkingDirectory = @"C:\Program Files (x86)\Nuvoton Tools\NuLink Command Tool";

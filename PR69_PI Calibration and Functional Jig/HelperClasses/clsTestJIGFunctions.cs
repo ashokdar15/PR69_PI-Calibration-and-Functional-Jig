@@ -281,9 +281,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //Version:- V17
                             //Statement:- Proper name is stored in the global variable to display on the picture message box. 
                             clsGlobalVariables.strgOngoingTestName = "mV Sensor Calibration";
+                            btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT, clsGlobalVariables.SOURCE_mV_KNOB_POS);
                             //-----------Changes end.
                             //for 96x96 Cat Id different connection image is displayed.
-                            
+
                             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                             {
                                 clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
@@ -772,8 +773,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //Requirement in the display test was to ask user to perform disply test once again.
                             //Also software must ask this only once.
                             blnmStatus = true;
-                            //dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);  
-                            dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                            dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);  
+                            //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
 
                             if (dlgMsgBxRslt == DialogResult.OK)
                             {

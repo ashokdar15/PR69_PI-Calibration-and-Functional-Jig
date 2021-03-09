@@ -81,6 +81,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>C:\Users\ashok.darade\Desktop\PR69_PI Calibration and Functional Jig_09_03\PR69_PI Calibration and Functional Jig\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

@@ -196,7 +196,7 @@
                                     <TextBlock.FontSize>12</TextBlock.FontSize>
                                 </TextBlock>
 
-                                <TextBox Width="30" Height="40" Margin="10 -10 10 8"
+                                <TextBox Width="30" Height="45" Margin="10 -10 10 8"
                                         materialDesign:HintAssist.Hint="" 
                                         Text="{Binding Path=NumberOfDUTs, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                         IsEnabled="{Binding IsProductSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -311,9 +311,342 @@
                                             IsEnabled="{Binding Enablebtnstart, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                             Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                                             Background="{DynamicResource PrimaryHueMidBrush}">Start</Button>
-                            </StackPanel>                            
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 10 0 10">
+                                <TextBlock Text="Cycle Time : " Margin="10 4 0 0" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -15 0 0"
+                                         Width="80" Height="45" materialDesign:HintAssist.Hint="" 
+                                    FontWeight="Bold"
+                                    Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    IsReadOnly="True"                                     
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                    <TextBox.FontSize>16</TextBox.FontSize>
+                                </TextBox>
+                            </StackPanel>
+
+
                         </StackPanel>
-                       
+                        <Grid Grid.Row="2" Margin="20 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="210"/>
+                                <RowDefinition Height="210"/>
+                                <RowDefinition Height="210"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="0" Grid.Row="0" 
+                                    Visibility="{Binding DUT1DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT1 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                        VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                        IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        AutoGenerateColumns="False"
+                                        CanUserAddRows="False"
+                                        GridLinesVisibility="Horizontal"  
+                                        SelectionUnit="Cell" SelectionMode="Extended"
+                                        ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="0" Grid.Row="1" 
+                                    Visibility="{Binding DUT2DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT2 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AutoGenerateColumns="False"
+                                            CanUserAddRows="False"
+                                            GridLinesVisibility="Horizontal"  
+                                            SelectionUnit="Cell" SelectionMode="Extended" 
+                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="1" Grid.Row="0" 
+                                    Visibility="{Binding DUT3DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT3 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AutoGenerateColumns="False"
+                                            CanUserAddRows="False"
+                                            GridLinesVisibility="Horizontal"  
+                                            SelectionUnit="Cell" SelectionMode="Extended"
+                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="1" Grid.Row="1" 
+                                    Visibility="{Binding DUT4DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT4 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AutoGenerateColumns="False"
+                                            CanUserAddRows="False"
+                                            GridLinesVisibility="Horizontal"  
+                                            SelectionUnit="Cell" SelectionMode="Extended"
+                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="2" Grid.Row="0" 
+                                    Visibility="{Binding DUT5DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT5 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AutoGenerateColumns="False"
+                                            CanUserAddRows="False"
+                                            GridLinesVisibility="Horizontal"  
+                                            SelectionUnit="Cell" SelectionMode="Extended"
+                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="2" Grid.Row="1" 
+                                    Visibility="{Binding DUT6DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="DUT6 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
+                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AutoGenerateColumns="False"
+                                            CanUserAddRows="False"
+                                            GridLinesVisibility="Horizontal"  
+                                            SelectionUnit="Cell" SelectionMode="Extended"
+                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Resources>
+                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                            </DataGrid.Resources>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
+                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Test Name"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
+                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                    <DataGridTextColumn.Header>
+                                                        <Label Content="Status"/>
+                                                    </DataGridTextColumn.Header>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>-->
+                                </GroupBox>
+                            </Border>
+
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" 
+                                    Visibility="{Binding TestsDetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="All Tests Report" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="340" />
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"
+                                                      Width="auto" Height="auto" Grid.Column="0"  Grid.Row="0"                                        
+                                                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
+                                                      IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      AutoGenerateColumns="False"
+                                                      CanUserAddRows="False"
+                                                      GridLinesVisibility="Horizontal"  
+                                                      SelectionUnit="Cell" SelectionMode="Extended"
+                                                      ItemsSource="{Binding Path=clsTotalTestsGroups,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                                </DataGrid.Resources>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Binding="{Binding TestNumber}" IsReadOnly="True"  Width="auto">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Test Group Number" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding TestGroup}" IsReadOnly="True"  Width="auto">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Test Group Name" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+
+                                            <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" 
+                                              ItemsSource="{Binding Path=TotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device1" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber2Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device2" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber3Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device3" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber4Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device4" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber5Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device5" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                    <DataGridTextColumn Binding="{Binding DeviceNumber6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False"  Width="auto"
+                                                                        Visibility="{Binding DeviceNumber6Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
+                                                        <DataGridTextColumn.Header>
+                                                            <Label Content="Device6" FontSize="15" FontWeight="Bold"/>
+                                                        </DataGridTextColumn.Header>
+                                                    </DataGridTextColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>                                        
+                                    </ScrollViewer>
+                                </GroupBox>
+                            </Border>
+                            
+                        </Grid>
+
                         <StatusBar Grid.Row="3" FontSize="10" FontWeight="Bold" Visibility="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="GIC India Pvt. Ltd. | "/>

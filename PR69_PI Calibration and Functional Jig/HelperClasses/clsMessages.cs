@@ -598,7 +598,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
 
                     case clsMessageIDs.OBSERVE_DISP_TEST:
-                        MessageBox.Show(objResManager.GetString("OBSERVE_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show(objResManager.GetString("OBSERVE_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Dispaly Test", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
 
                     case clsMessageIDs.SET_1mV_IN_CALIB:

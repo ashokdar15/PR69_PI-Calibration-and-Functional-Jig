@@ -3,6 +3,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.ViewModel"
         mc:Ignorable="d"
@@ -314,7 +315,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10 10 0 10">
                                 <TextBlock Text="Cycle Time : " Margin="10 4 0 0" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -15 0 0"
+                                <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -12 0 0"
                                          Width="80" Height="45" materialDesign:HintAssist.Hint="" 
                                     FontWeight="Bold"
                                     Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -322,15 +323,13 @@
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                     <TextBox.FontSize>16</TextBox.FontSize>
                                 </TextBox>
-                            </StackPanel>
-
-
+                            </StackPanel>    
                         </StackPanel>
-                        <Grid Grid.Row="2" Margin="20 0 0 0">
+                        <Grid Grid.Row="2" Margin="20 0 20 0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="210"/>
-                                <RowDefinition Height="210"/>
-                                <RowDefinition Height="210"/>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="240"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -345,34 +344,30 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT1 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                        VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                        IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        AutoGenerateColumns="False"
-                                        CanUserAddRows="False"
-                                        GridLinesVisibility="Horizontal"  
-                                        SelectionUnit="Cell" SelectionMode="Extended"
-                                        ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">                                            
+                                                    <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                                    <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
                             <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="0" Grid.Row="1" 
@@ -381,34 +376,30 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT2 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            GridLinesVisibility="Horizontal"  
-                                            SelectionUnit="Cell" SelectionMode="Extended" 
-                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                            <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
                             <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="1" Grid.Row="0" 
@@ -417,34 +408,30 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT3 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            GridLinesVisibility="Horizontal"  
-                                            SelectionUnit="Cell" SelectionMode="Extended"
-                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>                                    
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                            <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
                             <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="1" Grid.Row="1" 
@@ -453,34 +440,31 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT4 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            GridLinesVisibility="Horizontal"  
-                                            SelectionUnit="Cell" SelectionMode="Extended"
-                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>
+                                    
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                            <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
                             <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="2" Grid.Row="0" 
@@ -489,34 +473,30 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT5 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            GridLinesVisibility="Horizontal"  
-                                            SelectionUnit="Cell" SelectionMode="Extended"
-                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>                                    
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                            <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
                             <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="2" Grid.Row="1" 
@@ -525,34 +505,30 @@
                                     <GroupBox.Header>
                                         <TextBlock Text="DUT6 Details" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                     </GroupBox.Header>
-                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"    Width="auto" Height="auto"                                       
-                                            VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                            IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            AutoGenerateColumns="False"
-                                            CanUserAddRows="False"
-                                            GridLinesVisibility="Horizontal"  
-                                            SelectionUnit="Cell" SelectionMode="Extended"
-                                            ItemsSource="{Binding Path=DUT1Details,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <DataGrid.Resources>
-                                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding TestName}" IsReadOnly="True"  Width="auto"
-                                                        Visibility="{Binding TestNameVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Test Name"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Width="auto"
-                                                                    Visibility="{Binding StatusVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
-                                                    <DataGridTextColumn.Header>
-                                                        <Label Content="Status"/>
-                                                    </DataGridTextColumn.Header>
-                                                </DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ScrollViewer>-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>                                    
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="0">
+                                            <TextBlock Text="Current Test Group : " />
+                                            <TextBlock Text="{Binding Path=CurrenttstgrpDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="15 15" Grid.Row="1">
+                                            <TextBlock Text="Current Test : " />
+                                            <TextBlock Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" Height="auto" Grid.Row="2"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Yes" Foreground="WhiteSmoke" 
+                                                    Visibility="{Binding Path=OkTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="OkTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                            <Button Content="Cancel" Foreground="WhiteSmoke" Background="IndianRed" BorderBrush="IndianRed"
+                                                    Visibility="{Binding Path=CancelTestBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                    Command="{Binding Path=OkTestCmd}" CommandParameter="CancelTest" Width="80" HorizontalAlignment="Center" Margin="10 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </GroupBox>
                             </Border>
 
@@ -644,7 +620,67 @@
                                     </ScrollViewer>
                                 </GroupBox>
                             </Border>
-                            
+                            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Column="{Binding DeviceInfoColumn,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.RowSpan="2" Height="auto" Width="auto" 
+                                    Visibility="{Binding DUT1DetailsVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}">
+                                <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Device Information" FontSize="15" Margin="5,0,10,0"></TextBlock>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBox Margin="15 5 0 0" HorizontalAlignment="Left" Width="auto" Height="45"
+                                        materialDesign:HintAssist.Hint="Device Type"  Grid.Column="0" Grid.Row="0" 
+                                        Text="{Binding Path=SelectedDeviceType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsReadOnly="True"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        ToolTip="Device Type"></TextBox>
+
+                                        <TextBox Margin="5 5 5 0" HorizontalAlignment="Left" Width="auto" Height="45"
+                                        materialDesign:HintAssist.Hint="Device Name" Grid.Column="1" Grid.Row="0" 
+                                        Text="{Binding Path=SelectedDeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsReadOnly="True"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        ToolTip="Device Name as per Catalog ID"></TextBox>
+
+                                        <!--<TextBox Margin="15 5 5 0" HorizontalAlignment="Left" Width="250" Height="45"
+                                        materialDesign:HintAssist.Hint="Description" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                                        Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsReadOnly="True"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        ToolTip="Device Name as per Catalog ID"></TextBox>-->
+
+                                        <Border BorderBrush="Blue" BorderThickness="0.2" Margin="5 5 5 5"
+                                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="Description : " FontSize="15" FontWeight="Bold" Margin="5 0 0 0"/>
+                                                <xctk:RichTextBox x:Name="_richTextBox"  
+                                                                  Margin="6 2 6 2" BorderBrush="Gray" Padding="10" Width="auto" 
+                                                                  Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  FontWeight="Normal">
+                                                    <xctk:RichTextBoxFormatBarManager.FormatBar>
+                                                        <xctk:RichTextBoxFormatBar />
+                                                    </xctk:RichTextBoxFormatBarManager.FormatBar>
+
+                                                </xctk:RichTextBox>
+                                            </StackPanel>
+                                        </Border>
+                                                                            
+
+                                    </Grid>
+                                </GroupBox>
+                            </Border>
                         </Grid>
 
                         <StatusBar Grid.Row="3" FontSize="10" FontWeight="Bold" Visibility="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
