@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.ViewModel"
          xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.Views"
-        mc:Ignorable="d" Title="" Height="300" Width="600" WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" 
+        mc:Ignorable="d" Title="" Height="300" Width="650" WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         ResizeMode="CanMinimize" ShowInTaskbar="True" Background="#ffffff" BorderBrush="DarkGray" BorderThickness="1">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -22,34 +22,42 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="330"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="15 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontWeight="Bold" 
-                   Text="{Binding TitleImgMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
-                   FontSize="16"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Background="#b2ebf2" MouseDown="StackPanel_MouseDown">
+                <TextBlock  HorizontalAlignment="Left" Margin="15 0 0 0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" 
+                            Text="{Binding TitleImgMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
+                            FontSize="16"/>
+            </StackPanel>
+       
 
-        <Image Source="{Binding DisplayImgPath, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
-               Stretch="UniformToFill"
-               Grid.Row="1"
-               Grid.Column="0"
-               Height="auto"
-               Width="auto"
-               Name="SetImg"
-               Margin="5"/>
-        <!--<TextBlock Grid.Row="1"
-                   Grid.Column="2"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   Name="Message"                   
-                   TextWrapping="Wrap"
-                   Margin="5 15"
-                   FontSize="16"
-                   TextAlignment="Center"/>-->
+            <Image Source="{Binding DisplayImgPath, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
+                   Stretch="UniformToFill"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Height="auto"
+                   Width="auto"
+                   Name="SetImg"
+                   Margin="5"/>
 
-        <xctk:RichTextBox x:Name="_richTextBox"  Grid.Row="1" Grid.Column="2"
+            <Border BorderBrush="Red" BorderThickness="0.2" Margin="5 5 5 5" Grid.Row="1" 
+                   Grid.Column="2">
+                <TextBlock 
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Top"
+                       Name="Message"  
+                    
+                       Text="{Binding MsgDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       TextWrapping="Wrap"
+                       Margin="10 10"
+                       FontSize="16" Foreground="Red" FontWeight="Normal"
+                       TextAlignment="Center"/>
+
+            </Border>
+                
+        <!--<xctk:RichTextBox x:Name="_richTextBox"  Grid.Row="1" Grid.Column="2"
             Margin="5 10" BorderBrush="Gray" Padding="10" Width="auto" Height="auto"
             Text="{Binding MsgDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
             FontWeight="Normal" FontSize="16" Foreground="Red">
@@ -57,7 +65,7 @@
                 <xctk:RichTextBoxFormatBar />
             </xctk:RichTextBoxFormatBarManager.FormatBar>
 
-        </xctk:RichTextBox>
+        </xctk:RichTextBox>-->
         <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Width="80"
                 TabIndex="0"

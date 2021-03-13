@@ -39,186 +39,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 switch (imMsgID)
                 {
-                    case clsMessageIDs.ABORT_BUTTON_CLICK:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ABORT_BUTTON_CLICK", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.Test_24Volt_OUTPUT_TEST_MSG:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("Test_24_OP_MESSAGE", clsGlobalVariables.objCultureinfo) ;
-                        break;                   
-                    case clsMessageIDs.JIG_COM_PORT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("JIG_COM_PORT", clsGlobalVariables.objCultureinfo) + clsGlobalVariables.strgComPortJIG; 
-                        break;
-
-                    case clsMessageIDs.Calibrator_COM_PORT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("Calibrator_COM_PORT", clsGlobalVariables.objCultureinfo) +clsGlobalVariables.strgComPortCalibrator; 
-                        
-                        break;
-                    case clsMessageIDs.PLC_COM_PORT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("PLC_COM_PORT", clsGlobalVariables.objCultureinfo) +clsGlobalVariables.strgComPortPLC; 
-                        break;
-                        
-                    case clsMessageIDs.DUT_CALIB_FAILED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("DUT_CALIB_FAILED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.DUT_CALIB_COMPLETED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("DUT_CALIB_COMPLETED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ERASING_DUT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ERASING_DUT", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.DUT_ERASE_FAILED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("DUT_ERASE_FAILED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.DUT_ERASE_COMPLETED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("DUT_ERASE_COMPLETED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEMV_DEBUG_MSG_ID:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.FIFTYMV_DEBUG_MSG_ID:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.THREEFIFTYOHM_DEBUG_MSG_ID:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID8", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.RELAY_DEBUG_MSG_ID:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo);
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("RELAY_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo);
-                        break;
                     
-                    case clsMessageIDs.THREEFIFTYOHM_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEMV_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.FIFTYMV_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.THREEFIFTYOHM_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("THREEFIFTYOHM_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEMV_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMV_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
- 
-                    case clsMessageIDs.FIFTYMV_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FIFTYMV_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break; 
-
-                    case clsMessageIDs.CALIBRATED_DUT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("CALIBRATED_DUT", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.UNCALIBRATED_DUT:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("UNCALIBRATED_DUT", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("CALIBRATED_BUT_ACCURACY_ISNOTDONE", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEVOLT_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEVOLT_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEVOLT_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEVOLT_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.NINEVOLT_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("NINEVOLT_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.NINEVOLT_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("NINEVOLT_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-                     case clsMessageIDs.ONEMA_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.ONEMA_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("ONEMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.FOURMA_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FOURMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.FOURMA_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("FOURMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.TWENTYMA_CALIB_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("TWENTYMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.TWENTYMA_CALIB_SUCCESS:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("TWENTYMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.JIG_INITIALZATION_BYPASSED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("JIG_INITIALZATION_BYPASSED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.JIG_INITIALZATION_STARTED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("JIG_INITIALZATION_STARTED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.JIG_INITIALZATION_COMPLETED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("JIG_INITIALZATION_COMPLETED", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.JIG_INITIALZATION_FAILED:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("JIG_INITIALZATION_FAILED", clsGlobalVariables.objCultureinfo);
-                        break;
-                    
-                    case clsMessageIDs.REF_CH_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("REF_CH_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.SIG_CH_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("SIG_CH_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-
-                    case clsMessageIDs.CJC_CNT_ERR:
-                        //CA55  Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("CJC_CNT_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
 
                     case clsMessageIDs.FAIL_TO_CONNECT:
                         //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAIL_TO_CONNECT", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
@@ -615,6 +436,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsMessageIDs.SET_9V_IN_CALIB:
                         return objResManager.GetString("SET_9V_IN_CALIB", clsGlobalVariables.objCultureinfo);
 
+                    case clsMessageIDs.WRONG_DEVICE_SELECTION:
+                        return objResManager.GetString("WRONG_DEVICE_SELECTION", clsGlobalVariables.objCultureinfo);
+
                     case clsMessageIDs.SET_4mA_IN_CALIB:
                         return objResManager.GetString("SET_4mA_IN_CALIB", clsGlobalVariables.objCultureinfo);
                     case clsMessageIDs.SET_1mA_IN_CALIB:
@@ -692,6 +516,174 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     case clsMessageIDs.ABORT_BUTTON_CLICK:
                         return objResManager.GetString("ABORT_BUTTON_CLICK", clsGlobalVariables.objCultureinfo);
+                  
+                    case clsMessageIDs.Test_24Volt_OUTPUT_TEST_MSG:
+                        return objResManager.GetString("Test_24_OP_MESSAGE", clsGlobalVariables.objCultureinfo) ;
+                        
+                   
+                        
+
+                    case clsMessageIDs.DUT_CALIB_FAILED:
+                        return objResManager.GetString("DUT_CALIB_FAILED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.DUT_CALIB_COMPLETED:
+                        return objResManager.GetString("DUT_CALIB_COMPLETED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ERASING_DUT:
+                        return objResManager.GetString("ERASING_DUT", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.DUT_ERASE_FAILED:
+                        return objResManager.GetString("DUT_ERASE_FAILED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.DUT_ERASE_COMPLETED:
+                        return objResManager.GetString("DUT_ERASE_COMPLETED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEMV_DEBUG_MSG_ID:
+                        return objResManager.GetString("ONEMV_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo) +Environment.NewLine+
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("ONEMV_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.FIFTYMV_DEBUG_MSG_ID:
+                        return objResManager.GetString("FIFTYMV_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("FIFTYMV_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.THREEFIFTYOHM_DEBUG_MSG_ID:
+                        return objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID7", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                         objResManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID8", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.RELAY_DEBUG_MSG_ID:
+                        return objResManager.GetString("RELAY_DEBUG_MSG_ID1", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                        objResManager.GetString("RELAY_DEBUG_MSG_ID2", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                        objResManager.GetString("RELAY_DEBUG_MSG_ID3", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                        objResManager.GetString("RELAY_DEBUG_MSG_ID4", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                        objResManager.GetString("RELAY_DEBUG_MSG_ID5", clsGlobalVariables.objCultureinfo) + Environment.NewLine +
+                        objResManager.GetString("RELAY_DEBUG_MSG_ID6", clsGlobalVariables.objCultureinfo);
+
+                    case clsMessageIDs.THREEFIFTYOHM_CALIB_ERR:
+                        return objResManager.GetString("THREEFIFTYOHM_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEMV_CALIB_ERR:
+                        return objResManager.GetString("ONEMV_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.FIFTYMV_CALIB_ERR:
+                        return objResManager.GetString("FIFTYMV_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.THREEFIFTYOHM_CALIB_SUCCESS:
+                        return objResManager.GetString("THREEFIFTYOHM_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEMV_CALIB_SUCCESS:
+                        return objResManager.GetString("ONEMV_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.FIFTYMV_CALIB_SUCCESS:
+                        return objResManager.GetString("FIFTYMV_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.CALIBRATED_DUT:
+                        return objResManager.GetString("CALIBRATED_DUT", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.UNCALIBRATED_DUT:
+                        return objResManager.GetString("UNCALIBRATED_DUT", clsGlobalVariables.objCultureinfo);
+                        
+
+                   // case clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE:
+                       // return objResManager.GetString("CALIBRATED_BUT_ACCURACY_ISNOTDONE", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEVOLT_CALIB_ERR:
+                        return objResManager.GetString("ONEVOLT_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEVOLT_CALIB_SUCCESS:
+                        return objResManager.GetString("ONEVOLT_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.NINEVOLT_CALIB_ERR:
+                        return objResManager.GetString("NINEVOLT_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.NINEVOLT_CALIB_SUCCESS:
+                        return objResManager.GetString("NINEVOLT_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+                    case clsMessageIDs.ONEMA_CALIB_ERR:
+                        return objResManager.GetString("ONEMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.ONEMA_CALIB_SUCCESS:
+                        return objResManager.GetString("ONEMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.FOURMA_CALIB_ERR:
+                        return objResManager.GetString("FOURMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.FOURMA_CALIB_SUCCESS:
+                        return objResManager.GetString("FOURMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.TWENTYMA_CALIB_ERR:
+                        return objResManager.GetString("TWENTYMA_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.TWENTYMA_CALIB_SUCCESS:
+                        return objResManager.GetString("TWENTYMA_CALIB_SUCCESS", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.JIG_INITIALZATION_BYPASSED:
+                        return objResManager.GetString("JIG_INITIALZATION_BYPASSED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.JIG_INITIALZATION_STARTED:
+                        return objResManager.GetString("JIG_INITIALZATION_STARTED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.JIG_INITIALZATION_COMPLETED:
+                        return objResManager.GetString("JIG_INITIALZATION_COMPLETED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.JIG_INITIALZATION_FAILED:
+                        return objResManager.GetString("JIG_INITIALZATION_FAILED", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.REF_CH_ERR:
+                        return objResManager.GetString("REF_CH_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.SIG_CH_ERR:
+                        return objResManager.GetString("SIG_CH_ERR", clsGlobalVariables.objCultureinfo);
+                        
+
+                    case clsMessageIDs.CJC_CNT_ERR:
+                        return objResManager.GetString("CJC_CNT_ERR", clsGlobalVariables.objCultureinfo);
+                        
                 }
 
                 return "";

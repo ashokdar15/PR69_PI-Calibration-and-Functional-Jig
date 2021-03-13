@@ -402,7 +402,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public byte GetCounts(byte btmData)
         {
             byte btmRetVal;
-            long lmData=0;
+            long lmData = 0;
             try
             {
                 //DUT is put in start mode.
@@ -411,35 +411,35 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     //Delays are applied for signal stabilization.
                     
+                    {
                         if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt1mVOR50mVStartmodeDelay.Text));
+                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.PT100_CNT)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt350OhmStartmodeDelay.Text));
+                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt4mAOR20mAStartmodeDelay.Text));
+                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt1VOR9VStartmodeDelay.Text));
+                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE);
                         }
                         //-------Changed By Shubham
                         //Date:- 27-02-2018
                         //Version:- V16
-                        //Statement:- For VREF Start mode delay present in text box of VREF delay is applied here.
+                        //Statement:- For VREF Start mode delay present in INI File is applied here.
                         if (btmData == clsGlobalVariables.CALIB_VREF)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtVREFDelayStartMode.Text));
+                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_STARTMODE);
                         }
-                        //-------Changes End.
-                    
+                    }
                 }
                 else
                 {
@@ -452,42 +452,43 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     //Delays are applied for signal stabilization.
                     
+                   
                         if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt1mVOR50mVRunmodeDelay.Text));
+                          clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
                         }
 
                         if (btmData == clsGlobalVariables.PT100_CNT)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt350OhmRunmodeDelay.Text));
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt4mAOR20mARunmodeDelay.Text));
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txt1VOR9VRunmodeDelay.Text));
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE);
                         }
                         //-------Changed By Shubham
                         //Date:- 27-02-2018
                         //Version:- V16
-                        //Statement:- For VREF Run mode delay present in text box of VREF delay is applied here.
+                        //Statement:- For VREF Run mode delay present in INI File is applied here.
                         if (btmData == clsGlobalVariables.CALIB_VREF)
                         {
-                            //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtVREFDelayRunMode.Text));
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_RUNMODE);
                         }
-                        //-------Changes end.
-                   
+                        //---------Changes End.
+                    
                 }
                 else
                 {
                     return btmRetVal;
                 }
 
-                
+               
                     //-------Changed By Shubham
                     //Date:- 27-02-2018
                     //Version:- V16
@@ -527,7 +528,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         //For double acting device software validates the data received from the device.
                         btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData);
-                        
+
                         return btmRetVal;
                     }
                     else//Device without modbus
@@ -542,13 +543,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;    
-                        }                       
+                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                        }
                     }
                 }
                 else
                 {
-                    return btmRetVal;    
+                    return btmRetVal;
                 }
             }
             catch (Exception)
@@ -1535,11 +1536,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal;
                     clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal;
                     clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal;
-                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;
-                    clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal_PI;
-                    clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal_PI;
-                    clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal_PI;
-                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal_PI;
+                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;                   
                 }
                 else
                 {

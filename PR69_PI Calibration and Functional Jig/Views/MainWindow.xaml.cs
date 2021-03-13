@@ -1,4 +1,5 @@
-﻿using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
+﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
+using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             this.WindowState = WindowState.Normal;
 
             vm = (MainWindowVM)DataContext;
+            clsGlobalVariables.mainWindowVM = vm;
         }
 
         private void minimize_Click(object sender, RoutedEventArgs e)

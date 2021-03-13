@@ -111,12 +111,37 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _START_DISP_TEST = value; OnPropertyChanged("START_DISP_TEST"); }
         }
 
+
         private bool _START_KEYPAD_TEST;
 
         public bool START_KEYPAD_TEST
         {
             get { return _START_KEYPAD_TEST; }
             set { _START_KEYPAD_TEST = value; OnPropertyChanged("START_KEYPAD_TEST"); }
+        }
+
+        private bool _Vtg24V_OP_TEST;
+
+        public bool Vtg24V_OP_TEST
+        {
+            get { return _Vtg24V_OP_TEST; }
+            set { _Vtg24V_OP_TEST = value; OnPropertyChanged("Vtg24V_OP_TEST"); }
+        }
+
+        private bool _START_MODBUS_TEST;
+
+        public bool START_MODBUS_TEST
+        {
+            get { return _START_MODBUS_TEST; }
+            set { _START_MODBUS_TEST = value; OnPropertyChanged("START_MODBUS_TEST"); }
+        }
+
+        private bool _CJC_TEST;
+
+        public bool CJC_TEST
+        {
+            get { return _CJC_TEST; }
+            set { _CJC_TEST = value; OnPropertyChanged("CJC_TEST"); }
         }
 
 
@@ -140,6 +165,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     START_DISP_TEST = catId.CommonCalibTests[0].START_DISP_TEST;
                     START_KEYPAD_TEST = catId.CommonCalibTests[0].START_KEYPAD_TEST;
                     SWITCH_SENSOR_RELAY = catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY;
+                    Vtg24V_OP_TEST = catId.CommonCalibTests[0].Vtg24V_OP_TEST;
+                    START_MODBUS_TEST = catId.CommonCalibTests[0].START_MODBUS_TEST;
+                    CJC_TEST = catId.CommonCalibTests[0].CJC_TEST;
                 }
             }
         }
@@ -163,7 +191,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SLAVE3_OP3_OFF = SLAVE3_OP3_OFF,
                     START_DISP_TEST = START_DISP_TEST,
                     START_KEYPAD_TEST = START_KEYPAD_TEST,
-                    SWITCH_SENSOR_RELAY = SWITCH_SENSOR_RELAY
+                    SWITCH_SENSOR_RELAY = SWITCH_SENSOR_RELAY,
+                    Vtg24V_OP_TEST = Vtg24V_OP_TEST,
+                    START_MODBUS_TEST = START_MODBUS_TEST,
+                    CJC_TEST = CJC_TEST
                 };
 
                 return CommonTests;

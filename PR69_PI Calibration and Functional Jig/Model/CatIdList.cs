@@ -49,11 +49,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
     }
 
-    public class TotalTestsGroup
-    {
-        public int TestNumber { get; set; }
-        public string TestGroup { get; set; }
-    }
     
     public class AnalogInputTests
     {
@@ -109,6 +104,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool SLAVE1_OP1_ON { get; set; }
         public bool SLAVE1_OP1_OFF { get; set; }
         public bool START_REL_TEST { get; set; }
+        public bool START_REL_TEST_PI { get; set; }
         public bool DUT_OP1_ON { get; set; }
         public bool DUT_OP1_OFF { get; set; }       
         public bool DUT_OP2_ON { get; set; }
@@ -123,7 +119,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool SLAVE1_READ_ADC_CNT_RLY_OFF { get; set; }
         public bool CONVERTOR_OP1_OFF { get; set; }
         public bool CONVERTOR_OP2_OFF { get; set; }
-        public bool START_REL_TEST_PI { get; set; }
         public bool SLAVE1_OP3_OFF { get; set; }
         public bool SLAVE2_OP3_ON { get; set; }
         public bool SLAVE3_OP3_ON { get; set; }        
@@ -154,6 +149,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool CONVERTOR_OP2_OFF { get; set; }           //For all PR69(48X48) & PR69(96X96)
         public bool START_DISP_TEST { get; set; }
         public bool START_KEYPAD_TEST { get; set; }
+        public bool Vtg24V_OP_TEST { get; set; }
+        public bool START_MODBUS_TEST { get; set; }
+        public bool CJC_TEST { get; set; }
     }
 
 
@@ -210,4 +208,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public IList<TotalTestsGroup> TotalTestsGrouptests { get; set; }
     }
 
+    public class TotalTestsGroup
+    {
+        public int TestNumber { get; set; }
+        public string TestGroup { get; set; }
+    }
 }

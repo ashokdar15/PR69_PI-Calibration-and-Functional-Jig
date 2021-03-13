@@ -33,6 +33,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _START_REL_TEST = value; OnPropertyChanged("START_REL_TEST"); }
         }
 
+        private bool _START_REL_TEST_PI;
+
+        public bool START_REL_TEST_PI
+        {
+            get { return _START_REL_TEST_PI; }
+            set { _START_REL_TEST_PI = value; OnPropertyChanged("START_REL_TEST_PI"); }
+        }
+
+
         private bool _DUT_OP1_ON;
 
         public bool DUT_OP1_ON
@@ -130,12 +139,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             get { return _CONVERTOR_OP1_OFF; }
             set { _CONVERTOR_OP1_OFF = value; OnPropertyChanged("CONVERTOR_OP1_OFF"); }
         }
-        private bool _START_REL_TEST_PI;
+        private bool _CONVERTOR_OP2_OFF;
 
-        public bool START_REL_TEST_PI
+        public bool CONVERTOR_OP2_OFF
         {
-            get { return _START_REL_TEST_PI; }
-            set { _START_REL_TEST_PI = value; OnPropertyChanged("START_REL_TEST_PI"); }
+            get { return _CONVERTOR_OP2_OFF; }
+            set { _CONVERTOR_OP2_OFF = value; OnPropertyChanged("CONVERTOR_OP2_OFF"); }
         }
         private bool _SLAVE1_OP3_OFF;
 
@@ -185,6 +194,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SLAVE1_OP1_ON = catId.RelayOrSSRTests[0].SLAVE1_OP1_ON;
                     SLAVE1_OP1_OFF = catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF;
                     START_REL_TEST = catId.RelayOrSSRTests[0].START_REL_TEST;
+                    START_REL_TEST_PI = catId.RelayOrSSRTests[0].START_REL_TEST_PI;
                     DUT_OP1_ON = catId.RelayOrSSRTests[0].DUT_OP1_ON;
                     DUT_OP1_OFF = catId.RelayOrSSRTests[0].DUT_OP1_OFF;
                     DUT_OP2_ON = catId.RelayOrSSRTests[0].DUT_OP2_ON;
@@ -198,7 +208,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SLAVE1_READ_ADC_CNT_RLY_ON = catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON;
                     SLAVE1_READ_ADC_CNT_RLY_OFF = catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF;
                     CONVERTOR_OP1_OFF = catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF;
-                    START_REL_TEST_PI = catId.RelayOrSSRTests[0].START_REL_TEST_PI;
+                    CONVERTOR_OP2_OFF = catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF;
                     SLAVE1_OP3_OFF = catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF;
                     SLAVE2_OP3_ON = catId.RelayOrSSRTests[0].SLAVE2_OP3_ON;
                     SLAVE3_OP3_ON = catId.RelayOrSSRTests[0].SLAVE3_OP3_ON;
@@ -217,6 +227,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SLAVE1_OP1_ON = SLAVE1_OP1_ON,
                     SLAVE1_OP1_OFF = SLAVE1_OP1_OFF,
                     START_REL_TEST = START_REL_TEST,
+                    START_REL_TEST_PI = START_REL_TEST_PI,
                     DUT_OP1_ON = DUT_OP1_ON,
                     DUT_OP1_OFF = DUT_OP1_OFF,
                     DUT_OP2_ON = DUT_OP2_ON,
@@ -230,7 +241,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SLAVE1_READ_ADC_CNT_RLY_ON = SLAVE1_READ_ADC_CNT_RLY_ON,
                     SLAVE1_READ_ADC_CNT_RLY_OFF = SLAVE1_READ_ADC_CNT_RLY_OFF,
                     CONVERTOR_OP1_OFF = CONVERTOR_OP1_OFF,
-                    START_REL_TEST_PI = START_REL_TEST_PI,
+                    CONVERTOR_OP2_OFF = CONVERTOR_OP2_OFF,
                     SLAVE1_OP3_OFF = SLAVE1_OP3_OFF,
                     SLAVE2_OP3_ON = SLAVE2_OP3_ON,
                     SLAVE3_OP3_ON = SLAVE3_OP3_ON,

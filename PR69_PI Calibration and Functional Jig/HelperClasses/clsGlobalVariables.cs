@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections;
 using System.Globalization;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
+using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
@@ -110,6 +111,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
 
         public static SelectedDeviceType selectedDeviceType;
+        public static MainWindowVM mainWindowVM = new MainWindowVM();
 
         public static int FAILURE = -1;
         public static int SUCCESS = 0;
@@ -159,6 +161,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //CA55public static PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage objPictMsg = new PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage();
         //-------Changed By Shubham
         //Date:- 28-04-2018
+        public static byte DISPLAY_MSG_DUT_NUMBER = 1;
         //Version:- V17
         //Statement:- This variable will store the name of ongoing test.
         public static string strgOngoingTestName = "";
@@ -531,7 +534,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte J_SENSOR = 0x32;
         public const byte mV_SENSOR = 0x30;
         public const byte RTD_SENSOR = 0x30;
-        public const byte VTG_SENSOR = 0x32;
+        public const byte VTG_SENSOR_30V= 0x33;
         public const byte mA_SENSOR = 0x30;
         //These valuse will be set into calibrator.
         public const string strgONE_MV = "1";
@@ -562,24 +565,24 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int FIVE_VOLT_MAX_PI = 5080;
         public static int TWELVE_mA_MIN = 11920;
         public static int TWELVE_mA_MAX = 12080;
-        public static int TWELVE_mA_MIN_PI = 1195;
-        public static int TWELVE_mA_MAX_PI = 1205;
+        public static int TWELVE_mA_MIN_PI = 11950;
+        public static int TWELVE_mA_MAX_PI = 12050;
         public static int One_VOLT_MAX = 1090;
         public static int One_VOLT_MIN = 910;
-        public static int One_VOLT_MAX_PI = 103;
-        public static int One_VOLT_MIN_PI = 96;
+        public static int One_VOLT_MAX_PI = 1030;
+        public static int One_VOLT_MIN_PI = 960;
         public static int TEN_VOLT_MAX = 10080;
         public static int TEN_VOLT_MIN = 9920;
-        public static int TEN_VOLT_MAX_PI = 1047;
-        public static int TEN_VOLT_MIN_PI = 975;
+        public static int TEN_VOLT_MAX_PI = 10470;
+        public static int TEN_VOLT_MIN_PI = 9750;
         public static int FOUR_mAMP_MAX = 4100;
         public static int FOUR_mAMP_MIN = 3900;
-        public static int ONE_mAMP_MAX_PI = 1010;//0.9538               1.0129
+        public static int ONE_mAMP_MAX_PI = 1050;//0.9538               1.0129
         public static int ONE_mAMP_MIN_PI = 950;
         public static int TWENTY_mAMP_MAX = 20080;
         public static int TWENTY_mAMP_MIN = 19920;
-        public static int TWENTY_mAMP_MAX_PI = 2074;
-        public static int TWENTY_mAMP_MIN_PI = 1952;
+        public static int TWENTY_mAMP_MAX_PI = 20740;
+        public static int TWENTY_mAMP_MIN_PI = 19520;
 
         public const string ONE_VOLT_INPUT_CAL = "1";
         public const string NINE_VOLT_INPUT_CAL = "9";
@@ -633,14 +636,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte START_MODE = 0x1;
         public const byte RUN_MODE = 0x2;
         // These are delays used during device calibration.
-        public static int PT100_DELAY_AFTER_STARTMODE = 30000;
-        public static int PT100_DELAY_AFTER_RUNMODE = 60000;
-        public static int ONEmV_DELAY_AFTER_STARTMODE = 30000;
-        public static int ONEmV_DELAY_AFTER_RUNMODE = 30000;
-        public static int FOURmA_DELAY_AFTER_STARTMODE = 30000;
-        public static int FOURmA_DELAY_AFTER_RUNMODE = 30000;
-        public static int ONEVolt_DELAY_AFTER_STARTMODE = 30000;
-        public static int ONEVolt_DELAY_AFTER_RUNMODE = 30000;
+        public static int PT100_DELAY_AFTER_STARTMODE = 20000;
+        public static int PT100_DELAY_AFTER_RUNMODE = 20000;
+        public static int ONEmV_DELAY_AFTER_STARTMODE = 20000;
+        public static int ONEmV_DELAY_AFTER_RUNMODE = 20000;
+        public static int FOURmA_DELAY_AFTER_STARTMODE = 20000;
+        public static int FOURmA_DELAY_AFTER_RUNMODE = 20000;
+        public static int ONEVolt_DELAY_AFTER_STARTMODE = 20000;
+        public static int ONEVolt_DELAY_AFTER_RUNMODE = 20000;
         //-------Changed By Shubham
 
         public static int mA_V_AccuracyDelay = 10000;

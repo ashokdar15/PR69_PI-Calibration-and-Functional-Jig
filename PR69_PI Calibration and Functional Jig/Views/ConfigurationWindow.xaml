@@ -451,11 +451,11 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="START REL TEST PI" 
+                                <CheckBox Content="CONVERTOR OP2 OFF" 
                                       Grid.Column="0" Grid.Row="4" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="SLAVE1 OP3 OFF" 
                                       Grid.Column="1" Grid.Row="4" Margin="20 20"
@@ -486,6 +486,12 @@
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsRelayORSSRTests.SLAVE2_READ_ADC_CNT_RLY_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="START REL TEST PI" 
+                                      Grid.Column="2" Grid.Row="5" Margin="20 20"
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="True"
+                                      IsChecked="{Binding clsRelayORSSRTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             </Grid>
                         </Border>
@@ -536,6 +542,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
@@ -608,11 +615,11 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsCommonTests.CONVERTOR_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="START REL TEST PI" 
+                                <CheckBox Content="CONVERTOR OP2 OFF" 
                                       Grid.Column="3" Grid.Row="2" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsCommonTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsCommonTests.CONVERTOR_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="START DISP TEST" 
                                       Grid.Column="0" Grid.Row="3" Margin="20 20"
@@ -625,6 +632,24 @@
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsCommonTests.START_KEYPAD_TEST, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="24V OP TEST" 
+                                      Grid.Column="2" Grid.Row="3" Margin="20 20"
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="True"
+                                      IsChecked="{Binding clsCommonTests.Vtg24V_OP_TEST, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="START MODBUS TEST" 
+                                      Grid.Column="3" Grid.Row="3" Margin="20 20"
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="True"
+                                      IsChecked="{Binding clsCommonTests.START_MODBUS_TEST, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="CJC TEST" 
+                                      Grid.Column="0" Grid.Row="4" Margin="20 20"
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="True"
+                                      IsChecked="{Binding clsCommonTests.CJC_TEST, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             </Grid>
                         </Border>

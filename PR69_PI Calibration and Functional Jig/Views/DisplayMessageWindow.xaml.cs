@@ -11,7 +11,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
     {
 
         MainWindowVM vm = null;
-        public DisplayMessageWindow(string dispMsg, string dispImg, string title)
+        public DisplayMessageWindow(string title, string dispImg, string dispMsg)
         {
             InitializeComponent();
             vm = (MainWindowVM)DataContext;
@@ -19,11 +19,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             vm.DisplayImgPath = dispImg;
             vm.MsgDescription = dispMsg;
             SetImg.Visibility = Visibility.Visible;
+            OKBtn.Focus();
         }
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+        }
+
+        private void StackPanel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

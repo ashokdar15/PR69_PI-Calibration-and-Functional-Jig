@@ -685,7 +685,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     if (lmData != clsModelSettings.igDutID)
                     {
-                        clsMessages.DisplayMessage(clsMessageIDs.WRONG_DEVICE_SELECTION); 
+                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.WRONG_DEVICE_SELECTION);
+
+                        //clsMessages.DisplayMessage(clsMessageIDs.WRONG_DEVICE_SELECTION); 
                         //MessageBox.Show("Wrong Device selection.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
@@ -723,7 +725,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     if (lmData != clsModelSettings.igDutID)
                     {
-                        clsMessages.DisplayMessage(clsMessageIDs.WRONG_DEVICE_SELECTION);
+                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.WRONG_DEVICE_SELECTION);
                         //MessageBox.Show("Wrong Device selection.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
@@ -783,7 +785,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     if (lmData == clsGlobalVariables.CALIB_DONE)
                     {
-                        clsMessages.DisplayMessage(clsMessageIDs.DUT_ALREADY_CALIBRATED);    
+                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.DUT_ALREADY_CALIBRATED);
+                        
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                 }

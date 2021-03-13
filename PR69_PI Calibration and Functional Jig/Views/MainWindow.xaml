@@ -72,24 +72,24 @@
                             <StackPanel Margin="10 0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
                                     Orientation="Horizontal" HorizontalAlignment="Center">
                                 <ComboBox materialDesign:HintAssist.Hint="COM PORT"
-                                materialDesign:TextFieldAssist.HasClearButton="False"
-                                IsEditable="False"
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                Margin="10"
-                                SelectedItem ="{Binding Path = SelectedComPort, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}"
-                                ItemsSource="{Binding Path = PortList,Mode = TwoWay,UpdateSourceTrigger = PropertyChanged}">
+                                          materialDesign:TextFieldAssist.HasClearButton="False"
+                                          IsEditable="False"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                          Margin="10"
+                                          SelectedItem ="{Binding Path = SelectedComPort, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}"
+                                          ItemsSource="{Binding Path = PortList,Mode = TwoWay,UpdateSourceTrigger = PropertyChanged}">
 
                                 </ComboBox>
                                 <Label Content="Please select COM Port" Foreground="Red" FontSize="9" 
-                                 Margin="10 0 0 0"
-                                 Visibility="{Binding Path=ComPortError, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                         Margin="10 0 0 0"
+                                         Visibility="{Binding Path=ComPortError, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
 
                                 <ComboBox materialDesign:HintAssist.Hint="Baud Rate"
-                                materialDesign:TextFieldAssist.HasClearButton="False"
-                                IsEditable="False"
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                Margin="10"
-                                Text="{Binding Path = SelectedBaudRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        materialDesign:TextFieldAssist.HasClearButton="False"
+                                        IsEditable="False"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                        Margin="10"
+                                        Text="{Binding Path = SelectedBaudRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <ComboBoxItem>19200</ComboBoxItem>
                                     <ComboBoxItem>115200</ComboBoxItem>
                                 </ComboBox>
