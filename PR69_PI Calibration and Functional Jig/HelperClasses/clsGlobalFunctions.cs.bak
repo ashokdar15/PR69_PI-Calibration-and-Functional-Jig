@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.IO;
 using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System.Threading.Tasks;
-using PR69_PI_Calibration_and_Functional_Jig.Views;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
@@ -1647,14 +1646,5 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 MessageBox.Show(ex.Message, clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public void DisplayImgMessageBox(string MsgDescription, string DisplayImgPath, string TitleImgMsg)
-        {
-           
-               DisplayMessageWindow displayMessageWindow = new DisplayMessageWindow(TitleImgMsg, clsGlobalVariables.DispImgpath + DisplayImgPath, MsgDescription);
-            displayMessageWindow.ShowDialog();
-        }
-
-
     }//End of class
 }//End of namespace

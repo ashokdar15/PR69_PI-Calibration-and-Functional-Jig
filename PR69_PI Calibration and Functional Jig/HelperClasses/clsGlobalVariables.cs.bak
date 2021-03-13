@@ -117,7 +117,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static CatIdList Selectedcatid = new CatIdList();
         public static string SelectedDeviceNameOfTreeView = "";
         public static string configJsonfilepath = "";
-        public static string DispImgpath = "";
 
         public enum SelectedDeviceType
         {
@@ -196,7 +195,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const Byte MB_FUNC_READ_INPUTSTATUS = 0x2;
         public static int ig_Calib_Query_TimeOut = 5000;
         public static int CALIB_MEASURE_DELAY = 12000;
-        public static int igDelay_In_Two_Calib_Queries = 500;
+        public static int igDelay_In_Two_Calib_Queries = 200;
         public static int igTooltip_Time_Duration = 2000;
         public static int igPV_TIMEOUT_DELAY = 120000;
         public static int igPV_DISPLAY_DELAY = 1200;

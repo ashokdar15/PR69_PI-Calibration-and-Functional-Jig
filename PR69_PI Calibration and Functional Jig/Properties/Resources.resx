@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,649 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACCURACY_COMPLETE" xml:space="preserve">
+    <value>Accurcy Testing completed successfully.</value>
+  </data>
+  <data name="ACCURACY_FAILED" xml:space="preserve">
+    <value>Error occurred in Accurcy Testing.</value>
+  </data>
+  <data name="ANALOG_TEST_CURRENT" xml:space="preserve">
+    <value>Analog Output current calibration for </value>
+  </data>
+  <data name="ANALOG_TEST_VALUE" xml:space="preserve">
+    <value> device is giving -&gt;</value>
+  </data>
+  <data name="ANALOG_TEST_VOLTAGE" xml:space="preserve">
+    <value>Analog Output voltage calibration for </value>
+  </data>
+  <data name="BAUDRATE_SET_SUCCESSFUL" xml:space="preserve">
+    <value>Baud Rate Set To 38400.....</value>
+  </data>
+  <data name="CALIBRATED_BUT_ACCURACY_ISNOTDONE" xml:space="preserve">
+    <value>This DUT is calibrated but accuracy testing is not done.</value>
+  </data>
+  <data name="CALIBRATED_DUT" xml:space="preserve">
+    <value>This DUT is already calibrated.</value>
+  </data>
+  <data name="Calibrator_COM_PORT" xml:space="preserve">
+    <value>Selected Com Port For Calibrator  -&gt;</value>
+  </data>
+  <data name="PLC_COM_PORT" xml:space="preserve">
+    <value>Selected Com Port For PLC  -&gt;</value>
+  </data>
+  <data name="CALIB_MEASURE_NOT_ON" xml:space="preserve">
+    <value>Calibrator measure is not ON.</value>
+  </data>
+  <data name="CHECK_CONNECTIONS1" xml:space="preserve">
+    <value>Check Connections with Device...</value>
+  </data>
+  <data name="CODE_LOCK_MATCHED" xml:space="preserve">
+    <value>Code Lock Matched...</value>
+  </data>
+  <data name="CODE_LOCK_NOT_MATCH" xml:space="preserve">
+    <value>Code Lock Not Matching...</value>
+  </data>
+  <data name="CURRENT_SETTING_MSG_ID1" xml:space="preserve">
+    <value>Connect Calibrator measurement probes,</value>
+  </data>
+  <data name="CURRENT_SETTING_MSG_ID2" xml:space="preserve">
+    <value>a) L terminal to COMMON Terminal on JIG.</value>
+  </data>
+  <data name="CURRENT_SETTING_MSG_ID3" xml:space="preserve">
+    <value>b) mA terminal to IDMM+ on JIG.</value>
+  </data>
+  <data name="CURRENT_SETTING_MSG_ID4" xml:space="preserve">
+    <value>Also set Calibrator Measure knob to mA Position.</value>
+  </data>
+  <data name="DEVICE_CONNECTED" xml:space="preserve">
+    <value>Device Connected...</value>
+  </data>
+  <data name="DUT_ALREADY_CALIBRATED" xml:space="preserve">
+    <value>DUT Already calibrated.</value>
+  </data>
+  <data name="DUT_CALIB_COMPLETED" xml:space="preserve">
+    <value>Device calibration completed Successfully.</value>
+  </data>
+  <data name="DUT_CALIB_FAILED" xml:space="preserve">
+    <value>Device calibration Failed.</value>
+  </data>
+  <data name="DUT_ERASE_COMPLETED" xml:space="preserve">
+    <value>DUT erased successfully.</value>
+  </data>
+  <data name="DUT_ERASE_FAILED" xml:space="preserve">
+    <value>Error while erasing DUT.</value>
+  </data>
+  <data name="ENDPROGRAMMING_SUCCESSFUL" xml:space="preserve">
+    <value>End Programming...</value>
+  </data>
+  <data name="ERASED_SUCCESSFULLY" xml:space="preserve">
+    <value>Erased Successfully...</value>
+  </data>
+  <data name="ERASING_DUT" xml:space="preserve">
+    <value>Erasing DUT...</value>
+  </data>
+  <data name="ERROR_INI_TOTAL_NO_OF_CATID" xml:space="preserve">
+    <value>Error while reading Total number of Cat Id from INI file.</value>
+  </data>
+  <data name="ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE" xml:space="preserve">
+    <value>Total number of Cat Id field should be positive or non zero.</value>
+  </data>
+  <data name="FAILED_TO_ERASE" xml:space="preserve">
+    <value>Fail To Erase Device...</value>
+  </data>
+  <data name="FAIL_ENDPROGRAM" xml:space="preserve">
+    <value>Fail To End Programming...</value>
+  </data>
+  <data name="FAIL_TO_CONNECT" xml:space="preserve">
+    <value>Fail To Connect Device...</value>
+  </data>
+  <data name="FAIL_TO_PROGRAM" xml:space="preserve">
+    <value>Device Programming Fail...</value>
+  </data>
+  <data name="FAIL_TO_SET_BAUDRATE" xml:space="preserve">
+    <value>Fail To Set BaudRate...</value>
+  </data>
+  <data name="FIFTYMV_CALIB_ERR" xml:space="preserve">
+    <value>50 mV calibration failed.</value>
+  </data>
+  <data name="FIFTYMV_CALIB_SUCCESS" xml:space="preserve">
+    <value>50mV Calibration completed Successfully.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID1" xml:space="preserve">
+    <value>50mV Calibration failed.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID2" xml:space="preserve">
+    <value>Ensure Following points for Failure.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID3" xml:space="preserve">
+    <value>1)H Terminal of Calibrator's Source is connected to 12 number pin of DUT.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID4" xml:space="preserve">
+    <value>2)L Terminal of Calibrator's Source is connected to 11 number pin of DUT.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID5" xml:space="preserve">
+    <value>3)Check that Calibrator is ON.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID6" xml:space="preserve">
+    <value>4)Check that DUT connector is proper.</value>
+  </data>
+  <data name="FIFTYMV_DEBUG_MSG_ID7" xml:space="preserve">
+    <value>5)Check DUT Hardware.</value>
+  </data>
+  <data name="FOURMA_CALIB_ERR" xml:space="preserve">
+    <value>4mA calibration failed.</value>
+  </data>
+  <data name="ONEMA_CALIB_ERR" xml:space="preserve">
+    <value>1mA calibration failed.</value>
+  </data>
+  <data name="FOURMA_CALIB_SUCCESS" xml:space="preserve">
+    <value>4mA Calibration completed Successfully.</value>
+  </data>
+  <data name="ONEMA_CALIB_SUCCESS" xml:space="preserve">
+    <value>1mA Calibration completed Successfully.</value>
+  </data>
+  <data name="JIG_AND_CALIB_PORT_SAME" xml:space="preserve">
+    <value>JIG and Calibrator COM Port can not be same.</value>
+  </data>
+  <data name="JIG_COM_PORT" xml:space="preserve">
+    <value>Selected Com Port For JIG  -&gt; </value>
+  </data>
+  <data name="JIG_INITIALZATION_BYPASSED" xml:space="preserve">
+    <value>JIG initialization process is bypassed.</value>
+  </data>
+  <data name="JIG_INITIALZATION_COMPLETED" xml:space="preserve">
+    <value>JIG initialization process is completed.</value>
+  </data>
+  <data name="JIG_INITIALZATION_FAILED" xml:space="preserve">
+    <value>JIG initialization process is failed.</value>
+  </data>
+  <data name="JIG_INITIALZATION_STARTED" xml:space="preserve">
+    <value>JIG initialization process is started.</value>
+  </data>
+  <data name="Main_ERR_MSG1" xml:space="preserve">
+    <value>The communication with the device was unsuccessful because</value>
+  </data>
+  <data name="Main_ERR_MSG2" xml:space="preserve">
+    <value>1. The communication cable may be faulty or not connected or</value>
+  </data>
+  <data name="Main_ERR_MSG3" xml:space="preserve">
+    <value>2. The device may not be powered ON or</value>
+  </data>
+  <data name="Main_ERR_MSG4" xml:space="preserve">
+    <value>3. The Calibrator may not be powered ON or</value>
+  </data>
+  <data name="Main_ERR_MSG5" xml:space="preserve">
+    <value>4. Make sure parity of DUT(Double Acting) is even or</value>
+  </data>
+  <data name="Main_ERR_MSG6" xml:space="preserve">
+    <value>5. Make sure that communication cable of DUT(Single Acting) is connected or</value>
+  </data>
+  <data name="Main_ERR_MSG7" xml:space="preserve">
+    <value>6. Make sure that connected DUT and selected Cat Id in Software is same. or</value>
+  </data>
+  <data name="Main_ERR_MSG8" xml:space="preserve">
+    <value>7. Make sure that Accuracy testing is done for the selected device. or</value>
+  </data>
+  <data name="Main_ERR_MSG9" xml:space="preserve">
+    <value>Please verify all the possibilities and try again.</value>
+  </data>
+  <data name="MAX_DELAY_ERR" xml:space="preserve">
+    <value>Max delay value of 3,00,000 msec is allowed in this field.</value>
+  </data>
+  <data name="MA_CALIBRATION_MSG_ID1" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to 20mA.</value>
+  </data>
+  <data name="NINEVOLT_CALIB_ERR" xml:space="preserve">
+    <value>9V calibration failed.</value>
+  </data>
+  <data name="NINEVOLT_CALIB_SUCCESS" xml:space="preserve">
+    <value>9V Calibration completed Successfully.</value>
+  </data>
+  <data name="OBSERVE_DISP_TEST" xml:space="preserve">
+    <value>Observe DUT display for display test.</value>
+  </data>
+  <data name="ONEMV_CALIB_ERR" xml:space="preserve">
+    <value>1 mV calibration failed.</value>
+  </data>
+  <data name="ONEMV_CALIB_SUCCESS" xml:space="preserve">
+    <value>1mV Calibration completed Successfully.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID1" xml:space="preserve">
+    <value>1mV Calibration failed.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID2" xml:space="preserve">
+    <value>Ensure Following points for Failure.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID3" xml:space="preserve">
+    <value>1)H Terminal of Calibrator's Source is connected to 12 number pin of DUT.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID4" xml:space="preserve">
+    <value>2)L Terminal of Calibrator's Source is connected to 11 number pin of DUT.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID5" xml:space="preserve">
+    <value>3)Check that Calibrator is ON.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID6" xml:space="preserve">
+    <value>4)Check that DUT connector is proper.</value>
+  </data>
+  <data name="ONEMV_DEBUG_MSG_ID7" xml:space="preserve">
+    <value>5)Check DUT Hardware.</value>
+  </data>
+  <data name="ONEVOLT_CALIB_ERR" xml:space="preserve">
+    <value>1V calibration failed.</value>
+  </data>
+  <data name="ONEVOLT_CALIB_SUCCESS" xml:space="preserve">
+    <value>1V Calibration completed Successfully.</value>
+  </data>
+  <data name="POWER_CYCLE_MSG_ID" xml:space="preserve">
+    <value>Switch OFF JIG supply for 5 Sec and after DUT display goes OFF, make JIG supply ON for Accuracy testing.</value>
+  </data>
+  <data name="PROGRAMMING" xml:space="preserve">
+    <value>Device Is Programming...</value>
+  </data>
+  <data name="PROGRAMMING_COMPLETE" xml:space="preserve">
+    <value>Programming Completed.</value>
+  </data>
+  <data name="PROGRAM_SUCCESSFUL" xml:space="preserve">
+    <value>Device Successfully Programmed</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID1" xml:space="preserve">
+    <value>Ensure Following points for Failure.</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID2" xml:space="preserve">
+    <value>1)Ensure that Relay is physically present on DUT.</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID3" xml:space="preserve">
+    <value>2)Check continuity of Relay manually.</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID4" xml:space="preserve">
+    <value>3)Check that correct firmware is present in hardware.</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID5" xml:space="preserve">
+    <value>4)Check that all default settings are present in DUT.</value>
+  </data>
+  <data name="RELAY_DEBUG_MSG_ID6" xml:space="preserve">
+    <value>5)Check DUT Hardware.</value>
+  </data>
+  <data name="SET_1mV_IN_CALIB" xml:space="preserve">
+    <value>Adjust 1mV value in Calibrator's Source.</value>
+  </data>
+  <data name="ENSURE_1mV_IN_CALIB_PI" xml:space="preserve">
+    <value>Ensure 1mV value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_1V_IN_CALIB" xml:space="preserve">
+    <value>Adjust 1V value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_20mA_IN_CALIB" xml:space="preserve">
+    <value>Adjust 20mA value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_350Ohm_IN_CALIB" xml:space="preserve">
+    <value>Adjust 350 ohm resistance value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_4mA_IN_CALIB" xml:space="preserve">
+    <value>Adjust 4mA value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_1mA_IN_CALIB" xml:space="preserve">
+    <value>Adjust 1mA value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_50mV_IN_CALIB" xml:space="preserve">
+    <value>Adjust 50mV value in Calibrator's Source.</value>
+  </data>
+  <data name="SET_9V_IN_CALIB" xml:space="preserve">
+    <value>Adjust 9V value in Calibrator's Source.</value>
+  </data>
+  <data name="THREEFIFTYOHM_CALIB_ERR" xml:space="preserve">
+    <value>350 Ohm calibration failed.</value>
+  </data>
+  <data name="THREEFIFTYOHM_CALIB_SUCCESS" xml:space="preserve">
+    <value>350Ohm Calibration completed Successfully.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID1" xml:space="preserve">
+    <value>350Ohm Calibration failed.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID2" xml:space="preserve">
+    <value>Ensure Following points for Failure.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID3" xml:space="preserve">
+    <value>1)H Terminal of Calibrator's Source is connected to 12 number pin of DUT.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID4" xml:space="preserve">
+    <value>2)L Terminal of Calibrator's Source is connected to 11 number pin of DUT.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID5" xml:space="preserve">
+    <value>3)L Terminal of Calibrator's Source is connected to 10 number pin of DUT.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID6" xml:space="preserve">
+    <value>4)Check that Calibrator is ON.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID7" xml:space="preserve">
+    <value>5)Check that DUT connector is proper.</value>
+  </data>
+  <data name="THREEFIFTYOHM_DEBUG_MSG_ID8" xml:space="preserve">
+    <value>6)Check DUT Hardware.</value>
+  </data>
+  <data name="THREEWIRE_MSG_ID1" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to RTD.</value>
+  </data>
+  <data name="THREEWIRE_MSG_ID2" xml:space="preserve">
+    <value>b) Connect terminal 10 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="ALL_WIRE_MSG_PI1" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to RTD.</value>
+  </data>
+  <data name="ALL_WIRE_MSG_PI2" xml:space="preserve">
+    <value>b) Connect terminal 7 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWENTYMA_CALIB_ERR" xml:space="preserve">
+    <value>20mA calibration failed.</value>
+  </data>
+  <data name="TWENTYMA_CALIB_SUCCESS" xml:space="preserve">
+    <value>20mA Calibration completed Successfully.</value>
+  </data>
+  <data name="CJC_TEST" xml:space="preserve">
+    <value>Testing CJC temperature test.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID1" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to 100mV.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID2" xml:space="preserve">
+    <value>b) Connect terminal 12 &amp; 11 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID3" xml:space="preserve">
+    <value>c) Please ensure that terminal 10 of DUT is not connected to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID1_PI" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to 100mV.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID2_PI" xml:space="preserve">
+    <value>b) Connect terminal 5 &amp; 6 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWOWIRE_MSG_ID3_PI" xml:space="preserve">
+    <value>c) Please ensure that terminal 7 of DUT is not connected to Calibrator Source terminal.</value>
+  </data>
+  <data name="UNABLE_TO_CONNECT" xml:space="preserve">
+    <value>Unable to connect to Programming JIG.</value>
+  </data>
+  <data name="Test_24_OP_MESSAGE" xml:space="preserve">
+    <value>Read 24 volt out put of jig.</value>
+  </data>
+  <data name="UNCALIBRATED_DUT" xml:space="preserve">
+    <value>This DUT is not calibrated.</value>
+  </data>
+  <data name="VOLTAGE_SETTING_MSG_ID1" xml:space="preserve">
+    <value>Connect Calibrator measurement probes,</value>
+  </data>
+  <data name="VOLTAGE_SETTING_MSG_ID2" xml:space="preserve">
+    <value>a) L terminal to COMMON Terminal on JIG.</value>
+  </data>
+  <data name="VOLTAGE_SETTING_MSG_ID3" xml:space="preserve">
+    <value>b) H terminal to VDMM+ on JIG.</value>
+  </data>
+  <data name="VOLTAGE_SETTING_MSG_ID4" xml:space="preserve">
+    <value>Remove current conenction present between Calibrator Measure and JIG.
+Also set Calibrator Measure knob to 10V Position.</value>
+  </data>
+  <data name="VOLT_CALIBRATION_MSG_ID1" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to 10V.</value>
+  </data>
+  <data name="CHECK_CONNECTIONS2" xml:space="preserve">
+    <value>Power cycle Programming Jig and try again...</value>
+  </data>
+  <data name="ENTER_VALID_PASSWORD" xml:space="preserve">
+    <value>Enter Valid Password.</value>
+  </data>
+  <data name="NOT_VALID_PASSWORD" xml:space="preserve">
+    <value>Not valid password.</value>
+  </data>
+  <data name="PORT_NOT_PRESENT" xml:space="preserve">
+    <value>Communication Port is not available.</value>
+  </data>
+  <data name="SLAVE1_NOT_OK" xml:space="preserve">
+    <value>Check communication settings of Slave1 having Modbus ID 10.</value>
+  </data>
+  <data name="SLAVE1_OK" xml:space="preserve">
+    <value>Communication with Slave1 having Modbus ID 10 is OK.</value>
+  </data>
+  <data name="SLAVE2_NOT_OK" xml:space="preserve">
+    <value>Check communication settings of Slave2 having Modbus ID 11.</value>
+  </data>
+  <data name="SLAVE2_OK" xml:space="preserve">
+    <value>Communication with Slave2 having Modbus ID 11 is OK.</value>
+  </data>
+  <data name="SLAVE3_NOT_OK" xml:space="preserve">
+    <value>Check communication settings of Slave3 having Modbus ID 12.</value>
+  </data>
+  <data name="SLAVE3_OK" xml:space="preserve">
+    <value>Communication with Slave3 having Modbus ID 12 is OK.</value>
+  </data>
+  <data name="SLAVE4_NOT_OK" xml:space="preserve">
+    <value>Check communication settings of Slave4 having Modbus ID 13.</value>
+  </data>
+  <data name="SLAVE4_OK" xml:space="preserve">
+    <value>Communication with Slave4 having Modbus ID 13 is OK.</value>
+  </data>
+  <data name="WRONG_DEVICE_SELECTION" xml:space="preserve">
+    <value>Wrong Device selection.</value>
+  </data>
+  <data name="V1mVOR50mV_RUN_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after run mode for 1mv and 50mV Calibation.</value>
+  </data>
+  <data name="V1mVOR50mV_START_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after start mode for 1mv and 50mV Calibation.</value>
+  </data>
+  <data name="V1VOR9V_RUN_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after run mode for 1Volt and 9Volt Calibation.</value>
+  </data>
+  <data name="V1VOR9V_START_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after start mode for 1Volt and 9Volt Calibation.</value>
+  </data>
+  <data name="R350OHM_RUN_MODE_DELAY" xml:space="preserve">
+    <value>msec) will get applied after run mode for 350Ohm Calibation.</value>
+  </data>
+  <data name="R350OHM_START_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after start mode for 350Ohm Calibation.</value>
+  </data>
+  <data name="I4mAOR20mA_RUN_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after run mode for 4mA and 20mA Calibation.</value>
+  </data>
+  <data name="I4mAOR20mA_START_MODE_DELAY" xml:space="preserve">
+    <value>(msec) will get applied after start mode for 4mA and 20mA Calibation.</value>
+  </data>
+  <data name="ACCURACY_J_0" xml:space="preserve">
+    <value>Testing accuracy of J sensor for 0°C.</value>
+  </data>
+  <data name="ACCURACY_J" xml:space="preserve">
+    <value>Testing accuracy of J sensor for </value>
+  </data>
+  <data name="ACCURACY_J_400" xml:space="preserve">
+    <value>Testing accuracy of J sensor for 400°C.</value>
+  </data>
+  <data name="ACCURACY_J_300" xml:space="preserve">
+    <value>Testing accuracy of J sensor for 300°C.</value>
+  </data>
+  <data name="ACCURACY_J_700" xml:space="preserve">
+    <value>Testing accuracy of J sensor for 700°C.</value>
+  </data>
+  <data name="ACCURACY_J_NEG_100" xml:space="preserve">
+    <value>Testing accuracy of J sensor for -100°C.</value>
+  </data>
+  <data name="ACCURACY_mA_12" xml:space="preserve">
+    <value>Testing accuracy of 4-20 mA sensor for 12mA.</value>
+  </data>
+  <data name="ACCURACY_mA_12_PI" xml:space="preserve">
+    <value>Testing accuracy of 0 - 20 mA sensor for 12mA.</value>
+  </data>
+  <data name="ACCURACY_mA_20" xml:space="preserve">
+    <value>Testing accuracy of 4-20 mA sensor for 20mA.</value>
+  </data>
+  <data name="ACCURACY_mA_20_PI" xml:space="preserve">
+    <value>Testing accuracy of 0 - 20 mA sensor for 20mA.</value>
+  </data>
+  <data name="ACCURACY_mA_4" xml:space="preserve">
+    <value>Testing accuracy of 4-20 mA sensor for 4mA.</value>
+  </data>
+  <data name="ACCURACY_mA" xml:space="preserve">
+    <value>Testing accuracy of 4-20 mA sensor for </value>
+  </data>
+  <data name="ACCURACY_mA_1" xml:space="preserve">
+    <value>Testing accuracy of 0 - 20 mA sensor for 1mA.</value>
+  </data>
+  <data name="ACCURACY_mA_PI" xml:space="preserve">
+    <value>Testing accuracy of 0 - 20 mA sensor for </value>
+  </data>
+  <data name="ACCURACY_PT100" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for </value>
+  </data>
+  <data name="ACCURACY_PT100_0" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for 0°C.</value>
+  </data>
+  <data name="ACCURACY_PT100_NEG_100" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for -100°C.</value>
+  </data>
+  <data name="ACCURACY_PT100_400" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for 400°C.</value>
+  </data>
+  <data name="ACCURACY_PT100_300" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for 300°C.</value>
+  </data>
+  <data name="ACCURACY_PT100_700" xml:space="preserve">
+    <value>Testing accuracy of PT100 sensor for 700°C.</value>
+  </data>
+  <data name="ACCURACY_R_0" xml:space="preserve">
+    <value>Testing accuracy of R sensor for 0°C.</value>
+  </data>
+  <data name="ACCURACY_R" xml:space="preserve">
+    <value>Testing accuracy of R sensor for </value>
+  </data>
+  <data name="ACCURACY_R_1000" xml:space="preserve">
+    <value>Testing accuracy of R sensor for 1000°C.</value>
+  </data>
+  <data name="ACCURACY_R_1750" xml:space="preserve">
+    <value>Testing accuracy of R sensor for 1750°C.</value>
+  </data>
+  <data name="ACCURACY_VOLT_1" xml:space="preserve">
+    <value>Testing accuracy of 0-10Volt sensor for 1Volt.</value>
+  </data>
+  <data name="ACCURACY_VOLT" xml:space="preserve">
+    <value>Testing accuracy of 0-10Volt sensor for </value>
+  </data>
+  <data name="ACCURACY_VOLT_10" xml:space="preserve">
+    <value>Testing accuracy of 0-10Volt sensor for 10Volt.</value>
+  </data>
+  <data name="ACCURACY_POINT_NOT_IN_RANGE" xml:space="preserve">
+    <value>Please check accuracy Min and Max testing range for </value>
+  </data>
+  <data name="ACCURACY_VOLT_5" xml:space="preserve">
+    <value>Testing accuracy of 0-10Volt sensor for 5Volt.</value>
+  </data>
+  <data name="CALIB_CONST_WRITE_SUCCESSFUL" xml:space="preserve">
+    <value>Calibration constants set successfully in device.</value>
+  </data>
+  <data name="CALIB_CONST_WRITE_UNSUCCESSFUL" xml:space="preserve">
+    <value>Error occurred while setting Calibration constants in device.</value>
+  </data>
+  <data name="ERR_IN_ACCURACY" xml:space="preserve">
+    <value>Error occurred during Accuracy Test.</value>
+  </data>
+  <data name="RELAY_DELAY" xml:space="preserve">
+    <value>This is the Additional Delay applied after OP2 ON, OP2 OFF, OP3 ON and OP3 OFF tests.</value>
+  </data>
+  <data name="REPEAT_DISP_TEST" xml:space="preserve">
+    <value>Do you want to test display again?</value>
+  </data>
+  <data name="THIS_DELAY_OF" xml:space="preserve">
+    <value>This delay of </value>
+  </data>
+  <data name="ALL_WIRE_MSG_96x961" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to RTD.</value>
+  </data>
+  <data name="ALL_WIRE_MSG_96x962" xml:space="preserve">
+    <value>b) Connect terminal 3 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWO_WIRE_MSG_96x961" xml:space="preserve">
+    <value>a) Set Calibrator Source knob to 100mV.</value>
+  </data>
+  <data name="TWO_WIRE_MSG_96x962" xml:space="preserve">
+    <value>b) Connect terminal 1 &amp; 2 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="TWO_WIRE_MSG_96x963" xml:space="preserve">
+    <value>c) Please ensure that terminal 3 of DUT is not connected to Calibrator Source terminal.</value>
+  </data>
+  <data name="ANALOG_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Analog Data can not be found for the selected cat id in ini file.</value>
+  </data>
+  <data name="CATID_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Cat ID is not found in the ini file.</value>
+  </data>
+  <data name="DESCRIPTION_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Description for the selected cat id is not found in ini file.</value>
+  </data>
+  <data name="DUTID_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>DUTID can not be found for the selected cat id in ini file.</value>
+  </data>
+  <data name="TEST_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Test not found in the ini file for the selected cat id.</value>
+  </data>
+  <data name="TYPEORRELAY_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Type of Relay field is not found for the selected cat id.</value>
+  </data>
+  <data name="TYPE_NOT_FOUND_INI_ERR" xml:space="preserve">
+    <value>Type of selected cat id can not be found in ini file. </value>
+  </data>
+  <data name="MAKE_SOURCE_OFF" xml:space="preserve">
+    <value>Make Calibrator's Source OFF.</value>
+  </data>
+  <data name="MA_CALIBRATION_MSG_ID2" xml:space="preserve">
+    <value>b) Connect terminal 6 &amp; 5 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="MA_CALIBRATION_MSG_ID2_PI" xml:space="preserve">
+    <value>b) Connect terminal 10 &amp; 9 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="VOLT_CALIBRATION_MSG_ID2" xml:space="preserve">
+    <value>b) Connect terminal 4 &amp; 5 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="VOLT_CALIBRATION_MSG_ID2_PI" xml:space="preserve">
+    <value>b) Connect terminal 8 &amp; 9 of DUT to Calibrator Source terminal.</value>
+  </data>
+  <data name="INI_FILE_NOT_PRESENT" xml:space="preserve">
+    <value>INI file is not present at path "\\nas\Release to Production MOT'S HEX &amp; Software\Digicon Release Production\Temperature Controller\PR-69\Software". 
+Click "Add INI" menu to select the INI file.</value>
+  </data>
+  <data name="MOT_FILE_PATH_NOT_PRESENT" xml:space="preserve">
+    <value>Mot File path is not present for the selected Cat ID in INI file.</value>
+  </data>
+  <data name="HEX_FILE_PATH_NOT_PRESENT" xml:space="preserve">
+    <value>Hex File path is not present for the selected Cat ID in INI file.</value>
+  </data>
+  <data name="CJC_CNT_ERR" xml:space="preserve">
+    <value>Check CJC IC.
+Check CJC temperature by pressing UP-DOWN key.(DUT must show room temperature)</value>
+  </data>
+  <data name="REF_CH_ERR" xml:space="preserve">
+    <value>Check power supply.
+Check 2.5V Reference Voltage IC.</value>
+  </data>
+  <data name="SIG_CH_ERR" xml:space="preserve">
+    <value>Check source input given to DUT from Calibrator.</value>
+  </data>
+  <data name="MOT_FILE_PATH_NOT_AVAILABLE" xml:space="preserve">
+    <value>Access to the path is not available. Path:- </value>
+  </data>
+  <data name="REMOVE_SOURCE_CONN" xml:space="preserve">
+    <value>Disconnect device from Calibrator source terminal.</value>
+  </data>
+  <data name="VREF_CALIB_ERR" xml:space="preserve">
+    <value>VREF Calibration failed.</value>
+  </data>
+  <data name="VREF_TOLERANCE_ERR" xml:space="preserve">
+    <value>VREF value received from the device is not in tolerance.</value>
+  </data>
+  <data name="ABORT_BUTTON_CLICK" xml:space="preserve">
+    <value>The process is aborted. Please wait until the current process is completed.</value>
+  </data>
 </root>

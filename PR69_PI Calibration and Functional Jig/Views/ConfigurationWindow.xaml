@@ -451,11 +451,11 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CONVERTOR OP2 OFF" 
+                                <CheckBox Content="START REL TEST PI" 
                                       Grid.Column="0" Grid.Row="4" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsRelayORSSRTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="SLAVE1 OP3 OFF" 
                                       Grid.Column="1" Grid.Row="4" Margin="20 20"
@@ -608,11 +608,11 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsCommonTests.CONVERTOR_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CONVERTOR OP2 OFF" 
+                                <CheckBox Content="START REL TEST PI" 
                                       Grid.Column="3" Grid.Row="2" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsCommonTests.CONVERTOR_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsCommonTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="START DISP TEST" 
                                       Grid.Column="0" Grid.Row="3" Margin="20 20"

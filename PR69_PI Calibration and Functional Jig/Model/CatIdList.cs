@@ -123,6 +123,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool SLAVE1_READ_ADC_CNT_RLY_OFF { get; set; }
         public bool CONVERTOR_OP1_OFF { get; set; }
         public bool CONVERTOR_OP2_OFF { get; set; }
+        public bool START_REL_TEST_PI { get; set; }
         public bool SLAVE1_OP3_OFF { get; set; }
         public bool SLAVE2_OP3_ON { get; set; }
         public bool SLAVE3_OP3_ON { get; set; }        

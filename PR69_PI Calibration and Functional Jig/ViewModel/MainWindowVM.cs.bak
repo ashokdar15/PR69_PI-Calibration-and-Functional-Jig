@@ -5,14 +5,22 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.Views;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 
-namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
+namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel 
 {
 
     public class MainWindowVM : INotifyPropertyChanged
@@ -30,7 +38,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             OpenProdConfigWindow = new RelayCommand(OpenProdConfigClk);
 
             _btnStart = new RelayCommand(btnStartClk);
-            _BtnStopCmd = new RelayCommand(btnStopClk);
             _OkTestCmd = new RelayCommand(OkTestClk);
 
             _PortList = new ObservableCollection<string>();
@@ -62,9 +69,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             DUT5DetailsVis = false;
             DUT6DetailsVis = false;
             TestsDetailsVis = false;
-
-            clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
-            
         }
 
         private void OkTestClk(object obj)
@@ -110,14 +114,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _btnStart = value; }
         }
 
-        private RelayCommand _BtnStopCmd;
-
-        public RelayCommand BtnStopCmd
-        {
-            get { return _BtnStopCmd; }
-            set { _BtnStopCmd = value; }
-        }
-
         private RelayCommand _OkTestCmd;
 
         public RelayCommand OkTestCmd
@@ -125,48 +121,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _OkTestCmd; }
             set { _OkTestCmd = value; }
         }
-
-        private bool _StartBtnVis;
-
-        public bool StartBtnVis
-        {
-            get { return _StartBtnVis; }
-            set { _StartBtnVis = value; OnPropertyChanged("StartBtnVis"); }
-        }
-
-        private bool _StopBtnVis;
-
-        public bool StopBtnVis
-        {
-            get { return _StopBtnVis; }
-            set { _StopBtnVis = value; OnPropertyChanged("StopBtnVis"); }
-        }
-        
-        private string _DisplayImgPath;
-
-        public string DisplayImgPath
-        {
-            get { return _DisplayImgPath; }
-            set { _DisplayImgPath = value; OnPropertyChanged("DisplayImgPath"); }
-        }
-
-        private string _MsgDescription;
-
-        public string MsgDescription
-        {
-            get { return _MsgDescription; }
-            set { _MsgDescription = value; OnPropertyChanged("MsgDescription"); }
-        }
-
-        private string _TitleImgMsg;
-
-        public string TitleImgMsg
-        {
-            get { return _TitleImgMsg; }
-            set { _TitleImgMsg = value; OnPropertyChanged("TitleImgMsg"); }
-        }
-
-
 
         private string _StopwatchTime;
 
@@ -557,7 +511,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 }
                                 TestsDetailsVis = true;
                                 IsProductSelected = true;
-                                StartBtnVis = true;
                                 ListOfTests.Clear();
                             }
                         }
@@ -1020,22 +973,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public RelayCommand OpenHelpfileCmd { get; set; }
         public RelayCommand OpenDeviceSelectionWindow { get; set; }
         public RelayCommand OpenProdConfigWindow { get; set; }
+                
 
-        private void btnStopClk(object obj)
-        {
-            StartBtnVis = true;
-            StopBtnVis = false;
-            tmrMbTimer.Dispose();
-        }
         private void btnStartClk(object obj)
         {
-            StartBtnVis = false;
-            StopBtnVis = true;
+
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
-
-            
-           
             
             //clsModelSettings.igDutID  need to set deive iD
 
@@ -1056,10 +1000,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
             CurrentTestStatusDUT4 = ListOfTests[0];
 
-            DisplayMessage(1, 145);           
-            DisplayMessage(2, 145);           
-            DisplayMessage(3, 145);                     
+            CurrenttstgrpDUT5 = catId.ListOfGroupSequence[1];
+            CurrentTestStatusDUT5 = ListOfTests[0];
+
+            CurrenttstgrpDUT6 = catId.ListOfGroupSequence[2];
+            CurrentTestStatusDUT6 = ListOfTests[0];
+
+            DisplayMessage(1, 145);
+            DisplayMessage(2, 145);
+            DisplayMessage(3, 145);
             DisplayMessage(4, 145);
+            DisplayMessage(5, 145);
+            DisplayMessage(6, 145);
 
             //Type type = clsGlobalVariables.Selectedcatid.AnalogIpTests[0].GetType();
             //PropertyInfo[] props = type.GetProperties();
@@ -1098,8 +1050,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
 
 
-            //clsGlobalVariables.algTests_Auto.Clear();
-            //    //PIB12C
+            clsGlobalVariables.algTests_Auto.Clear();
+                //PIB12C
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
@@ -1134,7 +1086,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
 
 
-            imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+           imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
            almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
             
            
@@ -1477,8 +1429,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF)
                 ListOfTests.Add("CONVERTOR_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].START_REL_TEST_PI)
-                ListOfTests.Add("START_REL_TEST_PI");
+            if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF)
+                ListOfTests.Add("CONVERTOR_OP2_OFF");
 
             if (catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF)
                 ListOfTests.Add("SLAVE1_OP3_OFF");

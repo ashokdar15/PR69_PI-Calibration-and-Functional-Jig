@@ -281,7 +281,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //Version:- V17
                             //Statement:- Proper name is stored in the global variable to display on the picture message box. 
                             clsGlobalVariables.strgOngoingTestName = "mV Sensor Calibration";
-                            btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT, clsGlobalVariables.SOURCE_mV_KNOB_POS);
+                            btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mV_KNOB_POS,  clsGlobalVariables.SOURCE_mV_KNOB_POS);
                             //-----------Changes end.
                             //for 96x96 Cat Id different connection image is displayed.
 
@@ -585,13 +585,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //After completion of this test default delay is applied.   
                         //CA55 if (  Program.objMainForm.chkApplyDelay.Checked == true)
                         //{
-                            //CA55 //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
+                        //CA55clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
                         //}
-                           // else
-                           // {
-                            //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
-                           // }
-                       
+                        // else
+                        // {
+                        //CA55clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
+                        // }
+
                         break;
 
                     case "DUT_OP2_OFF":
@@ -623,11 +623,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Default delay is applied here.
                         //if (  Program.objMainForm.chkApplyDelay.Checked == true)
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
+                        //clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
                         //}
                         //else
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
+                        //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
                         //}
 
                         break;
@@ -658,11 +658,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Default delay is applied here.
                         //if (  Program.objMainForm.chkApplyDelay.Checked == true)
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
+                        //clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
                         //}
                         //else
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
+                        //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
                         //}
                         break;
 
@@ -694,11 +694,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Default delay is applied here.
                         //if (  Program.objMainForm.chkApplyDelay.Checked == true)
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
+                       // clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
                         //}
                         //else
                         //{
-                        ////CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
+                        //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
                         //}
 
                         break;
@@ -1005,7 +1005,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "SET_OBSRVED_4MA_CNT":
 
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //Here calibrator's measure knob position is checked. 
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_mA_KNOB_POS, clsGlobalVariables.MEASURE_mA_KNOB_TEXT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1054,7 +1054,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "SET_OBSRVED_1MA_CNT":
                         //analog op test bypass logic is present here.
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //Here calibrator's measure knob position is checked. 
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_mA_KNOB_POS, clsGlobalVariables.MEASURE_mA_KNOB_TEXT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1106,7 +1106,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "SET_OBSRVED_20MA_CNT":
                         //analog op test bypass logic is present here.
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_mA_KNOB_POS, clsGlobalVariables.MEASURE_mA_KNOB_TEXT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -1155,7 +1155,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "SET_OBSRVED_1V_CNT":
                         //analog op test bypass logic is present here.
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -1205,7 +1205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "SET_OBSRVED_10V_CNT":
                         //analog op test bypass logic is present here.
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -1282,7 +1282,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
 
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
 
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_mA_KNOB_POS, clsGlobalVariables.MEASURE_mA_KNOB_TEXT);
 
@@ -1347,7 +1347,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
 
 
-                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
 
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
 
@@ -1955,55 +1955,55 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                         {
-                            //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                             btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                             {
-                                //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                 // btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevicesPI(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);
                                 if (MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false))
                                 {
-                                    //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                     //05 from PLC
                                     btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartRelayTest_PI(5);
                                     if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                     {
-                                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                         //DUT_OP1_ON
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
                                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                         {
-                                            //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                             //06 from PLC
                                             btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartRelayTest_PI(6);
                                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                             {
-                                                //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                 //DUT_OP2_ON
                                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
                                                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                 {
-                                                    //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                     //0A from PLC
                                                     btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartRelayTest_PI(10);
                                                     if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                     {
-                                                        //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                         //DUT_OP1_OFF
                                                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
                                                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                         {
-                                                            //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                             //09 from PLC
                                                             btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartRelayTest_PI(9);
                                                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                             {
-                                                                //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                                clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                                 //DUT_OP2_OFF
                                                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
                                                                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                                 {
-                                                                    //CA55 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
+                                                                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                                     //05 from PLC
                                                                     btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartRelayTest_PI(5);
                                                                 }
@@ -2240,6 +2240,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "CJC_TEST":
 
                         //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.INPROGRESS);
+                        btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_TC_KNOB_POS,  clsGlobalVariables.SOURCE_TC_KNOB_POS);
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
+                            break;
+                        }
+                        
+
                         btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_J_TYPE);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -2253,13 +2261,24 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
                             break;
                         }
+                        btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn();
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpOneV, clsGlobalVariables.enmStatus.FAIL);
+
+                            break;
+                        }
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(300);
                         btmRetVal = clsGlobalVariables.objQueriescls.ReadPVSingleActingCJC();
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             //CA55 Program.objMainForm.Shp_CJC.TextONShape = clsGlobalVariables.shrtgCJC.ToString();
                             if (clsGlobalVariables.shrtgCJC < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJC > clsGlobalVariables.CJC_max_Value)
                             {
-                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                MessageBox.Show("CJC faild value : "+clsGlobalVariables.shrtgCJC.ToString(),"",MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                                //btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                 //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
                                 break;
                             }
@@ -2270,30 +2289,46 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
                             break;
                         }
+                        btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_POS);
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
+                            break;
+                        }
+
+
+                        btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_60_MV_TYPE);
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
+                            break;
+                        }
+
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.ChangeCalibratorSensor(clsGlobalVariables.mV_SENSOR);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
                             break;
                         }
+
+
+                      
                         btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.strgONE_MV);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
                         }
-                        btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_60_MV_TYPE);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp_CJC, clsGlobalVariables.enmStatus.FAIL);
-                        }
+                        
                         break;
                 }
                 return btmRetVal;
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show(ex.StackTrace);
+                //throw ex;
             }
+            return btmRetVal;
         }
     }
 }

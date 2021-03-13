@@ -13,9 +13,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         ///<MemberName>ChangeCalibratorSensor</MemberName>
         ///<MemberType>Function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date></Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         ///This function is used to set the sensor in the Calibrator by using Query. Sensor value is passed to it as a parameter.
         ///This is Calibrator Query.
@@ -28,7 +28,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
             try
             {
-                //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator); 
+                //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);    
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
@@ -78,9 +78,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         ///<MemberName>ReadCalibratorMeasureValue</MemberName>
         ///<MemberType>Function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date>12/05/</Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         ///This function send the query to read the value of Calibrator measure.
         ///This is Calibrator Query.
@@ -137,9 +137,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         ///<MemberName>CheckSourceKnobPos</MemberName>
         ///<MemberType>Function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date>12/05/</Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         ///This function send the query to read the knob position of source. After reading knob position,
         ///this is compared with first parameter of the function. If it does not match then software displays
@@ -201,7 +201,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
-        public byte CheckSourceSetPosition(byte btmKnobPos, Byte knobData)
+        public byte CheckSourceSetPosition(byte btmKnobPos, string strmKnob, Byte knobData)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             int imRetryCounter = 0;
@@ -255,9 +255,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
         ///<MemberName>MakeCalibratorMeasureOnAndReadKnobPos</MemberName>
         ///<MemberType>Function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date>12/05/</Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         ///This function send the query to first to ON measure of calibrator then read the knob position of measure. After reading knob position,
         ///this is compared with first parameter of the function. If it does not match then software displays
@@ -288,7 +288,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                    //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
 
                     clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                     clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
@@ -309,7 +309,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                    //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
 
 
 
@@ -348,7 +348,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                         Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                        //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                         //frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                         clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                         clsGlobalVariables.btgTxBuffer[1] = (byte)'F';
@@ -363,7 +363,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             if ((clsGlobalVariables.btgRxBuffer[2] - clsGlobalVariables.igCONST_FOR_ASCII) == btmKnobPos)
                             {
-                                clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
+                                //CA55 Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 7);
 
@@ -461,7 +461,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 {
                                     return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                 }
-                                //MessageBox.Show("Set measure Knob to " + strmKnob + " Position.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Set measure Knob to " + strmKnob + " Position.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
@@ -480,9 +480,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
         ///<MemberName>MakeCalibratorSourceOn</MemberName>
         ///<MemberType>Function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date>12/05/</Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         ///This function send the query to ON Source of calibrator.
         ///This is Calibrator Query.
@@ -790,7 +790,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 while (retryCount < 3)
                 {
                     Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, 6);
+                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
 
                     clsGlobalVariables.btgTxBuffer[0] = (byte)'B';
                     clsGlobalVariables.btgTxBuffer[1] = (byte)'S';
@@ -810,6 +810,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             return btmRetVal;
                         }
+                        
                     }
                     else
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;

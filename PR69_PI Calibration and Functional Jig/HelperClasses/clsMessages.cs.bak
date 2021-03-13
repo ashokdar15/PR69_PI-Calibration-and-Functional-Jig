@@ -20,8 +20,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
     public static class clsMessages
     {
         //This is object of the Resource manager class to read the strings from the resource file.
-        //public static ResourceManager objResManager = new ResourceManager("PR69_Function_and_Calibration_JIG.Resource.Res", typeof(clsMessages).Assembly);
-        public static ResourceManager objResManager = Properties.Resources.ResourceManager;
+        public static ResourceManager objResManager = new ResourceManager("PR69_Function_and_Calibration_JIG.Resource.Res", typeof(clsMessages).Assembly);
 
         ///<MemberName>ShowMessageInProgressWindow</MemberName>
         ///<MemberType>function</MemberType>
@@ -503,12 +502,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="imMsgID">This is the ID of message which is to be displayed</param>
         ///<ClassName>clsMessages</ClassName>
-        public static string DisplayMessage(int imMsgID)
+        public static void DisplayMessage(int imMsgID)
         {
             try
             {
                 switch (imMsgID)
-                {
+                {                    
                     case clsMessageIDs.Main_ERR_MSG:
                         //CA55 clsGlobalVariables.objGlobalFunction.PLC_OFF();
                         string strmessage = objResManager.GetString("Main_ERR_MSG1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
@@ -520,193 +519,225 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                   objResManager.GetString("Main_ERR_MSG7", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
                                   objResManager.GetString("Main_ERR_MSG8", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
                                   objResManager.GetString("Main_ERR_MSG9", clsGlobalVariables.objCultureinfo);
-                        MessageBox.Show(strmessage, clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(strmessage,clsGlobalVariables.strg_Application,MessageBoxButtons.OK ,MessageBoxIcon.Error); 
                         break;
                     //-------Changed By Shubham
                     //Date:- 28-04-2018
                     //Version:- V17
                     //Statement:- global variable which stores the ongoing test name is passed as a parameter to the display message function.
                     case clsMessageIDs.TWOWIRE_MSG_ID:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo)
-                         + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID3", clsGlobalVariables.objCultureinfo), "Two_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo)
+                        //CA55 +System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID3", clsGlobalVariables.objCultureinfo), "Source_mV.jpg", "Two_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
                     case clsMessageIDs.TWOWIRE_MSG_ID_PI:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("TWOWIRE_MSG_ID1_PI", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID2_PI", clsGlobalVariables.objCultureinfo)
-                         + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID3_PI", clsGlobalVariables.objCultureinfo), "Two_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);                       
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("TWOWIRE_MSG_ID1_PI", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID2_PI", clsGlobalVariables.objCultureinfo)
+                        //CA55 +System.Environment.NewLine + objResManager.GetString("TWOWIRE_MSG_ID3_PI", clsGlobalVariables.objCultureinfo), "Source_mV.jpg", "Two_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
+
                     case clsMessageIDs.TWO_WIRE_MSG_96x96:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("TWO_WIRE_MSG_96x961", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWO_WIRE_MSG_96x962", clsGlobalVariables.objCultureinfo)
-                         + System.Environment.NewLine + objResManager.GetString("TWO_WIRE_MSG_96x963", clsGlobalVariables.objCultureinfo), "Two_Wires_Connected_96x96.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("TWO_WIRE_MSG_96x961", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("TWO_WIRE_MSG_96x962", clsGlobalVariables.objCultureinfo)
+                        //CA55 +System.Environment.NewLine + objResManager.GetString("TWO_WIRE_MSG_96x963", clsGlobalVariables.objCultureinfo), "Source_mV.jpg", "Two_Wires_Connected_96x96.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
+
                     case clsMessageIDs.THREEWIRE_MSG_ID:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("THREEWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("THREEWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo),
-                         "All_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("THREEWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("THREEWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo),
+                        //CA55 "Source_RTD.jpg", "All_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
+
                     case clsMessageIDs.ALL_WIRE_MSG_96x96:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("ALL_WIRE_MSG_96x961", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("ALL_WIRE_MSG_96x962", clsGlobalVariables.objCultureinfo),
-                         "All_Wires_Connected_96x96.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("ALL_WIRE_MSG_96x961", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("ALL_WIRE_MSG_96x962", clsGlobalVariables.objCultureinfo),
+                        //CA55 "Source_RTD.jpg", "All_Wires_Connected_96x96.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
                     case clsMessageIDs.ALL_WIRE_MSG_PI:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("ALL_WIRE_MSG_PI1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("ALL_WIRE_MSG_PI2", clsGlobalVariables.objCultureinfo),
-                                                 "All_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("ALL_WIRE_MSG_PI1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("ALL_WIRE_MSG_PI2", clsGlobalVariables.objCultureinfo),
+                        //CA55                         "Source_RTD.jpg", "All_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
 
                     case clsMessageIDs.CURRENT_SETTING_MSG_ID:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("CURRENT_SETTING_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("CURRENT_SETTING_MSG_ID2", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
-                         objResManager.GetString("CURRENT_SETTING_MSG_ID3", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("CURRENT_SETTING_MSG_ID4", clsGlobalVariables.objCultureinfo), "Current_Connection.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("CURRENT_SETTING_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("CURRENT_SETTING_MSG_ID2", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
+                        //CA55 objResManager.GetString("CURRENT_SETTING_MSG_ID3", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("CURRENT_SETTING_MSG_ID4", clsGlobalVariables.objCultureinfo), "Measure_mA.jpg", "Current_Connection.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
                     case clsMessageIDs.VOLTAGE_SETTING_MSG_ID:
-                        clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("VOLTAGE_SETTING_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLTAGE_SETTING_MSG_ID2", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
-                         objResManager.GetString("VOLTAGE_SETTING_MSG_ID3", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLTAGE_SETTING_MSG_ID4", clsGlobalVariables.objCultureinfo), "Voltage_Connection.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("VOLTAGE_SETTING_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLTAGE_SETTING_MSG_ID2", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
+                        //CA55 objResManager.GetString("VOLTAGE_SETTING_MSG_ID3", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLTAGE_SETTING_MSG_ID4", clsGlobalVariables.objCultureinfo), "Measure_10V.jpg", "Voltage_Connection.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
 
                     case clsMessageIDs.MA_CALIBRATION_MSG_ID:
-                        if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                            clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("MA_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("MA_CALIBRATION_MSG_ID2", clsGlobalVariables.objCultureinfo), "mA_Calibration_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
-                        else
-                            clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("MA_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("MA_CALIBRATION_MSG_ID2_PI", clsGlobalVariables.objCultureinfo), "mA_Calibration_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("MA_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("MA_CALIBRATION_MSG_ID2", clsGlobalVariables.objCultureinfo), "Source_20mA.JPG", "mA_Calibration_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 else
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("MA_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("MA_CALIBRATION_MSG_ID2_PI", clsGlobalVariables.objCultureinfo), "Source_20mA.JPG", "mA_Calibration_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
 
                     case clsMessageIDs.VOLT_CALIBRATION_MSG_ID:
-                        if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                            clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("VOLT_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLT_CALIBRATION_MSG_ID2", clsGlobalVariables.objCultureinfo), "Volt_Calibration_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
-                        else
-                            clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(objResManager.GetString("VOLT_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLT_CALIBRATION_MSG_ID2_PI", clsGlobalVariables.objCultureinfo), "Volt_Calibration_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("VOLT_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLT_CALIBRATION_MSG_ID2", clsGlobalVariables.objCultureinfo), "Source_10V.JPG", "Volt_Calibration_Wires_Connected.jpg", clsGlobalVariables.strgOngoingTestName);
+                        //CA55 else
+                        //CA55 clsGlobalVariables.objPictMsg.DisplayMessage(objResManager.GetString("VOLT_CALIBRATION_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + objResManager.GetString("VOLT_CALIBRATION_MSG_ID2_PI", clsGlobalVariables.objCultureinfo), "Source_10V.JPG", "Volt_Calibration_Wires_Connected_PI.jpg", clsGlobalVariables.strgOngoingTestName);
                         break;
                     //---------------Changes End.
 
                     case clsMessageIDs.JIG_AND_CALIB_PORT_SAME:
-                        return objResManager.GetString("JIG_AND_CALIB_PORT_SAME", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("JIG_AND_CALIB_PORT_SAME", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break; 
 
                     case clsMessageIDs.ACCURACY_COMPLETE:
-                        return objResManager.GetString("ACCURACY_COMPLETE", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ACCURACY_COMPLETE", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.ACCURACY_FAILED:
-                        return objResManager.GetString("ACCURACY_FAILED", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ACCURACY_FAILED", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.ERROR_INI_TOTAL_NO_OF_CATID:
-                        return objResManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
 
                     case clsMessageIDs.ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE:
-                        return objResManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
 
                     case clsMessageIDs.OBSERVE_DISP_TEST:
-                        return objResManager.GetString("OBSERVE_DISP_TEST", clsGlobalVariables.objCultureinfo);
-                    //MessageBox.Show("Dispaly Test", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show(objResManager.GetString("OBSERVE_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Dispaly Test", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_1mV_IN_CALIB:
-                        return objResManager.GetString("SET_1mV_IN_CALIB", clsGlobalVariables.objCultureinfo);
-
+                        MessageBox.Show(objResManager.GetString("SET_1mV_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
                     case clsMessageIDs.ENSURE_1mV_IN_CALIB_PI:
-                        return objResManager.GetString("ENSURE_1mV_IN_CALIB_PI", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ENSURE_1mV_IN_CALIB_PI", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_50mV_IN_CALIB:
-                        return objResManager.GetString("SET_50mV_IN_CALIB", clsGlobalVariables.objCultureinfo);
-
+                        MessageBox.Show(objResManager.GetString("SET_50mV_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
                     case clsMessageIDs.ACCURACY_POINT_NOT_IN_RANGE:
-                        return objResManager.GetString("ACCURACY_POINT_NOT_IN_RANGE", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ACCURACY_POINT_NOT_IN_RANGE", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.SET_350Ohm_IN_CALIB:
-                        return objResManager.GetString("SET_350Ohm_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_350Ohm_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_1V_IN_CALIB:
-                        return objResManager.GetString("SET_1V_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_1V_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_9V_IN_CALIB:
-                        return objResManager.GetString("SET_9V_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_9V_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_4mA_IN_CALIB:
-                        return objResManager.GetString("SET_4mA_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_4mA_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
                     case clsMessageIDs.SET_1mA_IN_CALIB:
-                        return objResManager.GetString("SET_1mA_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_1mA_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.SET_20mA_IN_CALIB:
-                        return objResManager.GetString("SET_20mA_IN_CALIB", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("SET_20mA_IN_CALIB", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.CALIB_MEASURE_NOT_ON:
-                        return objResManager.GetString("CALIB_MEASURE_NOT_ON", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("CALIB_MEASURE_NOT_ON", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.DUT_ALREADY_CALIBRATED:
-                        return objResManager.GetString("DUT_ALREADY_CALIBRATED", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("DUT_ALREADY_CALIBRATED", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.MAX_DELAY_ERR:
-                        return objResManager.GetString("MAX_DELAY_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("MAX_DELAY_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
-                    case clsMessageIDs.POWER_CYCLE_MSG_ID:
-                        return objResManager.GetString("POWER_CYCLE_MSG_ID", clsGlobalVariables.objCultureinfo);
+                    case clsMessageIDs.POWER_CYCLE_MSG_ID :
+                        MessageBox.Show(objResManager.GetString("POWER_CYCLE_MSG_ID", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.UNABLE_TO_CONNECT:
-                        return objResManager.GetString("UNABLE_TO_CONNECT", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("UNABLE_TO_CONNECT", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.PROGRAMMING_COMPLETE:
-                        return objResManager.GetString("PROGRAMMING_COMPLETE", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("PROGRAMMING_COMPLETE", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.ENTER_VALID_PASSWORD:
-                        return objResManager.GetString("ENTER_VALID_PASSWORD", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ENTER_VALID_PASSWORD", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.NOT_VALID_PASSWORD:
-                        return objResManager.GetString("NOT_VALID_PASSWORD", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("NOT_VALID_PASSWORD", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.ANALOG_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("ANALOG_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("ANALOG_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.DUTID_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("DUTID_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("DUTID_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.TYPE_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("TYPE_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("TYPE_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.DESCRIPTION_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("DESCRIPTION_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("DESCRIPTION_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.CATID_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("CATID_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("CATID_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.TYPEORRELAY_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("TYPEORRELAY_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("TYPEORRELAY_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.TEST_NOT_FOUND_INI_ERR:
-                        return objResManager.GetString("TEST_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("TEST_NOT_FOUND_INI_ERR", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.MAKE_SOURCE_OFF:
-                        return objResManager.GetString("MAKE_SOURCE_OFF", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("MAKE_SOURCE_OFF", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
 
                     case clsMessageIDs.INI_FILE_NOT_PRESENT:
-                        return objResManager.GetString("INI_FILE_NOT_PRESENT", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("INI_FILE_NOT_PRESENT", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE:
-                        return objResManager.GetString("CALIBRATED_BUT_ACCURACY_ISNOTDONE", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("CALIBRATED_BUT_ACCURACY_ISNOTDONE", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);                        
+                        break;
 
                     case clsMessageIDs.MOT_FILE_PATH_NOT_PRESENT:
-                        return objResManager.GetString("MOT_FILE_PATH_NOT_PRESENT", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("MOT_FILE_PATH_NOT_PRESENT", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
 
                     case clsMessageIDs.FAIL_TO_PROGRAM:
-                        return objResManager.GetString("FAIL_TO_PROGRAM", clsGlobalVariables.objCultureinfo);
-
-                    //-------Changed By 
-                    //Date:- 24-02-
+                        MessageBox.Show(objResManager.GetString("FAIL_TO_PROGRAM", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    //-------Changed By Shubham
+                    //Date:- 24-02-2018
                     //Version:- V16
                     //Statement:- New Message added.    
                     case clsMessageIDs.REMOVE_SOURCE_CONN:
-                        return objResManager.GetString("REMOVE_SOURCE_CONN", clsGlobalVariables.objCultureinfo);
-
-                    case clsMessageIDs.ABORT_BUTTON_CLICK:
-                        return objResManager.GetString("ABORT_BUTTON_CLICK", clsGlobalVariables.objCultureinfo);
+                        MessageBox.Show(objResManager.GetString("REMOVE_SOURCE_CONN", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
                 }
-
-                return "";
             }
             catch (Exception ex)
             {
-                return "";
+                throw ex;
             }
         }
 
         ///<MemberName>DisplayININOTAvailableMessage</MemberName>
         ///<MemberType>function</MemberType>
-        ///<CreatedBy></CreatedBy>
-        ///<CommentedBy></CommentedBy>
-        ///<Date>12/05/</Date>
+        ///<CreatedBy>Shubham</CreatedBy>
+        ///<CommentedBy>Shubham</CommentedBy>
+        ///<Date>12/05/2017</Date>
         ///<summary>
         /// This function displays message box with messge having message Id passed to it as a parameter.
         ///</summary>
