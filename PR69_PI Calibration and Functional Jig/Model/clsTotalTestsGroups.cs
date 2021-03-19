@@ -18,12 +18,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _TestNumber = value; OnPropertyChanged("TestNumber"); }
         }
 
-        private string _TestGroup;
+        private string _Test;
 
-        public string TestGroup
+        public string Test
         {
-            get { return _TestGroup; }
-            set { _TestGroup = value; OnPropertyChanged("TestGroup"); }
+            get { return _Test; }
+            set { _Test = value; OnPropertyChanged("Test"); }
+        }
+
+        private string _TestResult;
+
+        public string TestResult
+        {
+            get { return _TestResult; }
+            set { _TestResult = value; OnPropertyChanged("TestResult"); }
         }
 
 

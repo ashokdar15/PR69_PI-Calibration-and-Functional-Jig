@@ -12,10 +12,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string DeviceName { get; set; }
         public string Description { get; set; }
         
-        //public string TypesOfOP { get; set; }
-        //public bool DUT_Calibration { get; set; }
-        //public bool PLCRequired { get; set; }
-        //public bool CJC_Support { get; set; }
         public bool IsAnalogInputTestApplicable { get; set; }
         public IList<AnalogInputTests> AnalogIpTests { get; set; }
         public bool IsAnalogOutputTestApplicable { get; set; }
@@ -43,6 +39,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     {
         public IList<ConfigurationData> ConfigurationData { get; set; }
         public IList<CalibrationDelays> CalibrationDelays { get; set; }
+        public IList<CalibrationDelaysPI> CalibrationDelaysPI { get; set; }
         public IList<TolerancesOfPI> TolerancesofPI { get; set; }
         public IList<TolerancesOfPR69> TolerancesOfPR69 { get; set; }
         public string motfilepath { get; set; }
@@ -171,6 +168,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
     }
 
+    public class CalibrationDelaysPI
+    {
+        public int OnemVOrFiftymVStartModeDelay { get; set; }
+        public int OnemVOrFiftymVRunModeDelay { get; set; }
+        public int ThreeFiftyOhmStartModeDelay { get; set; }
+        public int ThreeFiftyOhmRunModeDelay { get; set; }
+        public int FourmAORTwentymAStartModeDelay { get; set; }
+        public int FourmAORTwentymARunModeDelay { get; set; }
+        public int OneVoltOrNineVoltStartModeDelay { get; set; }
+        public int OneVoltOrNineVoltRunModeDelay { get; set; }
+        public int AnalogOutputObservedValueDelay { get; set; }
+       
+
+    }
+
     public class TolerancesOfPI
     {
         public int FIVE_VOLT_MIN_PI { get; set; }
@@ -205,12 +217,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     public class TotalConnectedDevices
     {
         public int DeviceNumber { get; set; }
-        public IList<TotalTestsGroup> TotalTestsGrouptests { get; set; }
+        public IList<TotalNumberOfTests> TotalNumberTests { get; set; }
     }
 
-    public class TotalTestsGroup
+    public class TotalNumberOfTests
     {
         public int TestNumber { get; set; }
-        public string TestGroup { get; set; }
+        public string Test { get; set; }       
     }
 }

@@ -10,7 +10,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 {
@@ -28,6 +31,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             OpenHelpfileCmd = new RelayCommand(BtnHelpfileclk);
             OpenDeviceSelectionWindow = new RelayCommand(BtnOpenDeviceSelWindow);
             OpenProdConfigWindow = new RelayCommand(OpenProdConfigClk);
+            OpenAccuracyWindow = new RelayCommand(OpenAccuracyWindowClk);
 
             _btnStart = new RelayCommand(btnStartClk);
             _BtnStopCmd = new RelayCommand(btnStopClk);
@@ -38,7 +42,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _DeviceNameList = new ObservableCollection<string>();
             _CatId = new ObservableCollection<ConfigurationDataList>();
             _clsTotalTestsGroups = new ObservableCollection<clsTotalTestsGroups>();
-            _TotalConnectedDevicesList = new ObservableCollection<TotalConnectedDevices>();
+            _TotalConnectedDevicesList = new ObservableCollection<clsTotalConnectedDevices>();
             _ListOfTests = new ObservableCollection<string>();
 
             ShowProductSelectionWindow();
@@ -64,7 +68,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TestsDetailsVis = false;
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
-            NumberOfDUTs = 1;
+            
+        }
+
+        private void OpenAccuracyWindowClk(object obj)
+        {
+            AccuracyWindow accuracyWindow = new AccuracyWindow();
+            accuracyWindow.ShowDialog();
         }
 
         private void OkTestClk(object obj)
@@ -547,16 +557,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         for (int catid = 0; catid < CatId[0].ConfigurationData[devtype].CatIdLists.Count; catid++)
                         {
                             if (CatId[0].ConfigurationData[devtype].CatIdLists[catid].DeviceName == _SelectedDeviceName)
-                            {
-                                clsTotalTestsGroups.Clear();                                
-                                int count = 0;
-                                foreach (string testgrp in CatId[0].ConfigurationData[devtype].CatIdLists[catid].ListOfGroupSequence)
-                                {
-                                    clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, TestGroup = testgrp });
-                                    count++;
-                                }
-                                TestsDetailsVis = true;
-                                IsProductSelected = true;
+                            {                                
                                 StartBtnVis = true;
                                 ListOfTests.Clear();
                             }
@@ -769,12 +770,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         
 
-        private ObservableCollection<TotalConnectedDevices> _TotalConnectedDevicesList;
+        private ObservableCollection<clsTotalConnectedDevices> _TotalConnectedDevicesList;
 
-        public ObservableCollection<TotalConnectedDevices> TotalConnectedDevicesList
+        public ObservableCollection<clsTotalConnectedDevices> clsTotalConnectedDevicesList
         {
             get { return _TotalConnectedDevicesList; }
-            set { _TotalConnectedDevicesList = value; OnPropertyChanged("TotalConnectedDevicesList"); }
+            set { _TotalConnectedDevicesList = value; OnPropertyChanged("clsTotalConnectedDevicesList"); }
         }
 
         private bool _DeviceNumber1Vis;
@@ -1021,6 +1022,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public RelayCommand OpenHelpfileCmd { get; set; }
         public RelayCommand OpenDeviceSelectionWindow { get; set; }
         public RelayCommand OpenProdConfigWindow { get; set; }
+        public RelayCommand OpenAccuracyWindow { get; set; }
 
         private void btnStopClk(object obj)
         {
@@ -1028,8 +1030,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopBtnVis = false;
             tmrMbTimer.Dispose();
         }
-        private void btnStartClk(object obj)
+        private async void btnStartClk(object obj)
         {
+
             StartBtnVis = false;
             StopBtnVis = true;
             CatIdList catId = clsGlobalVariables.Selectedcatid;

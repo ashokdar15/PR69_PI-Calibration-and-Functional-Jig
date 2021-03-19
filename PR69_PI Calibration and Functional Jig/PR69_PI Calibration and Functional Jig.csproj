@@ -90,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\AccuracyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ConfigurationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,14 +130,20 @@
     <Compile Include="Model\clsAnalogOutputTests.cs" />
     <Compile Include="Model\clsCalibrationConstantTests.cs" />
     <Compile Include="Model\clsCalibrationDelays.cs" />
+    <Compile Include="Model\clsCalibrationDelaysPI.cs" />
     <Compile Include="Model\clsCommonTests.cs" />
     <Compile Include="Model\clsRelayORSSRTests.cs" />
     <Compile Include="Model\clsTC_RTDTests.cs" />
     <Compile Include="Model\clsTolerancesOfPI.cs" />
     <Compile Include="Model\clsTolerancesOfPR69.cs" />
+    <Compile Include="Model\clsTotalConnectedDevices.cs" />
     <Compile Include="Model\clsTotalTestsGroups.cs" />
+    <Compile Include="ViewModel\AccuracyWindowVM.cs" />
     <Compile Include="ViewModel\ConfigurationWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="Views\AccuracyWindow.xaml.cs">
+      <DependentUpon>AccuracyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
