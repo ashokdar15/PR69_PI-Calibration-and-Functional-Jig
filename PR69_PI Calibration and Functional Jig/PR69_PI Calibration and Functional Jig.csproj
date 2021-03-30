@@ -81,8 +81,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>C:\Users\ashok.darade\Desktop\PR69_PI Calibration and Functional Jig_09_03\PR69_PI Calibration and Functional Jig\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +127,7 @@
     <Compile Include="HelperClasses\InitilizeCommonObject.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="Model\CatIdList.cs" />
+    <Compile Include="Model\clsAccuracyTests.cs" />
     <Compile Include="Model\clsAnalogInputTests.cs" />
     <Compile Include="Model\clsAnalogOutputTests.cs" />
     <Compile Include="Model\clsCalibrationConstantTests.cs" />
