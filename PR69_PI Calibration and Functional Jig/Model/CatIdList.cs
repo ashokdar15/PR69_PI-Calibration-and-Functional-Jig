@@ -8,6 +8,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class CatIdList
     {
+        //added by anil
         public int DeviceId { get; set; }
         public string DeviceName { get; set; }
         public string Description { get; set; }
