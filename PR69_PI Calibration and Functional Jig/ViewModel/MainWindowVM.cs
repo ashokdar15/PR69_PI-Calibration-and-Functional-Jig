@@ -32,6 +32,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             OpenDeviceSelectionWindow = new RelayCommand(BtnOpenDeviceSelWindow);
             OpenProdConfigWindow = new RelayCommand(OpenProdConfigClk);
             OpenAccuracyWindow = new RelayCommand(OpenAccuracyWindowClk);
+            OpenProgrammingWindow = new RelayCommand(OpenProgrammingWindowClk);
+            OpenAboutWindow = new RelayCommand(OpenAboutWindowClk);
 
             _btnStart = new RelayCommand(btnStartClk);
             _BtnStopCmd = new RelayCommand(btnStopClk);
@@ -68,6 +70,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TestsDetailsVis = false;
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
+            
+        }
+
+        private void OpenAboutWindowClk(object obj)
+        {
+            
+        }
+
+        private void OpenProgrammingWindowClk(object obj)
+        {
             
         }
 
@@ -1023,6 +1035,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public RelayCommand OpenDeviceSelectionWindow { get; set; }
         public RelayCommand OpenProdConfigWindow { get; set; }
         public RelayCommand OpenAccuracyWindow { get; set; }
+        public RelayCommand OpenProgrammingWindow { get; set; }
+        public RelayCommand OpenAboutWindow { get; set; }
 
         private void btnStopClk(object obj)
         {
@@ -1037,10 +1051,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopBtnVis = true;
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
-
-
-
-
+                        
+            StartStopWatch(true);
+            
             //clsModelSettings.igDutID  need to set deive iD
 
             if (ListOfTests.Count == 0)
@@ -1233,6 +1246,84 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
             StartStopWatch(true);
+        }
+
+        //Parameters
+        //1. DUT Number
+        //2. Test Number
+        //3. Test Status
+        public void UpdateTestResult(int DUTNumber, int testnumber, string status)
+        {
+            switch (DUTNumber)
+            {
+                case 1:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice1 = status };
+                            break;
+                        }
+                    }
+                    break;
+
+                case 2:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice2 = status };
+                            break;
+                        }
+                    }
+                    break;
+
+                case 3:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice3 = status };
+                            break;
+                        }
+                    }
+                    break;
+
+                case 4:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice4 = status };
+                            break;
+                        }
+                    }
+                    break;
+
+                case 5:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice5 = status };
+                            break;
+                        }
+                    }
+                    break;
+
+                case 6:
+                    foreach (clsTotalConnectedDevices item in clsTotalConnectedDevicesList)
+                    {
+                        if (item.TestNumber == testnumber)
+                        {
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice6 = status };
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void DisplayMessage(int DeviceNumber, int msgID)

@@ -129,6 +129,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string SelectedDeviceNameOfTreeView = "";
         public static string configJsonfilepath = "";
         public static string DispImgpath = "";
+        public static AccuracyParameter strAccuracyParameter;
 
         public enum SelectedDeviceType
         {
@@ -136,6 +137,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             PR69_96x96 = 2,
             PI = 3,
             PR69_43x43 = 4
+        }
+
+        public enum AccuracyParameter
+        {
+            mAmp,
+            Volt,
+            PT100Sensor,
+            RSensor,
+            JSensor
         }
 
         #region"-----Variables and constants------"

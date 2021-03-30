@@ -10,6 +10,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsTotalConnectedDevices : INotifyPropertyChanged
     {
+        
+        private int _TestNumber;
+
+        public int TestNumber
+        {
+            get { return _TestNumber; }
+            set { _TestNumber = value; OnPropertyChanged("TestNumber"); }
+        }
 
         private int _DeviceNumber;
 

@@ -25,8 +25,24 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
         public bool IsCommonTestsApplicable { get; set; }
         public IList<CommonTests> CommonCalibTests { get; set; }
-
         public IList<string> ListOfGroupSequence { get; set; }
+
+        public bool IsmAmpTestEnabled { get; set; }        
+        public IList<AccuracyTests> mAmpTests { get; set; }
+
+        public bool IsVoltTestEnabled { get; set; }        
+        public IList<AccuracyTests> VoltTests { get; set; }
+
+        public bool IsPT100SensorTestEnabled { get; set; }       
+        public IList<AccuracyTests> PT100SensorTests { get; set; }
+
+        public bool IsRSensorTestEnabled { get; set; }     
+        public IList<AccuracyTests> RSensor { get; set; }
+
+        public bool IsJSensorTestEnabled { get; set; }
+        public IList<AccuracyTests> JSensor { get; set; }
+
+        public IList<string> ListOfAccuracyTestsSequence { get; set; }
 
     }
     public class ConfigurationData
@@ -151,6 +167,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool CJC_TEST { get; set; }
     }
 
+    public class AccuracyTests
+    {
+        public string NumberTestPoints { get; set; }
+        public string Min { get; set; }
+        public string Max { get; set; }
+        public string Tolerance { get; set; }
+        public string P1 { get; set; }
+        public string P2 { get; set; }
+        public string P3 { get; set; }
+        public string P4 { get; set; }
+        public string P5 { get; set; }
+        public string P6 { get; set; }
+        public string P7 { get; set; }
+        public string P8 { get; set; }
+        public string P9 { get; set; }
+        public string P10 { get; set; }
+    }
 
     public class CalibrationDelays
     {

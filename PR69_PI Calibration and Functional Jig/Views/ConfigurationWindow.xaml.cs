@@ -46,6 +46,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
                     clsGlobalVariables.SelectedDeviceNameOfTreeView = _catList.DeviceName;
                 }
                 vm.IsSaveBtnVis = false;
+                vm.IsCheckBoxEnabled = false;
                 vm.AssignDataToFields(MainTreeView.SelectedItem);
 
             }
