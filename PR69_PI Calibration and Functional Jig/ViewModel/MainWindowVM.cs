@@ -1071,13 +1071,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
             EnableDisableUI(false);
-            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+           
+
             //If usr change number of device then need to find com port again.
-            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
-            {
-                clsGlobalVariables.blngIsComportDetected = false;
-                clsGlobalVariables.blngIsComportDetectedForPLC = false;
-            }
+            
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
@@ -1819,7 +1816,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         /// </summary>
         /// <param name="obj"></param>
         private void BtnOkclk(object obj)
-        {
+        { 
+            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
             switch (obj.ToString())
             {
                 case "Ok":

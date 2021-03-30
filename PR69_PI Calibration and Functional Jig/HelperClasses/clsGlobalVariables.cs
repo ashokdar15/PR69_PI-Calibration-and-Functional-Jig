@@ -4,6 +4,7 @@ using System.Collections;
 using System.Globalization;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
+using System.Collections.Generic;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
@@ -48,7 +49,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             MB_NO_OF_DATA_BYTES_POS,
             MB_DATA_BYTES_POS
         }
-      
+        public enum enmAccuracyTestPoint
+        {
+            m_Amp=0,
+            Volt=1,
+            PT_100=2,
+            R_Sensor=3,
+            J_Sensor=4
+            
+        }
         //Read Input
         public enum enmMbRespPos
         {
@@ -211,8 +220,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int CJC_max_Value = 45;
         public static int PLC_ON_TIME_DELAY = 8000;
         public static bool PR_69_3_DECIMAL_POINT = false;
-
-
+        public static Dictionary<byte,List<Int16>> AccuracyTestingPoint =new Dictionary<byte, List<Int16>>();
         public static int MIN_mA_RANGE = 4;
         public static int MAX_mA_RANGE = 20;
         public static int MIN_J_RANGE = 0;

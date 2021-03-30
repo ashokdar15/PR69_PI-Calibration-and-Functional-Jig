@@ -39,7 +39,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         DispatcherTimer tmrPVTimerTimeout = new DispatcherTimer();
         private void EnablePVTimeoutTimer()
         {
-            MyLogWriterDLL.LogWriter.WriteLog("EnablePVTimeoutTimer : " + clsGlobalVariables.igPV_TIMEOUT_DELAY.ToString());
+           // MyLogWriterDLL.LogWriter.WriteLog("EnablePVTimeoutTimer : " + clsGlobalVariables.igPV_TIMEOUT_DELAY.ToString());
             tmrPVTimerTimeout.Stop();
             tmrPVTimerTimeout.Interval = new TimeSpan(0, 0, 0, 0, clsGlobalVariables.igPV_TIMEOUT_DELAY);
             tmrPVTimerTimeout.Start();
@@ -54,7 +54,85 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void StartAccuracyTestingClk(object obj)
         {
-            
+            //Auto com port detection
+            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
+            {
+                System.Windows.Forms.MessageBox.Show("fail Auto maticCOMPortDetections");
+                return;
+            }
+            //start accuracy with user define point
+
+            // write constant
+            //write data log in sqlite.
+
+        }
+        private bool VoltSensorTest(bool firstIteration, string testPoint)
+        {
+            byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+
+            if (firstIteration)
+            {
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF() != (byte)clsGlobalVariables.enmResponseError.Success)
+                    return false;
+                clsMessages.DisplayMessage(clsMessageIDs.VOLT_CALIBRATION_MSG_ID);
+                clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
+                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE);
+                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                {
+                    return false;
+                }
+                //This check is for device having modbus.
+                if (clsModelSettings.blnRS485Flag == true)
+                {
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_0_10V_TYPE_DOUBLE_ACTING);
+                }
+                else//Device without modbus
+                {
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_0_10V_TYPE);
+                }
+
+                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                {
+
+
+                    btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO);
+                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        btmRetVal = SetISCH(clsGlobalVariables.TEN_Volt);
+                        if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            btmRetVal = SetISCL(clsGlobalVariables.ZERO_VOLT);
+                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO);
+                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+
+                                    btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_VOLT_KNOB_POS, clsGlobalVariables.SOURCE_VOLT_KNOB_TEXT);
+
+                                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn();
+                                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                        {
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(testPoint);
+            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                return false;
+            blnmDivideBy100 = true;
+            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.R_SENSOR);
+            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                return false;
+
+            return true;
         }
         private bool RSensorText(bool firstIteration, string testPoint)
         {

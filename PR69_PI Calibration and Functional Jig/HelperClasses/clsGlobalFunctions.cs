@@ -755,7 +755,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         internal byte AutomaticCOMPortDetections(int numberOfDUTs)
         {
-
+            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
+            {
+                clsGlobalVariables.blngIsComportDetected = false;
+                clsGlobalVariables.blngIsComportDetectedForPLC = false;
+            }
             if (PLCCOM_Detection())
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (clsGlobalVariables.objGlobalFunction.AutoComPortDetection()!= (byte)clsGlobalVariables.enmResponseError.Success)
@@ -763,6 +767,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             //Calibrator Port detection
             //Jig
             //PLC port detections
+            clsGlobalVariables.OLD_NUMBER_OF_DUTS = clsGlobalVariables.NUMBER_OF_DUTS;
             return (byte)clsGlobalVariables.enmResponseError.Success;
         }
         public bool PLCCOM_Detection()
