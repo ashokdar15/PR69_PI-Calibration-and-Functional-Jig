@@ -23,7 +23,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
         {
             InitializeComponent();
         }
-
+        
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

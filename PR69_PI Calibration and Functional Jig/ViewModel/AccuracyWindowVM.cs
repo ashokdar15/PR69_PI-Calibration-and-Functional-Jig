@@ -1,6 +1,8 @@
 ﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
+using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,15 +16,131 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private RelayCommand _StartAccuracyTesting;
         public bool blnmDivideBy100 = false;
         public bool blnTimerElapsed = false;
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string PropertyName)
+        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracymAmpTestsDetails;
+
+        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracymAmpTestsDetails
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-            }
+            get { return _AccuracymAmpTestsDetails; }
+            set { _AccuracymAmpTestsDetails = value; OnPropertyChanged("AccuracymAmpTestsDetails"); }
         }
+
+        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyVoltTestsDetails;
+
+        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyVoltTestsDetails
+        {
+            get { return _AccuracyVoltTestsDetails; }
+            set { _AccuracyVoltTestsDetails = value; OnPropertyChanged("AccuracyVoltTestsDetails"); }
+        }
+
+        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyPT100SnsrTestsDetails;
+
+        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyPT100SnsrTestsDetails
+        {
+            get { return _AccuracyPT100SnsrTestsDetails; }
+            set { _AccuracyPT100SnsrTestsDetails = value; OnPropertyChanged("AccuracyPT100SnsrTestsDetails"); }
+        }
+
+        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyRSensorTestsDetails;
+
+        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyRSensorTestsDetails
+        {
+            get { return _AccuracyRSensorTestsDetails; }
+            set { _AccuracyRSensorTestsDetails = value; OnPropertyChanged("AccuracyRSensorTestsDetails"); }
+        }
+
+        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyJSensorTestsDetails;
+
+        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyJSensorTestsDetails
+        {
+            get { return _AccuracyJSensorTestsDetails; }
+            set { _AccuracyJSensorTestsDetails = value; OnPropertyChanged("AccuracyJSensorTestsDetails"); }
+        }
+        
+        private bool _IsmAmpVis;
+
+        public bool IsmAmpVis
+        {
+            get { return _IsmAmpVis; }
+            set { _IsmAmpVis = value; OnPropertyChanged("IsmAmpVis"); }
+        }
+
+        private bool _IsVoltVis;
+
+        public bool IsVoltVis
+        {
+            get { return _IsVoltVis; }
+            set { _IsVoltVis = value; OnPropertyChanged("IsVoltVis"); }
+        }
+
+        private bool _IsPT100SensorVis;
+
+        public bool IsPT100SensorVis
+        {
+            get { return _IsPT100SensorVis; }
+            set { _IsPT100SensorVis = value; OnPropertyChanged("IsPT100SensorVis"); }
+        }
+
+        private bool _IsRSensorVis;
+
+        public bool IsRSensorVis
+        {
+            get { return _IsRSensorVis; }
+            set { _IsRSensorVis = value; OnPropertyChanged("IsRSensorVis"); }
+        }
+
+        private bool _IsJSensorVis;
+
+        public bool IsJSensorVis
+        {
+            get { return _IsJSensorVis; }
+            set { _IsJSensorVis = value; OnPropertyChanged("IsJSensorVis"); }
+        }
+        
+        private bool _DeviceNumber1Vis;
+
+        public bool DeviceNumber1Vis
+        {
+            get { return _DeviceNumber1Vis; }
+            set { _DeviceNumber1Vis = value; OnPropertyChanged("DeviceNumber1Vis"); }
+        }
+
+        private bool _DeviceNumber2Vis;
+
+        public bool DeviceNumber2Vis
+        {
+            get { return _DeviceNumber2Vis; }
+            set { _DeviceNumber2Vis = value; OnPropertyChanged("DeviceNumber2Vis"); }
+        }
+        private bool _DeviceNumber3Vis;
+
+        public bool DeviceNumber3Vis
+        {
+            get { return _DeviceNumber3Vis; }
+            set { _DeviceNumber3Vis = value; OnPropertyChanged("DeviceNumber3Vis"); }
+        }
+        private bool _DeviceNumber4Vis;
+
+        public bool DeviceNumber4Vis
+        {
+            get { return _DeviceNumber4Vis; }
+            set { _DeviceNumber4Vis = value; OnPropertyChanged("DeviceNumber4Vis"); }
+        }
+        private bool _DeviceNumber5Vis;
+
+        public bool DeviceNumber5Vis
+        {
+            get { return _DeviceNumber5Vis; }
+            set { _DeviceNumber5Vis = value; OnPropertyChanged("DeviceNumber5Vis"); }
+        }
+        private bool _DeviceNumber6Vis;
+
+        public bool DeviceNumber6Vis
+        {
+            get { return _DeviceNumber6Vis; }
+            set { _DeviceNumber6Vis = value; OnPropertyChanged("DeviceNumber6Vis"); }
+        }
+
         public RelayCommand StartAccuracyTesting
         {
             get { return _StartAccuracyTesting; }
@@ -31,10 +149,244 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         
         public AccuracyWindowVM()
         {
-           
+            
+            _AccuracymAmpTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+            _AccuracyVoltTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+            _AccuracyPT100SnsrTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+            _AccuracyRSensorTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+            _AccuracyJSensorTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+
+            EnableDUT();
+
+            if (clsGlobalVariables.Selectedcatid.IsmAmpTestEnabled)
+            {
+                IsmAmpVis = true;
+                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.mAmpTests)
+                {
+
+                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.mAmp);
+                                        
+                }
+            }
+            else
+                IsmAmpVis = false;
+
+            if (clsGlobalVariables.Selectedcatid.IsVoltTestEnabled)
+            {
+                IsVoltVis = true;
+                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.VoltTests)
+                {
+                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.Volt);
+                }
+            }
+            else
+                IsVoltVis = false;
+
+            if (clsGlobalVariables.Selectedcatid.IsPT100SensorTestEnabled)
+            {
+                IsPT100SensorVis = true;
+                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.PT100SensorTests)
+                {
+                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                }
+            }
+            else
+                IsPT100SensorVis = false;
+
+            if (clsGlobalVariables.Selectedcatid.IsRSensorTestEnabled)
+            {
+                IsRSensorVis = true;
+                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.RSensor)
+                {
+                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.RSensor);
+                }
+            }
+            else
+                IsRSensorVis = false;
+
+            if (clsGlobalVariables.Selectedcatid.IsJSensorTestEnabled)
+            {
+                IsJSensorVis = true;
+                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.JSensor)
+                {
+                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.JSensor);
+                }
+            }
+            else
+                IsJSensorVis = false;
+
             _StartAccuracyTesting = new RelayCommand(StartAccuracyTestingClk);
             tmrPVTimerTimeout.Tick += TmrPVTimerTimeout_Tick;
         }
+
+        private void FillTotalNumberOfPointsDetails(AccuracyTests objAccuracyTests, clsGlobalVariables.AccuracyParameter accuracyParameter)
+        {
+            int numberofpoints = Convert.ToInt32(objAccuracyTests.NumberTestPoints);
+            switch (accuracyParameter)
+            {
+                case clsGlobalVariables.AccuracyParameter.mAmp:
+                    Dispatcher.CurrentDispatcher.Invoke(delegate
+                    {
+                        AddAccuracymAmpTest(numberofpoints, objAccuracyTests);
+                    });
+                    break;
+                case clsGlobalVariables.AccuracyParameter.Volt:
+
+                    break;
+                case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+
+                    break;
+                case clsGlobalVariables.AccuracyParameter.RSensor:
+
+                    break;
+                case clsGlobalVariables.AccuracyParameter.JSensor:
+
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        private void AddAccuracymAmpTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        {
+            switch (numberofpoints)
+            {
+                case 1:
+                    AccuracymAmpTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "mAmp", TestPoint = objAccuracyTests.P1 });
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+        private void AddAccuracyVoltTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        {
+            switch (numberofpoints)
+            {
+                case 1:
+                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "Volt", TestPoint = objAccuracyTests.P1 });
+                    break;
+
+                default:
+                    break;
+            }                      
+        }
+
+        private void AddAccuracyPT100SensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        {
+            switch (numberofpoints)
+            {
+                case 1:
+                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "PT100Sensor", TestPoint = objAccuracyTests.P1 });
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void AddAccuracyRSensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        {
+            switch (numberofpoints)
+            {
+                case 1:
+                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "RSensor", TestPoint = objAccuracyTests.P1 });
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void AddAccuracyJSensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        {
+            switch (numberofpoints)
+            {
+                case 1:
+                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "JSensor", TestPoint = objAccuracyTests.P1 });
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void EnableDUT()
+        {
+            switch (clsGlobalVariables.NUMBER_OF_DUTS)
+            {
+
+                case 0:
+                    DeviceNumber1Vis = false;
+                    DeviceNumber2Vis = false;
+                    DeviceNumber3Vis = false;
+                    DeviceNumber4Vis = false;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 1:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = false;
+                    DeviceNumber3Vis = false;
+                    DeviceNumber4Vis = false;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 2:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = true;
+                    DeviceNumber3Vis = false;
+                    DeviceNumber4Vis = false;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 3:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = true;
+                    DeviceNumber3Vis = true;
+                    DeviceNumber4Vis = false;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 4:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = true;
+                    DeviceNumber3Vis = true;
+                    DeviceNumber4Vis = true;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 5:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = true;
+                    DeviceNumber3Vis = true;
+                    DeviceNumber4Vis = true;
+                    DeviceNumber5Vis = true;
+                    DeviceNumber6Vis = false;
+                    break;
+                case 6:
+                    DeviceNumber1Vis = true;
+                    DeviceNumber2Vis = true;
+                    DeviceNumber3Vis = true;
+                    DeviceNumber4Vis = true;
+                    DeviceNumber5Vis = true;
+                    DeviceNumber6Vis = true;
+                    break;
+
+                default:
+                    DeviceNumber1Vis = false;
+                    DeviceNumber2Vis = false;
+                    DeviceNumber3Vis = false;
+                    DeviceNumber4Vis = false;
+                    DeviceNumber5Vis = false;
+                    DeviceNumber6Vis = false;
+                    break;
+            }
+        }
+
         #region TimerRegion
         DispatcherTimer tmrPVTimerTimeout = new DispatcherTimer();
         private void EnablePVTimeoutTimer()
@@ -62,7 +414,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             //start accuracy with user define point
 
-            // write constant
+            //write constant
             //write data log in sqlite.
 
         }
@@ -93,8 +445,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-
-
+                    
                     btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO);
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
@@ -565,7 +916,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 throw ex;
             }
         }
-        
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string PropertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+            }
+        }
     }
 }
