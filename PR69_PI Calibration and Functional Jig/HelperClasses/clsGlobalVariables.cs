@@ -196,10 +196,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string strgComPortCalibratorDUT6 = "";
         public static string strgComPortPLC = "";
         public static string strgCJCsupport = "";
-        public static string CLIBRATOR_SR1 = "HKX1SA006";
+        public static string CLIBRATOR_SR1 = "HKX1SA003";
         public static string CLIBRATOR_SR2 = "HKX1SA004";
         public static string CLIBRATOR_SR3 = "HKX1SA005";
-        public static string CLIBRATOR_SR4 = "HKX1SA003";
+        public static string CLIBRATOR_SR4 = "HKX1SA006";
         public static string CLIBRATOR_SR5 = "HKX1SA007";
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;
@@ -216,6 +216,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const Byte MB_FUNC_READ_COILSTATUS = 0x1;
         //Read Input
         public const Byte MB_FUNC_READ_INPUTSTATUS = 0x2;
+        public const Byte MB_FUNC_FORCE_MULTICOILS = 0xF;
+        
         public static int ig_Calib_Query_TimeOut = 5000;
         public static int CALIB_MEASURE_DELAY = 12000;
         public static int igDelay_In_Two_Calib_Queries = 500;
@@ -351,8 +353,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte AFTER_SOAKING = 1;
         public const byte CALIB_DONE = 2;
 
-        public const byte MB_DUT_ID = 0x1;        
-        public const byte MB_SLAVE1_ID = 0xA;
+        public const byte MB_DUT_ID = 0x1;
+        public const byte MB_SLAVE1_ID = 1; //0xA;
         public const byte MB_SLAVE2_ID = 0xB;
         public const byte MB_SLAVE3_ID = 0xC;
         public const byte MB_CONVERTOR_ID = 0xD;
