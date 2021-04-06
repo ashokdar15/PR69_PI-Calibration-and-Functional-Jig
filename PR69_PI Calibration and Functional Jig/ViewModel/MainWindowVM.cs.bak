@@ -1053,8 +1053,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //Port detection.
                         
             StartStopWatch(true);
-            
+
             //clsModelSettings.igDutID  need to set deive iD
+
+            //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
 
             if (ListOfTests.Count == 0)
             {
@@ -1078,16 +1080,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             DisplayMessage(3, 145);
             DisplayMessage(4, 145);
 
-            //Type type = clsGlobalVariables.Selectedcatid.AnalogIpTests[0].GetType();
-            //PropertyInfo[] props = type.GetProperties();
-            StartStopWatch(true);
+            clsTotalTestsGroups.Clear();
+            int count = 0;
+            foreach (string test in ListOfTests)
+            {
+                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
+                count++;
+            }
+            TestsDetailsVis = true;
+            IsProductSelected = true;
 
-            clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
-            EnableDisableUI(false);
-           
+            for (int Testnum = 0; Testnum < ListOfTests.Count; Testnum++)
+            {
+                Dispatcher.CurrentDispatcher.Invoke( delegate{
 
-            //If usr change number of device then need to find com port again.
+                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() {TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
+
+                });                
+            }
             
+            clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
+            
+            //Parameters
+            //1. DUT Number
+            //2. Test Number
+            //3. Test Status
+            UpdateTestResult(2, 5, "PASS");
+            UpdateTestResult(4, 2, "PASS");
+
+            EnableDisableUI(false);
+            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+            //If usr change number of device then need to find com port again.
+            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
+            {
+                clsGlobalVariables.blngIsComportDetected = false;
+                clsGlobalVariables.blngIsComportDetectedForPLC = false;
+            }
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
@@ -1261,7 +1289,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice1 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices {TestNumber = item.TestNumber, TestresultDevice1 = status,TestresultDevice2 = item.TestresultDevice2,TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4,TestresultDevice5 = item.TestresultDevice5,TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1272,7 +1300,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice2 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = status, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1283,7 +1311,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice3 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = status, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1294,7 +1322,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice4 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = status, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1305,7 +1333,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice5 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = status, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1316,7 +1344,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice6 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = status};
                             break;
                         }
                     }
@@ -1574,74 +1602,74 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void AddRelaySSRTests(CatIdList catId)
         {
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP1_ON)
-                ListOfTests.Add("SLAVE1_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP1_ON)
+            //    ListOfTests.Add("SLAVE1_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF)
-                ListOfTests.Add("SLAVE1_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF)
+            //    ListOfTests.Add("SLAVE1_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].START_REL_TEST)
-                ListOfTests.Add("START_REL_TEST");
+            //if (catId.RelayOrSSRTests[0].START_REL_TEST)
+            //    ListOfTests.Add("START_REL_TEST");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP1_ON)
-                ListOfTests.Add("DUT_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP1_ON)
+            //    ListOfTests.Add("DUT_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP1_OFF)
-                ListOfTests.Add("DUT_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP1_OFF)
+            //    ListOfTests.Add("DUT_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP2_ON)
-                ListOfTests.Add("DUT_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP2_ON)
+            //    ListOfTests.Add("DUT_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP2_OFF)
-                ListOfTests.Add("DUT_OP2_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP2_OFF)
+            //    ListOfTests.Add("DUT_OP2_OFF");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP3_ON)
-                ListOfTests.Add("DUT_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP3_ON)
+            //    ListOfTests.Add("DUT_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP3_OFF)
-                ListOfTests.Add("DUT_OP3_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP3_OFF)
+            //    ListOfTests.Add("DUT_OP3_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP2_ON)
-                ListOfTests.Add("SLAVE1_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP2_ON)
+            //    ListOfTests.Add("SLAVE1_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP3_ON)
-                ListOfTests.Add("SLAVE1_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP3_ON)
+            //    ListOfTests.Add("SLAVE1_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_ON)
-                ListOfTests.Add("CONVERTOR_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_ON)
+            //    ListOfTests.Add("CONVERTOR_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_ON)
-                ListOfTests.Add("CONVERTOR_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_ON)
+            //    ListOfTests.Add("CONVERTOR_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON)
-                ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON)
+            //    ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF)
-                ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF)
+            //    ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_OFF");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF)
-                ListOfTests.Add("CONVERTOR_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF)
+            //    ListOfTests.Add("CONVERTOR_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF)
-                ListOfTests.Add("CONVERTOR_OP2_OFF");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF)
+            //    ListOfTests.Add("CONVERTOR_OP2_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF)
-                ListOfTests.Add("SLAVE1_OP3_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF)
+            //    ListOfTests.Add("SLAVE1_OP3_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_OP3_ON)
-                ListOfTests.Add("SLAVE2_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_OP3_ON)
+            //    ListOfTests.Add("SLAVE2_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE3_OP3_ON)
-                ListOfTests.Add("SLAVE3_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE3_OP3_ON)
+            //    ListOfTests.Add("SLAVE3_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_OFF)
-                ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_OFF)
+            //    ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_ON)
-                ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_ON)
+            //    ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
 
-            if (catId.RelayOrSSRTests[0].START_REL_TEST_PI)
-                ListOfTests.Add("START_REL_TEST_PI");
+            //if (catId.RelayOrSSRTests[0].START_REL_TEST_PI)
+            //    ListOfTests.Add("START_REL_TEST_PI");
 
         }
 
@@ -1708,29 +1736,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void AddAnalogInputTests(CatIdList catId)
         {
-            if (catId.AnalogIpTests[0].CALIB_1V_CNT)
-                ListOfTests.Add("CALIB_1V_CNT");
+            //if (catId.AnalogIpTests[0].CALIB_1V_CNT)
+            //    ListOfTests.Add("CALIB_1V_CNT");
 
-            if (catId.AnalogIpTests[0].CALIB_9V_CNT)
-                ListOfTests.Add("CALIB_9V_CNT");
+            //if (catId.AnalogIpTests[0].CALIB_9V_CNT)
+            //    ListOfTests.Add("CALIB_9V_CNT");
 
-            if (catId.AnalogIpTests[0].CALIB_4mA_CNT)
-                ListOfTests.Add("CALIB_4mA_CNT");
+            //if (catId.AnalogIpTests[0].CALIB_4mA_CNT)
+            //    ListOfTests.Add("CALIB_4mA_CNT");
 
-            if (catId.AnalogIpTests[0].CALIB_20mA_CNT)
-                ListOfTests.Add("CALIB_20mA_CNT");
+            //if (catId.AnalogIpTests[0].CALIB_20mA_CNT)
+            //    ListOfTests.Add("CALIB_20mA_CNT");
 
-            if (catId.AnalogIpTests[0].CALIB_9V_CNT_PI)
-                ListOfTests.Add("CALIB_9V_CNT_PI");
+            //if (catId.AnalogIpTests[0].CALIB_9V_CNT_PI)
+            //    ListOfTests.Add("CALIB_9V_CNT_PI");
 
-            if (catId.AnalogIpTests[0].CALIB_1V_CNT_PI)
-                ListOfTests.Add("CALIB_1V_CNT_PI");
+            //if (catId.AnalogIpTests[0].CALIB_1V_CNT_PI)
+            //    ListOfTests.Add("CALIB_1V_CNT_PI");
 
-            if (catId.AnalogIpTests[0].CALIB_20mA_CNT_PI)
-                ListOfTests.Add("CALIB_20mA_CNT_PI");
+            //if (catId.AnalogIpTests[0].CALIB_20mA_CNT_PI)
+            //    ListOfTests.Add("CALIB_20mA_CNT_PI");
 
-            if (catId.AnalogIpTests[0].CALIB_1mA_CNT_PI)
-                ListOfTests.Add("CALIB_1mA_CNT_PI");
+            //if (catId.AnalogIpTests[0].CALIB_1mA_CNT_PI)
+            //    ListOfTests.Add("CALIB_1mA_CNT_PI");
 
         }
 

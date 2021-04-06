@@ -130,6 +130,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string configJsonfilepath = "";
         public static string DispImgpath = "";
         public static AccuracyParameter strAccuracyParameter;
+        public static EnmConnectedDevices strConnectedDevice;
 
         public enum SelectedDeviceType
         {
@@ -146,6 +147,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             PT100Sensor,
             RSensor,
             JSensor
+        }
+
+        public enum EnmConnectedDevices
+        {
+            DeviceNumber1 = 1,
+            DeviceNumber2 = 2,
+            DeviceNumber3 = 3,
+            DeviceNumber4 = 4,
+            DeviceNumber5 = 5,
+            DeviceNumber6 = 6,
+            
         }
 
         #region"-----Variables and constants------"

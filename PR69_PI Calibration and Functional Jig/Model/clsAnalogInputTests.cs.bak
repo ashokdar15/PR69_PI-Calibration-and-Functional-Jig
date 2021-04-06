@@ -1,0 +1,156 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PR69_PI_Calibration_and_Functional_Jig.Model
+{
+    public class clsAnalogInputTests : INotifyPropertyChanged
+    {
+
+        //private bool _CALIB_1V_CNT;
+
+        //public bool CALIB_1V_CNT
+        //{
+        //    get { return _CALIB_1V_CNT; }
+        //    set { _CALIB_1V_CNT = value; OnPropertyChanged("CALIB_1V_CNT"); }
+        //}
+
+        //private bool _CALIB_9V_CNT;
+
+        //public bool CALIB_9V_CNT
+        //{
+        //    get { return _CALIB_9V_CNT; }
+        //    set { _CALIB_9V_CNT = value; OnPropertyChanged("CALIB_9V_CNT"); }
+        //}
+
+        //private bool _CALIB_4mA_CNT;
+
+        //public bool CALIB_4mA_CNT
+        //{
+        //    get { return _CALIB_4mA_CNT; }
+        //    set { _CALIB_4mA_CNT = value; OnPropertyChanged("CALIB_4mA_CNT"); }
+        //}
+
+        //private bool _CALIB_20mA_CNT;
+
+        //public bool CALIB_20mA_CNT
+        //{
+        //    get { return _CALIB_20mA_CNT; }
+        //    set { _CALIB_20mA_CNT = value; OnPropertyChanged("CALIB_20mA_CNT"); }
+        //}
+
+        //private bool _CALIB_9V_CNT_PI;
+
+        //public bool CALIB_9V_CNT_PI
+        //{
+        //    get { return _CALIB_9V_CNT_PI; }
+        //    set { _CALIB_9V_CNT_PI = value; OnPropertyChanged("CALIB_9V_CNT_PI"); }
+        //}
+
+        //private bool _CALIB_1V_CNT_PI;
+
+        //public bool CALIB_1V_CNT_PI
+        //{
+        //    get { return _CALIB_1V_CNT_PI; }
+        //    set { _CALIB_1V_CNT_PI = value; OnPropertyChanged("CALIB_1V_CNT_PI"); }
+        //}
+
+        //private bool _CALIB_20mA_CNT_PI;
+
+        //public bool CALIB_20mA_CNT_PI
+        //{
+        //    get { return _CALIB_20mA_CNT_PI; }
+        //    set { _CALIB_20mA_CNT_PI = value; OnPropertyChanged("CALIB_20mA_CNT_PI"); }
+        //}
+
+        //private bool _CALIB_1mA_CNT_PI;
+
+        //public bool CALIB_1mA_CNT_PI
+        //{
+        //    get { return _CALIB_1mA_CNT_PI; }
+        //    set { _CALIB_1mA_CNT_PI = value; OnPropertyChanged("CALIB_1mA_CNT_PI"); }
+        //}
+
+        private bool _CALIB_0to20mA;
+
+        public bool CALIB_0to20mA
+        {
+            get { return _CALIB_0to20mA; }
+            set { _CALIB_0to20mA = value; OnPropertyChanged("CALIB_0to20mA"); }
+        }
+
+        private bool _CALIB_0to10V;
+
+        public bool CALIB_0to10V
+        {
+            get { return _CALIB_0to10V; }
+            set { _CALIB_0to10V = value; OnPropertyChanged("CALIB_0to10V"); }
+        }
+
+        private bool _CALIB_0to20mA_PI;
+
+        public bool CALIB_0to20mA_PI
+        {
+            get { return _CALIB_0to20mA_PI; }
+            set { _CALIB_0to20mA_PI = value; OnPropertyChanged("CALIB_0to20mA_PI"); }
+        }
+
+        private bool _CALIB_0to10V_PI;
+
+        public bool CALIB_0to10V_PI
+        {
+            get { return _CALIB_0to10V_PI; }
+            set { _CALIB_0to10V_PI = value; OnPropertyChanged("CALIB_0to10V_PI"); }
+        }
+
+
+        public void ParseAnalogIPDetails(CatIdList catId)
+        {
+            if (catId.AnalogIpTests != null)
+            {
+                if (catId.AnalogIpTests.Count != 0)
+                {
+                    CALIB_0to20mA = catId.AnalogIpTests[0].CALIB_0to20mA;
+                    CALIB_0to10V = catId.AnalogIpTests[0].CALIB_0to10V;
+                    CALIB_0to20mA_PI = catId.AnalogIpTests[0].CALIB_0to20mA_PI;
+                    CALIB_0to10V_PI = catId.AnalogIpTests[0].CALIB_0to10V_PI;
+                }
+            }
+        }
+
+        public AnalogInputTests SaveAnalogIPTests()
+        {
+            try
+            {
+                AnalogInputTests analogInputTests = new AnalogInputTests()
+                {
+                   CALIB_0to20mA = CALIB_0to20mA,
+                   CALIB_0to10V = CALIB_0to10V,
+                   CALIB_0to20mA_PI = CALIB_0to20mA_PI,
+                   CALIB_0to10V_PI = CALIB_0to10V_PI
+                };
+
+                return analogInputTests;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+           
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string PropertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+            }
+        }
+    }
+}

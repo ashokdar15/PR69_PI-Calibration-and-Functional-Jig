@@ -127,7 +127,7 @@
     <Compile Include="HelperClasses\InitilizeCommonObject.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="Model\CatIdList.cs" />
-    <Compile Include="Model\clsAccuracyTestDeviceConnected.cs" />
+    <Compile Include="Model\clsAccuracyTestsDevices.cs" />
     <Compile Include="Model\clsAccuracyTests.cs" />
     <Compile Include="Model\clsAnalogInputTests.cs" />
     <Compile Include="Model\clsAnalogOutputTests.cs" />
