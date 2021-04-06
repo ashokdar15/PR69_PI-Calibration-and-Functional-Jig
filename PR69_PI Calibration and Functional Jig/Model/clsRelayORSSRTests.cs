@@ -9,180 +9,157 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsRelayORSSRTests : INotifyPropertyChanged
     {
-        private bool _SLAVE1_OP1_ON;
+        private bool _OP1;
 
-        public bool SLAVE1_OP1_ON
+        public bool OP1
         {
-            get { return _SLAVE1_OP1_ON; }
-            set { _SLAVE1_OP1_ON = value; OnPropertyChanged("SLAVE1_OP1_ON"); }
+            get { return _OP1; }
+            set { _OP1 = value; OnPropertyChanged("OP1"); }
         }
 
-        private bool _SLAVE1_OP1_OFF;
+        private bool _OP2;
 
-        public bool SLAVE1_OP1_OFF
+        public bool OP2
         {
-            get { return _SLAVE1_OP1_OFF; }
-            set { _SLAVE1_OP1_OFF = value; OnPropertyChanged("SLAVE1_OP1_OFF"); }
+            get { return _OP2; }
+            set { _OP2 = value; OnPropertyChanged("OP2"); }
         }
 
-        private bool _START_REL_TEST;
+        private bool _OP3;
 
-        public bool START_REL_TEST
+        public bool OP3
         {
-            get { return _START_REL_TEST; }
-            set { _START_REL_TEST = value; OnPropertyChanged("START_REL_TEST"); }
+            get { return _OP3; }
+            set { _OP3 = value; OnPropertyChanged("OP3"); }
         }
 
-        private bool _START_REL_TEST_PI;
+        private string _SelectedOP1Type;
 
-        public bool START_REL_TEST_PI
+        public string SelectedOP1Type
         {
-            get { return _START_REL_TEST_PI; }
-            set { _START_REL_TEST_PI = value; OnPropertyChanged("START_REL_TEST_PI"); }
+            get { return _SelectedOP1Type; }
+            set
+            {
+                _SelectedOP1Type = value;
+
+                if (_SelectedOP1Type == "Relay")                
+                    IsOP1RelaySelected = true;                
+                else
+                {
+                    IsOP1RelaySelected = false;
+                    SelectedIndexOP1Relay = -1;
+                }                   
+
+                OnPropertyChanged("SelectedOP1Type");
+            }
         }
 
+        private string _SelectedOP2Type;
 
-        private bool _DUT_OP1_ON;
-
-        public bool DUT_OP1_ON
+        public string SelectedOP2Type
         {
-            get { return _DUT_OP1_ON; }
-            set { _DUT_OP1_ON = value; OnPropertyChanged("DUT_OP1_ON"); }
+            get { return _SelectedOP2Type; }
+            set { _SelectedOP2Type = value;
+
+                if (_SelectedOP2Type == "Relay")
+                    IsOP2RelaySelected = true;
+                else
+                {
+                    SelectedIndexOP2Relay = -1;
+                    IsOP2RelaySelected = false;
+                }
+                    
+                OnPropertyChanged("SelectedOP2Type"); }
         }
 
-        private bool _DUT_OP1_OFF;
+        private string _SelectedOP3Type;
 
-        public bool DUT_OP1_OFF
+        public string SelectedOP3Type
         {
-            get { return _DUT_OP1_OFF; }
-            set { _DUT_OP1_OFF = value; OnPropertyChanged("DUT_OP1_OFF"); }
-        }
-        private bool _DUT_OP2_ON;
+            get { return _SelectedOP3Type; }
+            set { _SelectedOP3Type = value;
 
-        public bool DUT_OP2_ON
-        {
-            get { return _DUT_OP2_ON; }
-            set { _DUT_OP2_ON = value; OnPropertyChanged("DUT_OP2_ON"); }
-        }
-        private bool _DUT_OP2_OFF;
+                if (_SelectedOP3Type == "Relay")
+                    IsOP3RelaySelected = true;
+                else
+                {
+                    SelectedIndexOP3Relay = -1;
+                    IsOP3RelaySelected = false;
+                }
+                    
 
-        public bool DUT_OP2_OFF
-        {
-            get { return _DUT_OP2_OFF; }
-            set { _DUT_OP2_OFF = value; OnPropertyChanged("DUT_OP2_OFF"); }
+                OnPropertyChanged("SelectedOP3Type"); }
         }
 
-        private bool _DUT_OP3_ON;
+        private string _SelectedOP1RelayType;
 
-        public bool DUT_OP3_ON
+        public string SelectedOP1RelayType
         {
-            get { return _DUT_OP3_ON; }
-            set { _DUT_OP3_ON = value; OnPropertyChanged("DUT_OP3_ON"); }
+            get { return _SelectedOP1RelayType; }
+            set { _SelectedOP1RelayType = value; OnPropertyChanged("SelectedOP1RelayType"); }
         }
-        private bool _DUT_OP3_OFF;
+        private string _SelectedOP2RelayType;
 
-        public bool DUT_OP3_OFF
+        public string SelectedOP2RelayType
         {
-            get { return _DUT_OP3_OFF; }
-            set { _DUT_OP3_OFF = value; OnPropertyChanged("DUT_OP3_OFF"); }
-        }
-
-        private bool _SLAVE1_OP2_ON;
-
-        public bool SLAVE1_OP2_ON
-        {
-            get { return _SLAVE1_OP2_ON; }
-            set { _SLAVE1_OP2_ON = value; OnPropertyChanged("SLAVE1_OP2_ON"); }
+            get { return _SelectedOP2RelayType; }
+            set { _SelectedOP2RelayType = value; OnPropertyChanged("SelectedOP2RelayType"); }
         }
 
-        private bool _SLAVE1_OP3_ON;
+        private string _SelectedOP3RelayType;
 
-        public bool SLAVE1_OP3_ON
+        public string SelectedOP3RelayType
         {
-            get { return _SLAVE1_OP3_ON; }
-            set { _SLAVE1_OP3_ON = value; OnPropertyChanged("SLAVE1_OP3_ON"); }
-        }
-        private bool _CONVERTOR_OP1_ON;
-
-        public bool CONVERTOR_OP1_ON
-        {
-            get { return _CONVERTOR_OP1_ON; }
-            set { _CONVERTOR_OP1_ON = value; OnPropertyChanged("CONVERTOR_OP1_ON"); }
-        }
-        private bool _CONVERTOR_OP2_ON;
-
-        public bool CONVERTOR_OP2_ON
-        {
-            get { return _CONVERTOR_OP2_ON; }
-            set { _CONVERTOR_OP2_ON = value; OnPropertyChanged("CONVERTOR_OP2_ON"); }
+            get { return _SelectedOP3RelayType; }
+            set { _SelectedOP3RelayType = value; OnPropertyChanged("SelectedOP3RelayType"); }
         }
 
-        private bool _SLAVE1_READ_ADC_CNT_RLY_ON;
+        private bool _IsOP1RelaySelected;
 
-        public bool SLAVE1_READ_ADC_CNT_RLY_ON
+        public bool IsOP1RelaySelected
         {
-            get { return _SLAVE1_READ_ADC_CNT_RLY_ON; }
-            set { _SLAVE1_READ_ADC_CNT_RLY_ON = value; OnPropertyChanged("SLAVE1_READ_ADC_CNT_RLY_ON"); }
+            get { return _IsOP1RelaySelected; }
+            set { _IsOP1RelaySelected = value; OnPropertyChanged("IsOP1RelaySelected"); }
         }
 
-        private bool _SLAVE1_READ_ADC_CNT_RLY_OFF;
+        private bool _IsOP2RelaySelected;
 
-        public bool SLAVE1_READ_ADC_CNT_RLY_OFF
+        public bool IsOP2RelaySelected
         {
-            get { return _SLAVE1_READ_ADC_CNT_RLY_OFF; }
-            set { _SLAVE1_READ_ADC_CNT_RLY_OFF = value; OnPropertyChanged("SLAVE1_READ_ADC_CNT_RLY_OFF"); }
-        }
-        private bool _CONVERTOR_OP1_OFF;
-
-        public bool CONVERTOR_OP1_OFF
-        {
-            get { return _CONVERTOR_OP1_OFF; }
-            set { _CONVERTOR_OP1_OFF = value; OnPropertyChanged("CONVERTOR_OP1_OFF"); }
-        }
-        private bool _CONVERTOR_OP2_OFF;
-
-        public bool CONVERTOR_OP2_OFF
-        {
-            get { return _CONVERTOR_OP2_OFF; }
-            set { _CONVERTOR_OP2_OFF = value; OnPropertyChanged("CONVERTOR_OP2_OFF"); }
-        }
-        private bool _SLAVE1_OP3_OFF;
-
-        public bool SLAVE1_OP3_OFF
-        {
-            get { return _SLAVE1_OP3_OFF; }
-            set { _SLAVE1_OP3_OFF = value; OnPropertyChanged("SLAVE1_OP3_OFF"); }
+            get { return _IsOP2RelaySelected; }
+            set { _IsOP2RelaySelected = value; OnPropertyChanged("IsOP2RelaySelected"); }
         }
 
-        private bool _SLAVE2_OP3_ON;
+        private bool _IsOP3RelaySelected;
 
-        public bool SLAVE2_OP3_ON
+        public bool IsOP3RelaySelected
         {
-            get { return _SLAVE2_OP3_ON; }
-            set { _SLAVE2_OP3_ON = value; OnPropertyChanged("SLAVE2_OP3_ON"); }
+            get { return _IsOP3RelaySelected; }
+            set { _IsOP3RelaySelected = value; OnPropertyChanged("IsOP3RelaySelected"); }
         }
 
-        private bool _SLAVE3_OP3_ON;
+        private int _SelectedIndexOP1Relay;
 
-        public bool SLAVE3_OP3_ON
+        public int SelectedIndexOP1Relay
         {
-            get { return _SLAVE3_OP3_ON; }
-            set { _SLAVE3_OP3_ON = value; OnPropertyChanged("SLAVE3_OP3_ON"); }
-        }
-        private bool _SLAVE2_READ_ADC_CNT_RLY_OFF;
-
-        public bool SLAVE2_READ_ADC_CNT_RLY_OFF
-        {
-            get { return _SLAVE2_READ_ADC_CNT_RLY_OFF; }
-            set { _SLAVE2_READ_ADC_CNT_RLY_OFF = value; OnPropertyChanged("SLAVE2_READ_ADC_CNT_RLY_OFF"); }
+            get { return _SelectedIndexOP1Relay; }
+            set { _SelectedIndexOP1Relay = value; OnPropertyChanged("SelectedIndexOP1Relay"); }
         }
 
-        private bool _SLAVE2_READ_ADC_CNT_RLY_ON;
+        private int _SelectedIndexOP2Relay;
 
-        public bool SLAVE2_READ_ADC_CNT_RLY_ON
+        public int SelectedIndexOP2Relay
         {
-            get { return _SLAVE2_READ_ADC_CNT_RLY_ON; }
-            set { _SLAVE2_READ_ADC_CNT_RLY_ON = value; OnPropertyChanged("SLAVE2_READ_ADC_CNT_RLY_ON"); }
+            get { return _SelectedIndexOP2Relay; }
+            set { _SelectedIndexOP2Relay = value; OnPropertyChanged("SelectedIndexOP2Relay"); }
+        }
+
+        private int _SelectedIndexOP3Relay;
+
+        public int SelectedIndexOP3Relay
+        {
+            get { return _SelectedIndexOP3Relay; }
+            set { _SelectedIndexOP3Relay = value; OnPropertyChanged("SelectedIndexOP3Relay"); }
         }
 
         public void ParseRelayOrSSRDetails(CatIdList catId)
@@ -191,29 +168,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 if (catId.RelayOrSSRTests.Count != 0)
                 {
-                    SLAVE1_OP1_ON = catId.RelayOrSSRTests[0].SLAVE1_OP1_ON;
-                    SLAVE1_OP1_OFF = catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF;
-                    START_REL_TEST = catId.RelayOrSSRTests[0].START_REL_TEST;
-                    START_REL_TEST_PI = catId.RelayOrSSRTests[0].START_REL_TEST_PI;
-                    DUT_OP1_ON = catId.RelayOrSSRTests[0].DUT_OP1_ON;
-                    DUT_OP1_OFF = catId.RelayOrSSRTests[0].DUT_OP1_OFF;
-                    DUT_OP2_ON = catId.RelayOrSSRTests[0].DUT_OP2_ON;
-                    DUT_OP2_OFF = catId.RelayOrSSRTests[0].DUT_OP2_OFF;
-                    DUT_OP3_ON = catId.RelayOrSSRTests[0].DUT_OP3_ON;
-                    DUT_OP3_OFF = catId.RelayOrSSRTests[0].DUT_OP3_OFF;
-                    SLAVE1_OP2_ON = catId.RelayOrSSRTests[0].SLAVE1_OP2_ON;
-                    SLAVE1_OP3_ON = catId.RelayOrSSRTests[0].SLAVE1_OP3_ON;
-                    CONVERTOR_OP1_ON = catId.RelayOrSSRTests[0].CONVERTOR_OP1_ON;
-                    CONVERTOR_OP2_ON = catId.RelayOrSSRTests[0].CONVERTOR_OP2_ON;
-                    SLAVE1_READ_ADC_CNT_RLY_ON = catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON;
-                    SLAVE1_READ_ADC_CNT_RLY_OFF = catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF;
-                    CONVERTOR_OP1_OFF = catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF;
-                    CONVERTOR_OP2_OFF = catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF;
-                    SLAVE1_OP3_OFF = catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF;
-                    SLAVE2_OP3_ON = catId.RelayOrSSRTests[0].SLAVE2_OP3_ON;
-                    SLAVE3_OP3_ON = catId.RelayOrSSRTests[0].SLAVE3_OP3_ON;
-                    SLAVE2_READ_ADC_CNT_RLY_ON = catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_ON;
-                    SLAVE2_READ_ADC_CNT_RLY_OFF = catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_OFF;
+                    OP1 = catId.RelayOrSSRTests[0].OP1;
+                    OP2 = catId.RelayOrSSRTests[0].OP2;
+                    OP3 = catId.RelayOrSSRTests[0].OP3;
+
+                    SelectedOP1Type = catId.RelayOrSSRTests[0].SelectedOP1Type;
+                    SelectedOP2Type = catId.RelayOrSSRTests[0].SelectedOP2Type;
+                    SelectedOP3Type = catId.RelayOrSSRTests[0].SelectedOP3Type;
+
+                    SelectedOP1RelayType = catId.RelayOrSSRTests[0].SelectedOP1RelayType;
+                    SelectedOP2RelayType = catId.RelayOrSSRTests[0].SelectedOP2RelayType;
+                    SelectedOP3RelayType = catId.RelayOrSSRTests[0].SelectedOP3RelayType;
+
                 }
             }
         }
@@ -224,29 +190,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 RelayORSSRTests RelayOrSSRTests = new RelayORSSRTests()
                 {
-                    SLAVE1_OP1_ON = SLAVE1_OP1_ON,
-                    SLAVE1_OP1_OFF = SLAVE1_OP1_OFF,
-                    START_REL_TEST = START_REL_TEST,
-                    START_REL_TEST_PI = START_REL_TEST_PI,
-                    DUT_OP1_ON = DUT_OP1_ON,
-                    DUT_OP1_OFF = DUT_OP1_OFF,
-                    DUT_OP2_ON = DUT_OP2_ON,
-                    DUT_OP2_OFF = DUT_OP2_OFF,
-                    DUT_OP3_ON = DUT_OP3_ON,
-                    DUT_OP3_OFF = DUT_OP3_OFF,
-                    SLAVE1_OP2_ON = SLAVE1_OP2_ON,
-                    SLAVE1_OP3_ON = SLAVE1_OP3_ON,
-                    CONVERTOR_OP1_ON = CONVERTOR_OP1_ON,
-                    CONVERTOR_OP2_ON = CONVERTOR_OP2_ON,
-                    SLAVE1_READ_ADC_CNT_RLY_ON = SLAVE1_READ_ADC_CNT_RLY_ON,
-                    SLAVE1_READ_ADC_CNT_RLY_OFF = SLAVE1_READ_ADC_CNT_RLY_OFF,
-                    CONVERTOR_OP1_OFF = CONVERTOR_OP1_OFF,
-                    CONVERTOR_OP2_OFF = CONVERTOR_OP2_OFF,
-                    SLAVE1_OP3_OFF = SLAVE1_OP3_OFF,
-                    SLAVE2_OP3_ON = SLAVE2_OP3_ON,
-                    SLAVE3_OP3_ON = SLAVE3_OP3_ON,
-                    SLAVE2_READ_ADC_CNT_RLY_ON = SLAVE2_READ_ADC_CNT_RLY_ON,
-                    SLAVE2_READ_ADC_CNT_RLY_OFF = SLAVE2_READ_ADC_CNT_RLY_OFF
+                    OP1=OP1,
+                    OP2=OP2,
+                    OP3=OP3,
+                    SelectedOP1Type=SelectedOP1Type,
+                    SelectedOP2Type=SelectedOP2Type,
+                    SelectedOP3Type=SelectedOP3Type,
+                    SelectedOP1RelayType=SelectedOP1RelayType,
+                    SelectedOP2RelayType=SelectedOP2RelayType,
+                    SelectedOP3RelayType=SelectedOP3RelayType
                 };
 
                 return RelayOrSSRTests;

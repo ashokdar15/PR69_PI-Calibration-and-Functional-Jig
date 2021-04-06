@@ -62,12 +62,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Grid.Row="0" Grid.Column="0">
-                            <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
+                        <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Grid.Row="0" Grid.Column="0" >
+                            <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2" >
                                 <GroupBox.Header>
                                     <TextBlock Text="mAmp" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                 </GroupBox.Header>
-                                <DataGrid  AutoGenerateColumns="False" 
+                                <DataGrid  AutoGenerateColumns="False" Background="#b2ebf2"
                                   Visibility="{Binding IsmAmpVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}"
                                               ItemsSource="{Binding Path=AccuracymAmpTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
@@ -76,43 +76,79 @@
                                                     Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Actual Values" FontSize="15" FontWeight="Bold"/>
-                                            </DataGridTextColumn.Header>
+                                            </DataGridTextColumn.Header>                                           
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device1" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber2Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device2" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber3Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device3" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber4Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device4" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber5Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device5" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding TestresultDevice6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber6Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                             <DataGridTextColumn.Header>
                                                 <Label Content="Device6" FontSize="15" FontWeight="Bold"/>
                                             </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                    <Setter Property="Margin" Value="1 1 1 1"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
@@ -124,16 +160,10 @@
                                 <GroupBox.Header>
                                     <TextBlock Text="Volt" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                 </GroupBox.Header>
-                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" 
+                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"
                                   Visibility="{Binding IsVoltVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}"
                                               ItemsSource="{Binding Path=AccuracyVoltTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGrid.Resources>
-                                        <!--<Style TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="LightGreen"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </Style>-->
-                                    </DataGrid.Resources>
-
+                                    
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding TestPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
@@ -187,15 +217,10 @@
                                 <GroupBox.Header>
                                     <TextBlock Text="PT100 Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                 </GroupBox.Header>
-                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" 
+                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"
                                   Visibility="{Binding IsPT100SensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}"
                                               ItemsSource="{Binding Path=AccuracyPT100SnsrTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGrid.Resources>
-                                        <!--<Style TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="LightGreen"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </Style>-->
-                                    </DataGrid.Resources>
+                                    
                                     <DataGrid.Columns>
 
                                         <DataGridTextColumn Binding="{Binding TestPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
@@ -250,15 +275,10 @@
                                 <GroupBox.Header>
                                     <TextBlock Text="R Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                 </GroupBox.Header>
-                                <DataGrid AutoGenerateColumns="False" Margin="0 5 0 0" 
+                                <DataGrid AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"
                                   Visibility="{Binding IsRSensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}"
                                               ItemsSource="{Binding Path=AccuracyRSensorTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGrid.Resources>
-                                        <!--<Style TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="LightGreen"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </Style>-->
-                                    </DataGrid.Resources>
+                                   
                                     <DataGrid.Columns>
 
                                         <DataGridTextColumn Binding="{Binding TestPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
@@ -313,15 +333,10 @@
                                 <GroupBox.Header>
                                     <TextBlock Text="J Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                 </GroupBox.Header>
-                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" 
+                                <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"
                                   Visibility="{Binding IsJSensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}"
                                               ItemsSource="{Binding Path=AccuracyJSensorTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGrid.Resources>
-                                        <!--<Style TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="LightGreen"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </Style>-->
-                                    </DataGrid.Resources>
+                                   
                                     <DataGrid.Columns>
 
                                         <DataGridTextColumn Binding="{Binding TestPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"

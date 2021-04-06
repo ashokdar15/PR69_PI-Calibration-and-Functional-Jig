@@ -937,43 +937,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber6Vis = false;
 
                         break;
-                    case 5:
-                        DUT1DetailsVis = true;
-                        DUT2DetailsVis = true;
-                        DUT3DetailsVis = true;
-                        DUT4DetailsVis = true;
-                        DUT5DetailsVis = true;
-                        DUT6DetailsVis = false;
+                    //case 5:
+                    //    DUT1DetailsVis = true;
+                    //    DUT2DetailsVis = true;
+                    //    DUT3DetailsVis = true;
+                    //    DUT4DetailsVis = true;
+                    //    DUT5DetailsVis = true;
+                    //    DUT6DetailsVis = false;
 
-                        DeviceNumber1Vis = true;
-                        DeviceNumber2Vis = true;
-                        DeviceNumber3Vis = true;
-                        DeviceNumber4Vis = true;
-                        DeviceNumber5Vis = true;
-                        DeviceNumber6Vis = false;
+                    //    DeviceNumber1Vis = true;
+                    //    DeviceNumber2Vis = true;
+                    //    DeviceNumber3Vis = true;
+                    //    DeviceNumber4Vis = true;
+                    //    DeviceNumber5Vis = true;
+                    //    DeviceNumber6Vis = false;
 
-                        break;
-                    case 6:
-                        DUT1DetailsVis = true;
-                        DUT2DetailsVis = true;
-                        DUT3DetailsVis = true;
-                        DUT4DetailsVis = true;
-                        DUT5DetailsVis = true;
-                        DUT6DetailsVis = true;
+                    //    break;
+                    //case 6:
+                    //    DUT1DetailsVis = true;
+                    //    DUT2DetailsVis = true;
+                    //    DUT3DetailsVis = true;
+                    //    DUT4DetailsVis = true;
+                    //    DUT5DetailsVis = true;
+                    //    DUT6DetailsVis = true;
 
-                        DeviceNumber1Vis = true;
-                        DeviceNumber2Vis = true;
-                        DeviceNumber3Vis = true;
-                        DeviceNumber4Vis = true;
-                        DeviceNumber5Vis = true;
-                        DeviceNumber6Vis = true;
+                    //    DeviceNumber1Vis = true;
+                    //    DeviceNumber2Vis = true;
+                    //    DeviceNumber3Vis = true;
+                    //    DeviceNumber4Vis = true;
+                    //    DeviceNumber5Vis = true;
+                    //    DeviceNumber6Vis = true;
 
-                        break;
-
+                    //    break;
 
                     default:                      
                         //ShowMessageBox("Please enter total number of devices less than or equal to 6.", false, "InvalidDUT_No", clsGlobalVariables.MsgIcon.Error);
-                        MessageBox.Show("Please enter total number of devices less than or equal to 6.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                        MessageBox.Show("Please enter total number of devices less than or equal to 4.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                         NumberOfDUTs = 1;
                         break;
                 }
@@ -1055,6 +1054,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StartStopWatch(true);
 
             //clsModelSettings.igDutID  need to set deive iD
+
+            //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
 
             if (ListOfTests.Count == 0)
             {
@@ -1337,7 +1338,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice1 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices {TestNumber = item.TestNumber, TestresultDevice1 = status,TestresultDevice2 = item.TestresultDevice2,TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4,TestresultDevice5 = item.TestresultDevice5,TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1348,7 +1349,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice2 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = status, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1359,7 +1360,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice3 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = status, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1370,7 +1371,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice4 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = status, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1381,7 +1382,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice5 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = status, TestresultDevice6 = item.TestresultDevice6 };
                             break;
                         }
                     }
@@ -1392,7 +1393,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.TestNumber == testnumber)
                         {
-                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestresultDevice6 = status };
+                            clsTotalConnectedDevicesList[item.TestNumber - 1] = new clsTotalConnectedDevices { TestNumber = item.TestNumber, TestresultDevice1 = item.TestresultDevice1, TestresultDevice2 = item.TestresultDevice2, TestresultDevice3 = item.TestresultDevice3, TestresultDevice4 = item.TestresultDevice4, TestresultDevice5 = item.TestresultDevice5, TestresultDevice6 = status};
                             break;
                         }
                     }
@@ -1650,74 +1651,74 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void AddRelaySSRTests(CatIdList catId)
         {
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP1_ON)
-                ListOfTests.Add("SLAVE1_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP1_ON)
+            //    ListOfTests.Add("SLAVE1_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF)
-                ListOfTests.Add("SLAVE1_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP1_OFF)
+            //    ListOfTests.Add("SLAVE1_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].START_REL_TEST)
-                ListOfTests.Add("START_REL_TEST");
+            //if (catId.RelayOrSSRTests[0].START_REL_TEST)
+            //    ListOfTests.Add("START_REL_TEST");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP1_ON)
-                ListOfTests.Add("DUT_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP1_ON)
+            //    ListOfTests.Add("DUT_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP1_OFF)
-                ListOfTests.Add("DUT_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP1_OFF)
+            //    ListOfTests.Add("DUT_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP2_ON)
-                ListOfTests.Add("DUT_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP2_ON)
+            //    ListOfTests.Add("DUT_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP2_OFF)
-                ListOfTests.Add("DUT_OP2_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP2_OFF)
+            //    ListOfTests.Add("DUT_OP2_OFF");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP3_ON)
-                ListOfTests.Add("DUT_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].DUT_OP3_ON)
+            //    ListOfTests.Add("DUT_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].DUT_OP3_OFF)
-                ListOfTests.Add("DUT_OP3_OFF");
+            //if (catId.RelayOrSSRTests[0].DUT_OP3_OFF)
+            //    ListOfTests.Add("DUT_OP3_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP2_ON)
-                ListOfTests.Add("SLAVE1_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP2_ON)
+            //    ListOfTests.Add("SLAVE1_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP3_ON)
-                ListOfTests.Add("SLAVE1_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP3_ON)
+            //    ListOfTests.Add("SLAVE1_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_ON)
-                ListOfTests.Add("CONVERTOR_OP1_ON");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_ON)
+            //    ListOfTests.Add("CONVERTOR_OP1_ON");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_ON)
-                ListOfTests.Add("CONVERTOR_OP2_ON");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_ON)
+            //    ListOfTests.Add("CONVERTOR_OP2_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON)
-                ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_ON)
+            //    ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF)
-                ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_READ_ADC_CNT_RLY_OFF)
+            //    ListOfTests.Add("SLAVE1_READ_ADC_CNT_RLY_OFF");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF)
-                ListOfTests.Add("CONVERTOR_OP1_OFF");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP1_OFF)
+            //    ListOfTests.Add("CONVERTOR_OP1_OFF");
 
-            if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF)
-                ListOfTests.Add("CONVERTOR_OP2_OFF");
+            //if (catId.RelayOrSSRTests[0].CONVERTOR_OP2_OFF)
+            //    ListOfTests.Add("CONVERTOR_OP2_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF)
-                ListOfTests.Add("SLAVE1_OP3_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE1_OP3_OFF)
+            //    ListOfTests.Add("SLAVE1_OP3_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_OP3_ON)
-                ListOfTests.Add("SLAVE2_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_OP3_ON)
+            //    ListOfTests.Add("SLAVE2_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE3_OP3_ON)
-                ListOfTests.Add("SLAVE3_OP3_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE3_OP3_ON)
+            //    ListOfTests.Add("SLAVE3_OP3_ON");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_OFF)
-                ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_OFF)
+            //    ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
 
-            if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_ON)
-                ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
+            //if (catId.RelayOrSSRTests[0].SLAVE2_READ_ADC_CNT_RLY_ON)
+            //    ListOfTests.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
 
-            if (catId.RelayOrSSRTests[0].START_REL_TEST_PI)
-                ListOfTests.Add("START_REL_TEST_PI");
+            //if (catId.RelayOrSSRTests[0].START_REL_TEST_PI)
+            //    ListOfTests.Add("START_REL_TEST_PI");
 
         }
 
@@ -1750,17 +1751,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (catId.AnalogOpTests[0].CHK_ANALOG_OP_VAL)
                 ListOfTests.Add("CHK_ANALOG_OP_VAL");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP1_ON)
-                ListOfTests.Add("SLAVE2_OP1_ON");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP1_ON)
+            //    ListOfTests.Add("SLAVE2_OP1_ON");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP1_OFF)
-                ListOfTests.Add("SLAVE2_OP1_OFF");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP1_OFF)
+            //    ListOfTests.Add("SLAVE2_OP1_OFF");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP2_ON)
-                ListOfTests.Add("SLAVE2_OP2_ON");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP2_ON)
+            //    ListOfTests.Add("SLAVE2_OP2_ON");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP2_OFF)
-                ListOfTests.Add("SLAVE2_OP2_OFF");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP2_OFF)
+            //    ListOfTests.Add("SLAVE2_OP2_OFF");
 
             if (catId.AnalogOpTests[0].SET_DFALT_1V_CNT)
                 ListOfTests.Add("SET_DFALT_1V_CNT");

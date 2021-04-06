@@ -63,63 +63,38 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>                                    
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition/>                                    
                                 </Grid.RowDefinitions>
 
-                                <CheckBox Content="CALIB 1V CNT" 
-                                      Grid.Column="0" Grid.Row="0" Margin="20 20"
+                                <CheckBox Content="CALIBRATION 0to20mA" 
+                                      Grid.Column="0" Grid.Row="0" Margin="20 15"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 9V CNT" 
-                                      Grid.Column="1" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_9V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 4mA CNT" 
-                                      Grid.Column="2" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsAnalogInputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogInputTests.CALIB_4mA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB 20mA CNT" 
+                                <CheckBox Content="CALIBRATION 0to10V" 
+                                      Grid.Column="1" Grid.Row="0" Margin="20 20"
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="{Binding clsAnalogInputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsChecked="{Binding clsAnalogInputTests.CALIB_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="CALIBRATION 0to20mA PI" 
                                       Grid.Column="0" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_20mA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsEnabled="{Binding clsAnalogInputTests.IsPIProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsChecked="{Binding clsAnalogInputTests.CALIB_1mA_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB 9V CNT PI" 
+                                <CheckBox Content="CALIBRATION 0to10V PI" 
                                       Grid.Column="1" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_9V_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 1V CNT PI" 
-                                      Grid.Column="2" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsAnalogInputTests.IsPIProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogInputTests.CALIB_1V_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB 20mA CNT PI" 
-                                      Grid.Column="0" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_20mA_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 1mA CNT PI" 
-                                      Grid.Column="1" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogInputTests.CALIB_1mA_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                
 
 
                             </Grid>
@@ -136,129 +111,30 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
-                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition/>                                  
                                 </Grid.RowDefinitions>
 
-                                <CheckBox Content="SET DEFAULT 1MA CNT" 
+                                <CheckBox Content="CALIBRATION 0to20mA" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="SET DEFAULT 4MA CNT" 
+                                <CheckBox Content="CALIBRATION 4to20mA" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_4MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="SET OBSRVED 1MA CNT" 
+                                <CheckBox Content="CALIBRATION 0to10V" 
                                       Grid.Column="2" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_OBSRVED_1MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET OBSRVED 4MA CNT" 
-                                      Grid.Column="3" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_OBSRVED_4MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET DEFAULT 20MA CNT" 
-                                      Grid.Column="0" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_20MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET OBSRVED 20MA CNT" 
-                                      Grid.Column="1" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_OBSRVED_20MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIBRATE CURRENT" 
-                                      Grid.Column="2" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.CALIBRATE_CURRENT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET 12MA ANALOG OUTPUT" 
-                                      Grid.Column="3" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_12MA_ANLOP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CHECK ANALOG OUTPUT" 
-                                      Grid.Column="0" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.CHK_ANALOG_OP_VAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 OUTPUT1 ON" 
-                                      Grid.Column="1" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SLAVE2_OP1_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 OUTPUT1 OFF" 
-                                      Grid.Column="2" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SLAVE2_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 OUTPUT2 ON" 
-                                      Grid.Column="3" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SLAVE2_OP2_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 OUTPUT2 OFF" 
-                                      Grid.Column="0" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SLAVE2_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET DEFAULT 1V CNT" 
-                                      Grid.Column="1" Grid.Row="3" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="SET OBSERVED 1V CNT" 
-                                      Grid.Column="2" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_OBSRVED_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET DEFAULT 10V CNT" 
-                                      Grid.Column="3" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_10V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET OBSERVED 10V CNT" 
-                                      Grid.Column="0" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_OBSRVED_10V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIBRATE VOLTAGE" 
-                                      Grid.Column="1" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.CALIBRATE_VOLTAGE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SET 5V ANALOG OUTPUT" 
-                                      Grid.Column="2" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsAnalogOutputTests.SET_5V_ANLOP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              
 
                             </Grid>
                         </Border>
@@ -336,7 +212,7 @@
 
                     <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
                                 Visibility="{Binding Path=RelayOrSSRTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Edit Relay Or SSR Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                        <TextBlock Text="Edit Output Tests Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                             <Grid>
@@ -344,155 +220,81 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
-                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition/>                                   
                                 </Grid.RowDefinitions>
 
-                                <CheckBox Content="SLAVE1 OP1 ON" 
+                                <CheckBox Content="OP1" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_OP1_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsRelayORSSRTests.OP1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="SLAVE1 OP1 OFF" 
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="1" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.OP1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"                                       
+                                      ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP1Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="2" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.IsOP1RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"                                        
+                                      ItemsSource="{Binding Path=RelayTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP1RelayType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding clsRelayORSSRTests.SelectedIndexOP1Relay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="OP2" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsRelayORSSRTests.OP2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="START REL TEST" 
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="1" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.OP2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"  
+                                      ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP2Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="2" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.IsOP2RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"  
+                                      ItemsSource="{Binding Path=RelayTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP2RelayType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding clsRelayORSSRTests.SelectedIndexOP2Relay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                
+                                <CheckBox Content="OP3" 
                                       Grid.Column="2" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.START_REL_TEST, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsRelayORSSRTests.OP3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="DUT OP1 ON" 
-                                      Grid.Column="3" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP1_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="1" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.OP3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"  
+                                      ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP3Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="DUT OP1 OFF" 
-                                      Grid.Column="0" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="DUT OP2 ON" 
-                                      Grid.Column="1" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP2_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="DUT OP2 OFF" 
-                                      Grid.Column="2" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="DUT OP3 ON" 
-                                      Grid.Column="3" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP3_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="DUT OP3 OFF" 
-                                      Grid.Column="0" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.DUT_OP3_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE1 OP2 ON" 
-                                      Grid.Column="1" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_OP2_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE1 OP3 ON" 
-                                      Grid.Column="2" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_OP3_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CONVERTOR OP1 ON" 
-                                      Grid.Column="3" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP1_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CONVERTOR OP2 ON" 
-                                      Grid.Column="0" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP2_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE1 READ ADC CNT RLY ON" 
-                                      Grid.Column="1" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_READ_ADC_CNT_RLY_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE1 READ ADC CNT RLY OFF" 
-                                      Grid.Column="2" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_READ_ADC_CNT_RLY_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CONVERTOR OP1 OFF" 
-                                      Grid.Column="3" Grid.Row="3" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP1_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CONVERTOR OP2 OFF" 
-                                      Grid.Column="0" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.CONVERTOR_OP2_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE1 OP3 OFF" 
-                                      Grid.Column="1" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE1_OP3_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 OP3 ON" 
-                                      Grid.Column="2" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE2_OP3_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE3 OP3 ON" 
-                                      Grid.Column="3" Grid.Row="4" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE3_OP3_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 READ ADC CNT RLY OFF" 
-                                      Grid.Column="0" Grid.Row="5" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE2_READ_ADC_CNT_RLY_OFF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="SLAVE2 READ ADC CNT RLY ON" 
-                                      Grid.Column="1" Grid.Row="5" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.SLAVE2_READ_ADC_CNT_RLY_ON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="START REL TEST PI" 
-                                      Grid.Column="2" Grid.Row="5" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsRelayORSSRTests.START_REL_TEST_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="2" Margin="20 20"
+                                      materialDesign:TextFieldAssist.HasClearButton="False"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
+                                      IsEnabled="{Binding clsRelayORSSRTests.IsOP3RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="False"
+                                      ItemsSource="{Binding Path=RelayTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding clsRelayORSSRTests.SelectedOP3RelayType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding clsRelayORSSRTests.SelectedIndexOP3Relay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </Border>
                     </StackPanel>
@@ -821,7 +623,7 @@
 
                     <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
                                 Visibility="{Binding Path=ToleranceEditVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Edit Tolerance of PI Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                        <TextBlock Text="Edit Tolerance of PI" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                             <Grid>
@@ -1287,7 +1089,7 @@
                                 <GroupBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3" Padding="0"
                                          Width="350" Height="120" Margin="140 0 0 0" BorderThickness="2">
                                     <GroupBox.Header>
-                                        <TextBlock Text="Accuracy Details" FontSize="15"></TextBlock>
+                                        <TextBlock Text="Input Accuracy Details" FontSize="15"></TextBlock>
                                     </GroupBox.Header>
 
                                     <Grid>
@@ -1295,7 +1097,6 @@
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-
 
                                         <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Grid.Row="0">
                                             <StackPanel Margin="8,0,0,10" Orientation="Horizontal"
@@ -1416,7 +1217,7 @@
                                 <GroupBox Grid.Row="4" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" Padding="0"
                                         Height="245" Width="300" Margin="5 28 0 0">
                                     <GroupBox.Header>
-                                        <TextBlock Text="Accuracy Sequence" FontSize="15"></TextBlock>
+                                        <TextBlock Text="Input Accuracy Sequence" FontSize="15"></TextBlock>
                                     </GroupBox.Header>
                                     <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="0 0 0 0">
                                         <StackPanel Orientation="Horizontal">
@@ -1497,7 +1298,7 @@
                                 <GroupBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="10 20" HorizontalAlignment="Left" 
                                   Padding="0"  Width="520" Height="120" BorderThickness="2">
                                     <GroupBox.Header>
-                                        <TextBlock Text="Total Tests Details" FontSize="15"></TextBlock>
+                                        <TextBlock Text="Calibration and Functional Tests Details" FontSize="15"></TextBlock>
                                     </GroupBox.Header>
                                     <Grid Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5">
                                         <Grid.RowDefinitions>
@@ -1578,7 +1379,7 @@
                                             <CheckBox   
                                                 IsChecked="{Binding Path=IsRelayTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                Content="Relay Tests"/>
+                                                Content="Output Tests"/>
 
                                             <Button Command="{Binding Path=EditRelayTestsCmd}"  Margin="5 0"
                                                 CommandParameter="{Binding DeviceName}"                                                        
@@ -1589,7 +1390,7 @@
                                                     <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
                                                 </Button.Content>
                                                 <Button.ToolTip>
-                                                    <TextBlock Text="Edit Relay Tests Details"></TextBlock>
+                                                    <TextBlock Text="Edit Output Tests Details"></TextBlock>
                                                 </Button.ToolTip>
                                             </Button>
                                         </StackPanel>
@@ -1614,7 +1415,7 @@
                                             </Button>
                                         </StackPanel>
                                         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="10,0,0,10"
-                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
+                                        HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
                                             <CheckBox   
                                                 IsChecked="{Binding Path=IsCommonTests,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -1625,7 +1426,7 @@
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                 Visibility="{Binding Path=IsCommonTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
                                                 materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                                <Button.Content >
+                                                <Button.Content>
                                                     <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
                                                 </Button.Content>
                                                 <Button.ToolTip>
@@ -1638,7 +1439,7 @@
                                 <GroupBox Grid.Row="4" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="10 40" HorizontalAlignment="Left"
                                   Padding="0"  Width="380" Height="auto" BorderThickness="2">
                                     <GroupBox.Header>
-                                        <TextBlock Text="Groups Tests Sequence" FontSize="15"></TextBlock>
+                                        <TextBlock Text="Calibration and Functional Tests Sequence" FontSize="15"></TextBlock>
                                     </GroupBox.Header>
                                     <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                                         <StackPanel Orientation="Horizontal">
@@ -1707,7 +1508,7 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="40,20,7.6,20.2">
                                 <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                    <TextBlock Text="Edit Calibration Delays" FontSize="16" Margin="0 10"/>
+                                    <TextBlock Text="Edit Calibration Delays(PR69)" FontSize="16" Margin="0 10"/>
                                     <Button Command="{Binding Path=EditCalibrationDelaysCmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
                                         Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
@@ -1722,7 +1523,7 @@
 
                                 <StackPanel Orientation="Horizontal"  Margin="5 0 0 0"
                                     HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                    <TextBlock Text="Edit Calibration Delays PI" FontSize="16" Margin="10 10"/>
+                                    <TextBlock Text="Edit Calibration Delays(PI)" FontSize="16" Margin="10 10"/>
                                     <Button Command="{Binding Path=EditCalibrationDelaysPICmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
                                         Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
@@ -1737,7 +1538,7 @@
 
                                 <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
-                                    <TextBlock Text="Edit Tolerance Of PI Details" FontSize="16" Margin="15 10"/>
+                                    <TextBlock Text="Edit Analog O/P Tolerance(PI)" FontSize="16" Margin="15 10"/>
                                     <Button Command="{Binding Path=EditToleranceCmd, Source={x:Reference ConfigurationWindowVM}}"  
                                         Visibility="{Binding Path=IstolerancebtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
@@ -1748,7 +1549,7 @@
                                             <TextBlock Text="Edit Tolerance Of PI Details"></TextBlock>
                                         </Button.ToolTip>
                                     </Button>
-                                    <TextBlock Text="Edit Tolerance Of PR69 Details" FontSize="16" Margin="15 10"/>
+                                    <TextBlock Text="Edit Analog O/P Tolerance(PR69)" FontSize="16" Margin="15 10"/>
                                     <Button Command="{Binding Path=EditTolerancePR69Cmd, Source={x:Reference ConfigurationWindowVM}}"  
                                         Visibility="{Binding Path=IstolerancebtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">

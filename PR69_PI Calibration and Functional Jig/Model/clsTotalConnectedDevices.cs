@@ -18,15 +18,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             get { return _TestNumber; }
             set { _TestNumber = value; OnPropertyChanged("TestNumber"); }
         }
-
-        private int _DeviceNumber;
-
-        public int DeviceNumber
-        {
-            get { return _DeviceNumber; }
-            set { _DeviceNumber = value; OnPropertyChanged("DeviceNumber"); }
-        }
-
+                
         private string _TestresultDevice1;
 
         public string TestresultDevice1

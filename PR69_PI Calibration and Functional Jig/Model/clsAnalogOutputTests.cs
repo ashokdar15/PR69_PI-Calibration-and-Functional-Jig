@@ -15,15 +15,64 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool SET_DFALT_1MA_CNT
         {
             get { return _SET_DFALT_1MA_CNT; }
-            set { _SET_DFALT_1MA_CNT = value; OnPropertyChanged("SET_DFALT_1MA_CNT"); }
+            set
+            {
+                _SET_DFALT_1MA_CNT = value;
+
+                if (_SET_DFALT_1MA_CNT)
+                {
+                    SET_OBSRVED_1MA_CNT = true;
+                    SET_DFALT_20MA_CNT = true;
+                    SET_OBSRVED_20MA_CNT = true;
+                    CALIBRATE_CURRENT = true;
+                    SET_12MA_ANLOP = true;
+                    CHK_ANALOG_OP_VAL = true;
+                }
+                else
+                {
+                    SET_OBSRVED_1MA_CNT = false;
+                    SET_DFALT_20MA_CNT = false;
+                    SET_OBSRVED_20MA_CNT = false;
+                    CALIBRATE_CURRENT = false;
+                    SET_12MA_ANLOP = false;
+                    CHK_ANALOG_OP_VAL = false;
+                }
+
+                OnPropertyChanged("SET_DFALT_1MA_CNT");
+            }
         }
+
 
         private bool _SET_DFALT_4MA_CNT;
 
         public bool SET_DFALT_4MA_CNT
         {
             get { return _SET_DFALT_4MA_CNT; }
-            set { _SET_DFALT_4MA_CNT = value; OnPropertyChanged("SET_DFALT_4MA_CNT"); }
+            set
+            {
+                _SET_DFALT_4MA_CNT = value;
+
+                if (_SET_DFALT_4MA_CNT)
+                {
+                    SET_OBSRVED_4MA_CNT = true;
+                    SET_DFALT_20MA_CNT = true;
+                    SET_OBSRVED_20MA_CNT = true;
+                    CALIBRATE_CURRENT = true;
+                    SET_12MA_ANLOP = true;
+                    CHK_ANALOG_OP_VAL = true;
+                }
+                else
+                {
+                    SET_OBSRVED_4MA_CNT = false;
+                    SET_DFALT_20MA_CNT = false;
+                    SET_OBSRVED_20MA_CNT = false;
+                    CALIBRATE_CURRENT = false;
+                    SET_12MA_ANLOP = false;
+                    CHK_ANALOG_OP_VAL = false;
+                }
+
+                OnPropertyChanged("SET_DFALT_4MA_CNT");
+            }
         }
 
         private bool _SET_OBSRVED_1MA_CNT;
@@ -80,47 +129,37 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             get { return _CHK_ANALOG_OP_VAL; }
             set { _CHK_ANALOG_OP_VAL = value; OnPropertyChanged("CHK_ANALOG_OP_VAL"); }
         }
-
-        private bool _SLAVE2_OP1_ON;
-
-        public bool SLAVE2_OP1_ON
-        {
-            get { return _SLAVE2_OP1_ON; }
-            set { _SLAVE2_OP1_ON = value; OnPropertyChanged("SLAVE2_OP1_ON"); }
-        }
-
-
-        private bool _SLAVE2_OP1_OFF;
-
-        public bool SLAVE2_OP1_OFF
-        {
-            get { return _SLAVE2_OP1_OFF; }
-            set { _SLAVE2_OP1_OFF = value; OnPropertyChanged("SLAVE2_OP1_OFF"); }
-        }
-
-        private bool _SLAVE2_OP2_ON;
-
-        public bool SLAVE2_OP2_ON
-        {
-            get { return _SLAVE2_OP2_ON; }
-            set { _SLAVE2_OP2_ON = value; OnPropertyChanged("SLAVE2_OP2_ON"); }
-        }
-
-        private bool _SLAVE2_OP2_OFF;
-
-        public bool SLAVE2_OP2_OFF
-        {
-            get { return _SLAVE2_OP2_OFF; }
-            set { _SLAVE2_OP2_OFF = value; OnPropertyChanged("SLAVE2_OP2_OFF"); }
-        }
-
-
+        
         private bool _SET_DFALT_1V_CNT;
 
         public bool SET_DFALT_1V_CNT
         {
             get { return _SET_DFALT_1V_CNT; }
-            set { _SET_DFALT_1V_CNT = value; OnPropertyChanged("SET_DFALT_1V_CNT"); }
+            set
+            {
+                _SET_DFALT_1V_CNT = value;
+
+                if (_SET_DFALT_1V_CNT)
+                {
+                    SET_OBSRVED_1V_CNT = true;
+                    SET_DFALT_10V_CNT = true;
+                    SET_OBSRVED_10V_CNT = true;
+                    CALIBRATE_VOLTAGE = true;
+                    SET_5V_ANLOP = true;
+                    CHK_ANALOG_OP_VAL = true;
+                }
+                else
+                {
+                    SET_OBSRVED_1V_CNT = false;
+                    SET_DFALT_10V_CNT = false;
+                    SET_OBSRVED_10V_CNT = false;
+                    CALIBRATE_VOLTAGE = false;
+                    SET_5V_ANLOP = false;
+                    CHK_ANALOG_OP_VAL = false;
+                }
+
+                OnPropertyChanged("SET_DFALT_1V_CNT");
+            }
         }
 
         private bool _SET_OBSRVED_1V_CNT;
@@ -184,10 +223,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SET_OBSRVED_1V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1V_CNT;
                     SET_OBSRVED_20MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_20MA_CNT;
                     SET_OBSRVED_4MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT;
-                    SLAVE2_OP1_OFF = catId.AnalogOpTests[0].SLAVE2_OP1_OFF;
-                    SLAVE2_OP1_ON = catId.AnalogOpTests[0].SLAVE2_OP1_ON;
-                    SLAVE2_OP2_OFF = catId.AnalogOpTests[0].SLAVE2_OP2_OFF;
-                    SLAVE2_OP2_ON = catId.AnalogOpTests[0].SLAVE2_OP2_ON;
                 }
             }
         }
@@ -212,11 +247,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                      SET_OBSRVED_1MA_CNT = SET_OBSRVED_1MA_CNT,
                      SET_OBSRVED_1V_CNT = SET_OBSRVED_1V_CNT,
                      SET_OBSRVED_20MA_CNT= SET_OBSRVED_20MA_CNT,
-                     SET_OBSRVED_4MA_CNT = SET_OBSRVED_4MA_CNT,
-                     SLAVE2_OP1_OFF = SLAVE2_OP1_OFF,
-                     SLAVE2_OP1_ON = SLAVE2_OP1_ON,
-                     SLAVE2_OP2_OFF = SLAVE2_OP2_OFF,
-                     SLAVE2_OP2_ON = SLAVE2_OP2_ON
+                     SET_OBSRVED_4MA_CNT = SET_OBSRVED_4MA_CNT
 
                 };
 

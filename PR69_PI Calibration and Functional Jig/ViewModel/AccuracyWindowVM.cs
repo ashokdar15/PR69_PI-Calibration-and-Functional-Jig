@@ -17,41 +17,41 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public bool blnmDivideBy100 = false;
         public bool blnTimerElapsed = false;
 
-        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracymAmpTestsDetails;
+        private ObservableCollection<clsAccuracyTestsDevices> _AccuracymAmpTestsDetails;
 
-        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracymAmpTestsDetails
+        public ObservableCollection<clsAccuracyTestsDevices> AccuracymAmpTestsDetails
         {
             get { return _AccuracymAmpTestsDetails; }
             set { _AccuracymAmpTestsDetails = value; OnPropertyChanged("AccuracymAmpTestsDetails"); }
         }
 
-        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyVoltTestsDetails;
+        private ObservableCollection<clsAccuracyTestsDevices> _AccuracyVoltTestsDetails;
 
-        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyVoltTestsDetails
+        public ObservableCollection<clsAccuracyTestsDevices> AccuracyVoltTestsDetails
         {
             get { return _AccuracyVoltTestsDetails; }
             set { _AccuracyVoltTestsDetails = value; OnPropertyChanged("AccuracyVoltTestsDetails"); }
         }
 
-        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyPT100SnsrTestsDetails;
+        private ObservableCollection<clsAccuracyTestsDevices> _AccuracyPT100SnsrTestsDetails;
 
-        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyPT100SnsrTestsDetails
+        public ObservableCollection<clsAccuracyTestsDevices> AccuracyPT100SnsrTestsDetails
         {
             get { return _AccuracyPT100SnsrTestsDetails; }
             set { _AccuracyPT100SnsrTestsDetails = value; OnPropertyChanged("AccuracyPT100SnsrTestsDetails"); }
         }
 
-        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyRSensorTestsDetails;
+        private ObservableCollection<clsAccuracyTestsDevices> _AccuracyRSensorTestsDetails;
 
-        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyRSensorTestsDetails
+        public ObservableCollection<clsAccuracyTestsDevices> AccuracyRSensorTestsDetails
         {
             get { return _AccuracyRSensorTestsDetails; }
             set { _AccuracyRSensorTestsDetails = value; OnPropertyChanged("AccuracyRSensorTestsDetails"); }
         }
 
-        private ObservableCollection<clsAccuracyTestDeviceConnected> _AccuracyJSensorTestsDetails;
+        private ObservableCollection<clsAccuracyTestsDevices> _AccuracyJSensorTestsDetails;
 
-        public ObservableCollection<clsAccuracyTestDeviceConnected> AccuracyJSensorTestsDetails
+        public ObservableCollection<clsAccuracyTestsDevices> AccuracyJSensorTestsDetails
         {
             get { return _AccuracyJSensorTestsDetails; }
             set { _AccuracyJSensorTestsDetails = value; OnPropertyChanged("AccuracyJSensorTestsDetails"); }
@@ -150,23 +150,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public AccuracyWindowVM()
         {
             
-            _AccuracymAmpTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
-            _AccuracyVoltTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
-            _AccuracyPT100SnsrTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
-            _AccuracyRSensorTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
-            _AccuracyJSensorTestsDetails = new ObservableCollection<clsAccuracyTestDeviceConnected>();
+            _AccuracymAmpTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
+            _AccuracyVoltTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
+            _AccuracyPT100SnsrTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
+            _AccuracyRSensorTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
+            _AccuracyJSensorTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
 
             EnableDUT();
 
             if (clsGlobalVariables.Selectedcatid.IsmAmpTestEnabled)
             {
                 IsmAmpVis = true;
-                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.mAmpTests)
-                {
-
-                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.mAmp);
-                                        
-                }
+               
+                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.mAmpTests[0], clsGlobalVariables.AccuracyParameter.mAmp);                                        
+                
             }
             else
                 IsmAmpVis = false;
@@ -174,10 +171,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (clsGlobalVariables.Selectedcatid.IsVoltTestEnabled)
             {
                 IsVoltVis = true;
-                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.VoltTests)
-                {
-                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.Volt);
-                }
+                
+                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.VoltTests[0], clsGlobalVariables.AccuracyParameter.Volt);
+                
             }
             else
                 IsVoltVis = false;
@@ -185,10 +181,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (clsGlobalVariables.Selectedcatid.IsPT100SensorTestEnabled)
             {
                 IsPT100SensorVis = true;
-                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.PT100SensorTests)
-                {
-                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-                }
+               
+                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.PT100SensorTests[0], clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                
             }
             else
                 IsPT100SensorVis = false;
@@ -196,10 +191,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (clsGlobalVariables.Selectedcatid.IsRSensorTestEnabled)
             {
                 IsRSensorVis = true;
-                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.RSensor)
-                {
-                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.RSensor);
-                }
+                
+                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.RSensor[0], clsGlobalVariables.AccuracyParameter.RSensor);
+                
             }
             else
                 IsRSensorVis = false;
@@ -207,10 +201,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (clsGlobalVariables.Selectedcatid.IsJSensorTestEnabled)
             {
                 IsJSensorVis = true;
-                foreach (AccuracyTests objAccuracyTests in clsGlobalVariables.Selectedcatid.JSensor)
-                {
-                    FillTotalNumberOfPointsDetails(objAccuracyTests, clsGlobalVariables.AccuracyParameter.JSensor);
-                }
+                
+                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.JSensor[0], clsGlobalVariables.AccuracyParameter.JSensor);
+                
             }
             else
                 IsJSensorVis = false;
@@ -222,98 +215,495 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void FillTotalNumberOfPointsDetails(AccuracyTests objAccuracyTests, clsGlobalVariables.AccuracyParameter accuracyParameter)
         {
             int numberofpoints = Convert.ToInt32(objAccuracyTests.NumberTestPoints);
-            switch (accuracyParameter)
+            
+            Dispatcher.CurrentDispatcher.Invoke(delegate
             {
-                case clsGlobalVariables.AccuracyParameter.mAmp:
-                    Dispatcher.CurrentDispatcher.Invoke(delegate
-                    {
-                        AddAccuracymAmpTest(numberofpoints, objAccuracyTests);
-                    });
-                    break;
-                case clsGlobalVariables.AccuracyParameter.Volt:
-
-                    break;
-                case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-
-                    break;
-                case clsGlobalVariables.AccuracyParameter.RSensor:
-
-                    break;
-                case clsGlobalVariables.AccuracyParameter.JSensor:
-
-                    break;
-                default:
-                    break;
-            }
+                AddAccuracyTests(numberofpoints, objAccuracyTests, accuracyParameter);
+            });                   
             
         }
 
-        private void AddAccuracymAmpTest(int numberofpoints, AccuracyTests objAccuracyTests)
+        private void AddAccuracyTests(int numberofpoints, AccuracyTests objAccuracyTests, clsGlobalVariables.AccuracyParameter accuracyParameter)
         {
             switch (numberofpoints)
             {
                 case 1:
-                    AccuracymAmpTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "mAmp", TestPoint = objAccuracyTests.P1 });
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, AccuracyParameter = "mAmp", TestPoint = objAccuracyTests.P1,TestresultDevice1 ="10.10" });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, AccuracyParameter = "Volt", TestPoint = objAccuracyTests.P1 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, AccuracyParameter = "PT100", TestPoint = objAccuracyTests.P1 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, AccuracyParameter = "RSensor", TestPoint = objAccuracyTests.P1 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, AccuracyParameter = "JSensor", TestPoint = objAccuracyTests.P1 });
+                            break;
+                        default:
+                            break;
+                    }
+                    
                     break;
+                case 2:
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            break;
+                        default:
+                            break;
+                    }
 
+                    break;
+                    
+                case 3:
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
+                case 4:
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                                        
+                case 5:
+
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
+                case 6:
+
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
+                case 7:
+
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                                       
+                case 8:
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
+                case 9:
+
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
+                case 10:
+
+                    switch (accuracyParameter)
+                    {
+                        case clsGlobalVariables.AccuracyParameter.mAmp:
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            AccuracymAmpTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 10, TestPoint = objAccuracyTests.P10 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.Volt:
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            AccuracyVoltTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 10, TestPoint = objAccuracyTests.P10 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            AccuracyPT100SnsrTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 10, TestPoint = objAccuracyTests.P10 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.RSensor:
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            AccuracyRSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 10, TestPoint = objAccuracyTests.P10 });
+                            break;
+                        case clsGlobalVariables.AccuracyParameter.JSensor:
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 1, TestPoint = objAccuracyTests.P1 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 2, TestPoint = objAccuracyTests.P2 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 3, TestPoint = objAccuracyTests.P3 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 4, TestPoint = objAccuracyTests.P4 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 5, TestPoint = objAccuracyTests.P5 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 6, TestPoint = objAccuracyTests.P6 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 7, TestPoint = objAccuracyTests.P7 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 8, TestPoint = objAccuracyTests.P8 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 9, TestPoint = objAccuracyTests.P9 });
+                            AccuracyJSensorTestsDetails.Add(new clsAccuracyTestsDevices() { Testnumber = 10, TestPoint = objAccuracyTests.P10 });
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    break;
+                    
                 default:
                     break;
             }
 
         }
-
-        private void AddAccuracyVoltTest(int numberofpoints, AccuracyTests objAccuracyTests)
-        {
-            switch (numberofpoints)
-            {
-                case 1:
-                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "Volt", TestPoint = objAccuracyTests.P1 });
-                    break;
-
-                default:
-                    break;
-            }                      
-        }
-
-        private void AddAccuracyPT100SensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
-        {
-            switch (numberofpoints)
-            {
-                case 1:
-                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "PT100Sensor", TestPoint = objAccuracyTests.P1 });
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void AddAccuracyRSensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
-        {
-            switch (numberofpoints)
-            {
-                case 1:
-                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "RSensor", TestPoint = objAccuracyTests.P1 });
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void AddAccuracyJSensorTest(int numberofpoints, AccuracyTests objAccuracyTests)
-        {
-            switch (numberofpoints)
-            {
-                case 1:
-                    AccuracyVoltTestsDetails.Add(new clsAccuracyTestDeviceConnected() { AccuracyParameter = "JSensor", TestPoint = objAccuracyTests.P1 });
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
+        
         private void EnableDUT()
         {
             switch (clsGlobalVariables.NUMBER_OF_DUTS)
@@ -406,18 +796,214 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void StartAccuracyTestingClk(object obj)
         {
+
+            UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
+
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 System.Windows.Forms.MessageBox.Show("fail Auto maticCOMPortDetections");
                 return;
             }
-            //start accuracy with user define point
 
+            //start accuracy with user define point
             //write constant
             //write data log in sqlite.
 
         }
+
+        public void UpdateTestResult(int DUTNumber, int testnumber, string result,clsGlobalVariables.AccuracyParameter accuracyParameter)
+        {          
+           
+            switch (accuracyParameter)
+            {
+                case clsGlobalVariables.AccuracyParameter.mAmp:
+                    foreach (clsAccuracyTestsDevices item in AccuracymAmpTestsDetails)
+                    {
+                        if (item.Testnumber == testnumber)
+                        {
+                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            string TestPoint = obj.TestPoint;
+                                                        
+                            switch (DUTNumber)
+                            {
+                                case 1:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 2:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 3:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 4:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 5:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 6:
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                case clsGlobalVariables.AccuracyParameter.Volt:
+                    foreach (clsAccuracyTestsDevices item in AccuracyVoltTestsDetails)
+                    {
+                        if (item.Testnumber == testnumber)
+                        {
+                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            string TestPoint = obj.TestPoint;
+                        
+                            switch (DUTNumber)
+                            {
+                                case 1:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 2:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 3:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 4:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 5:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 6:
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                            break;
+                        }
+                    }
+                    break;
+                case clsGlobalVariables.AccuracyParameter.PT100Sensor:
+                    foreach (clsAccuracyTestsDevices item in AccuracyPT100SnsrTestsDetails)
+                    {
+                        if (item.Testnumber == testnumber)
+                        {
+                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            string TestPoint = obj.TestPoint;
+                            
+                            switch (DUTNumber)
+                            {
+                                case 1:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 2:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 3:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 4:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 5:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 6:
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                            break;
+                        }
+                    }
+                    break;
+                case clsGlobalVariables.AccuracyParameter.RSensor:
+                    foreach (clsAccuracyTestsDevices item in AccuracyRSensorTestsDetails)
+                    {
+                        if (item.Testnumber == testnumber)
+                        {
+                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            string TestPoint = obj.TestPoint;
+                                                      
+
+                            switch (DUTNumber)
+                            {
+                                case 1:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 2:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 3:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 4:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 5:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 6:
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                            break;
+                        }
+                    }
+                    break;
+                case clsGlobalVariables.AccuracyParameter.JSensor:
+                    foreach (clsAccuracyTestsDevices item in AccuracyJSensorTestsDetails)
+                    {
+                        if (item.Testnumber == testnumber)
+                        {
+                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            string TestPoint = obj.TestPoint;
+
+                            switch (DUTNumber)
+                            {
+                                case 1:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 2:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 3:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 4:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 5:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    break;
+                                case 6:
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            
+            
+        }
+
         private bool VoltSensorTest(bool firstIteration, string testPoint)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -604,7 +1190,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 return false;
-
             }
             return true;
         }

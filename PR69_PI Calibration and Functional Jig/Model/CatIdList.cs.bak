@@ -65,14 +65,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         
     public class AnalogInputTests
     {
-        public bool CALIB_1V_CNT { get; set; }
-        public bool CALIB_9V_CNT { get; set; }
-        public bool CALIB_4mA_CNT { get; set; }
-        public bool CALIB_20mA_CNT { get; set; }
-        public bool CALIB_9V_CNT_PI { get; set; }
-        public bool CALIB_1V_CNT_PI { get; set; }
-        public bool CALIB_20mA_CNT_PI { get; set; }
-        public bool CALIB_1mA_CNT_PI { get; set; }
+        public bool CALIB_0to20mA { get; set; }
+        public bool CALIB_0to10V { get; set; }
+        public bool CALIB_0to20mA_PI { get; set; }
+        public bool CALIB_0to10V_PI { get; set; }
+
+        //public bool CALIB_1V_CNT { get; set; }
+        //public bool CALIB_9V_CNT { get; set; }
+        //public bool CALIB_4mA_CNT { get; set; }
+        //public bool CALIB_20mA_CNT { get; set; }
+        //public bool CALIB_9V_CNT_PI { get; set; }
+        //public bool CALIB_1V_CNT_PI { get; set; }
+        //public bool CALIB_20mA_CNT_PI { get; set; }
+        //public bool CALIB_1mA_CNT_PI { get; set; }
     }
 
     public class AnalogOutputTests
@@ -85,7 +90,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool SET_OBSRVED_20MA_CNT { get; set; }
         public bool CALIBRATE_CURRENT { get; set; }
         public bool SET_12MA_ANLOP { get; set; }
-        public bool CHK_ANALOG_OP_VAL { get; set; }        
+        public bool CHK_ANALOG_OP_VAL { get; set; }
+        public bool SLAVE2_OP1_ON { get; set; }     //PR69
+        public bool SLAVE2_OP1_OFF { get; set; }    //PR69
+        public bool SLAVE2_OP2_ON { get; set; }     //PR69
+        public bool SLAVE2_OP2_OFF { get; set; }    //PR69
         public bool SET_DFALT_1V_CNT { get; set; }
         public bool SET_OBSRVED_1V_CNT { get; set; }
         public bool SET_DFALT_10V_CNT { get; set; }

@@ -45,6 +45,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _EditAnalogOutputTestsCmd = new RelayCommand(EditAnalogOutputTestsClk);
             _EditTC_RTDTestsCmd = new RelayCommand(EditTC_RTDTestsClk);
             _EditRelayTestsCmd = new RelayCommand(EditRelayTestsClk);
+            _OutputTypeList = new ObservableCollection<string>();
+            _RelayTypeList = new ObservableCollection<string>();
             _EditCalibConstantTestsCmd = new RelayCommand(EditCalibConstantTestsClk);
             _EditCommonTestsCmd = new RelayCommand(EditCommonTestsClk);
 
@@ -170,6 +172,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 
         private void EditmAmpInputTestsClk(object obj)
         {            
+
+
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.mAmp;
             AccParameter = "mAmp";
             EditAccuracyTestsDetails(obj);
@@ -338,8 +342,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _TolerancesofPR69Details = value; OnPropertyChanged("TolerancesofPR69Details"); }
         }
 
-        
-        
+        private ObservableCollection<string> _RelayTypeList;
+
+        public ObservableCollection<string> RelayTypeList
+        {
+            get { return _RelayTypeList; }
+            set { _RelayTypeList = value; OnPropertyChanged("RelayTypeList"); }
+        }
+
+        private ObservableCollection<string> _OutputTypeList;
+
+        public ObservableCollection<string> OutputTypeList
+        {
+            get { return _OutputTypeList; }
+            set { _OutputTypeList = value; OnPropertyChanged("OutputTypeList"); }
+        }
+
+
         #region Accuracy RelayCommands
 
         private RelayCommand _EditmAmpInputTestsCmd;
@@ -420,6 +439,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         AccuracyTestSequenceList.Add("mAmp Tests");
                     }
                 }
+                else
+                {
+                    if (AccuracyTestSequenceList.Contains("mAmp Tests"))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in AccuracyTestSequenceList)
+                        {
+                            if (testgrp == "mAmp Tests")
+                            {
+                                AccuracyTestSequenceList.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
+                    }
+                }
 
                 OnPropertyChanged("IsmAmpInputTest");
             }
@@ -440,6 +475,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         AccuracyTestSequenceList.Add("Volt Tests");
                     }
                 }
+                else
+                {
+                    if (AccuracyTestSequenceList.Contains("Volt Tests"))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in AccuracyTestSequenceList)
+                        {
+                            if (testgrp == "Volt Tests")
+                            {
+                                AccuracyTestSequenceList.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
+                    }
+                }
 
                 OnPropertyChanged("IsVoltInputTest");
             }
@@ -458,6 +509,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     if (!AccuracyTestSequenceList.Contains("PT100 Sensor Tests"))
                     {
                         AccuracyTestSequenceList.Add("PT100 Sensor Tests");
+                    }
+                }
+                else
+                {
+                    if (AccuracyTestSequenceList.Contains("PT100 Sensor Tests"))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in AccuracyTestSequenceList)
+                        {
+                            if (testgrp == "PT100 Sensor Tests")
+                            {
+                                AccuracyTestSequenceList.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
                     }
                 }
 
@@ -481,6 +548,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         AccuracyTestSequenceList.Add("Rsensor Tests");
                     }
                 }
+                else
+                {
+                    if (AccuracyTestSequenceList.Contains("Rsensor Tests"))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in AccuracyTestSequenceList)
+                        {
+                            if (testgrp == "Rsensor Tests")
+                            {
+                                AccuracyTestSequenceList.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
+                    }
+                }
 
                 OnPropertyChanged("IsRsensorInputTest");
             }
@@ -498,6 +581,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     if (!AccuracyTestSequenceList.Contains("Jsensor Tests"))
                     {
                         AccuracyTestSequenceList.Add("Jsensor Tests");
+                    }
+                }
+                else
+                {
+                    if (AccuracyTestSequenceList.Contains("Jsensor Tests"))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in AccuracyTestSequenceList)
+                        {
+                            if (testgrp == "Jsensor Tests")
+                            {
+                                AccuracyTestSequenceList.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
                     }
                 }
 
@@ -1571,6 +1670,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsAnalogInputTests.ParseAnalogIPDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1612,6 +1712,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsAnalogOutputTests.ParseAnalogOPDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1653,6 +1754,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsTC_RTDTests.ParseTC_RTDDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1694,6 +1796,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsRelayORSSRTests.ParseRelayOrSSRDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1702,6 +1805,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 if (found == 1) { break; }
             }
+
+            OutputTypeList.Add("SSR");
+            OutputTypeList.Add("Relay");
+            OutputTypeList.Add("A/O");
+
+            RelayTypeList.Add("1C/O");
+            RelayTypeList.Add("2C/O");
 
             EventSender = "SaveRelayOrSSRTests";
             AnalogIPTestsEditVis = false;
@@ -1735,6 +1845,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsCalibrationConstantTests.ParseRelayOrSSRDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1750,7 +1861,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = true;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
@@ -1761,6 +1873,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             PopupBtnVisibility(true);
         }
 
+       
 
         private void EditCommonTestsClk(object obj)
         {
@@ -1776,6 +1889,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
                             clsCommonTests.ParseRelayOrSSRDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
@@ -1792,6 +1906,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
             CommonTestsVis = true;
+            AccuracyDetailsEditVis = false;
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
@@ -1801,7 +1916,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             MesssageVis = false;
             PopupBtnVisibility(true);
         }
-
+        
+        public void SelDeviceType(string DeviceType)
+        {
+            if (DeviceType.Contains("48"))
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+            else if (DeviceType.Contains("96"))
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
+            else if (DeviceType.Contains("43"))
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_43x43;
+            else
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+        }
         #endregion
 
         #region Save
@@ -2673,7 +2799,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2766,7 +2893,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2792,7 +2920,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2816,7 +2945,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = true;
             CalibDelaysPIEditVis = false;
@@ -2841,7 +2971,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false; AccuracyDetailsEditVis =false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false;
             CalibDelaysPIEditVis = true;
