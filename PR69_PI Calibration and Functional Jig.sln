@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PR69_PI Calibration and Functional Jig", "PR69_PI Calibration and Functional Jig\PR69_PI Calibration and Functional Jig.csproj", "{0F29CF3D-9565-4F66-B4C7-C0A3431B8E47}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7BB68C99-D08A-4C3B-AD5D-A3D7ED252941} = {7BB68C99-D08A-4C3B-AD5D-A3D7ED252941}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeypadControl", "KeypadControl\KeypadControl.csproj", "{7BB68C99-D08A-4C3B-AD5D-A3D7ED252941}"
 EndProject
