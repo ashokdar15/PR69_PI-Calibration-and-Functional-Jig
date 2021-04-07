@@ -69,6 +69,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             DUT6DetailsVis = false;
             TestsDetailsVis = false;
 
+            keypadDevice1Vis = false;
+            keypadDevice2Vis = false;
+            keypadDevice3Vis = false;
+            keypadDevice4Vis = false;
+            keypadDevice5Vis = false;
+            keypadDevice6Vis = false;
+
+            //keypadTextDevice1 = "ENTER";
+            //keypadTextDevice2 = "UP";
+            //keypadTextDevice3 = "DOWN";
+            //keypadTextDevice4 = "ESCAPE";
+
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
             
         }
@@ -147,6 +159,103 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _OkTestCmd; }
             set { _OkTestCmd = value; }
         }
+
+        private bool _keypadDevice1Vis;
+
+        public bool keypadDevice1Vis
+        {
+            get { return _keypadDevice1Vis; }
+            set { _keypadDevice1Vis = value; OnPropertyChanged("keypadDevice1Vis"); }
+        }
+
+        private bool _keypadDevice2Vis;
+
+        public bool keypadDevice2Vis
+        {
+            get { return _keypadDevice2Vis; }
+            set { _keypadDevice2Vis = value; OnPropertyChanged("keypadDevice2Vis"); }
+        }
+
+        private bool _keypadDevice3Vis;
+
+        public bool keypadDevice3Vis
+        {
+            get { return _keypadDevice3Vis; }
+            set { _keypadDevice3Vis = value; OnPropertyChanged("keypadDevice3Vis"); }
+        }
+
+        private bool _keypadDevice4Vis;
+
+        public bool keypadDevice4Vis
+        {
+            get { return _keypadDevice4Vis; }
+            set { _keypadDevice4Vis = value; OnPropertyChanged("keypadDevice4Vis"); }
+        }
+
+        private bool _keypadDevice5Vis;
+
+        public bool keypadDevice5Vis
+        {
+            get { return _keypadDevice5Vis; }
+            set { _keypadDevice5Vis = value; OnPropertyChanged("keypadDevice5Vis"); }
+        }
+
+        private bool _keypadDevice6Vis;
+
+        public bool keypadDevice6Vis
+        {
+            get { return _keypadDevice6Vis; }
+            set { _keypadDevice6Vis = value; OnPropertyChanged("keypadDevice6Vis"); }
+        }
+
+        private string _keypadTextDevice1;
+
+        public string keypadTextDevice1
+        {
+            get { return _keypadTextDevice1; }
+            set { _keypadTextDevice1 = value; OnPropertyChanged("keypadTextDevice1"); }
+        }
+
+        private string _keypadTextDevice2;
+
+        public string keypadTextDevice2
+        {
+            get { return _keypadTextDevice2; }
+            set { _keypadTextDevice2 = value; OnPropertyChanged("keypadTextDevice2"); }
+        }
+
+        private string _keypadTextDevice3;
+
+        public string keypadTextDevice3
+        {
+            get { return _keypadTextDevice3; }
+            set { _keypadTextDevice3 = value; OnPropertyChanged("keypadTextDevice3"); }
+        }
+
+        private string _keypadTextDevice4;
+
+        public string keypadTextDevice4
+        {
+            get { return _keypadTextDevice4; }
+            set { _keypadTextDevice4 = value; OnPropertyChanged("keypadTextDevice4"); }
+        }
+
+        private string _keypadTextDevice5;
+
+        public string keypadTextDevice5
+        {
+            get { return _keypadTextDevice5; }
+            set { _keypadTextDevice5 = value; OnPropertyChanged("keypadTextDevice5"); }
+        }
+
+        private string _keypadTextDevice6;
+
+        public string keypadTextDevice6
+        {
+            get { return _keypadTextDevice6; }
+            set { _keypadTextDevice6 = value; OnPropertyChanged("keypadTextDevice6"); }
+        }
+
 
         private bool _StartBtnVis;
 

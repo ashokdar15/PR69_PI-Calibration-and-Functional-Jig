@@ -5,6 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:keypad="clr-namespace:KeypadControl;assembly=KeypadControl"
         xmlns:vm="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.ViewModel"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -421,8 +422,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="3" Grid.ColumnSpan="2" Margin="0 0 0 5"                                                      
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT1" HorizontalAlignment="Center"
                                                 Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                                 
-                                       
+
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice1Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -463,7 +466,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="3" Grid.ColumnSpan="2" Margin="0 0 0 5"                                    
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT2" HorizontalAlignment="Center" 
                                                 Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                     
+                                        
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice2Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -504,7 +510,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"                                                    
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT3" HorizontalAlignment="Center" Margin="0 0 0 5" Grid.Row="3" Grid.ColumnSpan="2"
                                                 Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                       
+
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice3Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -545,7 +554,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="3" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT4" HorizontalAlignment="Center" Margin="0 0 0 5"
                                                 Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                        
+
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice4Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice4,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -586,7 +598,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"  Grid.Row="3" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT5" HorizontalAlignment="Center" Margin="0 0 0 5"
                                                 Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                        
+
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice5Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice5,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -627,7 +642,10 @@
                                         <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="3" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT6"  HorizontalAlignment="Center" Margin="0 0 0 5"
                                                 Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
-                                     
+
+                                        <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
+                                                       Visibility="{Binding keypadDevice6Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                                       Lables="{Binding keypadTextDevice6,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
