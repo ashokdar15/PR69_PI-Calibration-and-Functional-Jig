@@ -250,17 +250,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 if (DutONOFF)
                 {
-                   
-                    //On Q4
-                    if (!ForceSingleCoilQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + 0x04, clsGlobalVariables.COIL_ON))
+                    byte DUT_ON_Value = 0;
+                    switch ( clsGlobalVariables.NUMBER_OF_DUTS)
+                    {
+                        case 4:
+                            DUT_ON_Value = 0xff;
+                            break;
+                        case 3:
+                            DUT_ON_Value = 0x77;
+                            break;
+                        case 2:
+                            DUT_ON_Value = 0x33;
+                            break;
+                        case 1:
+                            DUT_ON_Value = 0x11;
+                            break;
+                        
+                    }
+                    if (!ForceMultipleCoilsQuery( clsGlobalVariables.BASE_ADDR ,8,1, DUT_ON_Value))
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     
                 }
                 else
                 {
-                   // MessageBox.Show("DUT OFF");
-                    //Off Q4
-                    if (!ForceSingleCoilQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + 0x4, clsGlobalVariables.COIL_OFF))
+                    byte DUT_ON_Value = 0;
+                    if (!ForceMultipleCoilsQuery(clsGlobalVariables.BASE_ADDR, 8, 1, DUT_ON_Value))
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                 }
                 return (byte)clsGlobalVariables.enmResponseError.Success;
@@ -463,6 +477,45 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 MessageBox.Show(ex.Message);
                 return false;
             }
-        }        
+        }
+
+        public Boolean ForceMultipleCoilsQuery( long lgStartCoilAdd, int imNumCoils, int imNumCoilsDataBytes,byte rbtmCoilData)
+        {
+            try
+            {
+                const int QUERY_HEADER = 7;
+                const int QUERY_FOOTER = 2;
+                Byte btmResponse;
+                const int FORCE_MULTIPLE_COILS_QUERY_LEN = (QUERY_HEADER + QUERY_FOOTER);
+
+                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                Array.Resize(ref clsGlobalVariables.btgTxBuffer, FORCE_MULTIPLE_COILS_QUERY_LEN + imNumCoilsDataBytes);
+                // Prepare query
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_ID_POS] = clsGlobalVariables.PC_MODBUS_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_FUNCTION_POS] = clsGlobalVariables.MB_FUNC_FORCE_MULTICOILS;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_START_ADD_HIGH_POS] = ExtractByteFromInteger(lgStartCoilAdd, false);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_START_ADD_LOW_POS] = ExtractByteFromInteger(lgStartCoilAdd, true);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_NO_OF_POINTS_HIGH_POS] = ExtractByteFromInteger(imNumCoils, false);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_NO_OF_POINTS_LOW_POS] = ExtractByteFromInteger(imNumCoils, true);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_NO_OF_DATA_BYTES_POS] = (Byte)imNumCoilsDataBytes;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmMbQryPos.MB_DATA_BYTES_POS ] = rbtmCoilData;
+                
+                btmResponse = MainWindowVM.initilizeCommonObject.objplcSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_PLC_TimeOut_PI, true);
+                if (btmResponse == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
     }
 }

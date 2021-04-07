@@ -1286,7 +1286,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     SetCalibratorCOMPort(item.ToString(), CalibratorSerialNumber);
                                     MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.CloseCommPort();
 
-                                    break;
+                                   // break;
                                 }
                                 MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.CloseCommPort();
                             }
