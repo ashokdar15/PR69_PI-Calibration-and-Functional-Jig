@@ -69,6 +69,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             DUT6DetailsVis = false;
             TestsDetailsVis = false;
 
+            keypadDevice1Vis = true;
+            keypadDevice2Vis = true;
+            keypadDevice3Vis = true;
+            keypadDevice4Vis = true;
+            keypadDevice5Vis = false;
+            keypadDevice6Vis = false;
+
+            keypadTextDevice1 = "ENTER";
+            keypadTextDevice2 = "UP";
+            keypadTextDevice3 = "DOWN";
+            keypadTextDevice4 = "ESCAPE";
+
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
             
         }
@@ -147,6 +159,103 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _OkTestCmd; }
             set { _OkTestCmd = value; }
         }
+
+        private bool _keypadDevice1Vis;
+
+        public bool keypadDevice1Vis
+        {
+            get { return _keypadDevice1Vis; }
+            set { _keypadDevice1Vis = value; OnPropertyChanged("keypadDevice1Vis"); }
+        }
+
+        private bool _keypadDevice2Vis;
+
+        public bool keypadDevice2Vis
+        {
+            get { return _keypadDevice2Vis; }
+            set { _keypadDevice2Vis = value; OnPropertyChanged("keypadDevice2Vis"); }
+        }
+
+        private bool _keypadDevice3Vis;
+
+        public bool keypadDevice3Vis
+        {
+            get { return _keypadDevice3Vis; }
+            set { _keypadDevice3Vis = value; OnPropertyChanged("keypadDevice3Vis"); }
+        }
+
+        private bool _keypadDevice4Vis;
+
+        public bool keypadDevice4Vis
+        {
+            get { return _keypadDevice4Vis; }
+            set { _keypadDevice4Vis = value; OnPropertyChanged("keypadDevice4Vis"); }
+        }
+
+        private bool _keypadDevice5Vis;
+
+        public bool keypadDevice5Vis
+        {
+            get { return _keypadDevice5Vis; }
+            set { _keypadDevice5Vis = value; OnPropertyChanged("keypadDevice5Vis"); }
+        }
+
+        private bool _keypadDevice6Vis;
+
+        public bool keypadDevice6Vis
+        {
+            get { return _keypadDevice6Vis; }
+            set { _keypadDevice6Vis = value; OnPropertyChanged("keypadDevice6Vis"); }
+        }
+
+        private string _keypadTextDevice1;
+
+        public string keypadTextDevice1
+        {
+            get { return _keypadTextDevice1; }
+            set { _keypadTextDevice1 = value; OnPropertyChanged("keypadTextDevice1"); }
+        }
+
+        private string _keypadTextDevice2;
+
+        public string keypadTextDevice2
+        {
+            get { return _keypadTextDevice2; }
+            set { _keypadTextDevice2 = value; OnPropertyChanged("keypadTextDevice2"); }
+        }
+
+        private string _keypadTextDevice3;
+
+        public string keypadTextDevice3
+        {
+            get { return _keypadTextDevice3; }
+            set { _keypadTextDevice3 = value; OnPropertyChanged("keypadTextDevice3"); }
+        }
+
+        private string _keypadTextDevice4;
+
+        public string keypadTextDevice4
+        {
+            get { return _keypadTextDevice4; }
+            set { _keypadTextDevice4 = value; OnPropertyChanged("keypadTextDevice4"); }
+        }
+
+        private string _keypadTextDevice5;
+
+        public string keypadTextDevice5
+        {
+            get { return _keypadTextDevice5; }
+            set { _keypadTextDevice5 = value; OnPropertyChanged("keypadTextDevice5"); }
+        }
+
+        private string _keypadTextDevice6;
+
+        public string keypadTextDevice6
+        {
+            get { return _keypadTextDevice6; }
+            set { _keypadTextDevice6 = value; OnPropertyChanged("keypadTextDevice6"); }
+        }
+
 
         private bool _StartBtnVis;
 
@@ -937,43 +1046,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber6Vis = false;
 
                         break;
-                    case 5:
-                        DUT1DetailsVis = true;
-                        DUT2DetailsVis = true;
-                        DUT3DetailsVis = true;
-                        DUT4DetailsVis = true;
-                        DUT5DetailsVis = true;
-                        DUT6DetailsVis = false;
+                    //case 5:
+                    //    DUT1DetailsVis = true;
+                    //    DUT2DetailsVis = true;
+                    //    DUT3DetailsVis = true;
+                    //    DUT4DetailsVis = true;
+                    //    DUT5DetailsVis = true;
+                    //    DUT6DetailsVis = false;
 
-                        DeviceNumber1Vis = true;
-                        DeviceNumber2Vis = true;
-                        DeviceNumber3Vis = true;
-                        DeviceNumber4Vis = true;
-                        DeviceNumber5Vis = true;
-                        DeviceNumber6Vis = false;
+                    //    DeviceNumber1Vis = true;
+                    //    DeviceNumber2Vis = true;
+                    //    DeviceNumber3Vis = true;
+                    //    DeviceNumber4Vis = true;
+                    //    DeviceNumber5Vis = true;
+                    //    DeviceNumber6Vis = false;
 
-                        break;
-                    case 6:
-                        DUT1DetailsVis = true;
-                        DUT2DetailsVis = true;
-                        DUT3DetailsVis = true;
-                        DUT4DetailsVis = true;
-                        DUT5DetailsVis = true;
-                        DUT6DetailsVis = true;
+                    //    break;
+                    //case 6:
+                    //    DUT1DetailsVis = true;
+                    //    DUT2DetailsVis = true;
+                    //    DUT3DetailsVis = true;
+                    //    DUT4DetailsVis = true;
+                    //    DUT5DetailsVis = true;
+                    //    DUT6DetailsVis = true;
 
-                        DeviceNumber1Vis = true;
-                        DeviceNumber2Vis = true;
-                        DeviceNumber3Vis = true;
-                        DeviceNumber4Vis = true;
-                        DeviceNumber5Vis = true;
-                        DeviceNumber6Vis = true;
+                    //    DeviceNumber1Vis = true;
+                    //    DeviceNumber2Vis = true;
+                    //    DeviceNumber3Vis = true;
+                    //    DeviceNumber4Vis = true;
+                    //    DeviceNumber5Vis = true;
+                    //    DeviceNumber6Vis = true;
 
-                        break;
-
+                    //    break;
 
                     default:                      
                         //ShowMessageBox("Please enter total number of devices less than or equal to 6.", false, "InvalidDUT_No", clsGlobalVariables.MsgIcon.Error);
-                        MessageBox.Show("Please enter total number of devices less than or equal to 6.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                        MessageBox.Show("Please enter total number of devices less than or equal to 4.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                         NumberOfDUTs = 1;
                         break;
                 }
@@ -1051,7 +1159,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopBtnVis = true;
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
-                        
+
             StartStopWatch(true);
 
             //clsModelSettings.igDutID  need to set deive iD
@@ -1092,15 +1200,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             for (int Testnum = 0; Testnum < ListOfTests.Count; Testnum++)
             {
-                Dispatcher.CurrentDispatcher.Invoke( delegate{
+                Dispatcher.CurrentDispatcher.Invoke(delegate
+                {
 
-                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() {TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
+                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() { TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
 
-                });                
+                });
             }
-            
+
             clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
-            
+
             //Parameters
             //1. DUT Number
             //2. Test Number
@@ -1137,37 +1246,86 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             ArrayList almTempTestList = null;
             clsGlobalVariables.algTests_Auto.Clear();
             //    //PIB12C
+
+            //Test1  = READ_DEVICE_ID
+            //Test2  = READ_CALIB_CONST_STATUS
+            //Test3  = SWITCH_SENSOR_RELAY
+            //Test4  = SLAVE1_OP1_OFF
+            //Test5  = SLAVE1_OP2_OFF
+            //Test6  = SLAVE1_OP3_OFF
+            //Test7  = SLAVE2_OP1_OFF
+            //Test8  = SLAVE2_OP2_OFF
+            //Test9  = SLAVE2_OP3_OFF
+            //Test10 = SLAVE3_OP3_OFF
+            //Test11 = CONVERTOR_OP1_OFF
+            //Test12 = CONVERTOR_OP2_OFF
+            //Test13 = DUT_OP1_OFF
+            //Test14 = DUT_OP2_OFF
+            //Test15 = DUT_OP3_OFF
+            //Test16 = SLAVE1_OP1_ON
+            //Test17 = START_REL_TEST
+            //Test18 = SLAVE1_OP1_OFF
+            //Test19 = DUT_OP2_OFF
+            //Test20 = DUT_OP3_OFF
+            //Test21 = DUT_OP1_ON
+            //Test22 = SLAVE1_OP2_ON
+            //Test23 = SLAVE3_OP3_ON
+            //Test24 = SLAVE2_OP3_ON
+            //Test25 = SLAVE2_READ_ADC_CNT_RLY_ON
+            //Test26 = DUT_OP1_OFF
+            //Test27 = SLAVE2_READ_ADC_CNT_RLY_OFF
+            //Test28 = SLAVE2_OP3_OFF
+            //Test29 = SLAVE3_OP3_OFF
+            //Test30 = SLAVE1_OP2_OFF
+            //Test31 = START_DISP_TEST
+            //Test32 = START_KEYPAD_TEST
+            //Test33 = SLAVE3_OP1_OFF
+            //Test34 = SLAVE3_OP2_OFF
+            //Test35 = CALIB_1_MV_CNT
+            //Test36 = CALIB_50_MV_CNT
+            //Test37 = CALC_SLOPE_OFFSET
+            //Test38 = CALIB_PT100
+            //Test39 = CALIB_TC
+            //Test40 = WRITE_CALIB_CONST
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
-            clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
+            clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUSS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF;");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_ON");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP1_ON");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_ON");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_ON");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_ON");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
+            clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
             clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
             clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_PI");
-            clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_MODBUS_TEST");
-            clsGlobalVariables.algTests_Auto.Add("CJC_TEST");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
-            clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
-            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
-            clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
-            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
             clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
             clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
             clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
             clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_9V_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1V_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_20mA_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1mA_CNT_PI");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
             clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
 
 
@@ -1187,10 +1345,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //prgbar.Maximum = imNumOfTests;
             //prgbar.Value = prgbar.Minimum;
             //This timeout is resseted here to original.
-            clsGlobalVariables.ig_Query_TimeOut = 16000;
-            clsModelSettings.igDutID = 205;
+            clsGlobalVariables.ig_Query_TimeOut = 1000;
+            clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;
+            clsModelSettings.blnRS485Flag = true;
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
                 if (clsGlobalVariables._StopFlag)
@@ -1702,17 +1860,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (catId.AnalogOpTests[0].CHK_ANALOG_OP_VAL)
                 ListOfTests.Add("CHK_ANALOG_OP_VAL");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP1_ON)
-                ListOfTests.Add("SLAVE2_OP1_ON");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP1_ON)
+            //    ListOfTests.Add("SLAVE2_OP1_ON");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP1_OFF)
-                ListOfTests.Add("SLAVE2_OP1_OFF");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP1_OFF)
+            //    ListOfTests.Add("SLAVE2_OP1_OFF");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP2_ON)
-                ListOfTests.Add("SLAVE2_OP2_ON");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP2_ON)
+            //    ListOfTests.Add("SLAVE2_OP2_ON");
 
-            if (catId.AnalogOpTests[0].SLAVE2_OP2_OFF)
-                ListOfTests.Add("SLAVE2_OP2_OFF");
+            //if (catId.AnalogOpTests[0].SLAVE2_OP2_OFF)
+            //    ListOfTests.Add("SLAVE2_OP2_OFF");
 
             if (catId.AnalogOpTests[0].SET_DFALT_1V_CNT)
                 ListOfTests.Add("SET_DFALT_1V_CNT");
@@ -1736,29 +1894,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void AddAnalogInputTests(CatIdList catId)
         {
-            //if (catId.AnalogIpTests[0].CALIB_1V_CNT)
-            //    ListOfTests.Add("CALIB_1V_CNT");
+            if (catId.AnalogIpTests[0].CALIB_1V_CNT)
+                ListOfTests.Add("CALIB_1V_CNT");
 
-            //if (catId.AnalogIpTests[0].CALIB_9V_CNT)
-            //    ListOfTests.Add("CALIB_9V_CNT");
+            if (catId.AnalogIpTests[0].CALIB_9V_CNT)
+                ListOfTests.Add("CALIB_9V_CNT");
 
-            //if (catId.AnalogIpTests[0].CALIB_4mA_CNT)
-            //    ListOfTests.Add("CALIB_4mA_CNT");
+            if (catId.AnalogIpTests[0].CALIB_4mA_CNT)
+                ListOfTests.Add("CALIB_4mA_CNT");
 
-            //if (catId.AnalogIpTests[0].CALIB_20mA_CNT)
-            //    ListOfTests.Add("CALIB_20mA_CNT");
+            if (catId.AnalogIpTests[0].CALIB_20mA_CNT)
+                ListOfTests.Add("CALIB_20mA_CNT");
 
-            //if (catId.AnalogIpTests[0].CALIB_9V_CNT_PI)
-            //    ListOfTests.Add("CALIB_9V_CNT_PI");
+            if (catId.AnalogIpTests[0].CALIB_9V_CNT_PI)
+                ListOfTests.Add("CALIB_9V_CNT_PI");
 
-            //if (catId.AnalogIpTests[0].CALIB_1V_CNT_PI)
-            //    ListOfTests.Add("CALIB_1V_CNT_PI");
+            if (catId.AnalogIpTests[0].CALIB_1V_CNT_PI)
+                ListOfTests.Add("CALIB_1V_CNT_PI");
 
-            //if (catId.AnalogIpTests[0].CALIB_20mA_CNT_PI)
-            //    ListOfTests.Add("CALIB_20mA_CNT_PI");
+            if (catId.AnalogIpTests[0].CALIB_20mA_CNT_PI)
+                ListOfTests.Add("CALIB_20mA_CNT_PI");
 
-            //if (catId.AnalogIpTests[0].CALIB_1mA_CNT_PI)
-            //    ListOfTests.Add("CALIB_1mA_CNT_PI");
+            if (catId.AnalogIpTests[0].CALIB_1mA_CNT_PI)
+                ListOfTests.Add("CALIB_1mA_CNT_PI");
 
         }
 
