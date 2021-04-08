@@ -786,6 +786,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _Description = value; OnPropertyChanged("Description"); }
         }
 
+        private bool _ModbusSupport;
+
+        public bool ModbusSupport
+        {
+            get { return _ModbusSupport; }
+            set { _ModbusSupport = value; OnPropertyChanged("ModbusSupport"); }
+        }
+
 
         private string _SaveParameter;
 
@@ -2124,6 +2132,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     DeviceName = _catList.DeviceName;
                     DeviceId = _catList.DeviceId;
                     Description = _catList.Description;
+                    ModbusSupport = _catList.ModbusSupport;
 
                     IsAnalogInputTest = _catList.IsAnalogInputTestApplicable;
                     IsAnalogOutputTest = _catList.IsAnalogOutputTestApplicable;
@@ -2613,6 +2622,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     DeviceId = DeviceId,
                     DeviceName = DeviceName,
                     Description = Description,
+                    ModbusSupport = ModbusSupport,
                     IsAnalogInputTestApplicable = IsAnalogInputTest,
                     AnalogIpTests = analogInputTestsDetails,
                     IsAnalogOutputTestApplicable = IsAnalogOutputTest,
@@ -2730,6 +2740,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 DeviceId = DeviceId,
                 DeviceName = DeviceName,
                 Description = Description,
+                ModbusSupport = ModbusSupport,
                 IsAnalogInputTestApplicable = IsAnalogInputTest,
                 AnalogIpTests = analogInputTestsDetails,
                 IsAnalogOutputTestApplicable = IsAnalogOutputTest,

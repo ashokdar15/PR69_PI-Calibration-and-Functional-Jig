@@ -1289,6 +1289,11 @@
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                 </TextBox>
 
+                                <CheckBox  Margin="0 8 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="2" Grid.Row="0"  
+                                    IsChecked="{Binding Path=ModbusSupport,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"                                     
+                                    IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    Content="Modbus Support"/>
+
                                 <TextBox Margin="5 5 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"  
                                     materialDesign:HintAssist.Hint="Description" 
                                     Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"
