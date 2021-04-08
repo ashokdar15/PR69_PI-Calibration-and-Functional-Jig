@@ -149,62 +149,36 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
-                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition/>                                   
                                 </Grid.RowDefinitions>
 
-                                <CheckBox Content="CALIB 1MV CNT" 
+                                <CheckBox Content="CALIB MV" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_1_MV_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsTC_RTDTests.CALIB_MV_CNT_PR69_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB 47 68MV CNT" 
+                                <CheckBox Content="CALIB PT100" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_47_68_MV_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsTC_RTDTests.CALIB_PT100_PR69_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB 50MV CNT" 
-                                      Grid.Column="2" Grid.Row="0" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_50_MV_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALCULATE SLOPE OFFSET" 
+                                <CheckBox Content="CALIB MV(PR43)" 
                                       Grid.Column="0" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALC_SLOPE_OFFSET, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsTC_RTDTests.CALIB_MV_CNT_PR43, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="CALIB PT100" 
+                                <CheckBox Content="CALIB PT100(PR43)" 
                                       Grid.Column="1" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_PT100, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB TC" 
-                                      Grid.Column="2" Grid.Row="1" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_TC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 100OHM" 
-                                      Grid.Column="0" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_100_OHM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                <CheckBox Content="CALIB 313_71OHM" 
-                                      Grid.Column="1" Grid.Row="2" Margin="20 20"
-                                      HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
-                                      IsChecked="{Binding clsTC_RTDTests.CALIB_313_71_OHM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      IsChecked="{Binding clsTC_RTDTests.CALIB_PT100_PR43, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                
 
                             </Grid>
                         </Border>
