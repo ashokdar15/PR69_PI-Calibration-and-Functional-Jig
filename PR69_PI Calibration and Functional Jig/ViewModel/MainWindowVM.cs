@@ -1338,7 +1338,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //prgbar.Value = prgbar.Minimum;
             //This timeout is resseted here to original.
             clsGlobalVariables.ig_Query_TimeOut = 16000;
-            clsModelSettings.igDutID = 205;
+            clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
             clsModelSettings.blnRS485Flag = false;
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
