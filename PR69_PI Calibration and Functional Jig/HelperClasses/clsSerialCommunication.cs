@@ -202,7 +202,7 @@ namespace PR69_Function_and_Calibration_JIG.Classes
         ///<param name="strmComPort">Name of port to be opened.</param>
         ///<param name="blnmIsCalibPort">This variable tells that port is opening for Calibrator or JIG</param>
         ///<ClassName>clsSerialCommunication</ClassName>
-        public Boolean OpenCommPort(string strmComPort, bool blnmIsCalibPort)
+        public Boolean OpenCommPort(string strmComPort, bool blnmIsCalibPort,bool JigComPort=false)
         {
             try
             {                
@@ -215,6 +215,8 @@ namespace PR69_Function_and_Calibration_JIG.Classes
                 comPort.BaudRate = 9600;
                 comPort.DataBits = 8;
                 comPort.Parity = Parity.None;
+                if (JigComPort)
+                    comPort.Parity = Parity.Even;
                 comPort.StopBits = StopBits.One;
                 comPort.ReceivedBytesThreshold = 1;
                 if (blnmIsCalibPort == true)

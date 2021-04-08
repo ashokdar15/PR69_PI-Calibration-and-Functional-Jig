@@ -232,43 +232,63 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 switch (strmTest)
                 {
-                    //clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, clsMessageIDs.WRONG_DEVICE_SELECTION);
                     case "READ_DEVICE_ID":
                         //This check is for device having modbus.   
                         if (clsModelSettings.blnRS485Flag == true)
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceID();
+                            for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceID(DUT);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    break;
+                                }
+                            }
                         }
                         else //Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDut();
+                            for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDut((byte)(clsGlobalVariables.MB_SLAVE_ID_BASE + DUT));
+                                if (btmRetVal!= (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    break;
+                                }
+                            }
                         }
                         break;
 
                     case "READ_CALIB_CONST_STATUS":
-                        //This check is for device having modbus.                        
-                        if (clsModelSettings.blnRS485Flag == true)
+                        for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBReadDutCalibConst();
-                        }
-                        else  //Device without modbus
-                        {
-                            btmRetVal = clsGlobalVariables.objQueriescls.ReadCalibConstSalveToDut();
-                        }
-                        //This "clsGlobalVariables.BEFORE_SOAKING" tells that device is not calibrated.
-                        if (clsModelSettings.btmCalibConst == clsGlobalVariables.BEFORE_SOAKING)
-                            clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER,clsMessageIDs.UNCALIBRATED_DUT);
-                        //This "clsGlobalVariables.AFTER_SOAKING" tells that device is calibrated but accuracy testing is pending.
-                        else if (clsModelSettings.btmCalibConst == clsGlobalVariables.AFTER_SOAKING)
-                        {
-                            clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER,clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
-                            btmRetVal = (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done;
-                        }
-                        //This "clsGlobalVariables.Done" tells that device is calibrated & accuracy testing is also done.
-                        else if (clsModelSettings.btmCalibConst == clsGlobalVariables.CALIB_DONE)
-                        {
-                            clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER,clsMessageIDs.CALIBRATED_DUT);
-                            btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+
+
+                            //This check is for device having modbus.                        
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBReadDutCalibConst((byte)(clsGlobalVariables.MB_SLAVE_ID_BASE+ DUT));
+                            }
+                            else  //Device without modbus
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.ReadCalibConstSalveToDut((byte)(clsGlobalVariables.MB_SLAVE_ID_BASE + DUT));
+                            }
+                            //This "clsGlobalVariables.BEFORE_SOAKING" tells that device is not calibrated.
+                            if (clsModelSettings.btmCalibConst == clsGlobalVariables.BEFORE_SOAKING)
+                                clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.UNCALIBRATED_DUT);
+                            //This "clsGlobalVariables.AFTER_SOAKING" tells that device is calibrated but accuracy testing is pending.
+                            else if (clsModelSettings.btmCalibConst == clsGlobalVariables.AFTER_SOAKING)
+                            {
+                                clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
+                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done;
+                            }
+                            //This "clsGlobalVariables.Done" tells that device is calibrated & accuracy testing is also done.
+                            else if (clsModelSettings.btmCalibConst == clsGlobalVariables.CALIB_DONE)
+                            {
+                                clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.CALIBRATED_DUT);
+                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
                         }
                         break;
 
@@ -523,7 +543,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else //Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
                         }
 
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -543,7 +563,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else //Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
                         }
                         //This condition tells that OP1 test is completed. If OP1 is previously in ON state and response
                         //of query is also success then mark this test as completed(PASS).
@@ -571,7 +591,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else //Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -606,7 +626,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
                         }
                         //This condition tells that OP2 test is completed. If OP2 is previously in ON state and response
                         //of query is also success then mark this test as completed(PASS).
@@ -645,7 +665,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -678,7 +698,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
                         }
                         //This condition tells that OP3 test is completed. If OP3 is previously in ON state and response
                         //of query is also success then mark this test as completed(PASS).
@@ -754,10 +774,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_DISP);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_DISP);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
                             }
                         }
 
@@ -822,12 +842,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             else//Device without modbus
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                             }
                         }
                         else
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                         }
                         break;
 
@@ -845,7 +865,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                         }
                         break;
                     //---------Changes End.
@@ -860,7 +880,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CURRENT);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CURRENT);
                         }
                         break;
 
@@ -874,7 +894,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.VOLTAGE);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.VOLTAGE);
                         }
                         break;
 
@@ -901,7 +921,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_4_MA_CNT);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_4_MA_CNT);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -924,7 +944,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             break;
 
                         //This check is for device having modbus.
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_1_MA_CNT);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_1_MA_CNT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             //This statement is added here for manual calibration only.
@@ -942,7 +962,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_20_MA_CNT);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_20_MA_CNT);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -973,7 +993,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_1_VOLT_CNT);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_1_VOLT_CNT);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -994,7 +1014,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_10_VOLT_CNT);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_10_VOLT_CNT);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1032,7 +1052,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     else//Device without modbus
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_OBSERVED_4_MA, clsModelSettings.imAnalOpVal);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_OBSERVED_4_MA, clsModelSettings.imAnalOpVal);
                                     }
                                 }
                             }
@@ -1082,7 +1102,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     else//Device without modbus
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_OBSERVED_1_MA, clsModelSettings.imAnalOpVal);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_OBSERVED_1_MA, clsModelSettings.imAnalOpVal);
                                     }
                                 }
                             }
@@ -1131,7 +1151,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     else//Device without modbus
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_OBSERVED_20_MA, clsModelSettings.imAnalOpVal);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_OBSERVED_20_MA, clsModelSettings.imAnalOpVal);
                                     }
                                 }
                             }
@@ -1181,7 +1201,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     else//Device without modbus
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_OBSERVED_1_VOLT, clsModelSettings.imAnalOpVal);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_OBSERVED_1_VOLT, clsModelSettings.imAnalOpVal);
                                     }
                                 }
                             }
@@ -1231,7 +1251,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     else//Device without modbus
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_OBSERVED_10_VOLT, clsModelSettings.imAnalOpVal);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_OBSERVED_10_VOLT, clsModelSettings.imAnalOpVal);
                                     }
                                 }
                             }
@@ -1265,7 +1285,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_I_FUNC_CODE, clsGlobalVariables.MA_12);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_I_FUNC_CODE, clsGlobalVariables.MA_12);
                         }
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -1329,7 +1349,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_V_FUNC_CODE, clsGlobalVariables.VOLT_5);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_V_FUNC_CODE, clsGlobalVariables.VOLT_5);
                         }
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -1972,11 +1992,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //So, both relays shape color are handled here. 
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.INPROGRESS);
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.INPROGRESS);
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                         {
                             clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                             {
                                 clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
@@ -1990,7 +2010,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     {
                                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                         //DUT_OP1_ON
-                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
                                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                         {
                                             clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
@@ -2000,7 +2020,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                             {
                                                 clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                 //DUT_OP2_ON
-                                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
+                                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
                                                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                 {
                                                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
@@ -2010,7 +2030,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                                     {
                                                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                         //DUT_OP1_OFF
-                                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
                                                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                         {
                                                             clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
@@ -2020,7 +2040,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                                             {
                                                                 clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);
                                                                 //DUT_OP2_OFF
-                                                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
+                                                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
                                                                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                                                                 {
                                                                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ZIG_COMM_DELAY);

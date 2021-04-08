@@ -74,7 +74,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             try
             {
                 imResultData = ((btmData * 0x100) | clsGlobalVariables.SWITCH_SENSOR);
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
+                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
 
                 return btmReturnVal;
             }
@@ -181,7 +181,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     imLowLmt = clsGlobalVariables.RLY_OFF_ADC_LOW_LMT_COUNT;
                 }
 
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_ADC_CNT);
+                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_ADC_CNT);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -210,7 +210,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Double Acting device. 
         ///</summary>                
         ///<ClassName>clsQueries</ClassName>
-        public byte MBReadDutCalibConst()
+        public byte MBReadDutCalibConst(byte btmSlaveID)
         {
             byte btmRetVal;
             long lmData;
@@ -220,7 +220,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 4);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] =btmSlaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_READ_CALIB_CONST_STATUS;
 
                 btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
@@ -526,7 +526,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             long lmData;
             try
             {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_Sensor_Func_CODE, clsGlobalVariables.CAT_NO);
+                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_Sensor_Func_CODE, clsGlobalVariables.CAT_NO);
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
@@ -670,14 +670,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Double Acting device. 
         ///</summary>                            
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadDeviceID()
+        public byte ReadDeviceID(byte SlaveID)
         {
             byte btmReturnVal;
             long lmData;
 
             try
             {
-                btmReturnVal = MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.MVER_ADDRESS, 1);
+                btmReturnVal = MBReadHoldingReg(SlaveID, clsGlobalVariables.MVER_ADDRESS, 1);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -685,7 +685,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     if (lmData != clsModelSettings.igDutID)
                     {
-                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                        //clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.WRONG_DEVICE_SELECTION);
 
                         //clsMessages.DisplayMessage(clsMessageIDs.WRONG_DEVICE_SELECTION); 
                         //MessageBox.Show("Wrong Device selection.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -710,23 +710,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Double Acting device. 
         ///</summary>                            
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadDeviceIDSalveToDut()
+        public byte ReadDeviceIDSalveToDut(byte slaveID)
         {
-            byte btmReturnVal;
+            byte btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             long lmData;
 
             try
             {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CAT_NO);
-
+                btmReturnVal = MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CAT_NO);
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
 
                     if (lmData != clsModelSettings.igDutID)
                     {
-                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.WRONG_DEVICE_SELECTION);
-                        //MessageBox.Show("Wrong Device selection.", clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                 }
@@ -737,12 +734,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
-        public byte ReadDeviceIDSalveToDutPortDetection()
+        public byte ReadDeviceIDSalveToDutPortDetection(int slaveID)
         {
 
             try
             {
-                return MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CAT_NO);
+                return MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CAT_NO);
             }
             catch (Exception ex)
             {
@@ -755,7 +752,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
             try
             {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_CONST);
+                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_CONST);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -779,28 +776,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Single Acting device. 
         ///</summary>                            
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadCalibConstSalveToDut()
+        public byte ReadCalibConstSalveToDut(byte slaveID)
         {
             byte btmReturnVal;
             long lmData;
 
             try
             {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_STATUS);
+                btmReturnVal = MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_STATUS);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-
                     lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
-
-                    clsModelSettings.btmCalibConst = (byte)lmData;
-
-                    if (lmData == clsGlobalVariables.CALIB_DONE)
-                    {
-                        clsGlobalVariables.mainWindowVM.DisplayMessage(1, clsMessageIDs.DUT_ALREADY_CALIBRATED);
-                        
-                        return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-                    }
+                    clsModelSettings.btmCalibConst = (byte)lmData;                    
                 }
                 return btmReturnVal;  
             }
@@ -867,7 +855,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
+                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
                 }
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1103,7 +1091,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<param name="btmFuncCode">This is function code of Query which is to be sent to device.</param>
         ///<param name="imData">This data is sent to DUT.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBQueryForWOModbusDevices(byte btmFuncCode, int imData)
+        public byte MBQueryForWOModbusDevices(int btmSlaveCode, byte btmFuncCode, int imData)
         {        
             byte btmRetVal;
             byte[] btmDataBuff = new byte[3];
@@ -1113,7 +1101,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_SLAVE3_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] =(byte) btmSlaveCode;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 1] = clsGlobalVariables.MB_MASTER_TO_DUT;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2] = btmFuncCode;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 3] = (byte)(imData / 256);
@@ -1232,18 +1220,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                    
 
                     //Calculate VREF query is send to device.
-                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CALC_VREF);
+                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CALC_VREF);
                     if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                     {
                         //LSB data of the VREF is read from the Device.
-                        btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_LSB);
+                        btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_LSB);
                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                         {
                             //Data is saved in the array.
                             btgRefVtgData[0] = clsGlobalVariables.btgRxBuffer[3];
                             btgRefVtgData[1] = clsGlobalVariables.btgRxBuffer[4];
                             //MSB data of the VREF is read from the Device.
-                            btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_MSB);
+                            btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_MSB);
                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                             {
                                 //Data is saved in the array.

@@ -1407,7 +1407,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     int imResultData;
                     imResultData = ((btmdata * 0x100) | clsGlobalVariables.DP_VAL);
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
                 }
                 return btmRetVal;
             }
@@ -1425,7 +1425,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     if (clsGlobalVariables.TWENTY_mAMP == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_AIRH, clsGlobalVariables.TWENTY_mAMP_PI);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRH, clsGlobalVariables.TWENTY_mAMP_PI);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
@@ -1433,14 +1433,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     else if (clsGlobalVariables.TEN_Volt == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_AIRH, clsGlobalVariables.TEN_Volt_PI);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRH, clsGlobalVariables.TEN_Volt_PI);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
                         }
                     }
 
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_ISCH, btmdata);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCH, btmdata);
                 }
                 else
                 {
@@ -1451,7 +1451,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     else//Device without modbus
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_ISCH, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCH, btmdata);
                     }
                 }
                 return btmRetVal;
@@ -1470,13 +1470,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     if (clsGlobalVariables.ZERO_mAMP == btmdata || clsGlobalVariables.ZERO_VOLT == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_AIRL, clsGlobalVariables.ZERO_mAMP);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRL, clsGlobalVariables.ZERO_mAMP);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
                         }
                     }
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_ISCL, btmdata);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCL, btmdata);
                 }
                 else
                 {
@@ -1487,7 +1487,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     else//Device without modbus
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.SET_ISCL, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCL, btmdata);
                     }
                 }
                 return btmRetVal;

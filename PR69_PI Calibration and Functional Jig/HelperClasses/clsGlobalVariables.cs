@@ -366,7 +366,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte CALIB_DONE = 2;
 
         public const byte MB_DUT_ID = 0x1;
-        public const byte MB_SLAVE1_ID = 1; //0xA;
+        public const byte MB_SLAVE_ID_BASE = 0x9;
+        public const byte MB_SLAVE1_ID = 0xA;
         public const byte MB_SLAVE2_ID = 0xB;
         public const byte MB_SLAVE3_ID = 0xC;
         public const byte MB_CONVERTOR_ID = 0xD;

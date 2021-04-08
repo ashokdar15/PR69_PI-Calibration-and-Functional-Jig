@@ -1278,7 +1278,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
 
             }
-            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false);
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
             OpenJigCOMPort();
             byte btmRetVal;
@@ -1361,9 +1361,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 //ConfigurationData[0].
                 //CatId[1].CalibrationDelays
-                clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, almTempTestList[imLoopCntr].ToString());
+                for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                {
+                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
+                }
+                
+                
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
 

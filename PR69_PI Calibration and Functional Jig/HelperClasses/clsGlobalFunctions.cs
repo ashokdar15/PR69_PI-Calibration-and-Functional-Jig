@@ -377,7 +377,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.ADJUST_MODE, btmMode);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.ADJUST_MODE, btmMode);
                 }
                 return btmRetVal;
             }
@@ -518,7 +518,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.CALIBRATE_FUNC_CODE, btmData);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, btmData);
                 }
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1198,7 +1198,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 imResultData = (clsGlobalVariables.igvProcessValue * 0x100) |(clsGlobalVariables.TC_CNT);
 
-                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.CALIBRATE_FUNC_CODE, imResultData);
+                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, imResultData);
 
                 return btmRetVal;
             }
@@ -1305,7 +1305,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgComPortJIG = "";
                         foreach (var item in clsGlobalVariables.algAvailableComPorts)
                         {
-                            if (MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(item.ToString(), false))
+                            if (MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(item.ToString(), false, true))
                             {
                                 //JIG query timeout is reduced because if timeout is kept as original then it will take long time to detect the port itself.
                                 clsGlobalVariables.ig_Query_TimeOut = 1000;
@@ -1317,13 +1317,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                                 else
                                 {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection();
+                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE1_ID);
                                 }
                                
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
-
+                                    for (byte DUT = 1; DUT < clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                                    {
+                                        btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_BASE);
+                                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                        {
+                                            MessageBox.Show("com port fail with DUT number :" + (DUT).ToString());
+                                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                        }
+                                    }
                                     //now check all DUT is connected or Not...
                                     MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
                                     break;
@@ -1472,7 +1480,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 for (imCnt = 0; imCnt < clsGlobalVariables.NUM_OF_KEYS; imCnt++)
                 {
                     //CA55 Program.objMainForm.shpKey.TextONShape = clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
-                    clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
+                    //clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //CA55  Program.objMainForm.ApplyDelay(200);
 
                     //This attempt counter is for each key.
@@ -1485,7 +1493,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_KEYPAD);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_KEYPAD);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
