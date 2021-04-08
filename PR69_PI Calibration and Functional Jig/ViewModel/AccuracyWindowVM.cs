@@ -1,12 +1,8 @@
 ﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
