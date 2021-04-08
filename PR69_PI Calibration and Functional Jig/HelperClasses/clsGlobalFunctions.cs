@@ -364,7 +364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmMode">This variable contains mode to be set in DUT.</param>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte AdjustModeOfDevice(byte btmMode)
+        public byte AdjustModeOfDevice(byte btmMode,byte slaveID)
         {
             byte btmRetVal;
 
@@ -373,11 +373,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //This check is for device having modbus.                
                 if (clsModelSettings.blnRS485Flag == true )
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBAdjustMode(btmMode);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBAdjustMode(btmMode, (byte)(slaveID + clsGlobalVariables.MB_DUT_ID_WM_BASE));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.ADJUST_MODE, btmMode);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(slaveID + clsGlobalVariables.MB_SLAVE_ID_WO_BASE),clsGlobalVariables.ADJUST_MODE, btmMode);
                 }
                 return btmRetVal;
             }
@@ -401,35 +401,39 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<ClassName>clsGlobalFunctions</ClassName>
         public byte GetCounts(byte btmData)
         {
-            byte btmRetVal;
+            byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             long lmData = 0;
             try
             {
                 //DUT is put in start mode.
-                btmRetVal = AdjustModeOfDevice(clsGlobalVariables.START_MODE);
+                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                {
+                    btmRetVal = AdjustModeOfDevice(clsGlobalVariables.START_MODE, DUT);
+
+                }
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     //Delays are applied for signal stabilization.
-                    
+
                     {
                         if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                         {
-                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.PT100_CNT)
                         {
-                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
                         {
-                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
                         }
 
                         if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
                         {
-                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE);
                         }
                         //-------Changed By Shubham
                         //Date:- 27-02-2018
@@ -437,7 +441,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Statement:- For VREF Start mode delay present in INI File is applied here.
                         if (btmData == clsGlobalVariables.CALIB_VREF)
                         {
-                           clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_STARTMODE);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_STARTMODE);
                         }
                     }
                 }
@@ -445,50 +449,53 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     return btmRetVal;
                 }
-
-                //DUT is put in run mode 
-                btmRetVal = AdjustModeOfDevice(clsGlobalVariables.RUN_MODE);
+                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                {
+                    //DUT is put in run mode 
+                    btmRetVal = AdjustModeOfDevice(clsGlobalVariables.RUN_MODE, DUT);
+                }
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     //Delays are applied for signal stabilization.
-                    
-                   
-                        if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
-                        {
-                          clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
-                        }
 
-                        if (btmData == clsGlobalVariables.PT100_CNT)
-                        {
+
+                    if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
+                    {
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
+                    }
+
+                    if (btmData == clsGlobalVariables.PT100_CNT)
+                    {
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE);
-                        }
+                    }
 
-                        if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
-                        {
+                    if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
+                    {
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE);
-                        }
+                    }
 
-                        if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
-                        {
+                    if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
+                    {
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE);
-                        }
-                        //-------Changed By Shubham
-                        //Date:- 27-02-2018
-                        //Version:- V16
-                        //Statement:- For VREF Run mode delay present in INI File is applied here.
-                        if (btmData == clsGlobalVariables.CALIB_VREF)
-                        {
+                    }
+                    //-------Changed By Shubham
+                    //Date:- 27-02-2018
+                    //Version:- V16
+                    //Statement:- For VREF Run mode delay present in INI File is applied here.
+                    if (btmData == clsGlobalVariables.CALIB_VREF)
+                    {
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_RUNMODE);
-                        }
-                        //---------Changes End.
-                    
+                    }
+                    //---------Changes End.
+
                 }
                 else
                 {
                     return btmRetVal;
                 }
 
-               
+                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                {
                     //-------Changed By Shubham
                     //Date:- 27-02-2018
                     //Version:- V16
@@ -496,7 +503,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     if (btmData == clsGlobalVariables.CALIB_VREF)
                     {
                         //Source OFF is checked. 
-                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceOFF() != (byte)clsGlobalVariables.enmResponseError.Success)
+                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                         }
@@ -504,58 +511,59 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     else
                     {
                         //Source on is checked. 
-                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceON() != (byte)clsGlobalVariables.enmResponseError.Success)
+                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceON(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                         }
                     }
                     //--------Changes End.
-                
-                //This check is for device having modbus.                
-                if (clsModelSettings.blnRS485Flag == true)
-                {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBStartCalibration(clsGlobalVariables.GET_COUNTS);
-                }
-                else//Device without modbus
-                {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, btmData);
-                }
 
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    //This check is for device having modbus.                    
+                    //This check is for device having modbus.                
                     if (clsModelSettings.blnRS485Flag == true)
                     {
-                        //For double acting device software validates the data received from the device.
-                        btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData);
-
-                        return btmRetVal;
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBStartCalibration(clsGlobalVariables.GET_COUNTS, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                     }
                     else//Device without modbus
                     {
-                        //For single acting device does not read data or validates the data.
-                        //Device itself does the calculations, software checks only valid response.
-                        lmData = GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CALIBRATE_FUNC_CODE, btmData);
+                    }
 
-                        if (lmData == 2)
+                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        //This check is for device having modbus.                    
+                        if (clsModelSettings.blnRS485Flag == true)
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Success;
+                            //For double acting device software validates the data received from the device.
+                            btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData);
+                            if (btmRetVal  != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                return btmRetVal;
+                            }
+                            
                         }
-                        else
+                        else//Device without modbus
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            //For single acting device does not read data or validates the data.
+                            //Device itself does the calculations, software checks only valid response.
+                            lmData = GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
+
+                            if (lmData != 2)
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    return btmRetVal;
+                    else
+                    {
+                        return btmRetVal;
+                    }
                 }
             }
             catch (Exception)
             {
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             }
+            return btmRetVal;
         }
 
         ///<MemberName>ValidateCounts</MemberName>
@@ -1325,7 +1333,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
                                     for (byte DUT = 1; DUT < clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_BASE);
+                                        btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             MessageBox.Show("com port fail with DUT number :" + (DUT).ToString());
@@ -1465,7 +1473,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///After completion of all keys test this function returns success.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte TestKeyPad()
+        public byte TestKeyPad(byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             long lmData;
@@ -1482,18 +1490,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     //CA55 Program.objMainForm.shpKey.TextONShape = clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //CA55  Program.objMainForm.ApplyDelay(200);
-
+                    clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, clsGlobalVariables.arrstrgKeysNames[btmKeyCnt], true);
                     //This attempt counter is for each key.
                     while (btmAttemptCounter <= btmMaxAttempt)
                     {
                         //This check is for device having modbus.                        
                         if (clsModelSettings.blnRS485Flag == true)
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_KEYPAD);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_KEYPAD, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                         }
                         else//Device without modbus
                         {
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_KEYPAD);
+                            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_KEYPAD);
                         }
 
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)

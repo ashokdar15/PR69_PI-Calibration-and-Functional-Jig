@@ -94,31 +94,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //DUTnumber
         //Enumkey
         //Enable/Disable        
-        public void DisplayKeypadTest(EnmConnectedDevices enmConnectedDevices , string displaytext, bool Enabletest)
+        public void DisplayKeypadTest(byte enmConnectedDevices , string displaytext, bool Enabletest)
         {
             switch (enmConnectedDevices)
             {
-                case EnmConnectedDevices.DUT1:
+                case 1:
                     keypadDevice1Vis = Enabletest;
                     keypadTextDevice1 = displaytext;
                     break;
-                case EnmConnectedDevices.DUT2:
+                case 2:
                     keypadDevice2Vis = Enabletest;
                     keypadTextDevice2 = displaytext;
                     break;
-                case EnmConnectedDevices.DUT3:
+                case 3:
                     keypadDevice3Vis = Enabletest;
                     keypadTextDevice3 = displaytext;
                     break;
-                case EnmConnectedDevices.DUT4:
+                case 4:
                     keypadDevice4Vis = Enabletest;
                     keypadTextDevice4 = displaytext;
                     break;
-                case EnmConnectedDevices.DUT5:
+                case 5:
                     keypadDevice5Vis = Enabletest;
                     keypadTextDevice5 = displaytext;
                     break;
-                case EnmConnectedDevices.DUT6:
+                case 6:
                     keypadDevice6Vis = Enabletest;
                     keypadTextDevice6 = displaytext;
                     break;
@@ -1197,8 +1197,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private async void btnStartClk(object obj)
         {
 
-            StartBtnVis = false;
-            StopBtnVis = true;
+            
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
                         
@@ -1225,66 +1224,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
             CurrentTestStatusDUT4 = ListOfTests[0];
 
-            DisplayMessage(1, 145);
-            DisplayMessage(2, 145);
-            DisplayMessage(3, 145);
-            DisplayMessage(4, 145);
+            //DisplayMessage(1, 145);
+            //DisplayMessage(2, 145);
+            //DisplayMessage(3, 145);
+            //DisplayMessage(4, 145);
 
             clsTotalTestsGroups.Clear();
             int count = 0;
-            foreach (string test in ListOfTests)
-            {
-                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
-                count++;
-            }
-            TestsDetailsVis = true;
-            IsProductSelected = true;
 
-            for (int Testnum = 0; Testnum < ListOfTests.Count; Testnum++)
-            {
-                Dispatcher.CurrentDispatcher.Invoke( delegate{
-
-                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() {TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
-
-                });                
-            }
-            
-            clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
-            
-            //Parameters
-            //1. DUT Number
-            //2. Test Number
-            //3. Test Status
-            UpdateTestResult(2, 5, "PASS");
-            UpdateTestResult(4, 2, "PASS");
-
-            EnableDisableUI(false);
-            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
-            //If usr change number of device then need to find com port again.
-            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
-            {
-                clsGlobalVariables.blngIsComportDetected = false;
-                clsGlobalVariables.blngIsComportDetectedForPLC = false;
-            }
-            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
-            {
-                //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
-                //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
-                FailurHandel();
-                return;
-                //PLC off
-            }
-            else
-            {
-
-            }
-            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
-            MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
-            OpenJigCOMPort();
-            byte btmRetVal;
-            int imLoopCntr;
-            int imNumOfTests;
-            ArrayList almTempTestList = null;
             clsGlobalVariables.algTests_Auto.Clear();
             //    //PIB12C
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
@@ -1326,8 +1273,65 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
             clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
             clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            foreach (string test in clsGlobalVariables.algTests_Auto)
+            {
+                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
+                count++;
+            }
+            TestsDetailsVis = true;
+            IsProductSelected = true;
+            clsTotalConnectedDevicesList.Clear();
+            for (int Testnum = 0; Testnum < ListOfTests.Count; Testnum++)
+            {
+                Dispatcher.CurrentDispatcher.Invoke( delegate{
 
+                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() {TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
+
+                });                
+            }
+            
+            //clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
+            
+            //Parameters
+            //1. DUT Number
+            //2. Test Number
+            //3. Test Status
+            
+            //UpdateTestResult(4, 2, "PASS");
+
+            EnableDisableUI(false);
+            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+            //If usr change number of device then need to find com port again.
+            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
+            {
+                clsGlobalVariables.blngIsComportDetected = false;
+                clsGlobalVariables.blngIsComportDetectedForPLC = false;
+            }
+            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
+            {
+                //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+                //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
+                FailurHandel();
+                return;
+                //PLC off
+            }
+            else
+            {
+
+            }
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
+            OpenJigCOMPort();
+            byte btmRetVal;
+            int imLoopCntr;
+            int imNumOfTests;
+            ArrayList almTempTestList = null;
+            for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
+            {
+                clsGlobalVariables.NUMBER_OF_DUTS_List.Add(i);
+            }
+           
 
             imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
             almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
@@ -1345,12 +1349,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //prgbar.Maximum = imNumOfTests;
             //prgbar.Value = prgbar.Minimum;
             //This timeout is resseted here to original.
-            clsGlobalVariables.ig_Query_TimeOut = 1000;
+            clsGlobalVariables.ig_Query_TimeOut = 1200;
             clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
             clsModelSettings.blnRS485Flag = false;
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
+                clsGlobalVariables.CurrentTestNumber = imLoopCntr +1;
                 if (clsGlobalVariables._StopFlag)
                 {
 
@@ -1443,8 +1448,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //1. DUT Number
         //2. Test Number
         //3. Test Status
-        public void UpdateTestResult(int DUTNumber, int testnumber, string status)
+        public void UpdateTestResult(int DUTNumber, string status)
         {
+            int testnumber = clsGlobalVariables.CurrentTestNumber;
             switch (DUTNumber)
             {
                 case 1:
@@ -1644,7 +1650,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void EnableDisableUI(bool v)
         {
-            
+            StartBtnVis = v;
+            StopBtnVis = !v;
         }
 
         private void CloseAllComport()

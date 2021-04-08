@@ -149,17 +149,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             JSensor
         }
 
-        public enum EnmConnectedDevices
-        {
-            DUT1 = 1,
-            DUT2 = 2,
-            DUT3 = 3,
-            DUT4 = 4,
-            DUT5 = 5,
-            DUT6 = 6,
-            
-        }
-
+       
         #region"-----Variables and constants------"
         public static string WorkingDirectory = @"C:\Program Files (x86)\Nuvoton Tools\NuLink Command Tool";
         public static bool StopButtonFlag = false;
@@ -215,6 +205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string CLIBRATOR_SR5 = "HKX1SA007";
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;
+        public static List<byte> NUMBER_OF_DUTS_List = new List<byte>();
         public static int OLD_NUMBER_OF_DUTS = 0;
         public static int igTYPE_OF_DEVICE = 1;
         public static int ig_Query_TimeOut = 16000;
@@ -223,6 +214,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const int BASE_ADDR = 0x0;
         public const int COIL_ON = 0xFF00;
         public const int COIL_OFF = 0x00;
+        public static int CurrentTestNumber = 0;
+        
+
         public const int MB_FUNC_FORCE_SINGLECOIL = 0x5;
         //Modbus Query
         public const Byte MB_FUNC_READ_COILSTATUS = 0x1;
@@ -366,7 +360,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte CALIB_DONE = 2;
 
         public const byte MB_DUT_ID = 0x1;
-        public const byte MB_SLAVE_ID_BASE = 0x9;
+        public const byte MB_DUT_ID_WM_BASE = 0x0;
+        public const byte MB_SLAVE_ID_WO_BASE = 0x9;
         public const byte MB_SLAVE1_ID = 0xA;
         public const byte MB_SLAVE2_ID = 0xB;
         public const byte MB_SLAVE3_ID = 0xC;

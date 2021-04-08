@@ -35,14 +35,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmData">This is type of sensor which is going to set in the DUT.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBSwitchSensor(byte btmData)
+        public byte MBSwitchSensor(byte btmData,byte slaveID)
         {
             byte btmRetVal;
             try
             {
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_SWITCH_SENSOR;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData;
                 
@@ -66,7 +66,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmData">This is type of sensor which is going to set in the DUT.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBSwitchSensorSlaveToDut(int btmData)
+        public byte MBSwitchSensorSlaveToDut(int btmData,byte slaveID)
         {
             byte btmReturnVal;
             int imResultData;
@@ -74,7 +74,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             try
             {
                 imResultData = ((btmData * 0x100) | clsGlobalVariables.SWITCH_SENSOR);
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
+                btmReturnVal = MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
 
                 return btmReturnVal;
             }
@@ -95,7 +95,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmData">This is mode which is going to set in the DUT.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBAdjustMode(byte btmModeData)
+        public byte MBAdjustMode(byte btmModeData, byte slaveID)
         {
             byte btmRetVal;
 
@@ -104,7 +104,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_ADJUST_MODE;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmModeData;
 
@@ -255,7 +255,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>                
         ///<param name="btmData">This parameter conatains which test should be started. Display, Relay, Leaky MOSFET, etc.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBStartTest(byte btmData)
+        public byte MBStartTest(byte btmData,byte slaveID)
         {
             byte btmRetVal;
 
@@ -264,7 +264,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_START_TEST;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData; 
 
@@ -288,7 +288,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>                
         ///<param name="btmData">This parameter conatains which test should be started. Current, voltage or Get counts tests. </param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBStartCalibration(byte btmData)
+        public byte MBStartCalibration(byte btmData,byte slaveID)
         {
             byte btmRetVal;
 
@@ -297,7 +297,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_CALIBRATE;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData;
 
@@ -322,7 +322,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<param name="btmFunCode">This parameter contains Current or voltage value.</param>
         ///<param name="btmData">This parameter conatains actual current or voltage which is to be set.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBSetAnalogOutput(byte btmFunCode, byte btmData)
+        public byte MBSetAnalogOutput(byte btmFunCode, byte btmData,byte SlaveID)
         {
             byte btmRetVal;
             try
@@ -330,7 +330,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = SlaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = btmFunCode;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData;
 
@@ -356,7 +356,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<param name="btmFunCode">This parameter contains Current or voltage value.</param>
         ///<param name="btmData">This parameter conatains actual current or voltage for which observed value is to be set.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBWriteMeasuredAnlopVal(byte btmFunCode, byte btmData)
+        public byte MBWriteMeasuredAnlopVal(byte btmFunCode, byte btmData,byte slaveID)
         {
             byte btmRetVal;
             try
@@ -364,7 +364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 7);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = btmFunCode;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = (byte)(clsModelSettings.imAnalOpVal/256);
@@ -808,7 +808,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>    
         ///<param name="btmData">This parameter is used to compare read sensor fom the device.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte ChangeSensor(byte btmData)
+        public byte ChangeSensor(byte btmData,byte slaveID)
         {
             byte btmReturnVal;
 
@@ -817,11 +817,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //This check is for device having modbus.
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmReturnVal = MBSwitchSensor(btmData);
+                    btmReturnVal = MBSwitchSensor(btmData, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE+ slaveID));
                 }
                 else//Device without modbus
                 {
-                    btmReturnVal = MBSwitchSensorSlaveToDut(btmData);
+                    btmReturnVal = MBSwitchSensorSlaveToDut(btmData, (byte)(slaveID +clsGlobalVariables.MB_SLAVE_ID_WO_BASE));
                 }                
                 return btmReturnVal;
             }
@@ -896,12 +896,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function sets the sensor to 60 mv.
         ///</summary>
         ///<ClassName>clsQueries</ClassName>
-        public byte SwitchSensorRly()
+        public byte SwitchSensorRly(byte slaveID)
         {
             byte btmRetVal;
             try
             {
-                btmRetVal = ChangeSensor(clsGlobalVariables.SENSOR_60_MV_TYPE);
+                btmRetVal = ChangeSensor(clsGlobalVariables.SENSOR_60_MV_TYPE, slaveID);
 
                 return btmRetVal;
             }
@@ -1016,7 +1016,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///If this is false then software will not send Vref value to DUT.
         ///</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBWriteCalibConst(bool blnIsVREFPresent)
+        public byte MBWriteCalibConst(bool blnIsVREFPresent,byte slaveID)
         {
             byte btmRetVal;
             int imCounter = 0;
@@ -1049,7 +1049,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     //This is modified because "strgarrCalibConst" length is increased by one to store the value of VREF. 
                     imLoopMax = clsGlobalVariables.strgarrCalibConst.Length - 5;
                 }
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] =slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_WRITE_CALIB_CONST;
 
                 for (int imArrayIndex = 0; imArrayIndex < imLoopMax; imArrayIndex++)
@@ -1169,7 +1169,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                 {
                    // clsMessages.DisplayMessage(clsMessageIDs.REMOVE_SOURCE_CONN);
-                    btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE,1);
                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                     {                        
                         return btmRetVal;
