@@ -69,17 +69,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             DUT6DetailsVis = false;
             TestsDetailsVis = false;
 
-            keypadDevice1Vis = false;
-            keypadDevice2Vis = false;
-            keypadDevice3Vis = false;
-            keypadDevice4Vis = false;
+            keypadDevice1Vis = true;
+            keypadDevice2Vis = true;
+            keypadDevice3Vis = true;
+            keypadDevice4Vis = true;
             keypadDevice5Vis = false;
             keypadDevice6Vis = false;
 
-            //keypadTextDevice1 = "ENTER";
-            //keypadTextDevice2 = "UP";
-            //keypadTextDevice3 = "DOWN";
-            //keypadTextDevice4 = "ESCAPE";
+            keypadTextDevice1 = "ENTER";
+            keypadTextDevice2 = "UP";
+            keypadTextDevice3 = "DOWN";
+            keypadTextDevice4 = "ESCAPE";
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
             

@@ -737,6 +737,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
+        public byte ReadDeviceIDSalveToDutPortDetection()
+        {
+
+            try
+            {
+                return MBQueryForWOModbusDevices(clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CAT_NO);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public byte[] ReadCalibrationConstToDut()
         {
             byte btmReturnVal;

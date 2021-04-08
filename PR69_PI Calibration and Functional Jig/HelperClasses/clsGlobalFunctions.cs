@@ -1310,11 +1310,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 //JIG query timeout is reduced because if timeout is kept as original then it will take long time to detect the port itself.
                                 clsGlobalVariables.ig_Query_TimeOut = 1000;
                                 //This query is sent to the JIG to check that JIG is connected to this port.
-                                byte btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                if (clsModelSettings.blnRS485Flag)
+                                {
+                                     btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                }
+                                else
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection();
+                                }
+                               
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
 
+                                    //now check all DUT is connected or Not...
                                     MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
                                     break;
                                 }
@@ -1462,6 +1472,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 for (imCnt = 0; imCnt < clsGlobalVariables.NUM_OF_KEYS; imCnt++)
                 {
                     //CA55 Program.objMainForm.shpKey.TextONShape = clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
+                    clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //CA55  Program.objMainForm.ApplyDelay(200);
 
                     //This attempt counter is for each key.
