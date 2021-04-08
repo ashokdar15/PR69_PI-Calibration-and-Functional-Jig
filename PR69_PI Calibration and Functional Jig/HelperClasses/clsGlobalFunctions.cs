@@ -1472,7 +1472,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 for (imCnt = 0; imCnt < clsGlobalVariables.NUM_OF_KEYS; imCnt++)
                 {
                     //CA55 Program.objMainForm.shpKey.TextONShape = clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
-                    clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
+                    //clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //CA55  Program.objMainForm.ApplyDelay(200);
 
                     //This attempt counter is for each key.

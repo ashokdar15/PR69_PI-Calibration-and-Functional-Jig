@@ -105,6 +105,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool CALIB_PT100 { get; set; }            //PR69 (48X48 & 96X96) & PI
         public bool CALIB_TC { get; set; }               //PR69 (48X48 & 96X96)
         public bool CALIB_100_OHM { get; set; }          //PR43 (48X48 & 96X96)
+        public bool CALIB_350_OHM { get; set; }       //PR43 (48X48 & 96X96)
         public bool CALIB_313_71_OHM { get; set; }       //PR43 (48X48 & 96X96)
 
     }

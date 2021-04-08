@@ -10,6 +10,107 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     public class clsTC_RTDTests : INotifyPropertyChanged
     {
 
+        private bool _CALIB_MV_CNT;
+
+        public bool CALIB_MV_CNT_PR69_PI
+        {
+            get { return _CALIB_MV_CNT; }
+            set
+            {
+                _CALIB_MV_CNT = value;
+                if (_CALIB_MV_CNT)
+                {
+                    CALIB_1_MV_CNT = true;
+                    CALIB_50_MV_CNT = true;
+                    CALC_SLOPE_OFFSET = true;
+                    CALIB_47_68_MV_CNT = false;
+                }
+                else
+                {
+                    CALIB_1_MV_CNT = false;
+                    CALIB_50_MV_CNT = false;
+                    CALC_SLOPE_OFFSET = false;
+                }                
+                OnPropertyChanged("CALIB_MV_CNT_PR69_PI");
+            }
+        }
+
+        private bool _CALIB_PT100_PR69_PI;
+
+        public bool CALIB_PT100_PR69_PI
+        {
+            get { return _CALIB_PT100_PR69_PI; }
+            set
+            {
+                _CALIB_PT100_PR69_PI = value;
+                if (_CALIB_PT100_PR69_PI)
+                {
+                    CALIB_350_OHM = true;
+                    CALIB_100_OHM = false;
+                    CALIB_313_71_OHM = false;
+                }
+                else
+                {
+                    CALIB_350_OHM = false;
+                }
+
+                OnPropertyChanged("CALIB_PT100_PR69_PI");
+            }
+        }
+
+        private bool _CALIB_MV_CNT_PR43;
+
+        public bool CALIB_MV_CNT_PR43
+        {
+            get { return _CALIB_MV_CNT_PR43; }
+            set
+            {
+                _CALIB_MV_CNT_PR43 = value;
+                if (_CALIB_MV_CNT_PR43)
+                {
+                    CALIB_1_MV_CNT = true;                    
+                    CALC_SLOPE_OFFSET = true;
+                    CALIB_47_68_MV_CNT = true;
+                    CALIB_50_MV_CNT = false;
+                }
+                else
+                {
+                    CALIB_1_MV_CNT = false;
+                    CALC_SLOPE_OFFSET = false;
+                    CALIB_47_68_MV_CNT = false;
+                }
+
+                OnPropertyChanged("CALIB_MV_CNT_PR43");
+            }
+        }
+
+
+        private bool _CALIB_PT100_PR43;
+
+        public bool CALIB_PT100_PR43
+        {
+            get { return _CALIB_PT100_PR43; }
+            set
+            {
+                _CALIB_PT100_PR43 = value;
+                if (_CALIB_PT100_PR43)
+                {
+                    CALIB_350_OHM = false;
+                    CALIB_100_OHM = true;
+                    CALIB_313_71_OHM = true;
+                }
+                else
+                {
+                    CALIB_100_OHM = false;
+                    CALIB_313_71_OHM = false;
+                }
+
+                OnPropertyChanged("CALIB_PT100_PR43");
+            }
+        }
+
+
+
         private bool _CALIB_1_MV_CNT;
 
         public bool CALIB_1_MV_CNT
@@ -74,6 +175,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _CALIB_313_71_OHM = value; OnPropertyChanged("CALIB_313_71_OHM"); }
         }
 
+        private bool _CALIB_350_OHM;
+
+        public bool CALIB_350_OHM
+        {
+            get { return _CALIB_350_OHM; }
+            set { _CALIB_350_OHM = value; OnPropertyChanged("CALIB_350_OHM"); }
+        }
+
+
         public void ParseTC_RTDDetails(CatIdList catId)
         {
             if (catId.TC_RTDTests != null)
@@ -84,11 +194,32 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     CALIB_100_OHM = catId.TC_RTDTests[0].CALIB_100_OHM;
                     CALIB_1_MV_CNT = catId.TC_RTDTests[0].CALIB_1_MV_CNT;
                     CALIB_313_71_OHM = catId.TC_RTDTests[0].CALIB_313_71_OHM;
+                    CALIB_350_OHM = catId.TC_RTDTests[0].CALIB_350_OHM;
                     CALIB_47_68_MV_CNT = catId.TC_RTDTests[0].CALIB_47_68_MV_CNT;
                     CALIB_50_MV_CNT = catId.TC_RTDTests[0].CALIB_50_MV_CNT;
                     CALIB_PT100 = catId.TC_RTDTests[0].CALIB_PT100;
                     CALIB_TC = catId.TC_RTDTests[0].CALIB_TC;
                 }
+                if (CALIB_50_MV_CNT)
+                    CALIB_MV_CNT_PR69_PI = true;
+                else
+                    CALIB_MV_CNT_PR69_PI = false;
+
+                if (CALIB_47_68_MV_CNT)
+                    CALIB_MV_CNT_PR43 = true;
+                else
+                    CALIB_MV_CNT_PR43 = false;
+
+                if (CALIB_350_OHM)
+                    CALIB_PT100_PR69_PI = true;
+                else
+                    CALIB_PT100_PR69_PI = false;
+
+                if (CALIB_100_OHM)
+                    CALIB_PT100_PR43 = true;
+                else
+                    CALIB_PT100_PR43 = false;
+
             }
         }
 
@@ -102,6 +233,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     CALIB_100_OHM = CALIB_100_OHM,
                     CALIB_1_MV_CNT = CALIB_1_MV_CNT,
                     CALIB_313_71_OHM = CALIB_313_71_OHM,
+                    CALIB_350_OHM = CALIB_350_OHM,
                     CALIB_47_68_MV_CNT = CALIB_47_68_MV_CNT,
                     CALIB_50_MV_CNT= CALIB_50_MV_CNT,
                     CALIB_PT100 = CALIB_PT100,
