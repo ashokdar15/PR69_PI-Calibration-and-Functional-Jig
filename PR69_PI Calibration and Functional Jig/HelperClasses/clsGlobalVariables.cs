@@ -151,12 +151,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public enum EnmConnectedDevices
         {
-            DeviceNumber1 = 1,
-            DeviceNumber2 = 2,
-            DeviceNumber3 = 3,
-            DeviceNumber4 = 4,
-            DeviceNumber5 = 5,
-            DeviceNumber6 = 6,
+            DUT1 = 1,
+            DUT2 = 2,
+            DUT3 = 3,
+            DUT4 = 4,
+            DUT5 = 5,
+            DUT6 = 6,
             
         }
 
