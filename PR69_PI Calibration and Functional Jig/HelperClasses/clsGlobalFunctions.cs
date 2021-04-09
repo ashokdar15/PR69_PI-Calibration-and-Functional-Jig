@@ -364,7 +364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmMode">This variable contains mode to be set in DUT.</param>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte AdjustModeOfDevice(byte btmMode,byte slaveID)
+        public byte AdjustModeOfDevice(byte btmMode,byte DUT)
         {
             byte btmRetVal;
 
@@ -373,11 +373,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //This check is for device having modbus.                
                 if (clsModelSettings.blnRS485Flag == true )
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBAdjustMode(btmMode, (byte)(slaveID + clsGlobalVariables.MB_DUT_ID_WM_BASE));
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBAdjustMode(btmMode, (byte)(DUT + clsGlobalVariables.MB_DUT_ID_WM_BASE));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(slaveID + clsGlobalVariables.MB_SLAVE_ID_WO_BASE),clsGlobalVariables.ADJUST_MODE, btmMode);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE),clsGlobalVariables.ADJUST_MODE, btmMode);
                 }
                 return btmRetVal;
             }
@@ -534,7 +534,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         if (clsModelSettings.blnRS485Flag == true)
                         {
                             //For double acting device software validates the data received from the device.
-                            btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData);
+                            btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData, DUT);
                             if (btmRetVal  != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 return btmRetVal;
@@ -578,107 +578,117 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<param name="arrbtmdata">This is the bytes data array received from the DUT.</param>
         ///<param name="btmData">This byte number tells that for which calibration data has to be validated.</param>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte ValidateCounts(byte[] arrbtmdata,byte btmdata)
+        public byte ValidateCounts(byte[] arrbtmdata,byte btmdata,byte DUT)
         {
             try
             {
-                //-------Changed By Shubham
-                //Date:- 27-02-2018
-                //Version:- V16
-                //Statement:- VREF chck is added here.
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
+
+                }
                 if ((btmdata == clsGlobalVariables.CALIB_1V) || (btmdata == clsGlobalVariables.CALIB_9V) || (btmdata == clsGlobalVariables.CALIB_4mA) || (btmdata == clsGlobalVariables.CALIB_20mA) || (btmdata == clsGlobalVariables.CALIB_VREF))
                 {
                     //Counts are converted in the long variable.
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF1_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.SIGNAL_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.LD_CJC_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF2_CNT)), 4);
+                    lngvCount[clsGlobalVariables.REF1_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF1_CNT)), 4);
+                    lngvCount[clsGlobalVariables.SIGNAL_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.SIGNAL_CNT)), 4);
+                    lngvCount[clsGlobalVariables.LD_CJC_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.LD_CJC_CNT)), 4);
+                    lngvCount[clsGlobalVariables.REF2_CNT, (btmdata - 4)] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF2_CNT)), 4);
                 }
                 else
                 {
                     //Counts are converted in the long variable.
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF1_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.SIGNAL_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.LD_CJC_CNT)), 4);
-                    clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF2_CNT)), 4);
+                    lngvCount[clsGlobalVariables.REF1_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF1_CNT)), 4);
+                    lngvCount[clsGlobalVariables.SIGNAL_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.SIGNAL_CNT)), 4);
+                    lngvCount[clsGlobalVariables.LD_CJC_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.LD_CJC_CNT)), 4);
+                    lngvCount[clsGlobalVariables.REF2_CNT, btmdata] = ConvertCounts(ref arrbtmdata, (3 + (4 * clsGlobalVariables.REF2_CNT)), 4);
                 }                
 
                 //Validations of counts for 1 mV is done here
                 if (btmdata == clsGlobalVariables.MV_1_CNT)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.REF1_CNT_MIN_1mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.REF1_CNT_MAX_1mV)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.REF2_CNT_MIN_1mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.REF2_CNT_MAX_1mV)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.REF1_CNT_MIN_1mV) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.REF1_CNT_MAX_1mV)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.REF2_CNT_MIN_1mV) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.REF2_CNT_MAX_1mV)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);   
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_1mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_1mV))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_1mV) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_1mV))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_1mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_1mV))
+                    if ((lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_1_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_1mV) || (lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_1_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_1mV))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CJC_CNT_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Success;
                 }
-
                 //Validations of counts for 50 mV is done here
                 if (btmdata == clsGlobalVariables.MV_50_CNT)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.REF1_CNT_MIN_50mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.REF1_CNT_MAX_50mV)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.REF2_CNT_MIN_50mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.REF2_CNT_MAX_50mV)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.REF1_CNT_MIN_50mV) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.REF1_CNT_MAX_50mV)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.REF2_CNT_MIN_50mV) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.REF2_CNT_MAX_50mV)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_50mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_50mV))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_50mV) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_50mV))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_50mV) || (clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_50mV))
+                    if ((lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_50mV) || (lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_50mV))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CJC_CNT_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Success;
                 }
-
                 //Validations of counts for PT100(350 Ohm) is done here
                 if (btmdata == clsGlobalVariables.PT100_CNT)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.REF1_CNT_MIN_350Ohm) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.REF1_CNT_MAX_350Ohm)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.REF2_CNT_MIN_350Ohm) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.REF2_CNT_MAX_350Ohm)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.REF1_CNT_MIN_350Ohm) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.REF1_CNT_MAX_350Ohm)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.REF2_CNT_MIN_350Ohm) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.REF2_CNT_MAX_350Ohm)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_350Ohm) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_350Ohm))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.SIGNAL_CNT_MIN_350Ohm) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.SIGNAL_CNT_MAX_350Ohm))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
 	                    return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }                
-                    if((clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_350Ohm) || (clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_350Ohm))
+                    if((lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] < clsGlobalVariables.LD_CJC_CNT_MIN_350Ohm) || (lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] > clsGlobalVariables.LD_CJC_CNT_MAX_350Ohm))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CJC_CNT_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Success;
                 }
-
                 //Validations of counts for 4mA Input calibration is done here
                 if (btmdata == clsGlobalVariables.CALIB_4mA)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.REF1_CNT_MIN_4mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.REF1_CNT_MAX_4mA)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.REF2_CNT_MIN_4mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.REF2_CNT_MAX_4mA)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.REF1_CNT_MIN_4mA) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.REF1_CNT_MAX_4mA)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.REF2_CNT_MIN_4mA) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.REF2_CNT_MAX_4mA)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_4mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_4mA))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_4mA) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_4mA))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -688,13 +698,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //Validations of counts for 20mA Input calibration is done here
                 if (btmdata == clsGlobalVariables.CALIB_20mA)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.REF1_CNT_MIN_20mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.REF1_CNT_MAX_20mA)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.REF2_CNT_MIN_20mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.REF2_CNT_MAX_20mA)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.REF1_CNT_MIN_20mA) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.REF1_CNT_MAX_20mA)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.REF2_CNT_MIN_20mA) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.REF2_CNT_MAX_20mA)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_20mA) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_20mA))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_20mA) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_20mA))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -704,13 +714,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //Validations of counts for 1Volt Input calibration is done here
                 if (btmdata == clsGlobalVariables.CALIB_1V)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.REF1_CNT_MIN_1V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.REF1_CNT_MAX_1V)) || 
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.REF2_CNT_MIN_1V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.REF2_CNT_MAX_1V)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.REF1_CNT_MIN_1V) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.REF1_CNT_MAX_1V)) || 
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.REF2_CNT_MIN_1V) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.REF2_CNT_MAX_1V)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_1V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_1V))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_1V) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_1V))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -720,39 +730,35 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //Validations of counts for 9Volt Input calibration is done here
                 if (btmdata == clsGlobalVariables.CALIB_9V)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.REF1_CNT_MIN_9V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.REF1_CNT_MAX_9V)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.REF2_CNT_MIN_9V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.REF2_CNT_MAX_9V)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.REF1_CNT_MIN_9V) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.REF1_CNT_MAX_9V)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.REF2_CNT_MIN_9V) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.REF2_CNT_MAX_9V)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_9V) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_9V))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_9V) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_9V))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Success;           
                 }
-                //-------Changed By Shubham
-                //Date:- 27-02-2018
-                //Version:- V16
                 //Statement:- Validations of counts for VREF is done here.
                 if (btmdata == clsGlobalVariables.CALIB_VREF)
                 {
-                    if (((clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.REF1_CNT_MIN_VREF) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.REF1_CNT_MAX_VREF)) ||
-                        ((clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.REF2_CNT_MIN_VREF) || (clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.REF2_CNT_MAX_VREF)))
+                    if (((lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.REF1_CNT_MIN_VREF) || (lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.REF1_CNT_MAX_VREF)) ||
+                        ((lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.REF2_CNT_MIN_VREF) || (lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.REF2_CNT_MAX_VREF)))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.REF_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
-                    if ((clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_VREF) || (clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_VREF))
+                    if ((lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] < clsGlobalVariables.SIGNAL_CNT_MIN_VREF) || (lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] > clsGlobalVariables.SIGNAL_CNT_MAX_VREF))
                     {
                         clsMessages.ShowMessageInProgressWindow(clsMessageIDs.SIG_CH_ERR);
                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Success;
                 }
-                //---------Changes End.
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             }
             catch (Exception)
@@ -939,20 +945,58 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function calulates slope and offset and stores that in the global variables.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void CalSlopeOffset()
+        public void CalSlopeOffset(byte DUT)
         {
             float flmInterVal1, flmInterval2;
 
             try
             {
-                flmInterVal1 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]) /
-                                (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
 
-                flmInterval2 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]);
+                }
+                flmInterVal1 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_1_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]) /
+                                (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]);
 
-                clsGlobalVariables.fltgvPrConfigSlope = (float)(clsGlobalVariables.CONST_CALIB_V1 - clsGlobalVariables.CONST_CALIB_V2) / (float)((flmInterVal1 - flmInterval2) * 1000);
-                clsGlobalVariables.fltgvPrConfigOffset = ((float)clsGlobalVariables.CONST_CALIB_V1 / (float)(1000 * clsGlobalVariables.fltgvPrConfigSlope)) - flmInterVal1;
+                flmInterval2 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.MV_50_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_50_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]);
+
+
+
+                switch (DUT)
+                {
+                    case 1:
+                        clsGlobalVariables.fltgvPrConfigSlopeDUT1 = (float)(clsGlobalVariables.CONST_CALIB_V1 - clsGlobalVariables.CONST_CALIB_V2) / (float)((flmInterVal1 - flmInterval2) * 1000);
+                        clsGlobalVariables.fltgvPrConfigOffsetDUT1 = ((float)clsGlobalVariables.CONST_CALIB_V1 / (float)(1000 * clsGlobalVariables.fltgvPrConfigSlopeDUT1)) - flmInterVal1;
+                        break;
+                    case 2:
+                        clsGlobalVariables.fltgvPrConfigSlopeDUT2 = (float)(clsGlobalVariables.CONST_CALIB_V1 - clsGlobalVariables.CONST_CALIB_V2) / (float)((flmInterVal1 - flmInterval2) * 1000);
+                        clsGlobalVariables.fltgvPrConfigOffsetDUT2 = ((float)clsGlobalVariables.CONST_CALIB_V1 / (float)(1000 * clsGlobalVariables.fltgvPrConfigSlopeDUT2)) - flmInterVal1;
+                        break;
+                    case 3:
+                        clsGlobalVariables.fltgvPrConfigSlopeDUT3 = (float)(clsGlobalVariables.CONST_CALIB_V1 - clsGlobalVariables.CONST_CALIB_V2) / (float)((flmInterVal1 - flmInterval2) * 1000);
+                        clsGlobalVariables.fltgvPrConfigOffsetDUT3 = ((float)clsGlobalVariables.CONST_CALIB_V1 / (float)(1000 * clsGlobalVariables.fltgvPrConfigSlopeDUT3)) - flmInterVal1;
+                        break;
+                    case 4:
+                        clsGlobalVariables.fltgvPrConfigSlopeDUT4 = (float)(clsGlobalVariables.CONST_CALIB_V1 - clsGlobalVariables.CONST_CALIB_V2) / (float)((flmInterVal1 - flmInterval2) * 1000);
+                        clsGlobalVariables.fltgvPrConfigOffsetDUT4 = ((float)clsGlobalVariables.CONST_CALIB_V1 / (float)(1000 * clsGlobalVariables.fltgvPrConfigSlopeDUT4)) - flmInterVal1;
+                        break;
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -968,20 +1012,55 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function is written to calculate slope and offsets for 4 & 20mA calibration by using counts received from DUT.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void CalSlopeOffset420mA()
+        public void CalSlopeOffset420mA(byte DUT)
         {
             float flmInterVal1, flmInterval2;
 
             try
             {
-                flmInterVal1 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index]) /
-                                (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
 
-                flmInterval2 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index]);
+                }
+                flmInterVal1 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.FOURMA_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index]) /
+                                (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.FOURMA_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.FOURMA_Index]);
 
-                clsGlobalVariables.fltgv4to20mAConfigSlope = (float)(clsGlobalVariables.CONST_CALIB_4mA - clsGlobalVariables.CONST_CALIB_20mA) / (float)(flmInterVal1 - flmInterval2);
-                clsGlobalVariables.fltgv4to20mAConfigOffset = ((float)clsGlobalVariables.CONST_CALIB_4mA / (float)(clsGlobalVariables.fltgv4to20mAConfigSlope)) - flmInterVal1;
+                flmInterval2 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.TWENTYMA_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.TWENTYMA_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.TWENTYMA_Index]);
+                switch (DUT)
+                {
+                    case 1:
+                        clsGlobalVariables.fltgv4to20mAConfigSlopeDUT1 = (float)(clsGlobalVariables.CONST_CALIB_4mA - clsGlobalVariables.CONST_CALIB_20mA) / (float)(flmInterVal1 - flmInterval2);
+                        clsGlobalVariables.fltgv4to20mAConfigOffsetDUT1 = ((float)clsGlobalVariables.CONST_CALIB_4mA / (float)(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT1)) - flmInterVal1;
+
+                        break;
+                    case 2:
+                        clsGlobalVariables.fltgv4to20mAConfigSlopeDUT2 = (float)(clsGlobalVariables.CONST_CALIB_4mA - clsGlobalVariables.CONST_CALIB_20mA) / (float)(flmInterVal1 - flmInterval2);
+                        clsGlobalVariables.fltgv4to20mAConfigOffsetDUT2 = ((float)clsGlobalVariables.CONST_CALIB_4mA / (float)(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT2)) - flmInterVal1;
+                        break;
+                    case 3:
+                        clsGlobalVariables.fltgv4to20mAConfigSlopeDUT3 = (float)(clsGlobalVariables.CONST_CALIB_4mA - clsGlobalVariables.CONST_CALIB_20mA) / (float)(flmInterVal1 - flmInterval2);
+                        clsGlobalVariables.fltgv4to20mAConfigOffsetDUT3 = ((float)clsGlobalVariables.CONST_CALIB_4mA / (float)(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT3)) - flmInterVal1;
+                        break;
+                    case 4:
+                        clsGlobalVariables.fltgv4to20mAConfigSlopeDUT4 = (float)(clsGlobalVariables.CONST_CALIB_4mA - clsGlobalVariables.CONST_CALIB_20mA) / (float)(flmInterVal1 - flmInterval2);
+                        clsGlobalVariables.fltgv4to20mAConfigOffsetDUT4 = ((float)clsGlobalVariables.CONST_CALIB_4mA / (float)(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT4)) - flmInterVal1;
+                        break;
+
+                }
             }
             catch (Exception ex)
             {
@@ -998,20 +1077,56 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function is written to calculate slope and offsets for 1 & 9V calibration by using counts received from DUT.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void CalSlopeOffset110V()
+        public void CalSlopeOffset110V(byte DUT)
         {
             float flmInterVal1, flmInterval2;
 
             try
             {
-                flmInterVal1 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index]) /
-                                (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
 
-                flmInterval2 = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index]);
+                }
+                flmInterVal1 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.ONEVOLT_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index]) /
+                                (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.ONEVOLT_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.ONEVOLT_Index]);
 
-                clsGlobalVariables.fltgv1to9VConfigSlope = (float)(clsGlobalVariables.CONST_CALIB_1V - clsGlobalVariables.CONST_CALIB_9V) / (float)((flmInterVal1 - flmInterval2));
-                clsGlobalVariables.fltgv1to9VConfigOffset = ((float)clsGlobalVariables.CONST_CALIB_1V / (float)(clsGlobalVariables.fltgv1to9VConfigSlope)) - flmInterVal1;
+                flmInterval2 = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.NINEVOLT_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.NINEVOLT_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.NINEVOLT_Index]);
+                switch (DUT)
+                {
+                    case 1:
+                        clsGlobalVariables.fltgv1to9VConfigSlopeDUT1 = (float)(clsGlobalVariables.CONST_CALIB_1V - clsGlobalVariables.CONST_CALIB_9V) / (float)((flmInterVal1 - flmInterval2));
+                        clsGlobalVariables.fltgv1to9VConfigOffsetDUT1 = ((float)clsGlobalVariables.CONST_CALIB_1V / (float)(clsGlobalVariables.fltgv1to9VConfigSlopeDUT1)) - flmInterVal1;
+
+                        break;
+                    case 2:
+                        clsGlobalVariables.fltgv1to9VConfigSlopeDUT2 = (float)(clsGlobalVariables.CONST_CALIB_1V - clsGlobalVariables.CONST_CALIB_9V) / (float)((flmInterVal1 - flmInterval2));
+                        clsGlobalVariables.fltgv1to9VConfigOffsetDUT2 = ((float)clsGlobalVariables.CONST_CALIB_1V / (float)(clsGlobalVariables.fltgv1to9VConfigSlopeDUT2)) - flmInterVal1;
+                        break;
+                    case 3:
+                        clsGlobalVariables.fltgv1to9VConfigSlopeDUT3 = (float)(clsGlobalVariables.CONST_CALIB_1V - clsGlobalVariables.CONST_CALIB_9V) / (float)((flmInterVal1 - flmInterval2));
+                        clsGlobalVariables.fltgv1to9VConfigOffsetDUT3 = ((float)clsGlobalVariables.CONST_CALIB_1V / (float)(clsGlobalVariables.fltgv1to9VConfigSlopeDUT3)) - flmInterVal1;
+                        break;
+                    case 4:
+                        clsGlobalVariables.fltgv1to9VConfigSlopeDUT4 = (float)(clsGlobalVariables.CONST_CALIB_1V - clsGlobalVariables.CONST_CALIB_9V) / (float)((flmInterVal1 - flmInterval2));
+                        clsGlobalVariables.fltgv1to9VConfigOffsetDUT4 = ((float)clsGlobalVariables.CONST_CALIB_1V / (float)(clsGlobalVariables.fltgv1to9VConfigSlopeDUT4)) - flmInterVal1;
+                        break;
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1028,21 +1143,54 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function calulates cjc offset value and stores that in the global variables.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void Calc_Cjc_Offset()
+        public void Calc_Cjc_Offset(byte DUT)
         {
             float flmInterVal, flmCJCLdCmpAnlOp;
 
             try
             {
-                flmInterVal = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
 
-                flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlope * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffset);
+                }
+
+                flmInterVal = (float)(lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.MV_50_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_50_CNT]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.MV_1_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.MV_1_CNT]);
+
+                flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlopeDUT1 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT1);
                 //"3852.71616F" & "49.25279F" -> These values are coming from CJC Calculation document. These 
                 //values are fixed value used for Voltage to temperature conversion of CJC IC. 
                 flmCJCLdCmpAnlOp = flmCJCLdCmpAnlOp * 3852.71616F - 49.25279F;
+                switch (DUT)
+                {
+                    case 1:
+                        clsGlobalVariables.fltgvPrConfigCjcDUT1 = flmCJCLdCmpAnlOp - (clsGlobalVariables.igvProcessValue) + 2;
+                        break;
+                    case 2:
+                        clsGlobalVariables.fltgvPrConfigCjcDUT2 = flmCJCLdCmpAnlOp - (clsGlobalVariables.igvProcessValue) + 2;
+                        break;
+                    case 3:
+                        clsGlobalVariables.fltgvPrConfigCjcDUT3 = flmCJCLdCmpAnlOp - (clsGlobalVariables.igvProcessValue) + 2;
+                        break;
+                    case 4:
+                        clsGlobalVariables.fltgvPrConfigCjcDUT4 = flmCJCLdCmpAnlOp - (clsGlobalVariables.igvProcessValue) + 2;
+                        break;
 
-                clsGlobalVariables.fltgvPrConfigCjc = flmCJCLdCmpAnlOp - (clsGlobalVariables.igvProcessValue) + 2;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1059,36 +1207,72 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function calulates VREF Value from the counts received from the device.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void Calc_VREF()
+        public void Calc_VREF(byte DUT)
         {
             float flmInterVal;
 
             try
             {
-                 //The reference voltage calculation is done with the help of sensing circuit of 0 -10V
-                 //analog sensor.The input to this section is kept open, so that only Vref=~2.5V will act as
-                 //source to that sensing circuit and as per the voltage divider rule, we get the output of 
-                 //that circuit. With the help of revers voltage divider formula, it is possible to get
-                 //the reference voltage.
-                 //For eg. consider the ouput of divider section is Vout and R1 = 5.6K, R2 = 330K(Actual used resistors in circuit).
-                 //Please refer the schematic "1521CD0B-03" for the circuit.
-                 //If values of resistors in divider section get changed then update the formula with similar way.
-                 //R = R2/(R1 + R2) = 330 / (330 + 5.6) = 0.983313
-                 //then equation for Vout is
-                 //   Vout = Vref * R...........Equation 1.
-                 //This Vout is further processed and recoverd back with the help of calibration slope and offset.
-                 //so, by reverse calculation,
-                 //   Vref = Vout / R............From equation 1.
-                 //   Vref = Vout / 0.983313
-                 //   Vref = 1.01697 * Vout.
-                 //Thus, the reference voltage is calculated as per the above formula.
-                flmInterVal = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index]) /
-                                (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
+                }
 
-                clsGlobalVariables.fltgREF_Vtg = clsGlobalVariables.fltgv1to9VConfigSlope * (flmInterVal + clsGlobalVariables.fltgv1to9VConfigOffset);
-                //Here "1.01697" is the constant value used to calculate VREF.
-                //This value is taken as it is from device firmware.
-                clsGlobalVariables.fltgREF_Vtg = (float)1.01697 * (float)(clsGlobalVariables.fltgREF_Vtg / (float)1000);
+                //The reference voltage calculation is done with the help of sensing circuit of 0 -10V
+                //analog sensor.The input to this section is kept open, so that only Vref=~2.5V will act as
+                //source to that sensing circuit and as per the voltage divider rule, we get the output of 
+                //that circuit. With the help of revers voltage divider formula, it is possible to get
+                //the reference voltage.
+                //For eg. consider the ouput of divider section is Vout and R1 = 5.6K, R2 = 330K(Actual used resistors in circuit).
+                //Please refer the schematic "1521CD0B-03" for the circuit.
+                //If values of resistors in divider section get changed then update the formula with similar way.
+                //R = R2/(R1 + R2) = 330 / (330 + 5.6) = 0.983313
+                //then equation for Vout is
+                //   Vout = Vref * R...........Equation 1.
+                //This Vout is further processed and recoverd back with the help of calibration slope and offset.
+                //so, by reverse calculation,
+                //   Vref = Vout / R............From equation 1.
+                //   Vref = Vout / 0.983313
+                //   Vref = 1.01697 * Vout.
+                //Thus, the reference voltage is calculated as per the above formula.
+                flmInterVal = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.VREF_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index]) /
+                                (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.VREF_Index] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.VREF_Index]);
+                switch (DUT)
+                {
+                    case 1:
+                        clsGlobalVariables.fltgREF_VtgDUT1 = clsGlobalVariables.fltgv1to9VConfigSlopeDUT1 * (flmInterVal + clsGlobalVariables.fltgv1to9VConfigOffsetDUT1);
+                        //Here "1.01697" is the constant value used to calculate VREF.
+                        //This value is taken as it is from device firmware.
+                        clsGlobalVariables.fltgREF_VtgDUT1 = (float)1.01697 * (float)(clsGlobalVariables.fltgREF_VtgDUT1 / (float)1000);
+                        break;
+                    case 2:
+                        clsGlobalVariables.fltgREF_VtgDUT2 = clsGlobalVariables.fltgv1to9VConfigSlopeDUT2 * (flmInterVal + clsGlobalVariables.fltgv1to9VConfigOffsetDUT2);
+                        //Here "1.01697" is the constant value used to calculate VREF.
+                        //This value is taken as it is from device firmware.
+                        clsGlobalVariables.fltgREF_VtgDUT2 = (float)1.01697 * (float)(clsGlobalVariables.fltgREF_VtgDUT2 / (float)1000); break;
+                    case 3:
+                        clsGlobalVariables.fltgREF_VtgDUT3 = clsGlobalVariables.fltgv1to9VConfigSlopeDUT3 * (flmInterVal + clsGlobalVariables.fltgv1to9VConfigOffsetDUT3);
+                        //Here "1.01697" is the constant value used to calculate VREF.
+                        //This value is taken as it is from device firmware.
+                        clsGlobalVariables.fltgREF_VtgDUT3 = (float)1.01697 * (float)(clsGlobalVariables.fltgREF_VtgDUT3 / (float)1000); break;
+                    case 4:
+                        clsGlobalVariables.fltgREF_VtgDUT4 = clsGlobalVariables.fltgv1to9VConfigSlopeDUT4 * (flmInterVal + clsGlobalVariables.fltgv1to9VConfigOffsetDUT4);
+                        //Here "1.01697" is the constant value used to calculate VREF.
+                        //This value is taken as it is from device firmware.
+                        clsGlobalVariables.fltgREF_VtgDUT4 = (float)1.01697 * (float)(clsGlobalVariables.fltgREF_VtgDUT4 / (float)1000); break;
+                }
             }
             catch (Exception ex)
             {
@@ -1106,16 +1290,52 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///calulated hex string is then stored in the global array.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void ConvertCalibConst()
+        public void ConvertCalibConst(byte DUT)
         {
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.CJC] = Float2Hex(clsGlobalVariables.fltgvPrConfigCjc);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.RTD] = Float2Hex(clsGlobalVariables.fltgvPrConfigRtdCurrent);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.SLOPE] = Float2Hex(clsGlobalVariables.fltgvPrConfigSlope);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.OFFSET] = Float2Hex(clsGlobalVariables.fltgvPrConfigOffset);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.SLOPE_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigSlope);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.OFFSET_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigOffset);
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.SLOPE_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigSlope); 
-            clsGlobalVariables.strgarrCalibConst[clsGlobalVariables.OFFSET_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigOffset);            
+            switch (DUT)
+            {
+                case 1:
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.CJC] = Float2Hex(clsGlobalVariables.fltgvPrConfigCjcDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.RTD] = Float2Hex(clsGlobalVariables.fltgvPrConfigRtdCurrentDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.SLOPE] = Float2Hex(clsGlobalVariables.fltgvPrConfigSlopeDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.OFFSET] = Float2Hex(clsGlobalVariables.fltgvPrConfigOffsetDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.SLOPE_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.OFFSET_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigOffsetDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.SLOPE_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigSlopeDUT1);
+                    clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.OFFSET_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigOffsetDUT1);
+                    break;
+                case 2:
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.CJC] = Float2Hex(clsGlobalVariables.fltgvPrConfigCjcDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.RTD] = Float2Hex(clsGlobalVariables.fltgvPrConfigRtdCurrentDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.SLOPE] = Float2Hex(clsGlobalVariables.fltgvPrConfigSlopeDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.OFFSET] = Float2Hex(clsGlobalVariables.fltgvPrConfigOffsetDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.SLOPE_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.OFFSET_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigOffsetDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.SLOPE_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigSlopeDUT2);
+                    clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.OFFSET_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigOffsetDUT2);
+                    break;
+                case 3:
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.CJC] = Float2Hex(clsGlobalVariables.fltgvPrConfigCjcDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.RTD] = Float2Hex(clsGlobalVariables.fltgvPrConfigRtdCurrentDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.SLOPE] = Float2Hex(clsGlobalVariables.fltgvPrConfigSlopeDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.OFFSET] = Float2Hex(clsGlobalVariables.fltgvPrConfigOffsetDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.SLOPE_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.OFFSET_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigOffsetDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.SLOPE_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigSlopeDUT3);
+                    clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.OFFSET_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigOffsetDUT3);
+                    break;
+                case 4:
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.CJC] = Float2Hex(clsGlobalVariables.fltgvPrConfigCjcDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.RTD] = Float2Hex(clsGlobalVariables.fltgvPrConfigRtdCurrentDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.SLOPE] = Float2Hex(clsGlobalVariables.fltgvPrConfigSlopeDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.OFFSET] = Float2Hex(clsGlobalVariables.fltgvPrConfigOffsetDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.SLOPE_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigSlopeDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.OFFSET_420mA] = Float2Hex(clsGlobalVariables.fltgv4to20mAConfigOffsetDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.SLOPE_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigSlopeDUT4);
+                    clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.OFFSET_19V] = Float2Hex(clsGlobalVariables.fltgv1to9VConfigOffsetDUT4);
+                    break;
+            }
+                       
         }
 
         ///<MemberName>ConvertCalibConst</MemberName>
@@ -1165,7 +1385,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function sends Write calib constant query to device.
         ///</summary>        
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte DeviceWrite()
+        public byte DeviceWrite(byte slaveID,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data; 
             try
@@ -1178,7 +1398,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     //Version:- V16
                     //Statement:- Parameter is passed to the function. 
                     //Meaning of false is not to send the VREF value to the DUT.
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteCalibConst(false); 
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteCalibConst(false, slaveID,DUT); 
                     //-------Changes End.
                 }
                 return btmRetVal;
@@ -1197,7 +1417,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///<summary>
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte MBSendPvSlaveToDut()
+        public byte MBSendPvSlaveToDut(byte slaveID)
         {
             byte btmRetVal;
             int imResultData = 0;
@@ -1206,7 +1426,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 imResultData = (clsGlobalVariables.igvProcessValue * 0x100) |(clsGlobalVariables.TC_CNT);
 
-                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, imResultData);
+                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.CALIBRATE_FUNC_CODE, imResultData);
 
                 return btmRetVal;
             }
@@ -1225,23 +1445,71 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This function calculates RTD current here by using some formulaes and saves it in a global string.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void Calc_Current()
+        public void Calc_Current(byte DUT)
         {
             float flmInterVal, flmCJCLdCmpAnlOp, flmLdCmp;
 
             try
             {
-                flmInterVal = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]);
+                long[,] lngvCount = new long[4, 8];
+                switch (DUT)
+                {
+                    case 1:
+                        lngvCount = clsGlobalVariables.lngvCountDUT1;
+                        break;
+                    case 2:
+                        lngvCount = clsGlobalVariables.lngvCountDUT2;
+                        break;
+                    case 3:
+                        lngvCount = clsGlobalVariables.lngvCountDUT3;
+                        break;
+                    case 4:
+                        lngvCount = clsGlobalVariables.lngvCountDUT4;
+                        break;
+                }
+                flmInterVal = (float)(lngvCount[clsGlobalVariables.SIGNAL_CNT, clsGlobalVariables.PT100_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]);
 
-                flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlope * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffset);
+                
 
-                flmInterVal = (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]) /
-                               (float)(clsGlobalVariables.lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] - clsGlobalVariables.lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]);
+                flmInterVal = (float)(lngvCount[clsGlobalVariables.LD_CJC_CNT, clsGlobalVariables.PT100_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]) /
+                               (float)(lngvCount[clsGlobalVariables.REF2_CNT, clsGlobalVariables.PT100_CNT] - lngvCount[clsGlobalVariables.REF1_CNT, clsGlobalVariables.PT100_CNT]);
 
-                flmLdCmp = clsGlobalVariables.fltgvPrConfigSlope * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffset);
 
-                clsGlobalVariables.fltgvPrConfigRtdCurrent = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
+                switch (DUT)
+                {
+                    case 1:
+                        flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlopeDUT1 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT1);
+
+                        flmLdCmp = clsGlobalVariables.fltgvPrConfigSlopeDUT1 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT1);
+
+                        clsGlobalVariables.fltgvPrConfigRtdCurrentDUT1 = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
+                        break;
+                    case 2:
+                        flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlopeDUT2 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT2);
+
+                        flmLdCmp = clsGlobalVariables.fltgvPrConfigSlopeDUT2 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT2);
+
+                        clsGlobalVariables.fltgvPrConfigRtdCurrentDUT2 = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
+                        break;
+                    case 3:
+                        flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlopeDUT3 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT3);
+
+                        flmLdCmp = clsGlobalVariables.fltgvPrConfigSlopeDUT3 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT3);
+
+                        clsGlobalVariables.fltgvPrConfigRtdCurrentDUT3 = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
+                        break;
+                    case 4:
+                        flmCJCLdCmpAnlOp = clsGlobalVariables.fltgvPrConfigSlopeDUT4 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT4);
+
+                        flmLdCmp = clsGlobalVariables.fltgvPrConfigSlopeDUT4 * (flmInterVal + clsGlobalVariables.fltgvPrConfigOffsetDUT4);
+
+                        clsGlobalVariables.fltgvPrConfigRtdCurrentDUT4 = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
+                        break;
+                }
+
+
+                
             }
             catch (Exception ex)
             {
@@ -1597,7 +1865,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///4) Device without analog output but with Analog input sensors.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void GenerateLog()
+        public void GenerateLog(byte DUT)
         {  
             //Analog device without analog ip sensors
             if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
@@ -1605,7 +1873,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
                 && clsModelSettings.blnAnalogDUT == true)
             {
-                clsGlobalVariables.objDataLog.WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP);
+                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP, DUT);
             }
             //Device without analog output and input sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
@@ -1613,7 +1881,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
                 && clsModelSettings.blnAnalogDUT == false)
             {
-                clsGlobalVariables.objDataLog.WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP);
+                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP, DUT);
             }
             //Analog device with analog ip sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
@@ -1621,7 +1889,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
                 && clsModelSettings.blnAnalogDUT == true)
             {
-                clsGlobalVariables.objDataLog.WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP);
+                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP, DUT);
             }
             //Device without analog output but with Analog input sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
@@ -1629,7 +1897,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
                 && clsModelSettings.blnAnalogDUT == false)
             {
-                clsGlobalVariables.objDataLog.WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP);
+                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP, DUT);
             }
         }
 

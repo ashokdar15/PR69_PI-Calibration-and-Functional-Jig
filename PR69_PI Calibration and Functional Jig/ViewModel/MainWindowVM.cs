@@ -1329,7 +1329,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             ArrayList almTempTestList = null;
             for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
             {
-                clsGlobalVariables.NUMBER_OF_DUTS_List.Add(i);
+                clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
            
 
@@ -1338,7 +1338,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
 
             //Data log object is cleared here. Default data will be written into all the data menbers of this object.
-            //clsGlobalVariables.objDataLog.Clear();
+            //clsGlobalVariables.objDataLog[DUT].Clear();
             //--------Changed By Shubham
             //Date:- 30-03-2018
             //Version:- V16
@@ -1432,7 +1432,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //        return;
             //    }
             //}
-            btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
+            //btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
             //shpPassFail.ShapeColor = Color.Green;
             //shpPassFail.TextONShape = "PASS";
             //shpPassFail.FontColor = Color.White;

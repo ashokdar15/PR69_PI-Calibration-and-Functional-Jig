@@ -428,7 +428,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
-        public byte ReadPVSingleActingCJC()
+        public byte ReadPVSingleActingCJC(byte slaveID, byte DUT)
         {
             byte btmReturnVal;
             long lmData;
@@ -439,7 +439,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_SLAVE3_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 1] = clsGlobalVariables.MB_MASTER_TO_DUT;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2] = clsGlobalVariables.READ_PV_Value_Func_CODE;
                 //CAT_NO value will be neglected at Device side since it is read query.
@@ -457,7 +457,45 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
                     //Value read form the device is set into the global variable.
-                    clsGlobalVariables.shrtgCJC = (short)lmData;
+                    switch (DUT)
+                    {
+                     case 1:
+                            clsGlobalVariables.shrtgCJCDUT1 = (short)lmData;
+                            if (clsGlobalVariables.shrtgCJCDUT1 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT1 > clsGlobalVariables.CJC_max_Value)
+                            {
+                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT1.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                                break;
+                        case 2:
+                            clsGlobalVariables.shrtgCJCDUT2 = (short)lmData;
+                            if (clsGlobalVariables.shrtgCJCDUT2 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT2 > clsGlobalVariables.CJC_max_Value)
+                            {
+                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT2.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                            break;
+                        case 3:
+                            clsGlobalVariables.shrtgCJCDUT3 = (short)lmData;
+                            if (clsGlobalVariables.shrtgCJCDUT3 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT3 > clsGlobalVariables.CJC_max_Value)
+                            {
+                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT3.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                            break;
+                        case 4:
+                            clsGlobalVariables.shrtgCJCDUT4 = (short)lmData;
+                            if (clsGlobalVariables.shrtgCJCDUT4 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT4 > clsGlobalVariables.CJC_max_Value)
+                            {
+                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT4.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                            break;
+                    }
                 }
                 return btmReturnVal;
             }
@@ -841,51 +879,51 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This test is done for OP2 and OP3 output(Relays).
         ///</summary>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBStartRelayTest()
-        {
-            byte btmRetVal;
-            long lmData;
+        //public byte MBStartRelayTest()
+        //{
+        //    byte btmRetVal;
+        //    long lmData;
 
-            try
-            {
-                //This check is for device having modbus.                
-                if (clsModelSettings.blnRS485Flag == true)
-                {
-                    btmRetVal = MBStartTest(clsGlobalVariables.TEST_REL); 
-                }
-                else//Device without modbus
-                {
-                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
-                }
+        //    try
+        //    {
+        //        //This check is for device having modbus.                
+        //        if (clsModelSettings.blnRS485Flag == true)
+        //        {
+        //            btmRetVal = MBStartTest(clsGlobalVariables.TEST_REL); 
+        //        }
+        //        else//Device without modbus
+        //        {
+        //            btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
+        //        }
 
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    //This check is for device having modbus.                
-                    if (clsModelSettings.blnRS485Flag == true)
-                    {
-                        lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);  
-                    }
-                    else//Device without modbus
-                    {
-                        lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);  
-                    }
+        //        if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+        //        {
+        //            //This check is for device having modbus.                
+        //            if (clsModelSettings.blnRS485Flag == true)
+        //            {
+        //                lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);  
+        //            }
+        //            else//Device without modbus
+        //            {
+        //                lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);  
+        //            }
 
-                    if (lmData == 1)
-                    {
-                        return (byte)clsGlobalVariables.enmResponseError.Success;
-                    }
-                    else
-                    {
-                        return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-                    }
-                }   
-                return btmRetVal;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //            if (lmData == 1)
+        //            {
+        //                return (byte)clsGlobalVariables.enmResponseError.Success;
+        //            }
+        //            else
+        //            {
+        //                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+        //            }
+        //        }   
+        //        return btmRetVal;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         ///<MemberName>SwitchSensorRly</MemberName>
         ///<MemberType>Function</MemberType>
@@ -1016,13 +1054,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///If this is false then software will not send Vref value to DUT.
         ///</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBWriteCalibConst(bool blnIsVREFPresent,byte slaveID)
+        public byte MBWriteCalibConst(bool blnIsVREFPresent,byte slaveID,byte DUT)
         {
             byte btmRetVal;
             int imCounter = 0;
             int imLoopMax = 0;
             try
-            {                 
+            {
+                string[] strgarrCalibConst = new string[9]; 
+                switch (DUT)
+                {
+                    case 1:
+                        strgarrCalibConst = clsGlobalVariables.strgarrCalibConstDUT1;
+                        break;
+                    case 2:
+                        strgarrCalibConst = clsGlobalVariables.strgarrCalibConstDUT2;
+                        break;
+                    case 3:
+                        strgarrCalibConst = clsGlobalVariables.strgarrCalibConstDUT3;
+                        break;
+                    case 4:
+                        strgarrCalibConst = clsGlobalVariables.strgarrCalibConstDUT4;
+                        break;
+                }
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
 
                 //If "blnIsVREFPresent" is false then query without VREF data will be send to DUT.
@@ -1033,7 +1087,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     Array.Resize(ref clsGlobalVariables.btgTxBuffer, 36);
                     //This is done because VREF value will not be sent to the device here.
                     //In the below array at last index VERF value is present.                    
-                    imLoopMax = clsGlobalVariables.strgarrCalibConst.Length - 1;
+                    imLoopMax = strgarrCalibConst.Length - 1;
                 }
                 //If "blnIsVREFPresent" is true then query with VREF data will be send to DUT.
                 else if (((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType) ||
@@ -1041,13 +1095,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 (clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)) && blnIsVREFPresent == true)
                 {//For Cat Id having analog input this query length is increased.
                     Array.Resize(ref clsGlobalVariables.btgTxBuffer, 40);
-                    imLoopMax = clsGlobalVariables.strgarrCalibConst.Length;
+                    imLoopMax = strgarrCalibConst.Length;
                 }
                 else
                 {//this query length is for Cat Id without analog ip.
                     Array.Resize(ref clsGlobalVariables.btgTxBuffer, 20);
                     //This is modified because "strgarrCalibConst" length is increased by one to store the value of VREF. 
-                    imLoopMax = clsGlobalVariables.strgarrCalibConst.Length - 5;
+                    imLoopMax = strgarrCalibConst.Length - 5;
                 }
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] =slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_WRITE_CALIB_CONST;
@@ -1055,12 +1109,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 for (int imArrayIndex = 0; imArrayIndex < imLoopMax; imArrayIndex++)
                 {
 
-                    if (clsGlobalVariables.strgarrCalibConst[imArrayIndex] == null)
+                    if (strgarrCalibConst[imArrayIndex] == null)
                     {
                         return (byte)clsGlobalVariables.enmResponseError.Success; 
                     }
                     //This "strgarrCalibConst" array contains data ijn hex strings seperated by ",".
-                    String[] substrings = clsGlobalVariables.strgarrCalibConst[imArrayIndex].Split(',');
+                    String[] substrings = strgarrCalibConst[imArrayIndex].Split(',');
                     imCounter = 0;
                     for (int imParametersIndex = substrings.Length - 1; imParametersIndex >= 0; imParametersIndex--)
                     {
@@ -1157,7 +1211,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///the VREF value from the DUT and saves it into global variable.
         ///</summary>        
         ///<ClassName>clsQueries</ClassName>
-        public byte MBReferenceVoltageReadSingleActing()
+        public byte MBReferenceVoltageReadSingleActing(byte DUT)
         {
             try
             {
@@ -1165,17 +1219,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //This array will hold VREF value.
                 byte[] btgRefVtgData = new byte[4];
                 //Source is made OFF here.
-                btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
                 if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                 {
                    // clsMessages.DisplayMessage(clsMessageIDs.REMOVE_SOURCE_CONN);
-                    btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE,1);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE, DUT);
                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                     {                        
                         return btmRetVal;
                     }
 
-                    btmRetVal = clsGlobalVariables.objGlobalFunction.AdjustModeOfDevice(clsGlobalVariables.START_MODE);
+                    btmRetVal = clsGlobalVariables.objGlobalFunction.AdjustModeOfDevice(clsGlobalVariables.START_MODE, DUT);
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
                         //Delays are added here.
@@ -1193,7 +1247,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         return btmRetVal;
                     }
 
-                    btmRetVal = clsGlobalVariables.objGlobalFunction.AdjustModeOfDevice(clsGlobalVariables.RUN_MODE);
+                    btmRetVal = clsGlobalVariables.objGlobalFunction.AdjustModeOfDevice(clsGlobalVariables.RUN_MODE,DUT);
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
                         //Delays are added here.
@@ -1213,32 +1267,47 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     //Only in case of Auto calibration query to calibrator can be sent.
                     
                         //Source OFF is checked. 
-                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceOFF() != (byte)clsGlobalVariables.enmResponseError.Success)
+                        if (clsGlobalVariables.objCalibQueriescls.CheckSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                         }
                    
 
                     //Calculate VREF query is send to device.
-                    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CALC_VREF);
+                    btmRetVal = MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CALC_VREF);
                     if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                     {
                         //LSB data of the VREF is read from the Device.
-                        btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_LSB);
+                        btmRetVal = MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_LSB);
                         if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                         {
                             //Data is saved in the array.
                             btgRefVtgData[0] = clsGlobalVariables.btgRxBuffer[3];
                             btgRefVtgData[1] = clsGlobalVariables.btgRxBuffer[4];
                             //MSB data of the VREF is read from the Device.
-                            btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_MSB);
+                            btmRetVal = MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.READ_VREF_MSB);
                             if (btmRetVal == Convert.ToByte(clsGlobalVariables.enmResponseError.Success))
                             {
                                 //Data is saved in the array.
                                 btgRefVtgData[2] = clsGlobalVariables.btgRxBuffer[3];
                                 btgRefVtgData[3] = clsGlobalVariables.btgRxBuffer[4];
                                 //Data is saved in the global variable.
-                                clsGlobalVariables.fltgREF_Vtg = System.BitConverter.ToSingle(btgRefVtgData, 0);
+                                switch (DUT)
+                                {
+                                    case 1:
+                                        clsGlobalVariables.fltgREF_VtgDUT1 = System.BitConverter.ToSingle(btgRefVtgData, 0);
+                                        break;
+                                    case 2:
+                                        clsGlobalVariables.fltgREF_VtgDUT2 = System.BitConverter.ToSingle(btgRefVtgData, 0);
+                                        break;
+                                    case 3:
+                                        clsGlobalVariables.fltgREF_VtgDUT3 = System.BitConverter.ToSingle(btgRefVtgData, 0);
+                                        break;
+                                    case 4:
+                                        clsGlobalVariables.fltgREF_VtgDUT4 = System.BitConverter.ToSingle(btgRefVtgData, 0);
+                                        break;
+                                }
+                                
                             }
                         }
                     }

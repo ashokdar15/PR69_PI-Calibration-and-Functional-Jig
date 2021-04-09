@@ -142,7 +142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     if (clsGlobalVariables.btgRxBuffer[clsGlobalVariables.btgRxBuffer.Length - 1] != clsGlobalVariables.LF)
                     {
-                        ReadCalibratorMeasureValue();
+                        ReadCalibratorMeasureValue(DUT_ID);
                     }
 
                     for (imLoopcounter = 0; imLoopcounter < clsGlobalVariables.btgRxBuffer.Length; imLoopcounter++)

@@ -130,7 +130,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string configJsonfilepath = "";
         public static string DispImgpath = "";
         public static AccuracyParameter strAccuracyParameter;
-        public static EnmConnectedDevices strConnectedDevice;
+        //public static EnmConnectedDevices strConnectedDevice;
 
         public enum SelectedDeviceType
         {
@@ -177,7 +177,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static clsProgrammingJIGQuery objProgramingQrycls = new clsProgrammingJIGQuery();  
         public static CultureInfo objCultureinfo = CultureInfo.CreateSpecificCulture("en-US");   
         public static clsTestJIGFunctions objTestJIGFunctions = new clsTestJIGFunctions();
-        public static clsDataLog objDataLog = new clsDataLog();
+        public static clsDataLog []objDataLog = new clsDataLog[4];
         //CA55public static Forms.frmProgramming objfrmProgramming = new PR69_Function_and_Calibration_JIG.Forms.frmProgramming();
         //CA55public static PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage objPictMsg = new PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage();
         //-------Changed By Shubham
@@ -233,7 +233,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int igPV_PLC_DELAY = 1000;
         public static ArrayList algAvailableComPorts = new ArrayList();
         public static short shrtgPV;
-        public static short shrtgCJC;
+        public static short shrtgCJCDUT1;
+        public static short shrtgCJCDUT2;
+        public static short shrtgCJCDUT3;
+        public static short shrtgCJCDUT4;
         public static int CJC_min_Value = 15;
         public static int CJC_max_Value = 45;
         public static int PLC_ON_TIME_DELAY = 8000;
@@ -635,21 +638,57 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte SET_OBSERVED_1_VOLT = 0xA;
         public const byte SET_OBSERVED_10_VOLT = 0xB;
       
-        public static long[,] lngvCount = new long[4,8];
+        public static long[,] lngvCountDUT1 = new long[4,8];
+        public static long[,] lngvCountDUT2 = new long[4,8];
+        public static long[,] lngvCountDUT3 = new long[4,8];
+        public static long[,] lngvCountDUT4 = new long[4,8];
     
-        public static string[] strgarrCalibConst = new string [9]; 
+        public static string[] strgarrCalibConstDUT1 = new string [9]; 
+        public static string[] strgarrCalibConstDUT2 = new string [9]; 
+        public static string[] strgarrCalibConstDUT3 = new string [9]; 
+        public static string[] strgarrCalibConstDUT4 = new string [9]; 
         //
         //Below variables are used to save slopes and offsets for double acting devices.
-        public static float fltgvPrConfigSlope;
-        public static float fltgvPrConfigOffset;
-        public static float fltgvPrConfigRtdCurrent;
-        public static float fltgvPrConfigCjc;
-        public static float fltgv4to20mAConfigSlope;
-        public static float fltgv4to20mAConfigOffset;
-        public static float fltgv1to9VConfigSlope;
-        public static float fltgv1to9VConfigOffset;
-        
-        public static float fltgREF_Vtg = 0;
+        public static float fltgvPrConfigSlopeDUT1;
+        public static float fltgvPrConfigOffsetDUT1;
+        public static float fltgvPrConfigRtdCurrentDUT1;
+        public static float fltgvPrConfigCjcDUT1;
+        public static float fltgv4to20mAConfigSlopeDUT1;
+        public static float fltgv4to20mAConfigOffsetDUT1;
+        public static float fltgv1to9VConfigSlopeDUT1;
+        public static float fltgv1to9VConfigOffsetDUT1;
+
+        public static float fltgvPrConfigSlopeDUT2;
+        public static float fltgvPrConfigOffsetDUT2;
+        public static float fltgvPrConfigRtdCurrentDUT2;
+        public static float fltgvPrConfigCjcDUT2;
+        public static float fltgv4to20mAConfigSlopeDUT2;
+        public static float fltgv4to20mAConfigOffsetDUT2;
+        public static float fltgv1to9VConfigSlopeDUT2;
+        public static float fltgv1to9VConfigOffsetDUT2;
+
+        public static float fltgvPrConfigSlopeDUT3;
+        public static float fltgvPrConfigOffsetDUT3;
+        public static float fltgvPrConfigRtdCurrentDUT3;
+        public static float fltgvPrConfigCjcDUT3;
+        public static float fltgv4to20mAConfigSlopeDUT3;
+        public static float fltgv4to20mAConfigOffsetDUT3;
+        public static float fltgv1to9VConfigSlopeDUT3;
+        public static float fltgv1to9VConfigOffsetDUT3;
+
+        public static float fltgvPrConfigSlopeDUT4;
+        public static float fltgvPrConfigOffsetDUT4;
+        public static float fltgvPrConfigRtdCurrentDUT4;
+        public static float fltgvPrConfigCjcDUT4;
+        public static float fltgv4to20mAConfigSlopeDUT4;
+        public static float fltgv4to20mAConfigOffsetDUT4;
+        public static float fltgv1to9VConfigSlopeDUT4;
+        public static float fltgv1to9VConfigOffsetDUT4;
+
+        public static float fltgREF_VtgDUT1 = 0;
+        public static float fltgREF_VtgDUT2 = 0;
+        public static float fltgREF_VtgDUT3 = 0;
+        public static float fltgREF_VtgDUT4 = 0;
         //tolerance of the VREF is saved in below variables.
         public static float fltgREF_Vtg_MIN = 2.44f;
         public static float fltgREF_Vtg_MAX = 2.54f;
