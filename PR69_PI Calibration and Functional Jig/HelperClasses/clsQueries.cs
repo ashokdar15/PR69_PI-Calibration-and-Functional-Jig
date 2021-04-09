@@ -128,26 +128,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is only applicable for Double Acting device. For single acting devices Erase query is not present.
         ///</summary>        
         ///<ClassName>clsQueries</ClassName>
-        public byte MBErase()
-        {
-            byte btmRetVal;
-            try
-            {
-                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 4);
+        //public byte MBErase()
+        //{
+        //    byte btmRetVal;
+        //    try
+        //    {
+        //        Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+        //        Array.Resize(ref clsGlobalVariables.btgTxBuffer, 4);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_ERASE;
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_ERASE;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
+        //        btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
 
-                return btmRetVal;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return btmRetVal;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         ///<MemberName>MBReadAdcCountSlaveToDut</MemberName>
         ///<MemberType>Function</MemberType>
@@ -160,7 +160,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>        
         ///<param name="btmData">This parameter conatains state/event of the relay whether it is ON or OFF.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte MBReadAdcCountSlaveToDut(byte btmEventtype)
+        public byte MBReadAdcCountSlaveToDut(byte btmEventtype,byte slaveID)
         {
             byte btmReturnVal;
             long lmData;
@@ -181,7 +181,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     imLowLmt = clsGlobalVariables.RLY_OFF_ADC_LOW_LMT_COUNT;
                 }
 
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_ADC_CNT);
+                btmReturnVal = MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_ADC_CNT);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -390,7 +390,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Single Acting device. 
         ///</summary>                        
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadPVSingleActing()
+        public byte ReadPVSingleActing(byte slaveID)
         {
             byte btmReturnVal;
             long lmData;
@@ -401,7 +401,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_SLAVE3_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 1] = clsGlobalVariables.MB_MASTER_TO_DUT;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2] = clsGlobalVariables.READ_PV_Value_Func_CODE;
                 //CAT_NO value will be neglected at Device side since it is read query.
@@ -514,7 +514,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is for Double Acting device. 
         ///</summary>                        
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadPVDoubleActing()
+        public byte ReadPVDoubleActing(byte SlaveID)
         {
             byte btmReturnVal;
             long lmData;
@@ -524,7 +524,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
 
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = SlaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_READ_HOLDIND_REG;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = clsGlobalVariables.READ_PV / 256;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = clsGlobalVariables.READ_PV & 0xFF;
@@ -558,13 +558,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>                    
         ///<param name="lmSensor">This parameter is used to compare read sensor fom the device.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadSensorTypeSingleActing(long lmSensor)
+        public byte ReadSensorTypeSingleActing(long lmSensor,byte slaveID)
         {
             byte btmReturnVal;
             long lmData;
             try
             {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_Sensor_Func_CODE, clsGlobalVariables.CAT_NO);
+                btmReturnVal = MBQueryForWOModbusDevices(slaveID, clsGlobalVariables.READ_Sensor_Func_CODE, clsGlobalVariables.CAT_NO);
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
@@ -672,14 +672,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>                    
         ///<param name="lmSensor">This parameter is used to compare read sensor fom the device.</param>
         ///<ClassName>clsQueries</ClassName>
-        public byte ReadSensorTypeDoubleActing(long lmSensor)
+        public byte ReadSensorTypeDoubleActing(long lmSensor,byte slaveID)
         {
             byte btmReturnVal;
             long lmData;
 
             try
             {
-                btmReturnVal = MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.READ_Sensor, 1);
+                btmReturnVal = MBReadHoldingReg(slaveID, clsGlobalVariables.READ_Sensor, 1);
 
                 if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -784,25 +784,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
-        public byte[] ReadCalibrationConstToDut()
-        {
-            byte btmReturnVal;
+        //public byte[] ReadCalibrationConstToDut()
+        //{
+        //    byte btmReturnVal;
 
-            try
-            {
-                btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_CONST);
+        //    try
+        //    {
+        //        btmReturnVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.READ_FUNC_CODE, clsGlobalVariables.CALIB_CONST);
 
-                if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                     return clsGlobalVariables.btgRxBuffer;
-                }
-                return new byte[1];
-            }
-            catch (Exception ex)
-            {
-                return new byte[1];
-            }
-        }
+        //        if (btmReturnVal == (byte)clsGlobalVariables.enmResponseError.Success)
+        //        {
+        //             return clsGlobalVariables.btgRxBuffer;
+        //        }
+        //        return new byte[1];
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new byte[1];
+        //    }
+        //}
         ///<MemberName>ReadDeviceIDSalveToDut</MemberName>
         ///<MemberType>Function</MemberType>
         ///<CreatedBy>Shubham</CreatedBy>
@@ -1175,31 +1175,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;                
             }
         }
-        public byte MBQueryForWOModbusDevicesPI(byte btmFuncCode, int imData)
-        {
-            byte btmRetVal;
-            byte[] btmDataBuff = new byte[3];
-            try
-            {
-                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_SLAVE3_ID;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 1] = clsGlobalVariables.MB_MASTER_TO_DUT;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2] = btmFuncCode;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 3] = (byte)(imData / 256);
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 4] = (byte)(imData & 0xFF);
-                btmDataBuff[0] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2];
-                btmDataBuff[1] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 3];
-                btmDataBuff[2] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 4];
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 5] = clsGlobalVariables.objGlobalFunction.CalculateChecksum((byte)btmDataBuff.Length, ref btmDataBuff);
-                btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut_PI, true);
-                return btmRetVal;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public byte MBQueryForWOModbusDevicesPI(byte btmFuncCode, int imData)
+        //{
+        //    byte btmRetVal;
+        //    byte[] btmDataBuff = new byte[3];
+        //    try
+        //    {
+        //        Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+        //        Array.Resize(ref clsGlobalVariables.btgTxBuffer, 8);
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_SLAVE3_ID;
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 1] = clsGlobalVariables.MB_MASTER_TO_DUT;
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2] = btmFuncCode;
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 3] = (byte)(imData / 256);
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 4] = (byte)(imData & 0xFF);
+        //        btmDataBuff[0] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 2];
+        //        btmDataBuff[1] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 3];
+        //        btmDataBuff[2] = clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 4];
+        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS + 5] = clsGlobalVariables.objGlobalFunction.CalculateChecksum((byte)btmDataBuff.Length, ref btmDataBuff);
+        //        btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut_PI, true);
+        //        return btmRetVal;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
         ///<MemberName>MBReferenceVoltageReadSingleActing</MemberName>
         ///<MemberType>Function</MemberType>
         ///<CreatedBy>Shubham</CreatedBy>

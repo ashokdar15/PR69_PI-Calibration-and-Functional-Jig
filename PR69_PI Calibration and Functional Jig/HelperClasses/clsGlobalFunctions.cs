@@ -1589,11 +1589,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                 if (clsModelSettings.blnRS485Flag)
                                 {
-                                     btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                     btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
                                 }
                                 else
                                 {
-                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE1_ID);
+                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE_ID_WO_BASE+1);
                                 }
                                
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)

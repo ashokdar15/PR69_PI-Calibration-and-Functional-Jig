@@ -1000,7 +1000,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             
         }
 
-        private bool VoltSensorTest(bool firstIteration, string testPoint)
+        private bool VoltSensorTest(bool firstIteration, string testPoint,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
 
@@ -1018,26 +1018,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //This check is for device having modbus.
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_0_10V_TYPE_DOUBLE_ACTING);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_0_10V_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_0_10V_TYPE);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_0_10V_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                 }
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     
-                    btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO);
+                    btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO, DUT);
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
-                        btmRetVal = SetISCH(clsGlobalVariables.TEN_Volt);
+                        btmRetVal = SetISCH(clsGlobalVariables.TEN_Volt, DUT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
-                            btmRetVal = SetISCL(clsGlobalVariables.ZERO_VOLT);
+                            btmRetVal = SetISCL(clsGlobalVariables.ZERO_VOLT, DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO);
+                                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO, DUT);
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
 
@@ -1045,7 +1045,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
-                                        btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(1);
+                                        btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             return false;
@@ -1061,13 +1061,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 return false;
             blnmDivideBy100 = true;
-            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.R_SENSOR);
+            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.R_SENSOR,DUT);
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 return false;
 
             return true;
         }
-        private bool RSensorText(bool firstIteration, string testPoint)
+        private bool RSensorText(bool firstIteration, string testPoint,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
@@ -1106,11 +1106,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //This check is for device having modbus.                        
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_R_TYPE_DOUBLE_ACTING);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_R_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_R_TYPE);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_R_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                 }
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -1119,13 +1119,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_R, testPoint + "°C.");
             blnmDivideBy100 = false;
-            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.R_SENSOR);
+            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.R_SENSOR,DUT);
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 return false;
 
             return true;
         }
-        private bool JSensorTest(bool firstIteration, string testPoint)
+        private bool JSensorTest(bool firstIteration, string testPoint,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
@@ -1165,11 +1165,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //This check is for device having modbus.                        
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_J_TYPE_DOUBLE_ACTING);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_J_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_J_TYPE);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_J_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                 }
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1182,14 +1182,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_J, testPoint + "°C.");
             blnmDivideBy100 = false;
-            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.J_SENSOR);
+            btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.J_SENSOR,DUT);
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 return false;
             }
             return true;
         }
-        private bool mAmpSensorTest(bool firstIteration, string testPoint)
+        private bool mAmpSensorTest(bool firstIteration, string testPoint,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
@@ -1206,26 +1206,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //This check is for device having modbus.                        
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_0_20mA_TYPE_DOUBLE_ACTING);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_0_20mA_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                 }
                 else//Device without modbus
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_0_20mA_TYPE);
+                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_0_20mA_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                 }
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
                 }
-                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO);
+                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO, DUT);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-                    btmRetVal = SetISCH(clsGlobalVariables.TWENTY_mAMP);
+                    btmRetVal = SetISCH(clsGlobalVariables.TWENTY_mAMP, DUT);
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
-                        btmRetVal = SetISCL(clsGlobalVariables.FOUR_mAMP);
+                        btmRetVal = SetISCL(clsGlobalVariables.FOUR_mAMP, DUT);
                         if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         {
-                            btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO);
+                            btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO, DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mA_KNOB_POS, clsGlobalVariables.SOURCE_mA_KNOB_TEXT,1);
@@ -1251,7 +1251,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 blnmDivideBy100 = true;
-                btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.PT100_SENSOR);
+                btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.PT100_SENSOR,DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
@@ -1263,7 +1263,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             return true;
         }
-        private bool PT100SensorTest(bool firstIteration,string testPoint)
+        private bool PT100SensorTest(bool firstIteration,string testPoint,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
@@ -1311,22 +1311,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //This check is for device having modbus.                        
             if (clsModelSettings.blnRS485Flag == true)
             {
-                btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_PT100_TYPE_DOUBLE_ACTING);
+                btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_PT100_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
             }
             else//Device without modbus
             {
-                btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_PT100_TYPE);
+                btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_PT100_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
             }
             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_PT100, testPoint + "°C.");
                 
 
-                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO);
+                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO, DUT);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     blnmDivideBy100 = false;
-                    btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.PT100_SENSOR);
+                    btmRetVal = TestAccuracy(testPoint, clsGlobalVariables.PT100_SENSOR,DUT);
                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                     {
                         return false;
@@ -1335,7 +1335,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             return true;
         }
-        private byte TestAccuracy(string strmValue, byte btmSensor)
+        private byte TestAccuracy(string strmValue, byte btmSensor,byte DUT)
         {
             byte btmRetVal;
             try
@@ -1356,11 +1356,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         //This check is for device having modbus.                
                         if (clsModelSettings.blnRS485Flag == true)
                         {
-                            btmData = clsGlobalVariables.objQueriescls.ReadPVDoubleActing();
+                            btmData = clsGlobalVariables.objQueriescls.ReadPVDoubleActing((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                         }
                         else//Device without modbus
                         {
-                            btmData = clsGlobalVariables.objQueriescls.ReadPVSingleActing();
+                            btmData = clsGlobalVariables.objQueriescls.ReadPVSingleActing((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                         }
 
                         if (btmData == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1393,7 +1393,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 throw ex;
             }
         }
-        private byte ChangeDP(byte btmdata)
+        private byte ChangeDP(byte btmdata,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             try
@@ -1401,13 +1401,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //This check is for device having modbus.                
                 if (clsModelSettings.blnRS485Flag == true)
                 {
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.DP_SET, btmdata);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.DP_SET, btmdata);
                 }
                 else//Device without modbus
                 {
                     int imResultData;
                     imResultData = ((btmdata * 0x100) | clsGlobalVariables.DP_VAL);
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_WRITE_FUNC_CODE, imResultData);
                 }
                 return btmRetVal;
             }
@@ -1416,7 +1416,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 throw ex;
             }
         }
-        private byte SetISCH(byte btmdata)
+        private byte SetISCH(byte btmdata,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             try
@@ -1425,7 +1425,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     if (clsGlobalVariables.TWENTY_mAMP == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRH, clsGlobalVariables.TWENTY_mAMP_PI);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_AIRH, clsGlobalVariables.TWENTY_mAMP_PI);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
@@ -1433,25 +1433,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     else if (clsGlobalVariables.TEN_Volt == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRH, clsGlobalVariables.TEN_Volt_PI);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_AIRH, clsGlobalVariables.TEN_Volt_PI);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
                         }
                     }
 
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCH, btmdata);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_ISCH, btmdata);
                 }
                 else
                 {
                     //This check is for device having modbus.                
                     if (clsModelSettings.blnRS485Flag == true)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.ISCH_SET, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ISCH_SET, btmdata);
                     }
                     else//Device without modbus
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCH, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_ISCH, btmdata);
                     }
                 }
                 return btmRetVal;
@@ -1461,7 +1461,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 throw ex;
             }
         }
-        private byte SetISCL(byte btmdata)
+        private byte SetISCL(byte btmdata,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             try
@@ -1470,24 +1470,24 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     if (clsGlobalVariables.ZERO_mAMP == btmdata || clsGlobalVariables.ZERO_VOLT == btmdata)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_AIRL, clsGlobalVariables.ZERO_mAMP);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_AIRL, clsGlobalVariables.ZERO_mAMP);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
                             return btmRetVal;
                         }
                     }
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCL, btmdata);
+                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_ISCL, btmdata);
                 }
                 else
                 {
                     //This check is for device having modbus.                
                     if (clsModelSettings.blnRS485Flag == true)
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.ISCL_SET, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ISCL_SET, btmdata);
                     }
                     else//Device without modbus
                     {
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.SET_ISCL, btmdata);
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT),clsGlobalVariables.SET_ISCL, btmdata);
                     }
                 }
                 return btmRetVal;

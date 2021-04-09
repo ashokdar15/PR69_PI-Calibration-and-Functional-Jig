@@ -32,14 +32,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator); 
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'R';
                 clsGlobalVariables.btgTxBuffer[2] = btmSensorVal;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
                 //For the above query Calibrator doen not give response, so here send Query function is used.
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -51,22 +66,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -341,14 +341,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //frmMain.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
                 clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.ONE_Val;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -360,22 +375,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -420,7 +420,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.CR;
                         clsGlobalVariables.btgTxBuffer[6] = clsGlobalVariables.LF;
 
-                        btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+                       btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
@@ -467,7 +467,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.btgTxBuffer[5] = clsGlobalVariables.CR;
                                 clsGlobalVariables.btgTxBuffer[6] = clsGlobalVariables.LF;
 
-                                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+                               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
@@ -527,14 +527,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 // MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
                 clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.ONE_Val;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -545,22 +560,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
 
@@ -610,14 +610,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
                 clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.ONE_Val;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -628,22 +643,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
 
@@ -694,14 +694,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'M';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
                 clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.ZERO_Val;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -712,22 +727,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -778,14 +778,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 5);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'O';
                 clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.ZERO_Val;
                 clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -796,22 +811,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
 
@@ -1082,7 +1082,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, (4 + strValue.Length));
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 clsGlobalVariables.btgTxBuffer[0] = (byte)'S';
                 clsGlobalVariables.btgTxBuffer[1] = (byte)'D';
                // clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.PLUS;
@@ -1095,7 +1110,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 clsGlobalVariables.btgTxBuffer[imCounter + 1] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1109,22 +1124,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1181,7 +1181,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 //MainWindowVM.initilizeCommonObject.objCalibratorSerialComm.OpenCommPort(clsGlobalVariables.strgComPortCalibrator);
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-
+                clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
+                switch (DUT_ID)
+                {
+                    case 1:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
+                        break;
+                    case 2:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
+                        break;
+                    case 3:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
+                        break;
+                    case 4:
+                        _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
+                        break;
+                }
                 if (strValue.Contains("-"))
                 {
                     Array.Resize(ref clsGlobalVariables.btgTxBuffer, (5 + strValue.Length-1));
@@ -1216,7 +1231,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.CR;
                 clsGlobalVariables.btgTxBuffer[imCounter + 3] = clsGlobalVariables.LF;
 
-                btmRetVal = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
+               btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 
                 //CA55  Program.objMainForm.ApplyDelay(clsGlobalVariables.igDelay_In_Two_Calib_Queries);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1230,22 +1245,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[3] = clsGlobalVariables.CR;
                     clsGlobalVariables.btgTxBuffer[4] = clsGlobalVariables.LF;
 
-                    clsSerialCommunication _clsSerialComm = new clsSerialCommunication();
-                    switch (DUT_ID)
-                    {
-                        case 1:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1;
-                            break;
-                        case 2:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2;
-                            break;
-                        case 3:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT3;
-                            break;
-                        case 4:
-                            _clsSerialComm = MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT4;
-                            break;
-                    }
+                    
                     btmRetVal = _clsSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Calib_Query_TimeOut, false);
 
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)

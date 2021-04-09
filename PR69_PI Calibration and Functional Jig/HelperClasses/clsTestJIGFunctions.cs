@@ -253,7 +253,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
                                     break;
                                 }
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, "PASS");
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
                         }
                         else //Device without modbus
@@ -266,7 +266,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
                                     break;
                                 }
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, "PASS");
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
                         }
                         break;
@@ -300,7 +300,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.CALIBRATED_DUT);
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, "PASS");
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
 
@@ -367,181 +367,182 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                 }
                             }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-                    case "SLAVE1_OP1_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE1_OP1_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE1_OP2_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE1_OP2_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE1_OP3_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE1_OP3_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE1_OP1_ON":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP1_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                        break;
+                    //case "SLAVE1_OP1_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP1_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                    //    break;
 
-                    case "SLAVE1_OP2_ON":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP2_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                        break;
+                    //case "SLAVE1_OP2_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP2_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                    //    break;
 
-                    case "SLAVE1_OP3_ON":
-                        //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP3_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                        break;
+                    //case "SLAVE1_OP3_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP3_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                    //    break;
 
-                    case "SLAVE1_READ_ADC_CNT_RLY_OFF":
-                        //Relay test bypass logic is present here.
+                    //case "SLAVE1_READ_ADC_CNT_RLY_OFF":
+                    //    //Relay test bypass logic is present here.
 
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_OFF);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                        }
-                        break;
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_OFF);
+                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //    {
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
+                    //    }
+                    //    break;
 
-                    case "SLAVE1_READ_ADC_CNT_RLY_ON":
-                        //relay bypass logic is handled here. 
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_ON);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55//clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                        }
-                        break;
+                    //case "SLAVE1_READ_ADC_CNT_RLY_ON":
+                    //    //relay bypass logic is handled here. 
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_ON);
+                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //    {
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55//clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
+                    //    }
+                    //    break;
 
-                    case "SLAVE2_OP1_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE2_OP1_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE2_OP2_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE2_OP2_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE2_OP3_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE2_OP3_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE2_OP1_ON":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP1_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                        break;
+                    //case "SLAVE2_OP1_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP1_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                    //    break;
 
-                    case "SLAVE2_OP2_ON":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP2_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                        break;
+                    //case "SLAVE2_OP2_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP2_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                    //    break;
 
-                    case "SLAVE2_OP3_ON":
-                        //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP3_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                        break;
+                    //case "SLAVE2_OP3_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP3_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                    //    break;
 
-                    case "SLAVE2_READ_ADC_CNT_RLY_OFF":
-                        //Relay test bypass logic is present here.
+                    //case "SLAVE2_READ_ADC_CNT_RLY_OFF":
+                    //    //Relay test bypass logic is present here.
 
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_OFF);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                        }
-                        break;
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_OFF);
+                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //    {
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
+                    //    }
+                    //    break;
 
-                    case "SLAVE2_READ_ADC_CNT_RLY_ON":
-                        //relay bypass logic is handled here. 
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_ON);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                        }
-                        break;
+                    //case "SLAVE2_READ_ADC_CNT_RLY_ON":
+                    //    //relay bypass logic is handled here. 
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_ON);
+                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //    {
+                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
+                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
+                    //    }
+                    //    break;
 
-                    case "SLAVE3_OP3_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP_OFF)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE3_OP3_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP_OFF)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE3_OP1_ON":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP1_ON)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                        break;
+                    //case "SLAVE3_OP1_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP1_ON)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                    //    break;
 
-                    case "SLAVE3_OP1_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP_OFF)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE3_OP1_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP_OFF)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE3_OP2_ON":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP2_ON)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                        break;
+                    //case "SLAVE3_OP2_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP2_ON)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                    //    break;
 
-                    case "SLAVE3_OP2_OFF":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP_OFF)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "SLAVE3_OP2_OFF":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP_OFF)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "SLAVE3_OP3_ON":
-                        //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP3_ON)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                        break;
+                    //case "SLAVE3_OP3_ON":
+                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP3_ON)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                    //    break;
 
-                    case "SLAVE3_READ_ADC_CNT_RLY_ON":
-                        //MBReadAdcCounts(MB_SLAVE3_ID, RLY_ON)
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                            btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.RLY_ON);
-                        break;
+                    //case "SLAVE3_READ_ADC_CNT_RLY_ON":
+                    //    //MBReadAdcCounts(MB_SLAVE3_ID, RLY_ON)
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.RLY_ON);
+                    //    break;
 
-                    case "CONVERTOR_OP1_ON":
-                        //ucmReturnVal = MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP1_ON)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                        break;
+                    //case "CONVERTOR_OP1_ON":
+                    //    //ucmReturnVal = MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP1_ON)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                    //    break;
 
-                    case "CONVERTOR_OP2_ON":
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                        break;
+                    //case "CONVERTOR_OP2_ON":
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                    //    break;
 
-                    case "CONVERTOR_OP3_ON":
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                        break;
+                    //case "CONVERTOR_OP3_ON":
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                    //    break;
 
-                    case "CONVERTOR_OP1_OFF":
-                        //MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "CONVERTOR_OP1_OFF":
+                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "CONVERTOR_OP2_OFF":
-                        //MBWriteHoldingReg(MB_CONVERTOR_ID, OP2_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "CONVERTOR_OP2_OFF":
+                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP2_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
-                    case "CONVERTOR_OP3_OFF":
-                        //MBWriteHoldingReg(MB_CONVERTOR_ID, OP3_ADDRESS, OP_OFF)
-                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                        break;
+                    //case "CONVERTOR_OP3_OFF":
+                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP3_ADDRESS, OP_OFF)
+                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //    break;
 
                     case "DUT_READ_ADC_CNT_RLY_ON":
 
@@ -554,7 +555,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             else //Device without modbus
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCountSlaveToDut(clsGlobalVariables.RLY_ON);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCountSlaveToDut(clsGlobalVariables.RLY_ON, DUT);
                             }
                         }
                         break;
@@ -568,7 +569,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.                            
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
                             }
                             else //Device without modbus
                             {
@@ -590,7 +591,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.                            
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
                             }
                             else //Device without modbus
                             {
@@ -619,7 +620,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
                             }
                             else //Device without modbus
                             {
@@ -655,7 +656,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
                             }
                             else//Device without modbus
                             {
@@ -695,7 +696,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
                             }
                             else//Device without modbus
                             {
@@ -730,7 +731,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
                             }
                             else//Device without modbus
                             {
@@ -786,6 +787,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
 
                     case "START_DISP_TEST":
+                        clsGlobalVariables.ig_Query_TimeOut = 16000;
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             DialogResult dlgMsgBxRslt;
@@ -841,6 +843,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     goto Repeat;
                                 }
                             }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
 
@@ -861,6 +864,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpKeypad, clsGlobalVariables.enmStatus.FAIL);
                                 //CA55 Program.objMainForm.EnableGroupBox(clsGlobalVariables.DEVICE_CONFIG);
                             }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
 

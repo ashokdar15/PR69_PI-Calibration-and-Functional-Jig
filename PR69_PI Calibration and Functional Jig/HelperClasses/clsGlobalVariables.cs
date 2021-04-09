@@ -362,14 +362,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte AFTER_SOAKING = 1;
         public const byte CALIB_DONE = 2;
 
-        public const byte MB_DUT_ID = 0x1;
+        //public const byte MB_DUT_ID = 0x1;
         public const byte MB_DUT_ID_WM_BASE = 0x0;
         public const byte MB_SLAVE_ID_WO_BASE = 0x9;
-        public const byte MB_SLAVE1_ID = 0xA;
-        public const byte MB_SLAVE2_ID = 0xB;
-        public const byte MB_SLAVE3_ID = 0xC;
+        //public const byte MB_SLAVE1_ID = 0xA;
+       // public const byte MB_SLAVE2_ID = 0xB;
+        //public const byte MB_SLAVE3_ID = 0xC;
         public const byte MB_CONVERTOR_ID = 0xD;
-
+        public const string PASS = "PASS";
+        public const string FAIL= "FAIL";
         public const byte CALIB_STAGE = 0x1;
         public const byte SWITCH_SENSOR = 0x2;
         public const byte DEFAULT_4_MA_CNT = 0x3;
