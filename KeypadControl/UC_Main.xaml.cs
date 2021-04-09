@@ -61,6 +61,14 @@ namespace KeypadControl
 
 
                     lbl.Visibility = Visibility.Visible;
+                    foreach (var item in canvas.Children)
+                    {
+                        if (item.GetType() == typeof(System.Windows.Controls.TextBlock))
+                        {
+                            canvas.Children.Remove((System.Windows.Controls.TextBlock)item);
+                            break;
+                        }
+                    }
                     canvas.Children.Add(lbl);
 
                     Canvas.SetTop(lbl, 50);
