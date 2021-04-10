@@ -244,6 +244,92 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
+        public byte MBStartReadPLC_Input_ON(byte InputNumber)
+        {
+            Byte[] btmRspArr = { 0 };
+            try
+            {
+                //Read Q1
+                Byte[] btmInputRspArr = { 0 };
+                byte actualAddress = (byte)(InputNumber / 8);
+                byte inputNUmber = (byte)(InputNumber % 8);
+                if (ReadInputStatusQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR , 24, ref btmInputRspArr) == true)
+                {
+                    if ((btmInputRspArr[actualAddress] &  (1<< inputNUmber)) == ( 1<< inputNUmber))
+                    {
+                        return (byte)clsGlobalVariables.enmResponseError.Success;
+                    }
+                }
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public byte MBStartReadPLC_Input_OFF(byte InputNumber)
+        {
+            Byte[] btmRspArr = { 0 };
+            try
+            {
+                //Read Q1
+                Byte[] btmInputRspArr = { 0 };
+                byte actualAddress = (byte)(InputNumber / 8);
+                byte inputNUmber = (byte)(InputNumber % 8);
+                if (ReadInputStatusQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR, 24, ref btmInputRspArr) == true)
+                {
+                    if ((btmInputRspArr[actualAddress] & (1 << inputNUmber)) != (1 << inputNUmber))
+                    {
+                        return (byte)clsGlobalVariables.enmResponseError.Success;
+                    }
+                }
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public byte MBStartPLC_ON(byte outputNumber)
+        {
+            Byte[] btmRspArr = { 0 };
+            try
+            {
+                
+                //On Q0
+                if (ForceSingleCoilQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + outputNumber, clsGlobalVariables.COIL_ON))
+                {
+                    return (byte)clsGlobalVariables.enmResponseError.Success;
+                }
+
+               
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public byte MBStartPLC_OFF(byte outputNumber)
+        {
+            Byte[] btmRspArr = { 0 };
+            try
+            {
+
+                //On Q0
+                if (ForceSingleCoilQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + outputNumber, clsGlobalVariables.COIL_OFF))
+                {
+                    return (byte)clsGlobalVariables.enmResponseError.Success;
+                }
+
+
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public byte DutONOFFQueryToPLC(bool DutONOFF)
         {
             try
@@ -323,7 +409,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 const int QUERY_HEADER = 6;
                 const int QUERY_FOOTER = 2;
                 const int READ_COILSTATUS_QUERY_LEN = (QUERY_HEADER + QUERY_FOOTER);
-                Byte[] btmInputRspArr = { 0 };
+                Byte[] btmInputRspArr = { 0,0 };
 
                 Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, READ_COILSTATUS_QUERY_LEN);

@@ -732,7 +732,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     IsProductSelected = false;
                 AssignConfigurationDetailsToUI();
 
-                NumberOfDUTs = 1;
+                NumberOfDUTs = 4;
 
                 OnPropertyChanged("SelectedDeviceName");
             }
@@ -1124,7 +1124,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     default:                      
                         //ShowMessageBox("Please enter total number of devices less than or equal to 6.", false, "InvalidDUT_No", clsGlobalVariables.MsgIcon.Error);
                         MessageBox.Show("Please enter total number of devices less than or equal to 4.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                        NumberOfDUTs = 1;
+                        NumberOfDUTs = 4;
                         break;
                 }
                                 
@@ -1236,8 +1236,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
@@ -1263,8 +1265,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
-            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
             clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
@@ -1320,6 +1322,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             }
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
+            MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false);
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
             OpenJigCOMPort();
             byte btmRetVal;
@@ -1331,7 +1334,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
                 clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
-           
 
             imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
             almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
@@ -1352,7 +1354,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.ig_Query_TimeOut = 1200;
             clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;
+            clsModelSettings.blnRS485Flag = false;            
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
                 clsGlobalVariables.CurrentTestNumber = imLoopCntr +1;
@@ -1436,12 +1438,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //shpPassFail.ShapeColor = Color.Green;
             //shpPassFail.TextONShape = "PASS";
             //shpPassFail.FontColor = Color.White;
+            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
             clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
             CloseAllComport();
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
-            clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
-            clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
-            StartStopWatch(true);
+            //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
+            //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
+            //StartStopWatch(true);
         }
 
         //Parameters

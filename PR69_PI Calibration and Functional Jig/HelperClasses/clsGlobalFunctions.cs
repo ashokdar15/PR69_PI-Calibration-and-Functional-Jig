@@ -1748,7 +1748,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             int imCnt;
             byte btmAttemptCounter = 1;
             byte btmKeyCnt = 0;
-            byte btmMaxAttempt = 10;
+            byte btmMaxAttempt = 20;
 
             try
             {
@@ -1757,7 +1757,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     //CA55 Program.objMainForm.shpKey.TextONShape = clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
                     //clsGlobalVariables.arrstrgKeysNames[btmKeyCnt];
-                    //CA55  Program.objMainForm.ApplyDelay(200);
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(200);
                     clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, clsGlobalVariables.arrstrgKeysNames[btmKeyCnt], true);
                     //This attempt counter is for each key.
                     while (btmAttemptCounter <= btmMaxAttempt)
