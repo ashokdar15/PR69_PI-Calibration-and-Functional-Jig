@@ -6,10 +6,7 @@
              xmlns:local="clr-namespace:KeypadControl"
              mc:Ignorable="d" 
               d:DesignHeight="130" d:DesignWidth="190">
-            <Grid>
-        <Canvas Height="130" Width="190" x:Name="canvas" Background="White">
-            <Ellipse Name="tealCircle" Width="180" Height="120" Fill="Teal"  Canvas.Top="5" Canvas.Left="5"/>
-        </Canvas>
-
-    </Grid>
+    <Canvas Height="130" Width="190" x:Name="canvas" Background="White">
+        <Ellipse Name="tealCircle" Width="180" Height="120" Fill="Teal"  Canvas.Top="5" Canvas.Left="5"/>
+    </Canvas>
 </UserControl>

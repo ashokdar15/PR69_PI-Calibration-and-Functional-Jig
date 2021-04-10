@@ -1006,7 +1006,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             if (firstIteration)
             {
-                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(1) != (byte)clsGlobalVariables.enmResponseError.Success)
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                     return false;
                 clsMessages.DisplayMessage(clsMessageIDs.VOLT_CALIBRATION_MSG_ID);
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
@@ -1041,7 +1041,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
 
-                                    btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_VOLT_KNOB_POS, clsGlobalVariables.SOURCE_VOLT_KNOB_TEXT,1);
+                                    btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_VOLT_KNOB_POS, clsGlobalVariables.SOURCE_VOLT_KNOB_TEXT, DUT);
 
                                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
@@ -1057,7 +1057,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                 }
             }
-            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(testPoint,1);
+            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(testPoint, DUT);
             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 return false;
             blnmDivideBy100 = true;
@@ -1072,7 +1072,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
             {
-                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(1) != (byte)clsGlobalVariables.enmResponseError.Success)
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                     return false;
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                     clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
@@ -1086,19 +1086,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     return false;
                 }
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.ThermoCouple_AccuracyDelay;
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT,1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT, DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
                 }
 
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
                 }
 
-                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_R_TYPE,1);
+                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_R_TYPE, DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
@@ -1130,7 +1130,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
             {
-                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(1) != (byte)clsGlobalVariables.enmResponseError.Success)
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                     return false;
 
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
@@ -1145,13 +1145,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     return false;
                 }
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.ThermoCouple_AccuracyDelay;
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT,1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT, DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
                 }
 
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
@@ -1194,7 +1194,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             if (firstIteration)
             {
-                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(1) != (byte)clsGlobalVariables.enmResponseError.Success)
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                     return false;
                 clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
@@ -1228,11 +1228,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_TWO, DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mA_KNOB_POS, clsGlobalVariables.SOURCE_mA_KNOB_TEXT,1);
+                                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mA_KNOB_POS, clsGlobalVariables.SOURCE_mA_KNOB_TEXT, DUT);
 
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
-                                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(1);
+                                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
                                         return false;
@@ -1247,7 +1247,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
                 return false;
             }
-            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(testPoint,1);
+            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(testPoint, DUT);
             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 blnmDivideBy100 = true;
@@ -1269,7 +1269,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (firstIteration)
             {
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.PT100_AccuracyDelay;
-                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(1) != (byte)clsGlobalVariables.enmResponseError.Success)
+                if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                     return false;
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                 {
@@ -1288,13 +1288,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     System.Windows.Forms.MessageBox.Show("Not Implemented");
                     return false;
                 }
-                 btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_RTD_KNOB_POS, clsGlobalVariables.SOURCE_RTD_KNOB_TEXT,1);
+                 btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_RTD_KNOB_POS, clsGlobalVariables.SOURCE_RTD_KNOB_TEXT, DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
                 }
 
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     return false;
@@ -1340,10 +1340,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal;
             try
             {
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.ChangeCalibratorSensor(btmSensor,1);
+                btmRetVal = clsGlobalVariables.objCalibQueriescls.ChangeCalibratorSensor(btmSensor, DUT);
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistanceZeroTemp(strmValue,1);
+                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistanceZeroTemp(strmValue, DUT);
                 }                
                 EnablePVTimeoutTimer();
                 blnTimerElapsed = true;

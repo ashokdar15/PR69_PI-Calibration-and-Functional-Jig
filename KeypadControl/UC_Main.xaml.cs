@@ -56,7 +56,9 @@ namespace KeypadControl
                         Text = e.NewValue.ToString(),
                         Foreground = Brushes.White,
                         FontSize = 20,
-                        FontWeight = FontWeights.Bold
+                        FontWeight = FontWeights.Bold,
+                        TextAlignment=TextAlignment.Center
+                       
                     });
 
 
