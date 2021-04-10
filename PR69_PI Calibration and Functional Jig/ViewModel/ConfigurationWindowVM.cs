@@ -693,6 +693,75 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         #endregion
 
         #region CatId Common Property
+
+        private bool _IsSequencebtnEnabled;
+
+        public bool IsSequencebtnEnabled
+        {
+            get { return _IsSequencebtnEnabled; }
+            set
+            {
+                _IsSequencebtnEnabled = value;
+                OnPropertyChanged("IsSequencebtnEnabled");
+            }
+        }
+
+        private bool _IsDefaultSequence;
+
+        public bool IsDefaultSequence
+        {
+            get { return _IsDefaultSequence; }
+            set
+            {
+                _IsDefaultSequence = value;
+
+                if (_IsDefaultSequence)
+                {
+                    IsSequencebtnEnabled = false;
+                    ListOfGroupSequence.Clear();
+                    //ListOfGroupSequence.Add("Analog Input Tests");
+                    //ListOfGroupSequence.Add("Analog Output Tests");
+                    //ListOfGroupSequence.Add("TC RTD Tests");
+                    //ListOfGroupSequence.Add("Relay,SSR Tests");
+                    //ListOfGroupSequence.Add("Calibration Constant Tests");
+                    //ListOfGroupSequence.Add("Common Tests");
+
+
+                    if (IsCommonTests)
+                    {
+                        ListOfGroupSequence.Add("Common Tests");
+                    }
+                    if (IsAnalogOutputTest)
+                    {
+                        ListOfGroupSequence.Add("Analog Output Tests");
+                    }
+                    if (IsRelayTest)
+                    {
+                        ListOfGroupSequence.Add("Relay,SSR Tests");
+                    }
+                    if (IsTC_RTDTest)
+                    {
+                        ListOfGroupSequence.Add("TC RTD Tests");
+                    }
+                    if (IsAnalogInputTest)
+                    {
+                        ListOfGroupSequence.Add("Analog Input Tests");
+                    }
+                    if (IsCalibConstantTest)
+                    {
+                        ListOfGroupSequence.Add("Calibration Constant Tests");
+                    }                                    
+                    
+                }
+                else
+                    IsSequencebtnEnabled = true;
+
+                OnPropertyChanged("IsDefaultSequence");
+            }
+        }
+
+
+
         private bool _IsDeviceTypeUneditable;
 
         public bool IsDeviceTypeUneditable
@@ -2530,6 +2599,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             IsDeviceNameUneditable = true;
             IsCheckBoxEnabled = true;
+            IsSequencebtnEnabled = true;
             PopupBtnVisibility(false);
             object objEdit = new CatIdList();
 

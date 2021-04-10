@@ -1443,28 +1443,41 @@
                                                     </ListBox.ItemContainerStyle>
                                                 </ListBox>
                                             </Border>
-                                            <Button Command="{Binding Path=EditUptestgrpCmd}"  Margin="18 10"                                             
-                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                Visibility="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
-                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="40" Padding="0" Width="40">
-                                                <Button.Content >
-                                                    <materialDesign:PackIcon Kind="ArrowUpDropCircleOutline" Height="40" Width="40" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                                </Button.Content>
-                                                <Button.ToolTip>
-                                                    <TextBlock Text="Edit Upward Test Group"></TextBlock>
-                                                </Button.ToolTip>
-                                            </Button>
-                                            <Button Command="{Binding Path=EditDowntestgrpCmd}"  Margin="20 10"                                        
-                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                Visibility="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
-                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="40" Padding="0" Width="40">
-                                                <Button.Content >
-                                                    <materialDesign:PackIcon Kind="ArrowBottomDropCircleOutline" Height="40" Width="40" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                                </Button.Content>
-                                                <Button.ToolTip>
-                                                    <TextBlock Text="Edit Downward Test Group"></TextBlock>
-                                                </Button.ToolTip>
-                                            </Button>
+                                            <StackPanel Orientation="Vertical" Margin="0 40 0 0">
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox Margin="10 0 0 0"
+                                                        IsChecked="{Binding Path=IsDefaultSequence,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"                                     
+                                                        IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                        Content="Default Sequence"/>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                                    <Button Command="{Binding Path=EditUptestgrpCmd}"  Margin="18 10"                                             
+                                                        IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                        Visibility="{Binding Path=IsSequencebtnEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="40" Padding="0" Width="40">
+                                                        <Button.Content >
+                                                            <materialDesign:PackIcon Kind="ArrowUpDropCircleOutline" Height="40" Width="40" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                                        </Button.Content>
+                                                        <Button.ToolTip>
+                                                            <TextBlock Text="Edit Upward Test Group"></TextBlock>
+                                                        </Button.ToolTip>
+                                                    </Button>
+                                                    <Button Command="{Binding Path=EditDowntestgrpCmd}"  Margin="20 10"                                        
+                                                        IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                        Visibility="{Binding Path=IsSequencebtnEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="40" Padding="0" Width="40">
+                                                        <Button.Content >
+                                                            <materialDesign:PackIcon Kind="ArrowBottomDropCircleOutline" Height="40" Width="40" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                                        </Button.Content>
+                                                        <Button.ToolTip>
+                                                            <TextBlock Text="Edit Downward Test Group"></TextBlock>
+                                                        </Button.ToolTip>
+                                                    </Button>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            
                                         </StackPanel>
                                     </Border>
                                 </GroupBox>
