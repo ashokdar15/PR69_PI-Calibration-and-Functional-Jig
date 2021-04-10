@@ -310,6 +310,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
+        public byte MBStartPLC_OFF(byte outputNumber)
+        {
+            Byte[] btmRspArr = { 0 };
+            try
+            {
+
+                //On Q0
+                if (ForceSingleCoilQuery(clsGlobalVariables.PC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + outputNumber, clsGlobalVariables.COIL_OFF))
+                {
+                    return (byte)clsGlobalVariables.enmResponseError.Success;
+                }
+
+
+                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public byte DutONOFFQueryToPLC(bool DutONOFF)
         {
             try

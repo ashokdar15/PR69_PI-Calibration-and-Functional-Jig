@@ -890,6 +890,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public static Int32 PLC_ZIG_COMM_DELAY = 100;
         public static Int32 PLC_ZIG_MODBUS_DELAY = 100;
+        internal static byte OP1_DUT1_PLC_ON_Number = 24;
+        internal static byte OP1_DUT2_PLC_ON_Number = 28;
+        internal static byte OP1_DUT3_PLC_ON_Number = 32;
+        internal static byte OP1_DUT4_PLC_ON_Number = 36;
+        internal static int DUT1=1;
+        internal static int DUT2=2;
+        internal static int DUT3=3;
+        internal static int DUT4=4;
     }
     public static class clsModelSettings
     {

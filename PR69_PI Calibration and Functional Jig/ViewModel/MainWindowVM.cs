@@ -1236,8 +1236,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
+            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
@@ -1352,33 +1354,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.ig_Query_TimeOut = 1200;
             clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(24);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(28);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(32);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(36);
-            //if (clsModelSettings.blnRS485Flag)
-            //{
-
-            //}
-            //else
-            //{
-            //    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-            //    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-            //    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-            //    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-            //}
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(1);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(2);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(3);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(0);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(5);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(6);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(7);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(8);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(5);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(9);
-            //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input(13);
+            clsModelSettings.blnRS485Flag = false;            
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
                 clsGlobalVariables.CurrentTestNumber = imLoopCntr +1;
