@@ -1196,10 +1196,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private async void btnStartClk(object obj)
         {
-            DisplayKeypadTest(1,"ABCD",true);
-            DisplayKeypadTest(1,"PRSD",true);
-            DisplayKeypadTest(1,"dfjgs",true);
-            return;
             
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
