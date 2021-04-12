@@ -251,6 +251,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     break;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -264,6 +265,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     break;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
