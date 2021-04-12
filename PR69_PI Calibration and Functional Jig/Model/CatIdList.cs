@@ -234,15 +234,5 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public int TWENTY_mAMP_MIN { get; set; }
     }
 
-    public class TotalConnectedDevices
-    {
-        public int DeviceNumber { get; set; }
-        public IList<TotalNumberOfTests> TotalNumberTests { get; set; }
-    }
-
-    public class TotalNumberOfTests
-    {
-        public int TestNumber { get; set; }
-        public string Test { get; set; }       
-    }
+    
 }
