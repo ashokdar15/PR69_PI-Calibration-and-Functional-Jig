@@ -793,6 +793,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void StartAccuracyTestingClk(object obj)
         {
 
+            clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
             UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
 
             //Auto com port detection
