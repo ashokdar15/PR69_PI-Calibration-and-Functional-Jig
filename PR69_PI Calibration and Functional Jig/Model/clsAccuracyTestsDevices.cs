@@ -109,8 +109,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice1 != null)
                         {
-                            if ((Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToInt32(_TestresultDevice1)) &&
-                            (Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToInt32(_TestresultDevice1)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
                             {
                                 BackcolorDevice1 = BgColorgreen;
                             }
@@ -121,8 +121,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice1 != null)
                         {
-                            if ((Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToInt32(_TestresultDevice1)) &&
-                            (Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToInt32(_TestresultDevice1)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
                             {
                                 BackcolorDevice1 = BgColorgreen;
                             }
@@ -134,8 +134,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice1 != null)
                         {
-                            if ((Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToInt32(_TestresultDevice1)) &&
-                           (Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToInt32(_TestresultDevice1)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
                             {
                                 BackcolorDevice1 = BgColorgreen;
                             }
@@ -147,8 +147,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice1 != null)
                         {
-                            if ((Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToInt32(_TestresultDevice1)) &&
-                           (Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToInt32(_TestresultDevice1)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
                             {
                                 BackcolorDevice1 = BgColorgreen;
                             }
@@ -160,8 +160,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice1 != null)
                         {
-                            if ((Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToInt32(_TestresultDevice1)) &&
-                            (Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToInt32(_TestresultDevice1)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
                             {
                                 BackcolorDevice1 = BgColorgreen;
                             }
@@ -192,8 +192,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice2 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToDouble(_TestresultDevice2)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
                             {
                                 BackcolorDevice2 = BgColorgreen;
                             }
@@ -205,8 +205,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice2 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToDouble(_TestresultDevice2)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
                             {
                                 BackcolorDevice2 = BgColorgreen;
                             }
@@ -218,8 +218,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice2 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToDouble(_TestresultDevice2)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToDouble(_TestresultDevice2)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
                             {
                                 BackcolorDevice2 = BgColorgreen;
                             }
@@ -231,8 +231,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice2 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToDouble(_TestresultDevice2)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToDouble(_TestresultDevice2)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
                             {
                                 BackcolorDevice2 = BgColorgreen;
                             }
@@ -244,8 +244,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice2 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToDouble(_TestresultDevice2)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
                             {
                                 BackcolorDevice2 = BgColorgreen;
                             }
@@ -276,8 +276,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice3 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToDouble(_TestresultDevice3)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
                             {
                                 BackcolorDevice3 = BgColorgreen;
                             }
@@ -289,8 +289,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice3 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToDouble(_TestresultDevice3)) &&
-                         (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToDouble(_TestresultDevice3)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
+                         (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
                             {
                                 BackcolorDevice3 = BgColorgreen;
                             }
@@ -302,8 +302,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice3 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToDouble(_TestresultDevice3)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
                             {
                                 BackcolorDevice3 = BgColorgreen;
                             }
@@ -315,8 +315,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice3 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToDouble(_TestresultDevice3)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToDouble(_TestresultDevice3)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
                             {
                                 BackcolorDevice3 = BgColorgreen;
                             }
@@ -328,8 +328,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice3 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToDouble(_TestresultDevice3)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
                             {
                                 BackcolorDevice3 = BgColorgreen;
                             }
@@ -360,8 +360,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice4 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToDouble(_TestresultDevice4)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToDouble(_TestresultDevice4)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
                             {
                                 BackcolorDevice4 = BgColorgreen;
                             }
@@ -373,8 +373,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice4 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToDouble(_TestresultDevice4)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
                             {
                                 BackcolorDevice4 = BgColorgreen;
                             }
@@ -386,8 +386,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice4 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToDouble(_TestresultDevice4)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToDouble(_TestresultDevice4)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
                             {
                                 BackcolorDevice4 = BgColorgreen;
                             }
@@ -399,8 +399,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice4 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToDouble(_TestresultDevice4)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
                             {
                                 BackcolorDevice4 = BgColorgreen;
                             }
@@ -412,8 +412,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice4 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToDouble(_TestresultDevice4)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
                             {
                                 BackcolorDevice4 = BgColorgreen;
                             }
@@ -444,8 +444,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice5 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToDouble(_TestresultDevice5)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToDouble(_TestresultDevice5)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
                             {
                                 BackcolorDevice5 = BgColorgreen;
                             }
@@ -457,8 +457,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice5 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToDouble(_TestresultDevice5)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
                             {
                                 BackcolorDevice5 = BgColorgreen;
                             }
@@ -470,8 +470,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice5 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToDouble(_TestresultDevice5)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
                             {
                                 BackcolorDevice5 = BgColorgreen;
                             }
@@ -483,8 +483,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice5 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToDouble(_TestresultDevice5)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
                             {
                                 BackcolorDevice5 = BgColorgreen;
                             }
@@ -496,8 +496,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice5 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToDouble(_TestresultDevice5)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToDouble(_TestresultDevice5)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
                             {
                                 BackcolorDevice5 = BgColorgreen;
                             }
@@ -527,8 +527,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.mAmp:
                         if (_TestresultDevice6 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Max) >= Convert.ToDouble(_TestresultDevice6)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Min) <= Convert.ToDouble(_TestresultDevice6)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
+                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
                             {
                                 BackcolorDevice6 = BgColorgreen;
                             }
@@ -540,8 +540,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.Volt:
                         if (_TestresultDevice6 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Max) >= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Min) <= Convert.ToDouble(_TestresultDevice6)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
                             {
                                 BackcolorDevice6 = BgColorgreen;
                             }
@@ -553,8 +553,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.PT100Sensor:
                         if (_TestresultDevice6 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Max) >= Convert.ToDouble(_TestresultDevice6)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Min) <= Convert.ToDouble(_TestresultDevice6)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
+                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
                             {
                                 BackcolorDevice6 = BgColorgreen;
                             }
@@ -566,8 +566,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.RSensor:
                         if (_TestresultDevice6 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Max) >= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Min) <= Convert.ToDouble(_TestresultDevice6)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
                             {
                                 BackcolorDevice6 = BgColorgreen;
                             }
@@ -579,8 +579,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     case clsGlobalVariables.AccuracyParameter.JSensor:
                         if (_TestresultDevice6 != null)
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Max) >= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Min) <= Convert.ToDouble(_TestresultDevice6)))
+                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
+                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
                             {
                                 BackcolorDevice6 = BgColorgreen;
                             }
