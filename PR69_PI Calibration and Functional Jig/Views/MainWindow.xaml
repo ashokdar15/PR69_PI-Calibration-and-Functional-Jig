@@ -707,36 +707,86 @@
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device1" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice1BackColor}"/>
+                                                                <Setter Property="Height" Value="32.5"/>
+                                                                <Setter Property="Width" Value="80"/>
+                                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>
                                                     </DataGridTextColumn>
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber2Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device2" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice2BackColor}"/>
+                                                                <Setter Property="Height" Value="32.5"/>
+                                                                <Setter Property="Width" Value="80"/>
+                                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>
                                                     </DataGridTextColumn>
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber3Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device3" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice3BackColor}"/>
+                                                                <Setter Property="Height" Value="32.5"/>
+                                                                <Setter Property="Width" Value="80"/>
+                                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>
                                                     </DataGridTextColumn>
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber4Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device4" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice4BackColor}"/>
+                                                                <Setter Property="Height" Value="32.5"/>
+                                                                <Setter Property="Width" Value="80"/>
+                                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>
                                                     </DataGridTextColumn>
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber5Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device5" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <!--<DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice5BackColor}"/>                                                                
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>-->
                                                     </DataGridTextColumn>
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber6Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">                                                                        
                                                         <DataGridTextColumn.Header>
                                                             <Label Content="Device6" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
+                                                        <!--<DataGridTextColumn.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Background" Value="{Binding TestresultDevice6BackColor}"/>                                                                
+                                                            </Style>
+                                                        </DataGridTextColumn.CellStyle>-->
                                                     </DataGridTextColumn>
                                                 </DataGrid.Columns>
                                             </DataGrid>
@@ -816,7 +866,7 @@
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
                                                 <TextBlock Text="Cycle Time : " Margin="10 10 0 0"/>
-                                                <TextBox  Width="80" Height="45" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
+                                                <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
                                                           FontWeight="Bold"
                                                           Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           IsReadOnly="True"                                     

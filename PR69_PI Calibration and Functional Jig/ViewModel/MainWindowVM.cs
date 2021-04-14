@@ -1196,7 +1196,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private async void btnStartClk(object obj)
         {
-            
+          
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
                         
@@ -1291,15 +1291,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 });                
             }
-            
+
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
-            
+
             //Parameters
             //1. DUT Number
             //2. Test Number
             //3. Test Status
-            
-            //UpdateTestResult(4, 2, "PASS");
+
+
+            clsGlobalVariables.CurrentTestNumber = 2;
+            UpdateTestResult(4, "FAIL");
+
+            return;
+
 
             EnableDisableUI(false);
             clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;

@@ -216,6 +216,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _Tolerance = value; OnPropertyChanged("Tolerance"); }
         }
 
+        private string _DelayForNexttest;
+
+        public string DelayForNexttest
+        {
+            get { return _DelayForNexttest; }
+            set { _DelayForNexttest = value; OnPropertyChanged("DelayForNexttest"); }
+        }
+
+
         private string _P1;
 
         public string P1
@@ -392,6 +401,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                             Min = catId.mAmpTests[0].Min;
                             Max = catId.mAmpTests[0].Max;
                             Tolerance = catId.mAmpTests[0].Tolerance;
+                            DelayForNexttest = catId.mAmpTests[0].DelayForNexttest;
                             P1 = catId.mAmpTests[0].P1;
                             P2 = catId.mAmpTests[0].P2;
                             P3 = catId.mAmpTests[0].P3;
@@ -412,6 +422,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                             Min = catId.VoltTests[0].Min;
                             Max = catId.VoltTests[0].Max;
                             Tolerance = catId.VoltTests[0].Tolerance;
+                            DelayForNexttest = catId.VoltTests[0].DelayForNexttest;
                             P1 = catId.VoltTests[0].P1;
                             P2 = catId.VoltTests[0].P2;
                             P3 = catId.VoltTests[0].P3;
@@ -432,6 +443,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                             Min = catId.PT100SensorTests[0].Min;
                             Max = catId.PT100SensorTests[0].Max;
                             Tolerance = catId.PT100SensorTests[0].Tolerance;
+                            DelayForNexttest = catId.PT100SensorTests[0].DelayForNexttest;
                             P1 = catId.PT100SensorTests[0].P1;
                             P2 = catId.PT100SensorTests[0].P2;
                             P3 = catId.PT100SensorTests[0].P3;
@@ -452,6 +464,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                             Min = catId.RSensor[0].Min;
                             Max = catId.RSensor[0].Max;
                             Tolerance = catId.RSensor[0].Tolerance;
+                            DelayForNexttest = catId.RSensor[0].DelayForNexttest;
                             P1 = catId.RSensor[0].P1;
                             P2 = catId.RSensor[0].P2;
                             P3 = catId.RSensor[0].P3;
@@ -472,6 +485,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                             Min = catId.JSensor[0].Min;
                             Max = catId.JSensor[0].Max;
                             Tolerance = catId.JSensor[0].Tolerance;
+                            DelayForNexttest = catId.JSensor[0].DelayForNexttest;
                             P1 = catId.JSensor[0].P1;
                             P2 = catId.JSensor[0].P2;
                             P3 = catId.JSensor[0].P3;
@@ -505,6 +519,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     Max = Max,
                     Min = Min,
                     Tolerance = Tolerance,
+                    DelayForNexttest = DelayForNexttest,
                     P1 = P1,
                     P2 = P2,
                     P3 = P3,

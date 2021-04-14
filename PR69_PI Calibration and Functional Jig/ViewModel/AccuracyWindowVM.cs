@@ -793,7 +793,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void StartAccuracyTestingClk(object obj)
         {
 
+            clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
             UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
+            UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
 
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -824,22 +826,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             switch (DUTNumber)
                             {
                                 case 1:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 2:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 3:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 4:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 5:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 6:
-                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    AccuracymAmpTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
                                     break;
                                 default:
                                     break;
@@ -853,28 +855,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.Testnumber == testnumber)
                         {
-                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            clsAccuracyTestsDevices obj = AccuracyVoltTestsDetails[item.Testnumber - 1];
                             string TestPoint = obj.TestPoint;
                         
                             switch (DUTNumber)
                             {
                                 case 1:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 2:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 3:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 4:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 5:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 6:
-                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    AccuracyVoltTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
                                     break;
                                 default:
                                     break;
@@ -889,28 +891,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.Testnumber == testnumber)
                         {
-                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            clsAccuracyTestsDevices obj = AccuracyPT100SnsrTestsDetails[item.Testnumber - 1];
                             string TestPoint = obj.TestPoint;
                             
                             switch (DUTNumber)
                             {
                                 case 1:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 2:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 3:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 4:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 5:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 6:
-                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    AccuracyPT100SnsrTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
                                     break;
                                 default:
                                     break;
@@ -925,29 +927,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.Testnumber == testnumber)
                         {
-                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            clsAccuracyTestsDevices obj = AccuracyRSensorTestsDetails[item.Testnumber - 1];
                             string TestPoint = obj.TestPoint;
                                                       
 
                             switch (DUTNumber)
                             {
                                 case 1:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 2:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 3:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 4:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 5:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 6:
-                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    AccuracyRSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
                                     break;
                                 default:
                                     break;
@@ -962,28 +964,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         if (item.Testnumber == testnumber)
                         {
-                            clsAccuracyTestsDevices obj = AccuracymAmpTestsDetails[item.Testnumber - 1];
+                            clsAccuracyTestsDevices obj = AccuracyJSensorTestsDetails[item.Testnumber - 1];
                             string TestPoint = obj.TestPoint;
 
                             switch (DUTNumber)
                             {
                                 case 1:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = result, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 2:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1= obj.TestresultDevice1 ,TestresultDevice2 = result, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 3:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = result, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 4:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = result, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 5:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = result, TestresultDevice6 = obj.TestresultDevice6 };
                                     break;
                                 case 6:
-                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
+                                    AccuracyJSensorTestsDetails[item.Testnumber - 1] = new clsAccuracyTestsDevices { Testnumber = obj.Testnumber, TestPoint = TestPoint, TestresultDevice1 = obj.TestresultDevice1, TestresultDevice2 = obj.TestresultDevice2, TestresultDevice3 = obj.TestresultDevice3, TestresultDevice4 = obj.TestresultDevice4, TestresultDevice5 = obj.TestresultDevice5, TestresultDevice6 = result };
                                     break;
                                 default:
                                     break;
