@@ -866,7 +866,7 @@
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
                                                 <TextBlock Text="Cycle Time : " Margin="10 10 0 0"/>
-                                                <TextBox  Width="80" Height="45" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
+                                                <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
                                                           FontWeight="Bold"
                                                           Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           IsReadOnly="True"                                     

@@ -160,6 +160,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string Min { get; set; }
         public string Max { get; set; }
         public string Tolerance { get; set; }
+        public string DelayForNexttest { get; set; }
         public string P1 { get; set; }
         public string P2 { get; set; }
         public string P3 { get; set; }

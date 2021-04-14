@@ -1196,7 +1196,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private async void btnStartClk(object obj)
         {
-            
+          
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
                         

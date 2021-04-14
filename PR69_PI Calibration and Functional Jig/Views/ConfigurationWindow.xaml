@@ -828,6 +828,12 @@
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
 
+                                <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="1" Width="auto"
+                                    materialDesign:HintAssist.Hint="Accuracy timing" 
+                                    Text="{Binding clsAccuracyTests.DelayForNexttest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    ToolTip=""></TextBox>
+
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Width="auto"
                                     materialDesign:HintAssist.Hint="P1" 
                                     Text="{Binding clsAccuracyTests.P1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
