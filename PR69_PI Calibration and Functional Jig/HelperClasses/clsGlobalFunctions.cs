@@ -1599,7 +1599,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
-                                    for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                                    for (byte DUT = 1; DUT < clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
