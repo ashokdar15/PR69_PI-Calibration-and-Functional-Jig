@@ -1,6 +1,7 @@
 ﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -859,24 +860,137 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             StartStopWatch(true);
 
-            
+
 
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
 
-            //UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
+            UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
 
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 System.Windows.Forms.MessageBox.Show("fail Auto maticCOMPortDetections");
+                StartStopWatch(false);
                 return;
             }
+            //        public static string mAmpAccuracyTest = "mAmpAccTests";
+            //public static string voltAccuracyTest = "voltAccTests";
+            //public static string pt100sensorAccuracyTest = "pt100sensorAccTests";
+            //public static string RsensorAccuracyTest = "RsensorAccTests";
+            //public static string JsensorAccuracyTest = "JsensorAccTests";
+            Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
+            GetAccuracyDataFromJSON(AccuracyList);
 
             //start accuracy with user define point
             //write constant
             //write data log in sqlite.
 
+        }
+
+        private void GetAccuracyDataFromJSON(Dictionary<string, List<string>> AccuracyList)
+        {
+            foreach (var item in clsGlobalVariables.Selectedcatid.ListOfAccuracyTestsSequence)
+            {
+                switch (item)
+                {
+                    case clsGlobalVariables.mAmpAccuracyTest:
+                        if (clsGlobalVariables.Selectedcatid.IsmAmpTestEnabled)
+                        {
+                            List<string> tempList = new List<string>();
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P2);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P3);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P4);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P5);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P6);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P7);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P8);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P9);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.mAmpTests[0].P10);
+
+                            tempList.RemoveRange(Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].NumberTestPoints), (10 - Convert.ToInt32(clsGlobalVariables.Selectedcatid.mAmpTests[0].NumberTestPoints)));
+                            AccuracyList.Add(item, tempList);
+                        }
+                        break;
+                    case clsGlobalVariables.voltAccuracyTest:
+                        if (clsGlobalVariables.Selectedcatid.IsVoltTestEnabled)
+                        {
+                            List<string> tempList = new List<string>();
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P1);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P2);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P3);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P4);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P5);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P6);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P7);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P8);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P9);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.VoltTests[0].P10);
+                            tempList.RemoveRange(Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].NumberTestPoints), (10 - Convert.ToInt32(clsGlobalVariables.Selectedcatid.VoltTests[0].NumberTestPoints)));
+                            AccuracyList.Add(item, tempList);
+
+                        }
+                        break;
+                    case clsGlobalVariables.pt100sensorAccuracyTest:
+                        if (clsGlobalVariables.Selectedcatid.IsPT100SensorTestEnabled)
+                        {
+                            List<string> tempList = new List<string>();
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P2);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P3);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P4);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P5);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P6);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P7);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P8);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P9);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P10);
+                            tempList.RemoveRange(Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].NumberTestPoints), (10 - Convert.ToInt32(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].NumberTestPoints)));
+                            AccuracyList.Add(item, tempList);
+                        }
+                        break;
+                    case clsGlobalVariables.RsensorAccuracyTest:
+                        if (clsGlobalVariables.Selectedcatid.IsRSensorTestEnabled)
+                        {
+                            List<string> tempList = new List<string>();
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P1);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P2);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P3);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P4);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P5);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P6);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P7);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P8);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P9);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.RSensor[0].P10);
+                            tempList.RemoveRange(Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].NumberTestPoints), (10 - Convert.ToInt32(clsGlobalVariables.Selectedcatid.RSensor[0].NumberTestPoints)));
+                            AccuracyList.Add(item, tempList);
+                        }
+                        break;
+
+                    case clsGlobalVariables.JsensorAccuracyTest:
+                        if (clsGlobalVariables.Selectedcatid.IsJSensorTestEnabled)
+                        {
+                            List<string> tempList = new List<string>();
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P1);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P2);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P3);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P4);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P5);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P6);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P7);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P8);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P9);
+                            tempList.Add(clsGlobalVariables.Selectedcatid.JSensor[0].P10);
+                            tempList.RemoveRange(Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].NumberTestPoints), (10 - Convert.ToInt32(clsGlobalVariables.Selectedcatid.JSensor[0].NumberTestPoints)));
+                            AccuracyList.Add(item, tempList);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public void UpdateTestResult(int DUTNumber, int testnumber, string result,clsGlobalVariables.AccuracyParameter accuracyParameter)

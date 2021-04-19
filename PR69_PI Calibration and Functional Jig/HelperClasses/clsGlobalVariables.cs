@@ -150,11 +150,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
 
         //Add to list of AccuracyTestsSequence
-        public static string mAmpAccuracyTest = "mAmpAccTests";
-        public static string voltAccuracyTest = "voltAccTests";
-        public static string pt100sensorAccuracyTest = "pt100sensorAccTests";
-        public static string RsensorAccuracyTest = "RsensorAccTests";
-        public static string JsensorAccuracyTest = "JsensorAccTests";
+        public const  string mAmpAccuracyTest = "mAmp Tests";
+        public const  string voltAccuracyTest = "Volt Tests";
+        public const string pt100sensorAccuracyTest = "PT100 Sensor Tests";
+        public const string RsensorAccuracyTest = "Rsensor Tests";
+        public const string JsensorAccuracyTest = "Jsensor Tests";
 
         //Add to list of CalibTestsSequence
         //ListOfGroupSequence.Add("Analog Input Tests");

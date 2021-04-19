@@ -1460,6 +1460,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public void UpdateTestResult(int DUTNumber, string status)
         {
             int testnumber = clsGlobalVariables.CurrentTestNumber;
+            if (status == clsGlobalVariables.FAIL)
+                if (clsGlobalVariables.NUMBER_OF_DUTS_List.Contains((byte)DUTNumber))
+                    clsGlobalVariables.NUMBER_OF_DUTS_List.Remove((byte)DUTNumber);
             switch (DUTNumber)
             {
                 case 1:
