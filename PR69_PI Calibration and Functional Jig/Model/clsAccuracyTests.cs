@@ -29,6 +29,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P2":
@@ -39,7 +41,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P3":
@@ -50,7 +53,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P4":
@@ -61,7 +65,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P5":
@@ -72,7 +77,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                       
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P6":
@@ -83,7 +89,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                       
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P7":
@@ -94,7 +101,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P8":
@@ -105,7 +113,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P9":
@@ -116,7 +125,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                        
+                        else
+                            res = BgColorred;
                         break;
 
                     case "P10":
@@ -127,7 +137,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                                 res = BgColorred;
                             }
                         }
-                       
+                        else
+                            res = BgColorred;
                         break;
 
                     default:

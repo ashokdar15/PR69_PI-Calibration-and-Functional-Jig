@@ -18,6 +18,8 @@ Check coming data from device and tolerance in database. If ok its cell will gre
 14,15,16/04/21
 Database changes for accuracy new parameter adding(Delay for next test).
 New Message window added instead of messageBox dialog.
+Database Accuracy validation added(point reading should in between min and max).
+In Accuracy Main GUI Serial number column added, Grid replaced by Stackpanel, Next button Stop buttons added.
 Displaying current active test group and test name of each connected device. if any error occurs of particular device,
 displaying message for that particular Device and stop process for that only.
 While calibration, if test ok or fail, the status of each test will be display in datagrid for each device.

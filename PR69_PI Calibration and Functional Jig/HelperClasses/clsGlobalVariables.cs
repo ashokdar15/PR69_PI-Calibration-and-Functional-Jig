@@ -149,7 +149,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             JSensor
         }
 
-       
+        //Add to list of AccuracyTestsSequence
+        public static string mAmpAccuracyTest = "mAmpAccTests";
+        public static string voltAccuracyTest = "voltAccTests";
+        public static string pt100sensorAccuracyTest = "pt100sensorAccTests";
+        public static string RsensorAccuracyTest = "RsensorAccTests";
+        public static string JsensorAccuracyTest = "JsensorAccTests";
+
+        //Add to list of CalibTestsSequence
+        //ListOfGroupSequence.Add("Analog Input Tests");
+        //ListOfGroupSequence.Add("Analog Output Tests");
+        //ListOfGroupSequence.Add("TC RTD Tests");
+        //ListOfGroupSequence.Add("Relay,SSR Tests");
+        //ListOfGroupSequence.Add("Calibration Constant Tests");
+        //ListOfGroupSequence.Add("Common Tests");
+        public static string strAnalogInputTests = "Analog Input Tests";
+        public static string strAnalogOutputTests = "Analog Output Tests";
+        public static string strTCRTDTests = "TC RTD Tests";
+        public static string strRelaysSSRTests = "Relay,SSR Tests";
+        public static string strCalibConstTests = "Calibration Constant Tests";
+        public static string strCommonTests = "Common Tests";
+
+
         #region"-----Variables and constants------"
         public static string WorkingDirectory = @"C:\Program Files (x86)\Nuvoton Tools\NuLink Command Tool";
         public static bool StopButtonFlag = false;
