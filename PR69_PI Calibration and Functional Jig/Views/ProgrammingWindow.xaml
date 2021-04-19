@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:model="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.Model"
         xmlns:vm="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.ViewModel"
         xmlns:local="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.Views"
@@ -17,40 +18,71 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
     <Window.DataContext>
-        <vm:AccuracyWindowVM x:Name="AccuracyVM"/>
+        <vm:ProgrammingWindowVM x:Name="ProgrammingVM"/>
     </Window.DataContext>
 
-    <materialDesign:DialogHost>
+    <materialDesign:DialogHost DataContext="{x:Reference ProgrammingVM}">
         <materialDesign:DialogHost.DialogContent>
             <StackPanel>
                 
             </StackPanel>
         </materialDesign:DialogHost.DialogContent>
         <materialDesign:DialogHost.Content>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+
+            <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="2" Margin="2 2 2 2">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220" />
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#1c313a">
-                        <TextBlock Text="Programming" Padding="6" Margin="2 0 0 0" Foreground="White"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="0" Grid.Column="1" Background="#1c313a">
-                        <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#1c313a">
+                            <TextBlock Text="Programming" Padding="6" Margin="2 0 0 0" Foreground="White"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Background="#1c313a">
+                            <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="White">
-                            <materialDesign:PackIcon Kind="Multiply" Height="12" Foreground="White" Width="12" Background="IndianRed"/>
-                        </Button>
+                                <materialDesign:PackIcon Kind="Multiply" Height="12" Foreground="White" Width="12" Background="IndianRed"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <GroupBox Margin="8 8" Padding="5"  Width="auto" Height="345" BorderThickness="1">
+                            <GroupBox.Header>
+                                <TextBlock Text="Report Window" FontSize="15" HorizontalAlignment="Center"></TextBlock>
+                            </GroupBox.Header>
+
+                            <StackPanel Orientation="Vertical">
+                                <xctk:RichTextBox Text="{Binding Path=strtestReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Width="auto" Height="250"
+                                              IsReadOnly="True" FontWeight="Normal" Margin="15 15 15 15">
+                                    <xctk:RichTextBoxFormatBarManager.FormatBar>
+                                        <xctk:RichTextBoxFormatBar />
+                                    </xctk:RichTextBoxFormatBarManager.FormatBar>
+                                </xctk:RichTextBox>
+                                <ProgressBar Height="25" Width="740"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <Button  Width="85" Height="30" Padding="5" Margin="5 10"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding btnStartProgram}" Foreground="WhiteSmoke" Background="#26c6da"
+                                Visibility="{Binding Path=StartProgramBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">PROGRAM</Button>
+
+
                     </StackPanel>
+                    
                 </Grid>
-            </Grid>
+            </Border>
+            
         </materialDesign:DialogHost.Content>
     </materialDesign:DialogHost>
 

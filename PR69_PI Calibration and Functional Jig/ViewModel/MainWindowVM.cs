@@ -134,7 +134,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void OpenProgrammingWindowClk(object obj)
         {
-            
+            ProgrammingWindow programmingWindow = new ProgrammingWindow();
+            programmingWindow.ShowDialog();
         }
 
         private void OpenAccuracyWindowClk(object obj)

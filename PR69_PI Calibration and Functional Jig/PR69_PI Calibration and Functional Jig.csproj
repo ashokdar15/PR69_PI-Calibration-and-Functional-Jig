@@ -94,6 +94,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\ProgrammingWindow.xaml.cs">
+      <DependentUpon>ProgrammingWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AccuracyWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,6 +150,7 @@
     <Compile Include="ViewModel\AccuracyWindowVM.cs" />
     <Compile Include="ViewModel\ConfigurationWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\ProgrammingWindowVM.cs" />
     <Compile Include="Views\AccuracyWindow.xaml.cs">
       <DependentUpon>AccuracyWindow.xaml</DependentUpon>
     </Compile>
@@ -160,6 +164,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ProgrammingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
