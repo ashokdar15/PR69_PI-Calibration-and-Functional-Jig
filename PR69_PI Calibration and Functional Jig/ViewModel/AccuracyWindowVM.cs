@@ -859,6 +859,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             StartStopWatch(true);
 
+            
+
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
 
             //UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);

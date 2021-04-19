@@ -1288,7 +1288,7 @@
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                 </TextBox>
                                 <GroupBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="10 20" HorizontalAlignment="Left" 
-                                  Padding="0"  Width="520" Height="120" BorderThickness="2">
+                                  Padding="0"  Width="565" Height="120" BorderThickness="2">
                                     <GroupBox.Header>
                                         <TextBlock Text="Calibration and Functional Tests Details" FontSize="15"></TextBlock>
                                     </GroupBox.Header>

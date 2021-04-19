@@ -47,6 +47,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
                 }
                 vm.IsSaveBtnVis = false;
                 vm.IsCheckBoxEnabled = false;
+                vm.IsDefaultSequence = false;
                 vm.AssignDataToFields(MainTreeView.SelectedItem);
 
             }

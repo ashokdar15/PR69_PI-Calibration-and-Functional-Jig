@@ -434,19 +434,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_IsmAmpInputTest)
                 {
-                    if (!AccuracyTestSequenceList.Contains("mAmp Tests"))
+                    if (!AccuracyTestSequenceList.Contains(clsGlobalVariables.mAmpAccuracyTest))
                     {
-                        AccuracyTestSequenceList.Add("mAmp Tests");
+                        AccuracyTestSequenceList.Add(clsGlobalVariables.mAmpAccuracyTest);
                     }
                 }
                 else
                 {
-                    if (AccuracyTestSequenceList.Contains("mAmp Tests"))
+                    if (AccuracyTestSequenceList.Contains(clsGlobalVariables.mAmpAccuracyTest))
                     {
                         int index = 0;
                         foreach (string testgrp in AccuracyTestSequenceList)
                         {
-                            if (testgrp == "mAmp Tests")
+                            if (testgrp == clsGlobalVariables.mAmpAccuracyTest)
                             {
                                 AccuracyTestSequenceList.RemoveAt(index);
                                 break;
@@ -470,19 +470,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_IsVoltInputTest)
                 {
-                    if (!AccuracyTestSequenceList.Contains("Volt Tests"))
+                    if (!AccuracyTestSequenceList.Contains(clsGlobalVariables.voltAccuracyTest))
                     {
-                        AccuracyTestSequenceList.Add("Volt Tests");
+                        AccuracyTestSequenceList.Add(clsGlobalVariables.voltAccuracyTest);
                     }
                 }
                 else
                 {
-                    if (AccuracyTestSequenceList.Contains("Volt Tests"))
+                    if (AccuracyTestSequenceList.Contains(clsGlobalVariables.voltAccuracyTest))
                     {
                         int index = 0;
                         foreach (string testgrp in AccuracyTestSequenceList)
                         {
-                            if (testgrp == "Volt Tests")
+                            if (testgrp == clsGlobalVariables.voltAccuracyTest)
                             {
                                 AccuracyTestSequenceList.RemoveAt(index);
                                 break;
@@ -506,19 +506,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_IsPT100sensorInputTest)
                 {
-                    if (!AccuracyTestSequenceList.Contains("PT100 Sensor Tests"))
+                    if (!AccuracyTestSequenceList.Contains(clsGlobalVariables.pt100sensorAccuracyTest))
                     {
-                        AccuracyTestSequenceList.Add("PT100 Sensor Tests");
+                        AccuracyTestSequenceList.Add(clsGlobalVariables.pt100sensorAccuracyTest);
                     }
                 }
                 else
                 {
-                    if (AccuracyTestSequenceList.Contains("PT100 Sensor Tests"))
+                    if (AccuracyTestSequenceList.Contains(clsGlobalVariables.pt100sensorAccuracyTest))
                     {
                         int index = 0;
                         foreach (string testgrp in AccuracyTestSequenceList)
                         {
-                            if (testgrp == "PT100 Sensor Tests")
+                            if (testgrp == clsGlobalVariables.pt100sensorAccuracyTest)
                             {
                                 AccuracyTestSequenceList.RemoveAt(index);
                                 break;
@@ -543,19 +543,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_IsRsensorInputTest)
                 {
-                    if (!AccuracyTestSequenceList.Contains("Rsensor Tests"))
+                    if (!AccuracyTestSequenceList.Contains(clsGlobalVariables.RsensorAccuracyTest))
                     {
-                        AccuracyTestSequenceList.Add("Rsensor Tests");
+                        AccuracyTestSequenceList.Add(clsGlobalVariables.RsensorAccuracyTest);
                     }
                 }
                 else
                 {
-                    if (AccuracyTestSequenceList.Contains("Rsensor Tests"))
+                    if (AccuracyTestSequenceList.Contains(clsGlobalVariables.RsensorAccuracyTest))
                     {
                         int index = 0;
                         foreach (string testgrp in AccuracyTestSequenceList)
                         {
-                            if (testgrp == "Rsensor Tests")
+                            if (testgrp == clsGlobalVariables.RsensorAccuracyTest)
                             {
                                 AccuracyTestSequenceList.RemoveAt(index);
                                 break;
@@ -578,19 +578,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_IsJsensorInputTest)
                 {
-                    if (!AccuracyTestSequenceList.Contains("Jsensor Tests"))
+                    if (!AccuracyTestSequenceList.Contains(clsGlobalVariables.JsensorAccuracyTest))
                     {
-                        AccuracyTestSequenceList.Add("Jsensor Tests");
+                        AccuracyTestSequenceList.Add(clsGlobalVariables.JsensorAccuracyTest);
                     }
                 }
                 else
                 {
-                    if (AccuracyTestSequenceList.Contains("Jsensor Tests"))
+                    if (AccuracyTestSequenceList.Contains(clsGlobalVariables.JsensorAccuracyTest))
                     {
                         int index = 0;
                         foreach (string testgrp in AccuracyTestSequenceList)
                         {
-                            if (testgrp == "Jsensor Tests")
+                            if (testgrp == clsGlobalVariables.JsensorAccuracyTest)
                             {
                                 AccuracyTestSequenceList.RemoveAt(index);
                                 break;
@@ -719,37 +719,37 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsSequencebtnEnabled = false;
                     ListOfGroupSequence.Clear();
-                    //ListOfGroupSequence.Add("Analog Input Tests");
-                    //ListOfGroupSequence.Add("Analog Output Tests");
-                    //ListOfGroupSequence.Add("TC RTD Tests");
-                    //ListOfGroupSequence.Add("Relay,SSR Tests");
-                    //ListOfGroupSequence.Add("Calibration Constant Tests");
-                    //ListOfGroupSequence.Add("Common Tests");
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
+                    //ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
 
 
                     if (IsCommonTests)
                     {
-                        ListOfGroupSequence.Add("Common Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
                     }
                     if (IsAnalogOutputTest)
                     {
-                        ListOfGroupSequence.Add("Analog Output Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
                     }
                     if (IsRelayTest)
                     {
-                        ListOfGroupSequence.Add("Relay,SSR Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
                     }
                     if (IsTC_RTDTest)
                     {
-                        ListOfGroupSequence.Add("TC RTD Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
                     }
                     if (IsAnalogInputTest)
                     {
-                        ListOfGroupSequence.Add("Analog Input Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
                     }
                     if (IsCalibConstantTest)
                     {
-                        ListOfGroupSequence.Add("Calibration Constant Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
                     }                                    
                     
                 }
@@ -1225,6 +1225,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         #endregion
 
         #region Main UI Tests Visibility
+
+        //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
+        //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
+        //ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
+        //ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
+        //ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
+        //ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
+
         private bool _IsAnalogInputTest;
 
         public bool IsAnalogInputTest
@@ -1238,21 +1246,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsAnalogInputTestsVis = true;
 
-                    if (!ListOfGroupSequence.Contains("Analog Input Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strAnalogInputTests))
                     {
-                        ListOfGroupSequence.Add("Analog Input Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
                     }
                 }                    
                 else
                 {
                     IsAnalogInputTestsVis = false;
 
-                    if (ListOfGroupSequence.Contains("Analog Input Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strAnalogInputTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "Analog Input Tests")
+                            if (testgrp == clsGlobalVariables.strAnalogInputTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -1286,21 +1294,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (_IsAnalogOutputTest)
                 {
                     IsAnalogOutputTestsVis = true;
-                    if (!ListOfGroupSequence.Contains("Analog Output Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strAnalogOutputTests))
                     {
-                        ListOfGroupSequence.Add("Analog Output Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
                     }
                 }
                 else
                 {
                     IsAnalogOutputTestsVis = false;
 
-                    if (ListOfGroupSequence.Contains("Analog Output Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strAnalogOutputTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "Analog Output Tests")
+                            if (testgrp == clsGlobalVariables.strAnalogOutputTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -1336,21 +1344,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsTC_RTDTestsVis = true;
 
-                    if (!ListOfGroupSequence.Contains("TC RTD Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strTCRTDTests))
                     {
-                        ListOfGroupSequence.Add("TC RTD Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
                     }
                 }
                 else
                 {
                     IsTC_RTDTestsVis = false;
 
-                    if (ListOfGroupSequence.Contains("TC RTD Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strTCRTDTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "TC RTD Tests")
+                            if (testgrp == clsGlobalVariables.strTCRTDTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -1386,21 +1394,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsRelayTestsVis = true;
 
-                    if (!ListOfGroupSequence.Contains("Relay,SSR Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strRelaysSSRTests))
                     {
-                        ListOfGroupSequence.Add("Relay,SSR Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
                     }
                 }
                 else
                 {
                     IsRelayTestsVis = false;
 
-                    if (ListOfGroupSequence.Contains("Relay,SSR Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strRelaysSSRTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "Relay,SSR Tests")
+                            if (testgrp == clsGlobalVariables.strRelaysSSRTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -1438,21 +1446,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsCalibConstantTestsVis = true;
 
-                    if (!ListOfGroupSequence.Contains("Calibration Constant Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strCalibConstTests))
                     {
-                        ListOfGroupSequence.Add("Calibration Constant Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
                     }
                 }
                 else
                 {
                     IsCalibConstantTestsVis = false;
 
-                    if (ListOfGroupSequence.Contains("Calibration Constant Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strCalibConstTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "Calibration Constant Tests")
+                            if (testgrp == clsGlobalVariables.strCalibConstTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -1489,21 +1497,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     IsCommonTestsVis = true;
 
-                    if (!ListOfGroupSequence.Contains("Common Tests"))
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strCommonTests))
                     {
-                        ListOfGroupSequence.Add("Common Tests");
+                        ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
                     }
                 }
                 else
                 {
                     IsCommonTestsVis = false; AccuracyDetailsEditVis =false;
 
-                    if (ListOfGroupSequence.Contains("Common Tests"))
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strCommonTests))
                     {
                         int index = 0;
                         foreach (string testgrp in ListOfGroupSequence)
                         {
-                            if (testgrp == "Common Tests")
+                            if (testgrp == clsGlobalVariables.strCommonTests)
                             {
                                 ListOfGroupSequence.RemoveAt(index);
                                 break;
@@ -2649,12 +2657,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             ListOfGroupSequence.Clear();
 
-            ListOfGroupSequence.Add("Analog Input Tests");
-            ListOfGroupSequence.Add("Analog Output Tests");
-            ListOfGroupSequence.Add("TC RTD Tests");
-            ListOfGroupSequence.Add("Relay,SSR Tests");
-            ListOfGroupSequence.Add("Calibration Constant Tests");
-            ListOfGroupSequence.Add("Common Tests");
+            ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
+            ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
+            ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
+            ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
+            ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
+            ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
         }
 
         private void AddSeriesClk(object obj)
