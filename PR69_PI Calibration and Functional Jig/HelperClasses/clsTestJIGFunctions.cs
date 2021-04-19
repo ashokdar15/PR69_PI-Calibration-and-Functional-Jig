@@ -10,229 +10,11 @@ using PR69_PI_Calibration_and_Functional_Jig.Views;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
-    /********************************************************************************************
-              Class Name        : clsTestJIGFunctions Class
-              Purpose           : This class contains all the tests which gets carried out during calibration and functional tests on DUT.
-              Date              : 1/06/2017
-              Written By        : Shubham
-              CopyRight         : General Industrial Controls Pvt. Ltd. Pune
-              Modified          : Date                
-              Released Version  :  V15
-              Changed By        :  NA
-              Decription Of Change:  NA
-    ********************************************************************************************/
+    
     public class clsTestJIGFunctions
     {
         ResourceManager objResManager = new ResourceManager("PR69_Function_and_Calibration_JIG.Resource.Res", typeof(clsTestJIGFunctions).Assembly);
-        ///<MemberName>TestsForJIG</MemberName>
-        ///<MemberType>Function</MemberType>
-        ///<CreatedBy>Shubham</CreatedBy>
-        ///<CommentedBy>Shubham</CommentedBy>
-        ///<Date>12/05/2017</Date>
-        ///<summary>
-        ///This function contains Swich case. Every case in this function represents Test of JIG. 
-        ///All JIG related test cases are present here.
-        ///</summary>
-        ///<param name="strmJigTest">This is the name of test to be performed on JIG.</param>
-        ///<ClassName>clsTestJIGFunctions</ClassName>
-        //public byte TestsForJIG(string strmJigTest)
-        //{
-        //    byte btmRetVal;
-
-        //    try
-        //    {
-        //        switch (strmJigTest)
-        //        {
-        //            case "SLAVE1_ALM1_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, ALM1_TYPE, SET_ALM_TYPE_VAL);
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_ALM1_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, ALM1_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_ALM2_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, ALM2_TYPE, SET_ALM_TYPE_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM2_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_ALM2_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, ALM2_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_SP1_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, SP1_VALUE, SET_SP_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.SP1_VALUE, clsGlobalVariables.SET_SP_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_SENS_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, SENS_SET, SET_SENS_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.SENS_SET, clsGlobalVariables.SET_SENS_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_OUTPUT_CONFIG_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, OUTPUT_CONF, OP_CONF_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OUTPUT_CONF, clsGlobalVariables.OP_CONF_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_CONT_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, CONT_TYPE, SET_CONT_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.CONT_TYPE, clsGlobalVariables.SET_CONT_VAL);
-
-        //                break;
-
-        //            case "SLAVE1_FUNC_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE1_ID, FUNC_TYPE, SET_FUNC_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.FUNC_TYPE, clsGlobalVariables.SET_FUNC_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_ALM1_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, ALM1_TYPE, SET_ALM_TYPE_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-        //                break;
-
-        //            case "SLAVE2_ALM1_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, ALM1_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-        //                break;
-
-        //            case "SLAVE2_ALM2_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, ALM2_TYPE, SET_ALM_TYPE_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.ALM2_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_ALM2_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, ALM2_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_SP1_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, SP1_VALUE, SET_SP_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.SP1_VALUE, clsGlobalVariables.SET_SP_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_SENS_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, SENS_SET, SET_SENS_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.SENS_SET, clsGlobalVariables.SET_SENS_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_OUTPUT_CONFIG_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, OUTPUT_CONF, OP_CONF_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OUTPUT_CONF, clsGlobalVariables.OP_CONF_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_CONT_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, CONT_TYPE, SET_CONT_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.CONT_TYPE, clsGlobalVariables.SET_CONT_VAL);
-
-        //                break;
-
-        //            case "SLAVE2_FUNC_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE2_ID, FUNC_TYPE, SET_FUNC_VAL)
-        //                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.FUNC_TYPE, clsGlobalVariables.SET_FUNC_VAL);
-
-        //                break;
-
-
-        //            case "SLAVE3_ALM1_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, ALM1_TYPE, SET_ALM_TYPE_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-        //                break;
-
-        //            case "SLAVE3_ALM1_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, ALM1_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-        //                break;
-
-        //            case "SLAVE3_ALM2_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, ALM2_TYPE, SET_ALM_TYPE_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.ALM2_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-
-        //                break;
-
-        //            case "SLAVE3_ALM2_THRESHLD_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, ALM2_THRESHOLD, SET_ALM_THRESH_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.ALM2_THRESHOLD, clsGlobalVariables.SET_ALM_THRESH_VAL);
-        //                break;
-
-        //            case "SLAVE3_SP1_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, SP1_VALUE, SET_SP_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SP1_VALUE, clsGlobalVariables.SET_SP_VAL);
-
-        //                break;
-
-        //            case "SLAVE3_SENS_VALUE":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, SENS_SET, SET_SENS_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SENS_SET, clsGlobalVariables.SET_SENS_VAL);
-
-        //                break;
-
-        //            case "SLAVE3_OUTPUT_CONFIG_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, OUTPUT_CONF, OP_CONF_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OUTPUT_CONF, clsGlobalVariables.OP_CONF_VAL);
-
-        //                break;
-
-        //            case "SLAVE3_CONT_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, CONT_TYPE, SET_CONT_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CONT_TYPE, clsGlobalVariables.SET_CONT_VAL);
-
-        //                break;
-
-        //            case "SLAVE3_FUNC_TYPE_SET":
-        //                //MBWriteHoldingReg(MB_SLAVE3_ID, FUNC_TYPE, SET_FUNC_VAL)
-        //                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-        //                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.FUNC_TYPE, clsGlobalVariables.SET_FUNC_VAL);
-
-        //                break;
-
-        //            default:
-        //                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-        //                break;
-        //        }
-        //        return btmRetVal;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        ///<MemberName>TestDUT</MemberName>
-        ///<MemberType>Function</MemberType>
-        ///<CreatedBy>Shubham</CreatedBy>
-        ///<CommentedBy>Shubham</CommentedBy>
-        ///<Date>12/05/2017</Date>
-        ///<summary>
-        ///This function contains Swich case of tests. Every case in this function represents Test for DUT. 
-        ///All DUT related test are present here.
-        ///</summary>
-        ///<param name="strmTest">This is the name of test to be performed on DUT.</param>
-        ///<ClassName>clsTestJIGFunctions</ClassName>
+              
         public byte TestDUT(string strmTest)
         {
 
@@ -242,6 +24,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 switch (strmTest)
                 {
                     case "READ_DEVICE_ID":
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
                         //This check is for device having modbus.   
                         if (clsModelSettings.blnRS485Flag == true)
                         {
@@ -251,7 +34,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
-                                    break;
+                                    continue; 
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
@@ -264,7 +47,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
-                                    break;
+                                    continue;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
@@ -274,8 +57,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "READ_CALIB_CONST_STATUS":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
-
                             //This check is for device having modbus.                        
                             if (clsModelSettings.blnRS485Flag == true)
                             {
@@ -284,6 +65,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             else  //Device without modbus
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.ReadCalibConstSalveToDut((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
+                            }
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                             //This "clsGlobalVariables.BEFORE_SOAKING" tells that device is not calibrated.
                             if (clsModelSettings.btmCalibConst == clsGlobalVariables.BEFORE_SOAKING)
