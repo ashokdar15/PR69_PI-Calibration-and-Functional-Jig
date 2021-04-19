@@ -71,7 +71,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public int Testnumber
         {
             get { return _testnumber; }
-            set { _testnumber = value; }
+            set { _testnumber = value; OnPropertyChanged("Testnumber"); }
         }
 
         private string _AccuracyParameter;

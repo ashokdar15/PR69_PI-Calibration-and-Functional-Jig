@@ -816,9 +816,9 @@
 
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Width="auto"
                                     materialDesign:HintAssist.Hint="No. Test Points" 
-                                    Text="{Binding clsAccuracyTests.NumberTestPoints, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                    ToolTip=""></TextBox>
+                                    Text="{Binding clsAccuracyTests.NumberTestPoints, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  
+                                </TextBox>
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Width="auto"
                                     materialDesign:HintAssist.Hint="Min" 
                                     Text="{Binding clsAccuracyTests.Min, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

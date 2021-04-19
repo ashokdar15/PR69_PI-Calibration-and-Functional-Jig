@@ -251,7 +251,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     break;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -265,7 +264,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     break;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -772,7 +770,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.INPROGRESS);
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.INPROGRESS);
 
-                        //.btmRetVal = clsGlobalVariables.objQueriescls.MBStartRelayTest();
+                       // .btmRetVal = clsGlobalVariables.objQueriescls.MBStartRelayTest();
 
                         //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         //{
@@ -1760,12 +1758,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
-                            break;
-                        }
+                       
                         btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_CNT);
                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                         {

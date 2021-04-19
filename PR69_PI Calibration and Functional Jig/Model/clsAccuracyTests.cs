@@ -8,8 +8,138 @@ using static PR69_PI_Calibration_and_Functional_Jig.HelperClasses.clsGlobalVaria
 
 namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
-    public class clsAccuracyTests : INotifyPropertyChanged
+    public class clsAccuracyTests : INotifyPropertyChanged, IDataErrorInfo
     {
+
+        public string Error => throw new NotImplementedException();
+
+        public string this[string propertyname]
+        {
+            get
+            {
+                string res = String.Empty;
+
+                switch (propertyname)
+                {
+                    case "P1":
+                        if (P1 != null && Min != null && Max != null && P1 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P1) < Convert.ToInt32(Min) || Convert.ToInt32(P1) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        break;
+
+                    case "P2":
+                        if (P2 != null && Min != null && Max != null && P2 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P2) < Convert.ToInt32(Min) || Convert.ToInt32(P2) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P3":
+                        if (P3 != null && Min != null && Max != null && P3 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P3) < Convert.ToInt32(Min) || Convert.ToInt32(P3) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P4":
+                        if (P4 != null && Min != null && Max != null && P4 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P4) < Convert.ToInt32(Min) || Convert.ToInt32(P4) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P5":
+                        if (P5 != null && Min != null && Max != null && P5 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P5) < Convert.ToInt32(Min) || Convert.ToInt32(P5) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                       
+                        break;
+
+                    case "P6":
+                        if (P6 != null && Min != null && Max != null && P6 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P6) < Convert.ToInt32(Min) || Convert.ToInt32(P6) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                       
+                        break;
+
+                    case "P7":
+                        if (P7 != null && Min != null && Max != null && P7 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P7) < Convert.ToInt32(Min) || Convert.ToInt32(P7) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P8":
+                        if (P8 != null && Min != null && Max != null && P8 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P8) < Convert.ToInt32(Min) || Convert.ToInt32(P8) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P9":
+                        if (P9 != null && Min != null && Max != null && P9 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P9) < Convert.ToInt32(Min) || Convert.ToInt32(P9) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                        
+                        break;
+
+                    case "P10":
+                        if (P10 != null && Min != null && Max != null && P10 != "" && Min != "" && Max != "")
+                        {
+                            if (Convert.ToInt32(P10) < Convert.ToInt32(Min) || Convert.ToInt32(P10) > Convert.ToInt32(Max))
+                            {
+                                res = BgColorred;
+                            }
+                        }
+                       
+                        break;
+
+                    default:
+                        break;
+                }
+
+                return res;
+            }
+        }
+
+
+        private string BgColorred = "Invalid";
 
         private string _NumberTestPoints;
 
@@ -230,7 +360,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string P1
         {
             get { return _P1; }
-            set { _P1 = value; OnPropertyChanged("P1"); }
+            set { _P1 = value;
+
+                OnPropertyChanged("P1"); }
         }
 
         private string _P2;
@@ -387,7 +519,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _VisP10 = value; OnPropertyChanged("VisP10"); }
         }
 
-
+       
         internal void ParseAccuracyDetails(CatIdList catId, AccuracyParameter Input)
         {
             try

@@ -3,6 +3,8 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
@@ -10,6 +12,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
     public class AccuracyWindowVM : INotifyPropertyChanged
     {
         private RelayCommand _StartAccuracyTesting;
+        private RelayCommand _StopAccuracyTesting;
+        private RelayCommand _NextAccuracyTesting;
+
         public bool blnmDivideBy100 = false;
         public bool blnTimerElapsed = false;
 
@@ -52,7 +57,32 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _AccuracyJSensorTestsDetails; }
             set { _AccuracyJSensorTestsDetails = value; OnPropertyChanged("AccuracyJSensorTestsDetails"); }
         }
-        
+
+        private bool _StartBtnVis;
+
+        public bool StartBtnVis
+        {
+            get { return _StartBtnVis; }
+            set { _StartBtnVis = value; OnPropertyChanged("StartBtnVis"); }
+        }
+
+        private bool _StopBtnVis;
+
+        public bool StopBtnVis
+        {
+            get { return _StopBtnVis; }
+            set { _StopBtnVis = value; OnPropertyChanged("StopBtnVis"); }
+        }
+
+        private string _StopwatchTime;
+
+        public string StopwatchTime
+        {
+            get { return _StopwatchTime; }
+            set { _StopwatchTime = value; OnPropertyChanged("StopwatchTime"); }
+        }
+
+
         private bool _IsmAmpVis;
 
         public bool IsmAmpVis
@@ -142,10 +172,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _StartAccuracyTesting; }
             set { _StartAccuracyTesting = value; }
         }
-        
+              
+
+        public RelayCommand StopAccuracyTesting
+        {
+            get { return _StopAccuracyTesting; }
+            set { _StopAccuracyTesting = value; }
+        }
+                
+        public RelayCommand NextAccuracyTesting
+        {
+            get { return _NextAccuracyTesting; }
+            set { _NextAccuracyTesting = value; }
+        }
+
+
         public AccuracyWindowVM()
         {
-            
+            StartBtnVis = true;
+            StopBtnVis = false;
+            _StartAccuracyTesting = new RelayCommand(StartAccuracyTestingClk);
+            tmrPVTimerTimeout.Tick += TmrPVTimerTimeout_Tick;
+
+            _StopAccuracyTesting = new RelayCommand(Stoptesting);
+            _NextAccuracyTesting = new RelayCommand(NextAccuracyTestClk);
+
             _AccuracymAmpTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
             _AccuracyVoltTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
             _AccuracyPT100SnsrTestsDetails = new ObservableCollection<clsAccuracyTestsDevices>();
@@ -204,8 +255,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             else
                 IsJSensorVis = false;
 
-            _StartAccuracyTesting = new RelayCommand(StartAccuracyTestingClk);
-            tmrPVTimerTimeout.Tick += TmrPVTimerTimeout_Tick;
+            
+        }
+
+        private void NextAccuracyTestClk(object obj)
+        {
+            
+        }
+
+        private void Stoptesting(object obj)
+        {
+            StartBtnVis = true;
+            StopBtnVis = false;
+            StartStopWatch(false);
         }
 
         private void FillTotalNumberOfPointsDetails(AccuracyTests objAccuracyTests, clsGlobalVariables.AccuracyParameter accuracyParameter)
@@ -792,10 +854,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void StartAccuracyTestingClk(object obj)
         {
+            StartBtnVis = false;
+            StopBtnVis = true;
+
+            StartStopWatch(true);
 
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
-            UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
-            UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
+
+            //UpdateTestResult(2,2,"10.12", clsGlobalVariables.AccuracyParameter.RSensor);
+            //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
 
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1500,6 +1567,58 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
         }
 
+        //Stopwatch purpose : Calculate time required for all calibration and programming
+        Stopwatch objstpWatch = new Stopwatch(); //Added for Calibration Timer
+        public System.Threading.TimerCallback tmrCallback;
+        public System.Threading.Timer tmrMbTimer;
+
+        /// <summary>
+        /// StartStopWatch()
+        /// This function is used to start stopwatch to display time on UI.
+        /// Stopwatch is initialised with value 00:00:00
+        /// </summary>
+        private void StartStopWatch(bool state)
+        {
+            if (state == true)
+            {
+                objstpWatch.Reset();
+                objstpWatch.Start();
+                tmrCallback = new System.Threading.TimerCallback(MbTimerIntr);
+                tmrMbTimer = new System.Threading.Timer(tmrCallback, null, 200, 200);
+                tmrMbTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);// Stop timer 
+                tmrMbTimer.Change(1000, System.Threading.Timeout.Infinite); // 1sec timer is started here.
+                StopwatchTime = "00:00:00";
+            }
+            else
+                tmrMbTimer.Dispose();
+
+        }
+
+
+        /// <summary>
+        /// MbTimerIntr()
+        /// This function is used to start timer thread 
+        /// TimeSpan represent time interval in seconds
+        /// </summary>
+        /// <param name="obj"></param>
+        private void MbTimerIntr(object obj)
+        {
+            try
+            {
+                //CheckForIllegalCrossThreadCalls = false;
+                tmrMbTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);// Stop inter packet timer 
+                TimeSpan objtmSpn = objstpWatch.Elapsed;
+                // Format and display the TimeSpan value.
+                StopwatchTime = String.Format("{0:00}:{1:00}:{2:00}", objtmSpn.Hours, objtmSpn.Minutes, objtmSpn.Seconds);
+
+                tmrMbTimer.Change(1000, System.Threading.Timeout.Infinite); // Start inter packet timer 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("In Timer Thread");
+                MyLogWriterDLL.LogWriter.WriteLog("ex.Message , ex.StackTrace" + ex.Message + "," + ex.StackTrace);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

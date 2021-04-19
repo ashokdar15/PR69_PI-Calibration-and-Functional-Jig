@@ -1300,10 +1300,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //3. Test Status
 
 
-            clsGlobalVariables.CurrentTestNumber = 2;
-            UpdateTestResult(4, "FAIL");
+            //clsGlobalVariables.CurrentTestNumber = 2;
+            //UpdateTestResult(4, "FAIL");
 
-            return;
+            //return;
 
 
             EnableDisableUI(false);

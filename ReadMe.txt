@@ -10,7 +10,14 @@ Modifications in database window, adding readable controls and default sequence 
 10-04-21
 Starting calibration process, Adding connections related messages with pictures/images. 
 
+12-04-21
+Accuracy window validation done,
+Check coming data from device and tolerance in database. If ok its cell will green with data, if not ok its display red with data.  
+
+
 14,15,16/04/21
+Database changes for accuracy new parameter adding(Delay for next test).
+New Message window added instead of messageBox dialog.
 Displaying current active test group and test name of each connected device. if any error occurs of particular device,
 displaying message for that particular Device and stop process for that only.
 While calibration, if test ok or fail, the status of each test will be display in datagrid for each device.
