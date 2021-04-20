@@ -129,7 +129,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void OpenAboutWindowClk(object obj)
         {
-            
+            About about = new About();
+            about.ShowDialog();
         }
 
         private void OpenProgrammingWindowClk(object obj)
