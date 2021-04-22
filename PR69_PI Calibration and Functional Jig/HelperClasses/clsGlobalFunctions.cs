@@ -36,6 +36,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             clsGlobalVariables.blngApplyDelayOver = true;
             tmrApplyDelay.Stop();
         }
+
+
+        public void DisplayMessageBox(string Msg, string Msgtype)
+        {
+            DisplayMessage displayMessage = new DisplayMessage(Msg, Msgtype);
+            displayMessage.ShowDialog();
+        }
+
         /// <summary>
         /// <membername>GetAvailablePortName</membername>
         /// <membertype>Method</membertype>

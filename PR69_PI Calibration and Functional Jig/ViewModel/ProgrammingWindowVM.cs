@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 {
@@ -13,13 +15,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public ProgrammingWindowVM()
         {
             StartProgramBtnVis = true;
-
+            strtestReport = "Start Program";
             _btnStartProgram = new RelayCommand(btnStartProgramClk);
         }
 
-        private void btnStartProgramClk(object obj)
+        private async void btnStartProgramClk(object obj)
         {
-            
+            for (int i = 0; i < 10; i++)
+            {
+                CurrentValue += 10;
+                StatusInPercentage = CurrentValue;
+                await Task.Delay(1000);
+            }
         }
 
         private RelayCommand _btnStartProgram;
@@ -30,7 +37,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _btnStartProgram = value; }
         }
 
+        private int _StatusInPercentage;
 
+        public int StatusInPercentage
+        {
+            get { return _StatusInPercentage; }
+            set { _StatusInPercentage = value; OnPropertyChanged("StatusInPercentage"); }
+        }
+        
+        private int _CurrentValue;
+
+        public int CurrentValue
+        {
+            get { return _CurrentValue; }
+            set { _CurrentValue = value; OnPropertyChanged("CurrentValue"); }
+        }
+        
         private string _strtestReport;
 
         public string strtestReport

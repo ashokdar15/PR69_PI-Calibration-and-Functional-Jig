@@ -722,7 +722,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         for (int catid = 0; catid < CatId[0].ConfigurationData[devtype].CatIdLists.Count; catid++)
                         {
                             if (CatId[0].ConfigurationData[devtype].CatIdLists[catid].DeviceName == _SelectedDeviceName)
-                            {                                
+                            {
+                                IsEnabledOkbtn = true;
                                 StartBtnVis = true;
                                 ListOfTests.Clear();
                             }
@@ -731,10 +732,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 }
                 else
+                {
+                    IsEnabledOkbtn = false;
                     IsProductSelected = false;
+                }
+                    
                 AssignConfigurationDetailsToUI();
 
-                NumberOfDUTs = 4;
+                NumberOfDUTs = "4";
 
                 OnPropertyChanged("SelectedDeviceName");
             }
@@ -995,10 +1000,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _DeviceInfoColumn = value; OnPropertyChanged("DeviceInfoColumn"); }
         }
 
+        private bool _IsEnabledOkbtn;
 
-        private int _NumberOfDUTs;
+        public bool IsEnabledOkbtn
+        {
+            get { return _IsEnabledOkbtn; }
+            set { _IsEnabledOkbtn = value; OnPropertyChanged("IsEnabledOkbtn"); }
+        }
 
-        public int NumberOfDUTs
+
+        private string _NumberOfDUTs;
+
+        public string NumberOfDUTs
         {
             get { return _NumberOfDUTs; }
             set
@@ -1007,7 +1020,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 switch (_NumberOfDUTs)
                 {
-                    case 0:
+                    case "0":
                         DUT1DetailsVis = false;
                         DUT2DetailsVis = false;
                         DUT3DetailsVis = false;
@@ -1021,12 +1034,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber4Vis = false;
                         DeviceNumber5Vis = false;
                         DeviceNumber6Vis = false;
-                        
+
+                        IsEnabledOkbtn = false;
+
                         //MessageBox.Show("Please enter at least 1 device for calibration.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         //NumberOfDUTs = 1;
-                      
+
                         break;
-                    case 1:
+                    case "1":
                         DUT1DetailsVis = true;
                         DUT2DetailsVis = false;
                         DUT3DetailsVis = false;
@@ -1042,7 +1057,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber6Vis = false;
 
                         break;
-                    case 2:
+                    case "2":
                         DUT1DetailsVis = true;
                         DUT2DetailsVis = true;
                         DUT3DetailsVis = false;
@@ -1058,7 +1073,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber6Vis = false;
 
                         break;
-                    case 3:
+                    case "3":
                         DUT1DetailsVis = true;
                         DUT2DetailsVis = true;
                         DUT3DetailsVis = true;
@@ -1074,7 +1089,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         DeviceNumber6Vis = false;
 
                         break;
-                    case 4:
+                    case "4":
                         DUT1DetailsVis = true;
                         DUT2DetailsVis = true;
                         DUT3DetailsVis = true;
@@ -1125,24 +1140,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                     default:                      
                         //ShowMessageBox("Please enter total number of devices less than or equal to 6.", false, "InvalidDUT_No", clsGlobalVariables.MsgIcon.Error);
-                        MessageBox.Show("Please enter total number of devices less than or equal to 4.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                        NumberOfDUTs = 4;
+                       // MessageBox.Show("Please enter total number of devices less than or equal to 4.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                       // NumberOfDUTs = "4";
                         break;
                 }
-                                
-                if (_NumberOfDUTs > 0 && _NumberOfDUTs < 7)
-                {
-                    if (_NumberOfDUTs > 4)
-                        DeviceInfoColumn = 3;
-                    else
-                        DeviceInfoColumn = 2;
 
-                    IsProductSelected = true;
-                    TestsDetailsVis = true;
+                if (_NumberOfDUTs != null && _NumberOfDUTs != "")
+                {
+                    if (Convert.ToInt32(_NumberOfDUTs) > 0 && Convert.ToInt32(_NumberOfDUTs) < 5)
+                    {
+                        if (Convert.ToInt32(_NumberOfDUTs) > 4)
+                            DeviceInfoColumn = 3;
+                        else
+                            DeviceInfoColumn = 2;
+
+                        IsProductSelected = true;
+                        TestsDetailsVis = true;
+                        IsEnabledOkbtn = true;
+                    }
+                    else
+                    {
+                        TestsDetailsVis = false;
+                        IsEnabledOkbtn = false;
+                    }
                 }
                 else
                 {
                     TestsDetailsVis = false;
+                    IsEnabledOkbtn = false;
                 }
                 
                 OnPropertyChanged("NumberOfDUTs");
@@ -1309,14 +1334,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
 
             EnableDisableUI(false);
-            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+            clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
             //If usr change number of device then need to find com port again.
             if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
             {
                 clsGlobalVariables.blngIsComportDetected = false;
                 clsGlobalVariables.blngIsComportDetectedForPLC = false;
             }
-            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(NumberOfDUTs) != (byte)clsGlobalVariables.enmResponseError.Success)
+            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
                 //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
@@ -1462,9 +1487,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public void UpdateTestResult(int DUTNumber, string status)
         {
             int testnumber = clsGlobalVariables.CurrentTestNumber;
-            if (status == clsGlobalVariables.FAIL)
-                if (clsGlobalVariables.NUMBER_OF_DUTS_List.Contains((byte)DUTNumber))
-                    clsGlobalVariables.NUMBER_OF_DUTS_List.Remove((byte)DUTNumber);
             switch (DUTNumber)
             {
                 case 1:
@@ -2120,7 +2142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         /// <param name="obj"></param>
         private void BtnOkclk(object obj)
         { 
-            clsGlobalVariables.NUMBER_OF_DUTS = NumberOfDUTs;
+            clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
             switch (obj.ToString())
             {
                 case "Ok":

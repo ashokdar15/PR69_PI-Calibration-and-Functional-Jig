@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,18 +30,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             InitializeComponent();
             switch (Msgtype)
             {
-                case "NotifyMsg":
+                case clsGlobalVariables.strNotifyMsg:
                     AndroidMsg.Visibility = Visibility.Visible;
                     ErrorMsg.Visibility = Visibility.Hidden;
                     QuestionmarkMsg.Visibility = Visibility.Hidden;
                     break;
 
-                case "ErrorMsg":
+                case clsGlobalVariables.strErrorMsg:
                     AndroidMsg.Visibility = Visibility.Hidden;
                     ErrorMsg.Visibility = Visibility.Visible;
                     QuestionmarkMsg.Visibility = Visibility.Hidden;
                     break;
-                case "QuestionMsg":
+                case clsGlobalVariables.strQuestionMsg:
                     AndroidMsg.Visibility = Visibility.Hidden;
                     ErrorMsg.Visibility = Visibility.Hidden;
                     QuestionmarkMsg.Visibility = Visibility.Visible;

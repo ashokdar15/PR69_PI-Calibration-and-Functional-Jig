@@ -169,6 +169,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string strRelaysSSRTests = "Relay,SSR Tests";
         public static string strCalibConstTests = "Calibration Constant Tests";
         public static string strCommonTests = "Common Tests";
+                        
+        public const string strNotifyMsg = "NotifyMsg";
+        public const string strErrorMsg = "ErrorMsg";
+        public const string strQuestionMsg = "QuestionMsg";
 
 
         #region"-----Variables and constants------"

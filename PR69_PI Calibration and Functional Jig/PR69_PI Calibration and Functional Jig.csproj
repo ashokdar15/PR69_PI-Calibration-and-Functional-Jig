@@ -97,6 +97,9 @@
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DisplayMessage.xaml.cs">
+      <DependentUpon>DisplayMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProgrammingWindow.xaml.cs">
       <DependentUpon>ProgrammingWindow.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <Page Include="Views\ConfigurationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DisplayMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DisplayMessageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

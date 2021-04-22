@@ -63,12 +63,18 @@
                             <StackPanel Orientation="Vertical">
                                 <xctk:RichTextBox Text="{Binding Path=strtestReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                               Width="auto" Height="250"
-                                              IsReadOnly="True" FontWeight="Normal" Margin="15 15 15 15">
+                                              IsReadOnly="True" FontWeight="Bold" FontSize="22" Margin="15 15 15 15">
                                     <xctk:RichTextBoxFormatBarManager.FormatBar>
                                         <xctk:RichTextBoxFormatBar />
                                     </xctk:RichTextBoxFormatBarManager.FormatBar>
                                 </xctk:RichTextBox>
-                                <ProgressBar Height="25" Width="740"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ProgressBar Value="{Binding CurrentValue, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Left" Margin="15 0 0 0" Height="25" Width="700"/>
+
+                                    <TextBlock Text="{Binding StatusInPercentage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 0 0" FontWeight="Bold" FontSize="16"/>
+                                    <TextBlock Text="%" Margin="0 5 0 0" FontWeight="Bold" FontSize="16"/>
+                                </StackPanel>
                             </StackPanel>
                         </GroupBox>
 
