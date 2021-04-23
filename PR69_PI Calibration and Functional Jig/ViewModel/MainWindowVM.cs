@@ -1263,10 +1263,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
-            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
@@ -1296,11 +1297,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
             //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
             foreach (string test in clsGlobalVariables.algTests_Auto)
             {
@@ -1470,7 +1471,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //shpPassFail.ShapeColor = Color.Green;
             //shpPassFail.TextONShape = "PASS";
             //shpPassFail.FontColor = Color.White;
-            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                     clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
             clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
             CloseAllComport();
@@ -1486,6 +1487,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //3. Test Status
         public void UpdateTestResult(int DUTNumber, string status)
         {
+            if (status==clsGlobalVariables.FAIL)
+            {
+
+            }
             int testnumber = clsGlobalVariables.CurrentTestNumber;
             switch (DUTNumber)
             {

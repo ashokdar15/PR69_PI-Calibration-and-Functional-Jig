@@ -248,7 +248,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //Read Input
         public const Byte MB_FUNC_READ_INPUTSTATUS = 0x2;
         public const Byte MB_FUNC_FORCE_MULTICOILS = 0xF;
-        
+        public const Byte MB_FUNC_READ_INPUTREGS = 0x4;
+        public const long ANALOG_INPUT_REG_OFFSET_ADD_STD = 0x42;
         public static int ig_Calib_Query_TimeOut = 5000;
         public static int CALIB_MEASURE_DELAY = 12000;
         public static int igDelay_In_Two_Calib_Queries = 500;
@@ -355,7 +356,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const int KEYPAD_CONFIG = 3;
         public static bool blngIsComportDetected = false;
         public static bool blngIsComportDetectedForPLC = false;
-        public const int PC_MODBUS_ID = 0xFA;
+        public const int PLC_MODBUS_ID = 0xFA;
         public const int MB_FUNC_UPDATEFIRMWARE = 0x64;
         public const int MB_SUBFUNC_GET_MODE_STATUS = 0xE;
         public static Byte DEVICE_MODE_STATUS;

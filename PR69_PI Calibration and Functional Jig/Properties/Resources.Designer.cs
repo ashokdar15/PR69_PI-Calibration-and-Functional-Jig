@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PR69_PI_Calibration_and_Functional_Jig.Properties
-{
-
-
+namespace PR69_PI_Calibration_and_Functional_Jig.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,1956 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PR69_PI_Calibration_and_Functional_Jig.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process is aborted. Please wait until the current process is completed..
+        /// </summary>
+        internal static string ABORT_BUTTON_CLICK {
+            get {
+                return ResourceManager.GetString("ABORT_BUTTON_CLICK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accurcy Testing completed successfully..
+        /// </summary>
+        internal static string ACCURACY_COMPLETE {
+            get {
+                return ResourceManager.GetString("ACCURACY_COMPLETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurred in Accurcy Testing..
+        /// </summary>
+        internal static string ACCURACY_FAILED {
+            get {
+                return ResourceManager.GetString("ACCURACY_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for .
+        /// </summary>
+        internal static string ACCURACY_J {
+            get {
+                return ResourceManager.GetString("ACCURACY_J", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for 0°C..
+        /// </summary>
+        internal static string ACCURACY_J_0 {
+            get {
+                return ResourceManager.GetString("ACCURACY_J_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for 300°C..
+        /// </summary>
+        internal static string ACCURACY_J_300 {
+            get {
+                return ResourceManager.GetString("ACCURACY_J_300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for 400°C..
+        /// </summary>
+        internal static string ACCURACY_J_400 {
+            get {
+                return ResourceManager.GetString("ACCURACY_J_400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for 700°C..
+        /// </summary>
+        internal static string ACCURACY_J_700 {
+            get {
+                return ResourceManager.GetString("ACCURACY_J_700", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of J sensor for -100°C..
+        /// </summary>
+        internal static string ACCURACY_J_NEG_100 {
+            get {
+                return ResourceManager.GetString("ACCURACY_J_NEG_100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 4-20 mA sensor for .
+        /// </summary>
+        internal static string ACCURACY_mA {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0 - 20 mA sensor for 1mA..
+        /// </summary>
+        internal static string ACCURACY_mA_1 {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 4-20 mA sensor for 12mA..
+        /// </summary>
+        internal static string ACCURACY_mA_12 {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0 - 20 mA sensor for 12mA..
+        /// </summary>
+        internal static string ACCURACY_mA_12_PI {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_12_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 4-20 mA sensor for 20mA..
+        /// </summary>
+        internal static string ACCURACY_mA_20 {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0 - 20 mA sensor for 20mA..
+        /// </summary>
+        internal static string ACCURACY_mA_20_PI {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_20_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 4-20 mA sensor for 4mA..
+        /// </summary>
+        internal static string ACCURACY_mA_4 {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0 - 20 mA sensor for .
+        /// </summary>
+        internal static string ACCURACY_mA_PI {
+            get {
+                return ResourceManager.GetString("ACCURACY_mA_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check accuracy Min and Max testing range for .
+        /// </summary>
+        internal static string ACCURACY_POINT_NOT_IN_RANGE {
+            get {
+                return ResourceManager.GetString("ACCURACY_POINT_NOT_IN_RANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for .
+        /// </summary>
+        internal static string ACCURACY_PT100 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for 0°C..
+        /// </summary>
+        internal static string ACCURACY_PT100_0 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for 300°C..
+        /// </summary>
+        internal static string ACCURACY_PT100_300 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100_300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for 400°C..
+        /// </summary>
+        internal static string ACCURACY_PT100_400 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100_400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for 700°C..
+        /// </summary>
+        internal static string ACCURACY_PT100_700 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100_700", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of PT100 sensor for -100°C..
+        /// </summary>
+        internal static string ACCURACY_PT100_NEG_100 {
+            get {
+                return ResourceManager.GetString("ACCURACY_PT100_NEG_100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of R sensor for .
+        /// </summary>
+        internal static string ACCURACY_R {
+            get {
+                return ResourceManager.GetString("ACCURACY_R", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of R sensor for 0°C..
+        /// </summary>
+        internal static string ACCURACY_R_0 {
+            get {
+                return ResourceManager.GetString("ACCURACY_R_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of R sensor for 1000°C..
+        /// </summary>
+        internal static string ACCURACY_R_1000 {
+            get {
+                return ResourceManager.GetString("ACCURACY_R_1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of R sensor for 1750°C..
+        /// </summary>
+        internal static string ACCURACY_R_1750 {
+            get {
+                return ResourceManager.GetString("ACCURACY_R_1750", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0-10Volt sensor for .
+        /// </summary>
+        internal static string ACCURACY_VOLT {
+            get {
+                return ResourceManager.GetString("ACCURACY_VOLT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0-10Volt sensor for 1Volt..
+        /// </summary>
+        internal static string ACCURACY_VOLT_1 {
+            get {
+                return ResourceManager.GetString("ACCURACY_VOLT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0-10Volt sensor for 10Volt..
+        /// </summary>
+        internal static string ACCURACY_VOLT_10 {
+            get {
+                return ResourceManager.GetString("ACCURACY_VOLT_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing accuracy of 0-10Volt sensor for 5Volt..
+        /// </summary>
+        internal static string ACCURACY_VOLT_5 {
+            get {
+                return ResourceManager.GetString("ACCURACY_VOLT_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to RTD..
+        /// </summary>
+        internal static string ALL_WIRE_MSG_96x961 {
+            get {
+                return ResourceManager.GetString("ALL_WIRE_MSG_96x961", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 3 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string ALL_WIRE_MSG_96x962 {
+            get {
+                return ResourceManager.GetString("ALL_WIRE_MSG_96x962", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to RTD..
+        /// </summary>
+        internal static string ALL_WIRE_MSG_PI1 {
+            get {
+                return ResourceManager.GetString("ALL_WIRE_MSG_PI1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 7 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string ALL_WIRE_MSG_PI2 {
+            get {
+                return ResourceManager.GetString("ALL_WIRE_MSG_PI2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analog Data can not be found for the selected cat id in ini file..
+        /// </summary>
+        internal static string ANALOG_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("ANALOG_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analog Output current calibration for .
+        /// </summary>
+        internal static string ANALOG_TEST_CURRENT {
+            get {
+                return ResourceManager.GetString("ANALOG_TEST_CURRENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  device is giving -&gt;.
+        /// </summary>
+        internal static string ANALOG_TEST_VALUE {
+            get {
+                return ResourceManager.GetString("ANALOG_TEST_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analog Output voltage calibration for .
+        /// </summary>
+        internal static string ANALOG_TEST_VOLTAGE {
+            get {
+                return ResourceManager.GetString("ANALOG_TEST_VOLTAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baud Rate Set To 38400......
+        /// </summary>
+        internal static string BAUDRATE_SET_SUCCESSFUL {
+            get {
+                return ResourceManager.GetString("BAUDRATE_SET_SUCCESSFUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration constants set successfully in device..
+        /// </summary>
+        internal static string CALIB_CONST_WRITE_SUCCESSFUL {
+            get {
+                return ResourceManager.GetString("CALIB_CONST_WRITE_SUCCESSFUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurred while setting Calibration constants in device..
+        /// </summary>
+        internal static string CALIB_CONST_WRITE_UNSUCCESSFUL {
+            get {
+                return ResourceManager.GetString("CALIB_CONST_WRITE_UNSUCCESSFUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibrator measure is not ON..
+        /// </summary>
+        internal static string CALIB_MEASURE_NOT_ON {
+            get {
+                return ResourceManager.GetString("CALIB_MEASURE_NOT_ON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This DUT is calibrated but accuracy testing is not done..
+        /// </summary>
+        internal static string CALIBRATED_BUT_ACCURACY_ISNOTDONE {
+            get {
+                return ResourceManager.GetString("CALIBRATED_BUT_ACCURACY_ISNOTDONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This DUT is already calibrated..
+        /// </summary>
+        internal static string CALIBRATED_DUT {
+            get {
+                return ResourceManager.GetString("CALIBRATED_DUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Com Port For Calibrator  -&gt;.
+        /// </summary>
+        internal static string Calibrator_COM_PORT {
+            get {
+                return ResourceManager.GetString("Calibrator_COM_PORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cat ID is not found in the ini file..
+        /// </summary>
+        internal static string CATID_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("CATID_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Connections with Device....
+        /// </summary>
+        internal static string CHECK_CONNECTIONS1 {
+            get {
+                return ResourceManager.GetString("CHECK_CONNECTIONS1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power cycle Programming Jig and try again....
+        /// </summary>
+        internal static string CHECK_CONNECTIONS2 {
+            get {
+                return ResourceManager.GetString("CHECK_CONNECTIONS2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check CJC IC.
+        ///Check CJC temperature by pressing UP-DOWN key.(DUT must show room temperature).
+        /// </summary>
+        internal static string CJC_CNT_ERR {
+            get {
+                return ResourceManager.GetString("CJC_CNT_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testing CJC temperature test..
+        /// </summary>
+        internal static string CJC_TEST {
+            get {
+                return ResourceManager.GetString("CJC_TEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code Lock Matched....
+        /// </summary>
+        internal static string CODE_LOCK_MATCHED {
+            get {
+                return ResourceManager.GetString("CODE_LOCK_MATCHED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code Lock Not Matching....
+        /// </summary>
+        internal static string CODE_LOCK_NOT_MATCH {
+            get {
+                return ResourceManager.GetString("CODE_LOCK_NOT_MATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect Calibrator measurement probes,.
+        /// </summary>
+        internal static string CURRENT_SETTING_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("CURRENT_SETTING_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) L terminal to COMMON Terminal on JIG..
+        /// </summary>
+        internal static string CURRENT_SETTING_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("CURRENT_SETTING_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) mA terminal to IDMM+ on JIG..
+        /// </summary>
+        internal static string CURRENT_SETTING_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("CURRENT_SETTING_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also set Calibrator Measure knob to mA Position..
+        /// </summary>
+        internal static string CURRENT_SETTING_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("CURRENT_SETTING_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description for the selected cat id is not found in ini file..
+        /// </summary>
+        internal static string DESCRIPTION_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Connected....
+        /// </summary>
+        internal static string DEVICE_CONNECTED {
+            get {
+                return ResourceManager.GetString("DEVICE_CONNECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DUT Already calibrated..
+        /// </summary>
+        internal static string DUT_ALREADY_CALIBRATED {
+            get {
+                return ResourceManager.GetString("DUT_ALREADY_CALIBRATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device calibration completed Successfully..
+        /// </summary>
+        internal static string DUT_CALIB_COMPLETED {
+            get {
+                return ResourceManager.GetString("DUT_CALIB_COMPLETED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device calibration Failed..
+        /// </summary>
+        internal static string DUT_CALIB_FAILED {
+            get {
+                return ResourceManager.GetString("DUT_CALIB_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DUT erased successfully..
+        /// </summary>
+        internal static string DUT_ERASE_COMPLETED {
+            get {
+                return ResourceManager.GetString("DUT_ERASE_COMPLETED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while erasing DUT..
+        /// </summary>
+        internal static string DUT_ERASE_FAILED {
+            get {
+                return ResourceManager.GetString("DUT_ERASE_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DUTID can not be found for the selected cat id in ini file..
+        /// </summary>
+        internal static string DUTID_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("DUTID_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Programming....
+        /// </summary>
+        internal static string ENDPROGRAMMING_SUCCESSFUL {
+            get {
+                return ResourceManager.GetString("ENDPROGRAMMING_SUCCESSFUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure 1mV value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string ENSURE_1mV_IN_CALIB_PI {
+            get {
+                return ResourceManager.GetString("ENSURE_1mV_IN_CALIB_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Valid Password..
+        /// </summary>
+        internal static string ENTER_VALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("ENTER_VALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erased Successfully....
+        /// </summary>
+        internal static string ERASED_SUCCESSFULLY {
+            get {
+                return ResourceManager.GetString("ERASED_SUCCESSFULLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erasing DUT....
+        /// </summary>
+        internal static string ERASING_DUT {
+            get {
+                return ResourceManager.GetString("ERASING_DUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurred during Accuracy Test..
+        /// </summary>
+        internal static string ERR_IN_ACCURACY {
+            get {
+                return ResourceManager.GetString("ERR_IN_ACCURACY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while reading Total number of Cat Id from INI file..
+        /// </summary>
+        internal static string ERROR_INI_TOTAL_NO_OF_CATID {
+            get {
+                return ResourceManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of Cat Id field should be positive or non zero..
+        /// </summary>
+        internal static string ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE {
+            get {
+                return ResourceManager.GetString("ERROR_INI_TOTAL_NO_OF_CATID_POSITIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail To End Programming....
+        /// </summary>
+        internal static string FAIL_ENDPROGRAM {
+            get {
+                return ResourceManager.GetString("FAIL_ENDPROGRAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail To Connect Device....
+        /// </summary>
+        internal static string FAIL_TO_CONNECT {
+            get {
+                return ResourceManager.GetString("FAIL_TO_CONNECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Programming Fail....
+        /// </summary>
+        internal static string FAIL_TO_PROGRAM {
+            get {
+                return ResourceManager.GetString("FAIL_TO_PROGRAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail To Set BaudRate....
+        /// </summary>
+        internal static string FAIL_TO_SET_BAUDRATE {
+            get {
+                return ResourceManager.GetString("FAIL_TO_SET_BAUDRATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail To Erase Device....
+        /// </summary>
+        internal static string FAILED_TO_ERASE {
+            get {
+                return ResourceManager.GetString("FAILED_TO_ERASE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50 mV calibration failed..
+        /// </summary>
+        internal static string FIFTYMV_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("FIFTYMV_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50mV Calibration completed Successfully..
+        /// </summary>
+        internal static string FIFTYMV_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("FIFTYMV_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50mV Calibration failed..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure Following points for Failure..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1)H Terminal of Calibrator&apos;s Source is connected to 12 number pin of DUT..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2)L Terminal of Calibrator&apos;s Source is connected to 11 number pin of DUT..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3)Check that Calibrator is ON..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID5 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4)Check that DUT connector is proper..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID6 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5)Check DUT Hardware..
+        /// </summary>
+        internal static string FIFTYMV_DEBUG_MSG_ID7 {
+            get {
+                return ResourceManager.GetString("FIFTYMV_DEBUG_MSG_ID7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4mA calibration failed..
+        /// </summary>
+        internal static string FOURMA_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("FOURMA_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4mA Calibration completed Successfully..
+        /// </summary>
+        internal static string FOURMA_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("FOURMA_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hex File path is not present for the selected Cat ID in INI file..
+        /// </summary>
+        internal static string HEX_FILE_PATH_NOT_PRESENT {
+            get {
+                return ResourceManager.GetString("HEX_FILE_PATH_NOT_PRESENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after run mode for 4mA and 20mA Calibation..
+        /// </summary>
+        internal static string I4mAOR20mA_RUN_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("I4mAOR20mA_RUN_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after start mode for 4mA and 20mA Calibation..
+        /// </summary>
+        internal static string I4mAOR20mA_START_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("I4mAOR20mA_START_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INI file is not present at path &quot;\\nas\Release to Production MOT&apos;S HEX &amp; Software\Digicon Release Production\Temperature Controller\PR-69\Software&quot;. 
+        ///Click &quot;Add INI&quot; menu to select the INI file..
+        /// </summary>
+        internal static string INI_FILE_NOT_PRESENT {
+            get {
+                return ResourceManager.GetString("INI_FILE_NOT_PRESENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JIG and Calibrator COM Port can not be same..
+        /// </summary>
+        internal static string JIG_AND_CALIB_PORT_SAME {
+            get {
+                return ResourceManager.GetString("JIG_AND_CALIB_PORT_SAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Com Port For JIG  -&gt; .
+        /// </summary>
+        internal static string JIG_COM_PORT {
+            get {
+                return ResourceManager.GetString("JIG_COM_PORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JIG initialization process is bypassed..
+        /// </summary>
+        internal static string JIG_INITIALZATION_BYPASSED {
+            get {
+                return ResourceManager.GetString("JIG_INITIALZATION_BYPASSED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JIG initialization process is completed..
+        /// </summary>
+        internal static string JIG_INITIALZATION_COMPLETED {
+            get {
+                return ResourceManager.GetString("JIG_INITIALZATION_COMPLETED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JIG initialization process is failed..
+        /// </summary>
+        internal static string JIG_INITIALZATION_FAILED {
+            get {
+                return ResourceManager.GetString("JIG_INITIALZATION_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JIG initialization process is started..
+        /// </summary>
+        internal static string JIG_INITIALZATION_STARTED {
+            get {
+                return ResourceManager.GetString("JIG_INITIALZATION_STARTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to 20mA..
+        /// </summary>
+        internal static string MA_CALIBRATION_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("MA_CALIBRATION_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 6 &amp; 5 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string MA_CALIBRATION_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("MA_CALIBRATION_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 10 &amp; 9 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string MA_CALIBRATION_MSG_ID2_PI {
+            get {
+                return ResourceManager.GetString("MA_CALIBRATION_MSG_ID2_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The communication with the device was unsuccessful because.
+        /// </summary>
+        internal static string Main_ERR_MSG1 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. The communication cable may be faulty or not connected or.
+        /// </summary>
+        internal static string Main_ERR_MSG2 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. The device may not be powered ON or.
+        /// </summary>
+        internal static string Main_ERR_MSG3 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. The Calibrator may not be powered ON or.
+        /// </summary>
+        internal static string Main_ERR_MSG4 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. Make sure parity of DUT(Double Acting) is even or.
+        /// </summary>
+        internal static string Main_ERR_MSG5 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. Make sure that communication cable of DUT(Single Acting) is connected or.
+        /// </summary>
+        internal static string Main_ERR_MSG6 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6. Make sure that connected DUT and selected Cat Id in Software is same. or.
+        /// </summary>
+        internal static string Main_ERR_MSG7 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7. Make sure that Accuracy testing is done for the selected device. or.
+        /// </summary>
+        internal static string Main_ERR_MSG8 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please verify all the possibilities and try again..
+        /// </summary>
+        internal static string Main_ERR_MSG9 {
+            get {
+                return ResourceManager.GetString("Main_ERR_MSG9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Calibrator&apos;s Source OFF..
+        /// </summary>
+        internal static string MAKE_SOURCE_OFF {
+            get {
+                return ResourceManager.GetString("MAKE_SOURCE_OFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max delay value of 3,00,000 msec is allowed in this field..
+        /// </summary>
+        internal static string MAX_DELAY_ERR {
+            get {
+                return ResourceManager.GetString("MAX_DELAY_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to the path is not available. Path:- .
+        /// </summary>
+        internal static string MOT_FILE_PATH_NOT_AVAILABLE {
+            get {
+                return ResourceManager.GetString("MOT_FILE_PATH_NOT_AVAILABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mot File path is not present for the selected Cat ID in INI file..
+        /// </summary>
+        internal static string MOT_FILE_PATH_NOT_PRESENT {
+            get {
+                return ResourceManager.GetString("MOT_FILE_PATH_NOT_PRESENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9V calibration failed..
+        /// </summary>
+        internal static string NINEVOLT_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("NINEVOLT_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9V Calibration completed Successfully..
+        /// </summary>
+        internal static string NINEVOLT_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("NINEVOLT_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not valid password..
+        /// </summary>
+        internal static string NOT_VALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("NOT_VALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Observe DUT display for display test..
+        /// </summary>
+        internal static string OBSERVE_DISP_TEST {
+            get {
+                return ResourceManager.GetString("OBSERVE_DISP_TEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1mA calibration failed..
+        /// </summary>
+        internal static string ONEMA_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("ONEMA_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1mA Calibration completed Successfully..
+        /// </summary>
+        internal static string ONEMA_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("ONEMA_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 mV calibration failed..
+        /// </summary>
+        internal static string ONEMV_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("ONEMV_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1mV Calibration completed Successfully..
+        /// </summary>
+        internal static string ONEMV_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("ONEMV_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1mV Calibration failed..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure Following points for Failure..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1)H Terminal of Calibrator&apos;s Source is connected to 12 number pin of DUT..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2)L Terminal of Calibrator&apos;s Source is connected to 11 number pin of DUT..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3)Check that Calibrator is ON..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID5 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4)Check that DUT connector is proper..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID6 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5)Check DUT Hardware..
+        /// </summary>
+        internal static string ONEMV_DEBUG_MSG_ID7 {
+            get {
+                return ResourceManager.GetString("ONEMV_DEBUG_MSG_ID7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1V calibration failed..
+        /// </summary>
+        internal static string ONEVOLT_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("ONEVOLT_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1V Calibration completed Successfully..
+        /// </summary>
+        internal static string ONEVOLT_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("ONEVOLT_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Com Port For PLC  -&gt;.
+        /// </summary>
+        internal static string PLC_COM_PORT {
+            get {
+                return ResourceManager.GetString("PLC_COM_PORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication Port is not available..
+        /// </summary>
+        internal static string PORT_NOT_PRESENT {
+            get {
+                return ResourceManager.GetString("PORT_NOT_PRESENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch OFF JIG supply for 5 Sec and after DUT display goes OFF, make JIG supply ON for Accuracy testing..
+        /// </summary>
+        internal static string POWER_CYCLE_MSG_ID {
+            get {
+                return ResourceManager.GetString("POWER_CYCLE_MSG_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Successfully Programmed.
+        /// </summary>
+        internal static string PROGRAM_SUCCESSFUL {
+            get {
+                return ResourceManager.GetString("PROGRAM_SUCCESSFUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Is Programming....
+        /// </summary>
+        internal static string PROGRAMMING {
+            get {
+                return ResourceManager.GetString("PROGRAMMING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programming Completed..
+        /// </summary>
+        internal static string PROGRAMMING_COMPLETE {
+            get {
+                return ResourceManager.GetString("PROGRAMMING_COMPLETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to msec) will get applied after run mode for 350Ohm Calibation..
+        /// </summary>
+        internal static string R350OHM_RUN_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("R350OHM_RUN_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after start mode for 350Ohm Calibation..
+        /// </summary>
+        internal static string R350OHM_START_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("R350OHM_START_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check power supply.
+        ///Check 2.5V Reference Voltage IC..
+        /// </summary>
+        internal static string REF_CH_ERR {
+            get {
+                return ResourceManager.GetString("REF_CH_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure Following points for Failure..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1)Ensure that Relay is physically present on DUT..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2)Check continuity of Relay manually..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3)Check that correct firmware is present in hardware..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4)Check that all default settings are present in DUT..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID5 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5)Check DUT Hardware..
+        /// </summary>
+        internal static string RELAY_DEBUG_MSG_ID6 {
+            get {
+                return ResourceManager.GetString("RELAY_DEBUG_MSG_ID6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the Additional Delay applied after OP2 ON, OP2 OFF, OP3 ON and OP3 OFF tests..
+        /// </summary>
+        internal static string RELAY_DELAY {
+            get {
+                return ResourceManager.GetString("RELAY_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect device from Calibrator source terminal..
+        /// </summary>
+        internal static string REMOVE_SOURCE_CONN {
+            get {
+                return ResourceManager.GetString("REMOVE_SOURCE_CONN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to test display again?.
+        /// </summary>
+        internal static string REPEAT_DISP_TEST {
+            get {
+                return ResourceManager.GetString("REPEAT_DISP_TEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 1mA value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_1mA_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_1mA_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 1mV value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_1mV_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_1mV_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 1V value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_1V_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_1V_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 20mA value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_20mA_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_20mA_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 350 ohm resistance value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_350Ohm_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_350Ohm_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 4mA value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_4mA_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_4mA_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 50mV value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_50mV_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_50mV_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust 9V value in Calibrator&apos;s Source..
+        /// </summary>
+        internal static string SET_9V_IN_CALIB {
+            get {
+                return ResourceManager.GetString("SET_9V_IN_CALIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check source input given to DUT from Calibrator..
+        /// </summary>
+        internal static string SIG_CH_ERR {
+            get {
+                return ResourceManager.GetString("SIG_CH_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check communication settings of Slave1 having Modbus ID 10..
+        /// </summary>
+        internal static string SLAVE1_NOT_OK {
+            get {
+                return ResourceManager.GetString("SLAVE1_NOT_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication with Slave1 having Modbus ID 10 is OK..
+        /// </summary>
+        internal static string SLAVE1_OK {
+            get {
+                return ResourceManager.GetString("SLAVE1_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check communication settings of Slave2 having Modbus ID 11..
+        /// </summary>
+        internal static string SLAVE2_NOT_OK {
+            get {
+                return ResourceManager.GetString("SLAVE2_NOT_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication with Slave2 having Modbus ID 11 is OK..
+        /// </summary>
+        internal static string SLAVE2_OK {
+            get {
+                return ResourceManager.GetString("SLAVE2_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check communication settings of Slave3 having Modbus ID 12..
+        /// </summary>
+        internal static string SLAVE3_NOT_OK {
+            get {
+                return ResourceManager.GetString("SLAVE3_NOT_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication with Slave3 having Modbus ID 12 is OK..
+        /// </summary>
+        internal static string SLAVE3_OK {
+            get {
+                return ResourceManager.GetString("SLAVE3_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check communication settings of Slave4 having Modbus ID 13..
+        /// </summary>
+        internal static string SLAVE4_NOT_OK {
+            get {
+                return ResourceManager.GetString("SLAVE4_NOT_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication with Slave4 having Modbus ID 13 is OK..
+        /// </summary>
+        internal static string SLAVE4_OK {
+            get {
+                return ResourceManager.GetString("SLAVE4_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read 24 volt out put of jig..
+        /// </summary>
+        internal static string Test_24_OP_MESSAGE {
+            get {
+                return ResourceManager.GetString("Test_24_OP_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test not found in the ini file for the selected cat id..
+        /// </summary>
+        internal static string TEST_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("TEST_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This delay of .
+        /// </summary>
+        internal static string THIS_DELAY_OF {
+            get {
+                return ResourceManager.GetString("THIS_DELAY_OF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 350 Ohm calibration failed..
+        /// </summary>
+        internal static string THREEFIFTYOHM_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 350Ohm Calibration completed Successfully..
+        /// </summary>
+        internal static string THREEFIFTYOHM_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 350Ohm Calibration failed..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure Following points for Failure..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1)H Terminal of Calibrator&apos;s Source is connected to 12 number pin of DUT..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2)L Terminal of Calibrator&apos;s Source is connected to 11 number pin of DUT..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3)L Terminal of Calibrator&apos;s Source is connected to 10 number pin of DUT..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID5 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4)Check that Calibrator is ON..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID6 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5)Check that DUT connector is proper..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID7 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6)Check DUT Hardware..
+        /// </summary>
+        internal static string THREEFIFTYOHM_DEBUG_MSG_ID8 {
+            get {
+                return ResourceManager.GetString("THREEFIFTYOHM_DEBUG_MSG_ID8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to RTD..
+        /// </summary>
+        internal static string THREEWIRE_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("THREEWIRE_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 10 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string THREEWIRE_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("THREEWIRE_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20mA calibration failed..
+        /// </summary>
+        internal static string TWENTYMA_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("TWENTYMA_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20mA Calibration completed Successfully..
+        /// </summary>
+        internal static string TWENTYMA_CALIB_SUCCESS {
+            get {
+                return ResourceManager.GetString("TWENTYMA_CALIB_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to 100mV..
+        /// </summary>
+        internal static string TWO_WIRE_MSG_96x961 {
+            get {
+                return ResourceManager.GetString("TWO_WIRE_MSG_96x961", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 1 &amp; 2 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWO_WIRE_MSG_96x962 {
+            get {
+                return ResourceManager.GetString("TWO_WIRE_MSG_96x962", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c) Please ensure that terminal 3 of DUT is not connected to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWO_WIRE_MSG_96x963 {
+            get {
+                return ResourceManager.GetString("TWO_WIRE_MSG_96x963", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to 100mV..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to 100mV..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID1_PI {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID1_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 12 &amp; 11 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 5 &amp; 6 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID2_PI {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID2_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c) Please ensure that terminal 10 of DUT is not connected to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c) Please ensure that terminal 7 of DUT is not connected to Calibrator Source terminal..
+        /// </summary>
+        internal static string TWOWIRE_MSG_ID3_PI {
+            get {
+                return ResourceManager.GetString("TWOWIRE_MSG_ID3_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of selected cat id can not be found in ini file. .
+        /// </summary>
+        internal static string TYPE_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("TYPE_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of Relay field is not found for the selected cat id..
+        /// </summary>
+        internal static string TYPEORRELAY_NOT_FOUND_INI_ERR {
+            get {
+                return ResourceManager.GetString("TYPEORRELAY_NOT_FOUND_INI_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to connect to Programming JIG..
+        /// </summary>
+        internal static string UNABLE_TO_CONNECT {
+            get {
+                return ResourceManager.GetString("UNABLE_TO_CONNECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This DUT is not calibrated..
+        /// </summary>
+        internal static string UNCALIBRATED_DUT {
+            get {
+                return ResourceManager.GetString("UNCALIBRATED_DUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after run mode for 1mv and 50mV Calibation..
+        /// </summary>
+        internal static string V1mVOR50mV_RUN_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("V1mVOR50mV_RUN_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after start mode for 1mv and 50mV Calibation..
+        /// </summary>
+        internal static string V1mVOR50mV_START_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("V1mVOR50mV_START_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after run mode for 1Volt and 9Volt Calibation..
+        /// </summary>
+        internal static string V1VOR9V_RUN_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("V1VOR9V_RUN_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (msec) will get applied after start mode for 1Volt and 9Volt Calibation..
+        /// </summary>
+        internal static string V1VOR9V_START_MODE_DELAY {
+            get {
+                return ResourceManager.GetString("V1VOR9V_START_MODE_DELAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) Set Calibrator Source knob to 10V..
+        /// </summary>
+        internal static string VOLT_CALIBRATION_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("VOLT_CALIBRATION_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 4 &amp; 5 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string VOLT_CALIBRATION_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("VOLT_CALIBRATION_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) Connect terminal 8 &amp; 9 of DUT to Calibrator Source terminal..
+        /// </summary>
+        internal static string VOLT_CALIBRATION_MSG_ID2_PI {
+            get {
+                return ResourceManager.GetString("VOLT_CALIBRATION_MSG_ID2_PI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect Calibrator measurement probes,.
+        /// </summary>
+        internal static string VOLTAGE_SETTING_MSG_ID1 {
+            get {
+                return ResourceManager.GetString("VOLTAGE_SETTING_MSG_ID1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a) L terminal to COMMON Terminal on JIG..
+        /// </summary>
+        internal static string VOLTAGE_SETTING_MSG_ID2 {
+            get {
+                return ResourceManager.GetString("VOLTAGE_SETTING_MSG_ID2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b) H terminal to VDMM+ on JIG..
+        /// </summary>
+        internal static string VOLTAGE_SETTING_MSG_ID3 {
+            get {
+                return ResourceManager.GetString("VOLTAGE_SETTING_MSG_ID3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove current conenction present between Calibrator Measure and JIG.
+        ///Also set Calibrator Measure knob to 10V Position..
+        /// </summary>
+        internal static string VOLTAGE_SETTING_MSG_ID4 {
+            get {
+                return ResourceManager.GetString("VOLTAGE_SETTING_MSG_ID4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VREF Calibration failed..
+        /// </summary>
+        internal static string VREF_CALIB_ERR {
+            get {
+                return ResourceManager.GetString("VREF_CALIB_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VREF value received from the device is not in tolerance..
+        /// </summary>
+        internal static string VREF_TOLERANCE_ERR {
+            get {
+                return ResourceManager.GetString("VREF_TOLERANCE_ERR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Device selection..
+        /// </summary>
+        internal static string WRONG_DEVICE_SELECTION {
+            get {
+                return ResourceManager.GetString("WRONG_DEVICE_SELECTION", resourceCulture);
             }
         }
     }

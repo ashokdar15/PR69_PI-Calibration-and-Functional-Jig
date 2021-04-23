@@ -89,7 +89,88 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
+                    case "START_DISP_TEST":
+                        clsGlobalVariables.ig_Query_TimeOut = 16000;
+                        clsGlobalVariables.objGlobalFunction.DisplayMessageBox(clsMessages.DisplayMessage(clsMessageIDs.OBSERVE_DISP_TEST), clsGlobalVariables.strNotifyMsg);
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            DialogResult dlgMsgBxRslt;
+                            bool blnmStatus;
+                            blnmStatus = false;
+                            //Display bypass logic is added here. 
 
+                            
+                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", true);
+                            Repeat:
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.INPROGRESS);
+                            /*Here two tests gets carried out inside display test.
+                             1.Display Test 
+                             2.Leaky MOSFET Test:- After completion of display test leaky mosfet test gets conducted.
+                             */
+                            //This check is for device having modbus.
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_DISP, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
+                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_LEAKY_MOSFET, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
+                                }
+                            }
+                            else//Device without modbus
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_DISP);
+                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
+                                }
+                            }
+
+                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.PASS);
+                            }
+                            else
+                            {
+                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.FAIL);
+                            }
+
+                            if (blnmStatus == false)
+                            {
+                                //Requirement in the display test was to ask user to perform disply test once again.
+                                //Also software must ask this only once.
+                                blnmStatus = true;
+                                dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+
+                                if (dlgMsgBxRslt == DialogResult.OK)
+                                {
+                                    goto Repeat;
+                                }
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", false);
+                        }
+                        break;
+
+
+                    case "START_KEYPAD_TEST":
+                        //Keypad bypass logic is added here.
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpKeypad, clsGlobalVariables.enmStatus.INPROGRESS);
+                            btmRetVal = clsGlobalVariables.objGlobalFunction.TestKeyPad(DUT);
+                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "", false);
+                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            }
+                            else
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                            }
+
+                        }
+                        break;
                     case "SWITCH_SENSOR_RELAY": //In this section calibrator settings are get done for further tests.
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                         {
@@ -156,49 +237,324 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-                    case "SSR_TEst":
+                    case "SSR_Test":
+                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
+                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
+                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
+                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
+                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                        
+
+
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(8);
-                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (DUT ==1)
                             {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(1, clsGlobalVariables.FAIL);
-                                break;
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
                             }
-                            
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (DUT == 2)
                             {
-                                long lmData;
-                                if (clsModelSettings.blnRS485Flag == true)
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.TEST_REL,DUT);
-                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
-                                    if (lmData != 1)
-                                    {
-                                        btmRetVal = (byte)clsGlobalVariables.enmResponseError.Failed;
-                                        continue;
-                                    }
-
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
                                 }
-                                else//Device without modbus
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);
-                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
-                                    if (lmData != 1)
-                                    {
-                                        btmRetVal = (byte)clsGlobalVariables.enmResponseError.Failed;
-                                        continue;
-                                    }
-                                }
-
-
                             }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                            }
+                            else//Device without modbus
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                            }
+                            int count = 0;
+                            if (clsGlobalVariables.objPLCQueriescls.ReadInputRegistersQuery(clsGlobalVariables.ANALOG_INPUT_REG_OFFSET_ADD_STD+(DUT-1), ref count))
+                            {
+                                //check count.
+                                if (count < 418 || count > 462)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(8);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(12);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(16);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(20);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            bool testPassFlag = false;
+                            //Display message to to check SSR on dispaly of DUt
+                            if (DialogResult.Yes!= MessageBox.Show("Check SSR on DUT : " + DUT.ToString(), "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                            {
+                                //Fails
+                                testPassFlag = true;
+                                //clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //continue;
+                            }
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                            }
+                            else//Device without modbus
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
+                            }
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(8);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(12);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(16);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(20);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (testPassFlag)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-                        //        }   
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
 
 
                         break;
+                    case "SSR_Test2":
+                        clsGlobalVariables.ig_Query_TimeOut = 5000;
+                       foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                       {
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(10);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(14);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(18);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(22);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            long lmData;
+                            bool testPassFailFlag = false;
+                            //This check is for device having modbus.                
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.TEST_REL, DUT);
+                            }
+                            else//Device without modbus
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);
+                            }
+
+                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                //This check is for device having modbus.                
+                                if (clsModelSettings.blnRS485Flag == true)
+                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
+                                else//Device without modbus
+                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
+                                if (lmData != 1)
+                                    testPassFailFlag = true;
+                            }
+                            else
+                            {
+                                testPassFailFlag = true;
+                            }
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(10);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(14);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(18);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(22);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (testPassFailFlag)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                        }
+                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(10);
+                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(14);
+                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(18);
+                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(22);
+                        break;
+                    #region"Commented code"
                     //case "SLAVE1_OP1_OFF":
                     //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
                     //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
@@ -372,6 +728,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP3_ADDRESS, OP_OFF)
                     //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
                     //    break;
+
+                    #endregion
 
                     case "DUT_READ_ADC_CNT_RLY_ON":
 
@@ -599,7 +957,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.INPROGRESS);
                         //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.INPROGRESS);
 
-                       // .btmRetVal = clsGlobalVariables.objQueriescls.MBStartRelayTest();
+                      // btmRetVal = clsGlobalVariables.objQueriescls.MBStartRelayTest();
 
                         //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         //{
@@ -615,87 +973,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         break;
 
-                    case "START_DISP_TEST":
-                        clsGlobalVariables.ig_Query_TimeOut = 16000;
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            DialogResult dlgMsgBxRslt;
-                            bool blnmStatus;
-                            blnmStatus = false;
-                            //Display bypass logic is added here. 
-
-                            clsMessages.DisplayMessage(clsMessageIDs.OBSERVE_DISP_TEST);
-                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", true);
-                            Repeat:
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.INPROGRESS);
-                            /*Here two tests gets carried out inside display test.
-                             1.Display Test 
-                             2.Leaky MOSFET Test:- After completion of display test leaky mosfet test gets conducted.
-                             */
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_DISP, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
-                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.CHK_LEAKY_MOSFET, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
-                                }
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_DISP);
-                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
-                                }
-                            }
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.PASS);
-                            }
-                            else
-                            {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.FAIL);
-                            }
-
-                            if (blnmStatus == false)
-                            {
-                                //Requirement in the display test was to ask user to perform disply test once again.
-                                //Also software must ask this only once.
-                                blnmStatus = true;
-                                dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-                                //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-
-                                if (dlgMsgBxRslt == DialogResult.OK)
-                                {
-                                    goto Repeat;
-                                }
-                            }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", false);
-                        }
-                        break;
-
-
-                    case "START_KEYPAD_TEST":
-                        //Keypad bypass logic is added here.
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpKeypad, clsGlobalVariables.enmStatus.INPROGRESS);
-                            btmRetVal = clsGlobalVariables.objGlobalFunction.TestKeyPad(DUT);
-                            clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "", false);
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                            }
-                            else
-                            {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                            }
-                            
-                        }
-                        break;
+                    
 
                     case "WRITE_CALIB_CONST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2171,7 +2449,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     break;
                                 }
                             }
-                            if (DUT == clsGlobalVariables.DUT1)
+                            if (DUT == clsGlobalVariables.DUT4)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(36);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -2300,7 +2578,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     break;
                                 }
                             }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(clsGlobalVariables.DUT1, clsGlobalVariables.PASS);
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
 
                         break;
