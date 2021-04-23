@@ -57,6 +57,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     {
         public IList<ConfigurationData> ConfigurationData { get; set; }
         public IList<CalibrationDelays> CalibrationDelays { get; set; }
+        public IList<CalibrationDelaysPR43> CalibrationDelaysPR43 { get; set; }
         public IList<CalibrationDelaysPI> CalibrationDelaysPI { get; set; }
         public IList<TolerancesOfPI> TolerancesofPI { get; set; }
         public IList<TolerancesOfPR69> TolerancesOfPR69 { get; set; }
@@ -187,6 +188,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public int VREFReadDelayStartMode { get; set; }
         public int VREFReadDelayRunMode { get; set; }
 
+    }
+
+    public class CalibrationDelaysPR43
+    {
+        public int OnemVOrFiftymVStartModeDelay { get; set; }
+        public int OnemVOrFiftymVRunModeDelay { get; set; }
+        public int ThreeFiftyOhmStartModeDelay { get; set; }
+        public int ThreeFiftyOhmRunModeDelay { get; set; }
+       
     }
 
     public class CalibrationDelaysPI

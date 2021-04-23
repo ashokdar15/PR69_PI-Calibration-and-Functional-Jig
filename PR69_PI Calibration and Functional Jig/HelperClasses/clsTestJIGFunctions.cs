@@ -237,6 +237,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
+<<<<<<< HEAD
                     case "SSR_Test":
                         //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
                         //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
@@ -555,6 +556,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(22);
                         break;
                     #region"Commented code"
+=======
+>>>>>>> 3a70d13a606c461ee119ab5d573fa7f24265948f
                     //case "SLAVE1_OP1_OFF":
                     //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
                     //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);

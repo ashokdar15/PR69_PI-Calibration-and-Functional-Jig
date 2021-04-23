@@ -157,4 +157,87 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             }
         }
     }
+
+    public class clsCalibrationDelaysPR43 : INotifyPropertyChanged
+    {
+        private int _OnemVOrFiftymVStartModeDelay;
+
+        public int OnemVOrFiftymVStartModeDelay
+        {
+            get { return _OnemVOrFiftymVStartModeDelay; }
+            set { _OnemVOrFiftymVStartModeDelay = value; OnPropertyChanged("OnemVOrFiftymVStartModeDelay"); }
+        }
+
+        private int _OnemVOrFiftymVRunModeDelay;
+
+        public int OnemVOrFiftymVRunModeDelay
+        {
+            get { return _OnemVOrFiftymVRunModeDelay; }
+            set { _OnemVOrFiftymVRunModeDelay = value; OnPropertyChanged("OnemVOrFiftymVRunModeDelay"); }
+        }
+
+        private int _ThreeFiftyOhmStartModeDelay;
+
+        public int ThreeFiftyOhmStartModeDelay
+        {
+            get { return _ThreeFiftyOhmStartModeDelay; }
+            set { _ThreeFiftyOhmStartModeDelay = value; OnPropertyChanged("ThreeFiftyOhmStartModeDelay"); }
+        }
+
+        private int _ThreeFiftyOhmRunModeDelay;
+
+        public int ThreeFiftyOhmRunModeDelay
+        {
+            get { return _ThreeFiftyOhmRunModeDelay; }
+            set { _ThreeFiftyOhmRunModeDelay = value; OnPropertyChanged("ThreeFiftyOhmRunModeDelay"); }
+        }
+
+        
+        public void ParseCalibrationDelays(ObservableCollection<ConfigurationDataList> ModifiedCatId)
+        {
+            try
+            {
+                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].OnemVOrFiftymVStartModeDelay;
+                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].OnemVOrFiftymVRunModeDelay;
+                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].ThreeFiftyOhmStartModeDelay;
+                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].ThreeFiftyOhmRunModeDelay;
+                
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        internal CalibrationDelaysPR43 SaveCalibrationDelays()
+        {
+            try
+            {
+                CalibrationDelaysPR43 CalibConstdelays = new CalibrationDelaysPR43()
+                {
+                    OnemVOrFiftymVStartModeDelay = OnemVOrFiftymVStartModeDelay,
+                    OnemVOrFiftymVRunModeDelay = OnemVOrFiftymVRunModeDelay,
+                    ThreeFiftyOhmStartModeDelay = ThreeFiftyOhmStartModeDelay,
+                    ThreeFiftyOhmRunModeDelay = ThreeFiftyOhmRunModeDelay,
+                   
+                };
+
+                return CalibConstdelays;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+    }
 }

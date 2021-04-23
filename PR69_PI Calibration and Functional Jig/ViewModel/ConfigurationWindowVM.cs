@@ -65,11 +65,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _AccuracyJSensorTestsDetails = new ObservableCollection<AccuracyTests>();
 
             _CalibrationDelaysDetails = new ObservableCollection<CalibrationDelays>();
+            _CalibrationDelaysDetailsPR43 = new ObservableCollection<CalibrationDelaysPR43>();
             _CalibrationDelaysPIDetails = new ObservableCollection<CalibrationDelaysPI>();
             _TolerancesofPIDetails = new ObservableCollection<TolerancesOfPI>();
             _TolerancesofPR69Details = new ObservableCollection<TolerancesOfPR69>();
             _EditTolerancePR69Cmd = new RelayCommand(EditTolerancePR69Clk);
             _EditCalibrationDelaysCmd = new RelayCommand(EditCalibrationDelaysClk);
+            _EditCalibrationDelaysPR43Cmd = new RelayCommand(EditCalibrationDelaysPR43Clk);
             _EditCalibrationDelaysPICmd = new RelayCommand(EditCalibrationDelaysPIClk);
             _EditToleranceCmd = new RelayCommand(EditToleranceClk);
             _SaveDelayToleranceCmd = new RelayCommand(SaveDelayToleranceClk);
@@ -89,6 +91,32 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             IsSaveBtnVis = false;
             
+        }
+
+        private void EditCalibrationDelaysPR43Clk(object obj)
+        {
+            clsCalibrationDelaysPR43 = new clsCalibrationDelaysPR43();
+            clsCalibrationDelaysPR43.ParseCalibrationDelays(ModifiedCatId);
+
+            EventSender = "SaveCalibDelaysPR43";
+            AnalogIPTestsEditVis = false;
+            AnalogOPTestsEditVis = false;
+            TC_RTDTestsVis = false;
+            RelayOrSSRTestsVis = false;
+            CalibConstTestsVis = false;
+            CommonTestsVis = false;
+            AccuracyDetailsEditVis = false;
+
+            CalibDelaysPR43EditVis = true;
+            CalibDelaysEditVis = false; 
+            CalibDelaysPIEditVis = false;
+            ToleranceEditVis = false;
+            ToleranceofPR69EditVis = false;
+
+            IsDialogOpen = true;
+            MsgVis = true;
+            MesssageVis = false;
+            PopupBtnVisibility(true);
         }
 
         private void EditDownAccuracytestClk(object obj)
@@ -207,7 +235,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             CalibConstTestsVis = false;
             CommonTestsVis = false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -316,6 +344,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             get { return _CalibrationDelaysDetails; }
             set { _CalibrationDelaysDetails = value; OnPropertyChanged("CalibrationDelaysDetails"); }
+        }
+
+        private ObservableCollection<CalibrationDelaysPR43> _CalibrationDelaysDetailsPR43;
+
+        public ObservableCollection<CalibrationDelaysPR43> CalibrationDelaysDetailsPR43
+        {
+            get { return _CalibrationDelaysDetailsPR43; }
+            set { _CalibrationDelaysDetailsPR43 = value; OnPropertyChanged("CalibrationDelaysDetailsPR43"); }
         }
 
         private ObservableCollection<CalibrationDelaysPI> _CalibrationDelaysPIDetails;
@@ -663,6 +699,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _CalibDelaysEditVis; }
             set { _CalibDelaysEditVis = value; OnPropertyChanged("CalibDelaysEditVis"); }
         }
+        private bool _CalibDelaysPR43EditVis;
+
+        public bool CalibDelaysPR43EditVis
+        {
+            get { return _CalibDelaysPR43EditVis; }
+            set { _CalibDelaysPR43EditVis = value; OnPropertyChanged("CalibDelaysPR43EditVis"); }
+        }
+
 
         private bool _CalibDelaysPIEditVis;
 
@@ -1016,6 +1060,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _EditCalibrationDelaysCmd; }
             set { _EditCalibrationDelaysCmd = value; OnPropertyChanged("EditCalibrationDelaysCmd"); }
         }
+
+        private RelayCommand _EditCalibrationDelaysPR43Cmd;
+
+        public RelayCommand EditCalibrationDelaysPR43Cmd
+        {
+            get { return _EditCalibrationDelaysPR43Cmd; }
+            set { _EditCalibrationDelaysPR43Cmd = value; OnPropertyChanged("EditCalibrationDelaysPR43Cmd"); }
+        }
+
 
         private RelayCommand _EditCalibrationDelaysPICmd;
 
@@ -1713,6 +1766,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _clsCalibrationDelays = value; OnPropertyChanged("clsCalibrationDelays"); }
         }
 
+        private clsCalibrationDelaysPR43 _clsCalibrationDelaysPR43;
+
+        public clsCalibrationDelaysPR43 clsCalibrationDelaysPR43
+        {
+            get { return _clsCalibrationDelaysPR43; }
+            set { _clsCalibrationDelaysPR43 = value; OnPropertyChanged("clsCalibrationDelaysPR43"); }
+        }
+
+
         private clsCalibrationDelaysPI _clsCalibrationDelaysPI;
 
         public clsCalibrationDelaysPI clsCalibrationDelaysPI
@@ -1773,7 +1835,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CalibConstTestsVis = false;
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -1815,7 +1877,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CalibConstTestsVis = false;
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -1857,7 +1919,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = true;
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -1906,7 +1968,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CalibConstTestsVis = false;
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -1948,7 +2010,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CalibConstTestsVis = true;
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -1992,7 +2054,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CalibConstTestsVis = false;
             CommonTestsVis = true;
             AccuracyDetailsEditVis = false;
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -2124,6 +2186,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         foreach (CalibrationDelays calibdelayobj in _configurationDataList.CalibrationDelays)
                         {
                             CalibrationDelaysDetails.Add(calibdelayobj);
+                        }
+                    }
+
+                    CalibrationDelaysDetailsPR43.Clear();
+                    if (_configurationDataList.CalibrationDelaysPR43 != null)
+                    {
+                        foreach (CalibrationDelaysPR43 calibdelayobj in _configurationDataList.CalibrationDelaysPR43)
+                        {
+                            CalibrationDelaysDetailsPR43.Add(calibdelayobj);
                         }
                     }
 
@@ -2445,6 +2516,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         CalibrationDelays calibrationDelays = clsCalibrationDelays.SaveCalibrationDelays();
                         CalibrationDelaysDetails.Clear();
                         CalibrationDelaysDetails.Add(calibrationDelays);
+                        break;
+
+                    case "SaveCalibDelaysPR43":
+                        CalibrationDelaysPR43 calibrationDelaysPr43 = clsCalibrationDelaysPR43.SaveCalibrationDelays();
+                        CalibrationDelaysDetailsPR43.Clear();
+                        CalibrationDelaysDetailsPR43.Add(calibrationDelaysPr43);
                         break;
 
                     case "SaveCalibDelaysPI":
@@ -2891,7 +2968,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
 
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -2952,6 +3029,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void SavewholecalibDataDetails()
         {
             ModifiedCatId[0].CalibrationDelays[0] = CalibrationDelaysDetails[0];
+            ModifiedCatId[0].CalibrationDelaysPR43[0] = CalibrationDelaysDetailsPR43[0];
             ModifiedCatId[0].CalibrationDelaysPI[0] = CalibrationDelaysPIDetails[0];
             ModifiedCatId[0].TolerancesofPI[0] = TolerancesofPIDetails[0];
             ModifiedCatId[0].TolerancesOfPR69[0] = TolerancesofPR69Details[0];
@@ -2985,7 +3063,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
 
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = true;
             ToleranceofPR69EditVis = false;
@@ -3012,7 +3090,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
 
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = true;
@@ -3038,6 +3116,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = true;
+            CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;
@@ -3063,7 +3142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CommonTestsVis = false;
             AccuracyDetailsEditVis =false;
 
-            CalibDelaysEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = true;
             ToleranceEditVis = false;
             ToleranceofPR69EditVis = false;

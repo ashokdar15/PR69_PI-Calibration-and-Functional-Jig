@@ -789,7 +789,7 @@
                                               ItemsSource="{Binding Path=clsTotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}">
-                                                        <Setter Property="Background" Value="LightGreen"/>
+                                                        <Setter Property="Background" Value="#b2ebf2"/>
                                                         <Setter Property="Foreground" Value="Black"/>
                                                     </Style>
                                                 </DataGrid.Resources>

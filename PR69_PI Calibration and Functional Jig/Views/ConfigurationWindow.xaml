@@ -70,11 +70,11 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
-                                    <ColumnDefinition/>                                    
+                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
-                                    <RowDefinition/>                                    
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Content="CALIBRATION 0to20mA" 
@@ -101,7 +101,7 @@
                                       IsEnabled="{Binding clsAnalogInputTests.IsPIProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogInputTests.CALIB_1V_CNT_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                
+
 
 
                             </Grid>
@@ -120,7 +120,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>                                  
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Content="CALIBRATION 0to20mA" 
@@ -141,7 +141,7 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                              
+
 
                             </Grid>
                         </Border>
@@ -159,7 +159,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
-                                    <RowDefinition/>                                   
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Content="CALIB MV" 
@@ -185,7 +185,7 @@
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
                                       IsChecked="{Binding clsTC_RTDTests.CALIB_PT100_PR43, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                
+
 
                             </Grid>
                         </Border>
@@ -205,7 +205,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                    <RowDefinition/>                                   
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Content="OP1" 
@@ -253,7 +253,7 @@
                                       ItemsSource="{Binding Path=RelayTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding clsRelayORSSRTests.SelectedOP2RelayType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedIndex="{Binding clsRelayORSSRTests.SelectedIndexOP2Relay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                
+
                                 <CheckBox Content="OP3" 
                                       Grid.Column="2" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
@@ -521,6 +521,50 @@
                                     Text="{Binding clsCalibrationDelays.VREFReadDelayRunMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
+
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
+                                Visibility="{Binding Path=CalibDelaysPR43EditVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="Edit Calibration Delays Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>                                  
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>                                   
+                                    <RowDefinition/>                                   
+                                </Grid.RowDefinitions>
+
+                                <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Width="auto"
+                                    materialDesign:HintAssist.Hint="mV Start Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.OnemVOrFiftymVStartModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    ToolTip=""></TextBox>
+
+                                <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Width="auto"
+                                    materialDesign:HintAssist.Hint="mV Run Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.OnemVOrFiftymVRunModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    ToolTip=""></TextBox>
+
+                                <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Width="auto"
+                                    materialDesign:HintAssist.Hint="ohm Start Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.ThreeFiftyOhmStartModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    ToolTip=""></TextBox>
+
+                                <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="auto"
+                                    materialDesign:HintAssist.Hint="ohm Run Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.ThreeFiftyOhmRunModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    ToolTip=""></TextBox>
+
 
                             </Grid>
                         </Border>
@@ -965,7 +1009,7 @@
                                         <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
                                     </Style>
                                 </TreeView.ItemContainerStyle>
-                                <TreeView.ItemTemplate>  
+                                <TreeView.ItemTemplate>
                                     <HierarchicalDataTemplate ItemsSource="{Binding ConfigurationData}" DataType="{x:Type model:ConfigurationDataList}" >
                                         <Label VerticalAlignment="Center">
                                             <Label.Content>
@@ -1072,7 +1116,7 @@
                                         </Button.Content>
                                     </Button>
                                 </StackPanel>
-                                
+
                                 <GroupBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3" Padding="0"
                                          Width="365" Height="120" Margin="120 0 0 0" BorderThickness="2">
                                     <GroupBox.Header>
@@ -1197,7 +1241,7 @@
 
                                             </StackPanel>
                                         </StackPanel>
-                                   
+
                                     </Grid>
                                 </GroupBox>
 
@@ -1490,7 +1534,7 @@
                                                     </Button>
                                                 </StackPanel>
                                             </StackPanel>
-                                            
+
                                         </StackPanel>
                                     </Border>
                                 </GroupBox>
@@ -1571,7 +1615,23 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="40,63,7.6,62.8" Grid.RowSpan="3">
-                                <TextBox   Width="500" Height="50"  materialDesign:HintAssist.Hint="MotFilePath" 
+                                
+                                <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
+                                    <TextBlock Text="Edit Calibration Delays(PR43)" FontSize="16" Margin="0 10"/>
+                                    <Button Command="{Binding Path=EditCalibrationDelaysPR43Cmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
+                                        Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
+                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                        <Button.Content >
+                                            <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                        </Button.Content>
+                                        <Button.ToolTip>
+                                            <TextBlock Text="Edit Calibration Delays (PR43) Details"></TextBlock>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                                
+                                <TextBox Margin="15 0 0 0"   Width="500" Height="50"  materialDesign:HintAssist.Hint="MotFilePath" 
                                      Text="{Binding Path=Motfilepath, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"
                                      IsReadOnly="True" VerticalAlignment="Center" FontSize="15"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="{DynamicResource MaterialDesignBody}"></TextBox>

@@ -64,7 +64,7 @@
                                               ItemsSource="{Binding Path=AccuracymAmpTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding Testnumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
+                                                <DataGridTextColumn Binding="{ Binding Testnumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                                     <DataGridTextColumn.Header>
                                                         <Label Content="Sr. No." FontSize="15" FontWeight="Bold"/>
