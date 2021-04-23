@@ -1383,8 +1383,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             //prgbar.Maximum = imNumOfTests;
             //prgbar.Value = prgbar.Minimum;
-            //This timeout is resseted here to original.
-            clsGlobalVariables.ig_Query_TimeOut = 1200;
+            //This timeout is resseted here to original.           
             clsModelSettings.igDutID = 1;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
             clsModelSettings.blnRS485Flag = false;            
@@ -1405,8 +1404,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
                 }
-                
-                
+
+                clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
