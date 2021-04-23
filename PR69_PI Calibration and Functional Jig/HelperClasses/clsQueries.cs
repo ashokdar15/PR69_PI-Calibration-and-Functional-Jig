@@ -893,7 +893,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //        }
         //        else//Device without modbus
         //        {
-               //    btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
+        //            btmRetVal = MBQueryForWOModbusDevices(clsGlobalVariables.MB_SLAVE3_ID,clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);   
         //        }
 
         //        if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)

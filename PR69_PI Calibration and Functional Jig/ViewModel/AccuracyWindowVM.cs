@@ -860,7 +860,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
 
-            UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
+            //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
 
             //Auto com port detection
@@ -1313,7 +1313,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (firstIteration)
             {
                 if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
-                    return false;
+                    return false; 
 
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                     clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);

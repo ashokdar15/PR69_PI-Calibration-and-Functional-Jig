@@ -156,49 +156,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-                    case "SSR_TEst":
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(8);
-                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(1, clsGlobalVariables.FAIL);
-                                break;
-                            }
-                            
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                long lmData;
-                                if (clsModelSettings.blnRS485Flag == true)
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.TEST_REL,DUT);
-                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
-                                    if (lmData != 1)
-                                    {
-                                        btmRetVal = (byte)clsGlobalVariables.enmResponseError.Failed;
-                                        continue;
-                                    }
-
-                                }
-                                else//Device without modbus
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_RELAY);
-                                    lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 2);
-                                    if (lmData != 1)
-                                    {
-                                        btmRetVal = (byte)clsGlobalVariables.enmResponseError.Failed;
-                                        continue;
-                                    }
-                                }
-
-
-                            }
-                        }
-                        //        }   
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-
-
-                        break;
                     //case "SLAVE1_OP1_OFF":
                     //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
                     //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
