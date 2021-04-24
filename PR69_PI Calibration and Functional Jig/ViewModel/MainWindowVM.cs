@@ -1267,7 +1267,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
             //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-           // clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            // clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //SSR_Test2
             //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
             //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
             clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
@@ -1277,8 +1278,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
             clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
             clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
-            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
             clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
             clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
             clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
@@ -1286,6 +1287,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
             clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
             clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
             //clsGlobalVariables.algTests_Auto.Add("");
 
             //Test21 = SET_DFALT_4MA_CNT

@@ -617,8 +617,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public static string strgAnalogData;
 
-        public static int FIVE_VOLT_MIN = 492;
-        public static int FIVE_VOLT_MAX = 507;
+        public static int FIVE_VOLT_MIN = 4920;
+        public static int FIVE_VOLT_MAX = 5070;
         public static int FIVE_VOLT_MIN_PI = 4920;
         public static int FIVE_VOLT_MAX_PI = 5080;
         public static int TWELVE_mA_MIN = 11920;

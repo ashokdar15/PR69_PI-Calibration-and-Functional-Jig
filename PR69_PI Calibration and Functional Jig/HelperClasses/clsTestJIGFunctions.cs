@@ -1540,30 +1540,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Here value read from calibrator measure is converted into integer variable.
-                                    clsModelSettings.imAnalOpVal[DUT-1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
+                                    clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                     //This function "ValidateAnalogVal" validates the value given by the calibrator's measure.
-                                    btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.FIVE_Volt,DUT);
+                                    btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.FIVE_Volt, DUT);
                                     //Messages related to analog test are displayed here.
-                                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
-                                        //Value read from calibrator for 5V Analog OP sensor is saved in log object
-                                        clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_5 = clsGlobalVariables.strgAnalogData;
-                                        clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Successful.");
-                                        //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                                        ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.PASS);
-                                        //else
-                                        ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.PASS);
-
+                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                        continue;
                                     }
-                                    else
-                                    {
-                                        clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Failed.");
-                                        //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                                        ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                                        //else
-                                        ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                                    }
-                                    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VALUE, "5Volts", clsGlobalVariables.strgAnalogData);
+                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_5 = clsGlobalVariables.strgAnalogData;
+                                }
+                                else
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1612,40 +1603,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             //In manual calibration mode this test is present. for 12 mA and 5Volts analog output validation.  
                             btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsModelSettings.btmAnalogsetVal,DUT);
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //if (clsModelSettings.btmAnalogsetVal == clsGlobalVariables.TWELVE_mA)
-                                //{
-                                //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_CURRENT, "12mA", "Successful.");
-                                //}
-                                //else if (clsModelSettings.btmAnalogsetVal == clsGlobalVariables.FIVE_Volt)
-                                //{
-                                //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Successful.");
-                                //    //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                                //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.PASS);
-                                //    //else
-                                //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.PASS);
-                                //}
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                            }
-                            else
-                            {
-                                //if (clsModelSettings.btmAnalogsetVal == clsGlobalVariables.TWELVE_mA)
-                                //{
-                                //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_CURRENT, "12mA", "Failed.");
-                                //}
-                                //else if (clsModelSettings.btmAnalogsetVal == clsGlobalVariables.FIVE_Volt)
-                                //{
-                                //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Failed.");
-                                //}
-                                ////if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                                //////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                                ////else
-                                //////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            { 
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
-                            
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
 
