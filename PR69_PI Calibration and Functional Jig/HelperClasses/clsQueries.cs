@@ -367,8 +367,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = slaveID;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = btmFunCode;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = btmData;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = (byte)(clsModelSettings.imAnalOpVal/256);
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 2] = (byte)(clsModelSettings.imAnalOpVal & 0xFF);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = (byte)((int)(clsModelSettings.imAnalOpVal[slaveID-1]) /256);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 2] = (byte)(clsModelSettings.imAnalOpVal[slaveID-1] & 0xFF);
 
                 btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
                 return btmRetVal;

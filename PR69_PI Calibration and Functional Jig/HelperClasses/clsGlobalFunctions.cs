@@ -192,7 +192,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///</summary>
         ///<param name="btmData">This byte number is the switch case number sent by caller function.</param>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public byte ValidateAnalogVal(byte btmData)
+        public byte ValidateAnalogVal(byte btmData,byte DUT)
         {
             byte btmRetVal;
             try
@@ -205,7 +205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.One_Volt:
                         if (clsGlobalVariables.selectedDeviceType ==clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.One_VOLT_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.One_VOLT_MAX))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.One_VOLT_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.One_VOLT_MAX))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -216,7 +216,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.One_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.One_VOLT_MAX_PI))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.One_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.One_VOLT_MAX_PI))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -230,7 +230,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.FIVE_Volt:
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.FIVE_VOLT_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.FIVE_VOLT_MAX))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.FIVE_VOLT_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.FIVE_VOLT_MAX))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -241,7 +241,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.FIVE_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.FIVE_VOLT_MAX_PI))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.FIVE_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.FIVE_VOLT_MAX_PI))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -255,7 +255,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.TEN_Volt:
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TEN_VOLT_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TEN_VOLT_MAX))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TEN_VOLT_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TEN_VOLT_MAX))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -266,7 +266,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TEN_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TEN_VOLT_MAX_PI))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TEN_VOLT_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TEN_VOLT_MAX_PI))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -278,7 +278,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
 
                     case clsGlobalVariables.FOUR_mAMP:
-                        if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.FOUR_mAMP_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.FOUR_mAMP_MAX))
+                        if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.FOUR_mAMP_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.FOUR_mAMP_MAX))
                         {
                             btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                         }
@@ -288,7 +288,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
                     case clsGlobalVariables.ONE_mAMP_case:
-                        if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.ONE_mAMP_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.ONE_mAMP_MAX_PI))
+                        if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.ONE_mAMP_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.ONE_mAMP_MAX_PI))
                         {
 
                             btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -302,7 +302,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.TWELVE_mAMP:
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TWELVE_mA_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TWELVE_mA_MAX))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TWELVE_mA_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TWELVE_mA_MAX))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -313,7 +313,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TWELVE_mA_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TWELVE_mA_MAX_PI))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TWELVE_mA_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TWELVE_mA_MAX_PI))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -327,7 +327,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.TWENTY_mAMP:
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TWENTY_mAMP_MIN) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TWENTY_mAMP_MAX))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TWENTY_mAMP_MIN) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TWENTY_mAMP_MAX))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -338,7 +338,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         else
                         {
-                            if ((clsModelSettings.imAnalOpVal < clsGlobalVariables.TWENTY_mAMP_MIN_PI) || (clsModelSettings.imAnalOpVal > clsGlobalVariables.TWENTY_mAMP_MAX_PI))
+                            if ((clsModelSettings.imAnalOpVal[DUT-1] < clsGlobalVariables.TWENTY_mAMP_MIN_PI) || (clsModelSettings.imAnalOpVal[DUT-1] > clsGlobalVariables.TWENTY_mAMP_MAX_PI))
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
@@ -803,6 +803,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 btmRetVal = clsGlobalVariables.objGlobalFunction.AutoComPortDetectionPLC();
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
+                    MessageBox.Show("PLC com port not found.");
                     return true;
                 }
                 else
@@ -810,7 +811,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.PLC_COM_PORT);
                     clsGlobalVariables.blngIsComportDetectedForPLC = true;
                     if (PLC_ON_OFF_QUERY(true))
+                    {
+                        MessageBox.Show("PLC com port not found.");
                         return true;
+                    }
                 }
 
             }
@@ -1609,7 +1613,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
                                     for (byte DUT = 1; DUT < clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                                     {
-                                        btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
+                                        if (clsModelSettings.blnRS485Flag)
+                                        {
+                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                        }
+                                        else
+                                        {
+                                            btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
+                                        }
+                                        
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             MessageBox.Show("com port fail with DUT number :" + (DUT).ToString());
@@ -1671,7 +1683,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgComPortCalibratorDUT4 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT5 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT6 == "")
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Clibrator 2: " + clsGlobalVariables.strgComPortCalibratorDUT2 + Environment.NewLine +
+                                        "Clibrator 3: " + clsGlobalVariables.strgComPortCalibratorDUT3 + Environment.NewLine +
+                                        "Clibrator 4: " + clsGlobalVariables.strgComPortCalibratorDUT4 + Environment.NewLine +
+                                        "Clibrator 5: " + clsGlobalVariables.strgComPortCalibratorDUT5 + Environment.NewLine +
+                                        "Clibrator 6: " + clsGlobalVariables.strgComPortCalibratorDUT6 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 case 5:
                     if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
@@ -1679,8 +1701,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgComPortCalibratorDUT3 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT4 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT5 == "" )
-                        
+
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Clibrator 2: " + clsGlobalVariables.strgComPortCalibratorDUT2 + Environment.NewLine +
+                                        "Clibrator 3: " + clsGlobalVariables.strgComPortCalibratorDUT3 + Environment.NewLine +
+                                        "Clibrator 4: " + clsGlobalVariables.strgComPortCalibratorDUT4 + Environment.NewLine +
+                                        "Clibrator 5: " + clsGlobalVariables.strgComPortCalibratorDUT5 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 case 4:
                     if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
@@ -1688,22 +1719,48 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgComPortCalibratorDUT3 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT4 == "" )
 
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Clibrator 2: " + clsGlobalVariables.strgComPortCalibratorDUT2 + Environment.NewLine +
+                                        "Clibrator 3: " + clsGlobalVariables.strgComPortCalibratorDUT3 + Environment.NewLine +
+                                        "Clibrator 4: " + clsGlobalVariables.strgComPortCalibratorDUT4 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 case 3:
                     if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT2 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT3 == "" )
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Clibrator 2: " + clsGlobalVariables.strgComPortCalibratorDUT2 + Environment.NewLine +
+                                        "Clibrator 3: " + clsGlobalVariables.strgComPortCalibratorDUT3 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 case 2:
                     if (clsGlobalVariables.strgComPortCalibratorDUT1 == "" ||
                         clsGlobalVariables.strgComPortCalibratorDUT2 == "")
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Clibrator 2: " + clsGlobalVariables.strgComPortCalibratorDUT2 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 case 1:
                     if (clsGlobalVariables.strgComPortCalibratorDUT1 == "")
+                    {
+                        MessageBox.Show("Clibrator 1: " + clsGlobalVariables.strgComPortCalibratorDUT1 + Environment.NewLine +
+                                        "Please check above clibrator com port not found.");
+
                         return false;
+                    }
                     break;
                 
             }
@@ -1756,7 +1813,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             int imCnt;
             byte btmAttemptCounter = 1;
             byte btmKeyCnt = 0;
-            byte btmMaxAttempt = 20;
+            byte btmMaxAttempt = 40;
+            if (clsModelSettings.blnRS485Flag == true)
+                btmMaxAttempt = 70;
+            else
+                btmMaxAttempt = 30;
 
             try
             {
@@ -1881,7 +1942,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
                 && clsModelSettings.blnAnalogDUT == true)
             {
-                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP, DUT);
+                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP, DUT);
             }
             //Device without analog output and input sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
@@ -1889,7 +1950,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
                 && clsModelSettings.blnAnalogDUT == false)
             {
-                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP, DUT);
+                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP, DUT);
             }
             //Analog device with analog ip sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
@@ -1897,7 +1958,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
                 && clsModelSettings.blnAnalogDUT == true)
             {
-                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP, DUT);
+                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP, DUT);
             }
             //Device without analog output but with Analog input sensors.
             else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
@@ -1905,7 +1966,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
                 && clsModelSettings.blnAnalogDUT == false)
             {
-                clsGlobalVariables.objDataLog[DUT].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP, DUT);
+                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP, DUT);
             }
         }
 

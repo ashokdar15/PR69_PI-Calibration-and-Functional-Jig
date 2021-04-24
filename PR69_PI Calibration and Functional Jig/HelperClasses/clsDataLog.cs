@@ -312,20 +312,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP:
                        
                             string[] arrstrmHeader = { "TimeStamp", "Device No.", "PT100("+ clsGlobalVariables.shpPT100Zero +")", "PT100("+ clsGlobalVariables.shpPT100FourHundred +")", "PT100("+ clsGlobalVariables.shpPT100SevenHundred +")", "R ("+ clsGlobalVariables.shpR0 +")", "R ("+ clsGlobalVariables.shpR1000 +")", "R ("+ clsGlobalVariables.shpR1750 +")", "Analog_OP ("+ clsGlobalVariables.shp4mA +"mA)", "Analog_OP ("+ clsGlobalVariables.shp20mA +"mA)", "Analog_OP ("+ clsGlobalVariables.shp12mA +"mA)", "Analog_OP ("+ clsGlobalVariables.shp1Volt +"Volt)", "Analog_OP ("+ clsGlobalVariables.shp10Volt + "Volt)", "Analog_OP ("+ clsGlobalVariables.shp5Volt + "Volt)", "Calibration Time", "Accuracy Time" };
-                            string[] arrstrmDataTobeupdated = {clsGlobalVariables.objDataLog[DUT].StrmPT100_ZERO, clsGlobalVariables.objDataLog[DUT].StrmPT100_400,
-                                           clsGlobalVariables.objDataLog[DUT].StrmPT100_700   , clsGlobalVariables.objDataLog[DUT].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT].StrmR_1000,
-                                           clsGlobalVariables.objDataLog[DUT].StrmR_1750  , clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_4 ,
-                                           clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_20  , clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_12 ,
-                                           clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_1 , clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_10,
-                                           clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_5,clsGlobalVariables.objDataLog[DUT].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT].StrmAccuracyTime};
+                            string[] arrstrmDataTobeupdated = {clsGlobalVariables.objDataLog[DUT-1].StrmPT100_ZERO, clsGlobalVariables.objDataLog[DUT-1].StrmPT100_400,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmPT100_700   , clsGlobalVariables.objDataLog[DUT-1].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmR_1000,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmR_1750  , clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_4 ,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_20  , clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_12 ,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_1 , clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_10,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_5,clsGlobalVariables.objDataLog[DUT-1].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT-1].StrmAccuracyTime};
                             UpdateLog(arrstrmDataTobeupdated, arrstrmHeader, btmdata, DUT);
                         break;
                     //This case is for device without analog op and analog input sensors.
                     case clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP:
                         string[] arrstrmHeader1 = { "TimeStamp", "Device No.", "PT100("+ clsGlobalVariables.shpPT100Zero +")", "PT100("+ clsGlobalVariables.shpPT100FourHundred +")", "PT100("+ clsGlobalVariables.shpPT100SevenHundred +")", "R ("+ clsGlobalVariables.shpR0 +")", "R ("+ clsGlobalVariables.shpR1000 +")", "R ("+ clsGlobalVariables.shpR1750 +")", "Calibration Time", "Accuracy Time"};
-                        string[] arrstrmDataTobeupdated1 = {clsGlobalVariables.objDataLog[DUT].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT].StrmPT100_400 ,
-                                           clsGlobalVariables.objDataLog[DUT].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT].StrmR_1000,
-                                           clsGlobalVariables.objDataLog[DUT].StrmR_1750,clsGlobalVariables.objDataLog[DUT].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT].StrmAccuracyTime};
+                        string[] arrstrmDataTobeupdated1 = {clsGlobalVariables.objDataLog[DUT-1].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmPT100_400 ,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT-1].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmR_1000,
+                                           clsGlobalVariables.objDataLog[DUT-1].StrmR_1750,clsGlobalVariables.objDataLog[DUT-1].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT-1].StrmAccuracyTime};
                         UpdateLog(arrstrmDataTobeupdated1, arrstrmHeader1, btmdata, DUT);
                         break;
                     //This case is for device having analog op sensor and analog input sensors.
@@ -335,15 +335,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Version:- V16
                         //Statement:- "VREF" value will get stored in the log file.
                         string[] arrstrmHeader2 = { "TimeStamp", "Device No.", "PT100("+ clsGlobalVariables.shpPT100Zero +")", "PT100("+ clsGlobalVariables.shpPT100FourHundred +")", "PT100("+ clsGlobalVariables.shpPT100SevenHundred +")", "R ("+ clsGlobalVariables.shpR0 +")", " R ("+ clsGlobalVariables.shpR1000 +")", " R ("+ clsGlobalVariables.shpR1750 +")", "Analog_IP ("+ clsGlobalVariables.shp4mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp12mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp20mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp1Volt + "Volt)", "Analog_IP ("+ clsGlobalVariables.shp5Volt + "Volt)", "Analog_IP ("+ clsGlobalVariables.shp10Volt + "Volt)", " Analog_OP (4mA)", "Analog_OP (20mA)", " Analog_OP (12mA)", "Analog_OP (1V)", "Analog_OP (10V)", " Analog_OP (5V)", "VREF Value", "Calibration Time", "Accuracy Time" };
-                        string[] arrstrmDataTobeupdated2 = {clsGlobalVariables.objDataLog[DUT].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT].StrmPT100_400 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT].StrmR_1000 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmR_1750 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_4 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_12 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_20 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_1 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_5 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_10 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_4 ,  clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_20 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_mA_12 , clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_1 ,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_10 , clsGlobalVariables.objDataLog[DUT].StrmAnalogOP_Volt_5,
-                                                    clsGlobalVariables.objDataLog[DUT].StrmRef_Vtg,clsGlobalVariables.objDataLog[DUT].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT].StrmAccuracyTime};
+                        string[] arrstrmDataTobeupdated2 = {clsGlobalVariables.objDataLog[DUT-1].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmPT100_400 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT-1].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmR_1000 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmR_1750 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_4 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_12 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_20 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_1 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_5 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_10 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_4 ,  clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_20 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_mA_12 , clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_1 ,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_10 , clsGlobalVariables.objDataLog[DUT-1].StrmAnalogOP_Volt_5,
+                                                    clsGlobalVariables.objDataLog[DUT-1].StrmRef_Vtg,clsGlobalVariables.objDataLog[DUT-1].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT-1].StrmAccuracyTime};
                         //----------Changes End.
                         UpdateLog(arrstrmDataTobeupdated2, arrstrmHeader2, btmdata, DUT);
                         break;
@@ -354,11 +354,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Version:- V16
                         //Statement:- "VREF" value will get stored in the log file.
                         string[] arrstrmHeader3 = { "TimeStamp", "Device No.", "PT100("+ clsGlobalVariables.shpPT100Zero +")", "PT100("+ clsGlobalVariables.shpPT100FourHundred +")", "PT100("+ clsGlobalVariables.shpPT100SevenHundred +")", "R ("+ clsGlobalVariables.shpR0 +")", "R ("+ clsGlobalVariables.shpR1000 +")", "R ("+ clsGlobalVariables.shpR1750 +")", "Analog_IP ("+ clsGlobalVariables.shp4mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp12mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp20mA +"mA)", "Analog_IP ("+ clsGlobalVariables.shp1Volt + "Volt)", "Analog_IP ("+ clsGlobalVariables.shp5Volt + "Volt)", "Analog_IP ("+ clsGlobalVariables.shp10Volt + "Volt)", "VREF Value", "Calibration Time", "Accuracy Time" };
-                        string[] arrstrmDataTobeupdated3 ={clsGlobalVariables.objDataLog[DUT].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT].StrmPT100_400 ,
-                                        clsGlobalVariables.objDataLog[DUT].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT].StrmR_1000 ,
-                                        clsGlobalVariables.objDataLog[DUT].StrmR_1750 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_4 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_12 ,
-                                        clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_mA_20 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_1 , clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_5 ,
-                                        clsGlobalVariables.objDataLog[DUT].StrmAnlogIP_Volt_10, clsGlobalVariables.objDataLog[DUT].StrmRef_Vtg,clsGlobalVariables.objDataLog[DUT].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT].StrmAccuracyTime};
+                        string[] arrstrmDataTobeupdated3 ={clsGlobalVariables.objDataLog[DUT-1].StrmPT100_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmPT100_400 ,
+                                        clsGlobalVariables.objDataLog[DUT-1].StrmPT100_700 , clsGlobalVariables.objDataLog[DUT-1].StrmR_ZERO , clsGlobalVariables.objDataLog[DUT-1].StrmR_1000 ,
+                                        clsGlobalVariables.objDataLog[DUT-1].StrmR_1750 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_4 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_12 ,
+                                        clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_mA_20 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_1 , clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_5 ,
+                                        clsGlobalVariables.objDataLog[DUT-1].StrmAnlogIP_Volt_10, clsGlobalVariables.objDataLog[DUT-1].StrmRef_Vtg,clsGlobalVariables.objDataLog[DUT-1].StrmCalibrationTime,clsGlobalVariables.objDataLog[DUT-1].StrmAccuracyTime};
                         UpdateLog(arrstrmDataTobeupdated3, arrstrmHeader3, btmdata, DUT);
                         //----------Changes End.                   
                     //----------Changes End.  

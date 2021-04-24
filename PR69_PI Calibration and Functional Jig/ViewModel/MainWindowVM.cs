@@ -1228,7 +1228,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //Port detection.
                         
             StartStopWatch(true);
-
+            objDataLog[0] = new clsDataLog();
+            objDataLog[1] = new clsDataLog();
+            objDataLog[2] = new clsDataLog();
+            objDataLog[3] = new clsDataLog();
             //clsModelSettings.igDutID  need to set deive iD
 
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
@@ -1264,10 +1267,43 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
             //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
-            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
-            clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
+           // clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
+            clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
+            clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
+            clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            //clsGlobalVariables.algTests_Auto.Add("");
+
+            //Test21 = SET_DFALT_4MA_CNT
+            //Test22 = SET_OBSRVED_4MA_CNT
+            //Test23 = SET_DFALT_20MA_CNT
+            //Test24 = SET_OBSRVED_20MA_CNT
+            //Test25 = CALIBRATE_CURRENT
+            //Test26 = SET_12MA_ANLOP
+            //Test27 = CHK_ANALOG_OP_VAL
+            //Test28 = SLAVE2_OP1_OFF
+            //Test29 = SLAVE2_OP2_ON
+            //Test30 = SET_DFALT_1V_CNT
+            //Test31 = SET_OBSRVED_1V_CNT
+            //Test32 = SET_DFALT_10V_CNT
+            //Test33 = SET_OBSRVED_10V_CNT
+            //Test34 = CALIBRATE_VOLTAGE
+            //Test35 = SET_5V_ANLOP
+            //Test36 = CHK_ANALOG_OP_VAL
             //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
@@ -1342,6 +1378,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.blngIsComportDetected = false;
                 clsGlobalVariables.blngIsComportDetectedForPLC = false;
             }
+            clsModelSettings.igDutID = 6;
+            clsGlobalVariables.objGlobalFunction.LoadKeypadData();
+            clsModelSettings.blnRS485Flag = true;
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
@@ -1373,7 +1412,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
 
             //Data log object is cleared here. Default data will be written into all the data menbers of this object.
-            //clsGlobalVariables.objDataLog[DUT].Clear();
+            //clsGlobalVariables.objDataLog[DUT-1].Clear();
             //--------Changed By Shubham
             //Date:- 30-03-2018
             //Version:- V16
@@ -1384,9 +1423,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //prgbar.Maximum = imNumOfTests;
             //prgbar.Value = prgbar.Minimum;
             //This timeout is resseted here to original.           
-            clsModelSettings.igDutID = 1;
-            clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;            
+            
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
                 clsGlobalVariables.CurrentTestNumber = imLoopCntr +1;
@@ -1400,11 +1437,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 //ConfigurationData[0].
                 //CatId[1].CalibrationDelays
+
                 for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                 {
                     clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
                 }
-
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;

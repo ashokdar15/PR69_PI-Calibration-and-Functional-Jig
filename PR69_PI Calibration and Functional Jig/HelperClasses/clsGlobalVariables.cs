@@ -638,7 +638,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int ONE_mAMP_MAX_PI = 1050;//0.9538               1.0129
         public static int ONE_mAMP_MIN_PI = 950;
         public static int TWENTY_mAMP_MAX = 20080;
-        public static int TWENTY_mAMP_MIN = 19920;
+        public static int TWENTY_mAMP_MIN = 19000;
+        //public static int TWENTY_mAMP_MIN = 19920;
         public static int TWENTY_mAMP_MAX_PI = 20740;
         public static int TWENTY_mAMP_MIN_PI = 19520;
 
@@ -929,7 +930,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
     {
         public static int igDutID;
         public static Boolean blnRS485Flag; //This tells that selected cat id contains modbus or not.
-        public static int imAnalOpVal;
+        public static int[] imAnalOpVal = new int[4];
         public static byte btmAnalogsetVal;
         public static byte btmCalibConst;
         public static Boolean blnAnalogDUT;
