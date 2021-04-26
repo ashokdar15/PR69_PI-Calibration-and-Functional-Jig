@@ -418,6 +418,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     btmRetVal = AdjustModeOfDevice(clsGlobalVariables.START_MODE, DUT);
 
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                        continue;
+
+                    }
                 }
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -461,6 +467,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     //DUT is put in run mode 
                     btmRetVal = AdjustModeOfDevice(clsGlobalVariables.RUN_MODE, DUT);
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                        continue;
+
+                    }
                 }
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
@@ -513,7 +525,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Source OFF is checked. 
                         if (clsGlobalVariables.objCalibQueriescls.CheckSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                            continue;
                         }
                     }
                     else
@@ -521,7 +534,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Source on is checked. 
                         if (clsGlobalVariables.objCalibQueriescls.CheckSourceON(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                            continue;
                         }
                     }
                     //--------Changes End.
@@ -543,11 +557,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             //For double acting device software validates the data received from the device.
                             btmRetVal = ValidateCounts(clsGlobalVariables.btgRxBuffer, btmData, DUT);
-                            if (btmRetVal  != (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                return btmRetVal;
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+
                             }
-                            
+
                         }
                         else//Device without modbus
                         {
@@ -557,13 +573,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                             if (lmData != 2)
                             {
-                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
                             }
                         }
                     }
                     else
                     {
-                        return btmRetVal;
+                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                        continue;
                     }
                 }
             }

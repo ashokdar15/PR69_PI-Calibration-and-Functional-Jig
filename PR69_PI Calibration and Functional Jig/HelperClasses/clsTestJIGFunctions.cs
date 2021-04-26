@@ -1058,6 +1058,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.VOLTAGE);
                             }
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+
+                            }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
@@ -1171,12 +1177,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_1_VOLT_CNT);
                             }
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            //if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            //{
                                 //This statement is added here for manual calibration only.
                                 //CA55 Program.objMainForm.lblSetVal.Text = "01.00";
-                            }
+                            //}
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
@@ -1185,7 +1195,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            //This check is for device having modbus.
+                            //This checSET_OBSRVED_10V_CNTk is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBSetAnalogOutput(clsGlobalVariables.MB_SET_VOLTAGE_DFALT_COUNT, clsGlobalVariables.VOLT_10, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1195,10 +1205,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.DEFAULT_10_VOLT_CNT);
                             }
 
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 //This statement is added here for manual calibration only.
                                 //CA55 Program.objMainForm.lblSetVal.Text = "10.00";
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
@@ -1375,6 +1387,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_OBSERVED_1_VOLT, clsModelSettings.imAnalOpVal[DUT-1]);
                                     }
                                 }
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+
+                                }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
@@ -1428,23 +1446,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                 }
                             }
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+
+                            }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
 
                         //Messages related to analog test are displayed here.
-                        if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Successful.");
-                        }
-                        else
-                        {
-                            clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Failed.");
-                            //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                            ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                            //else
-                            ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                        }
-                        clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VALUE, "10Volts", clsGlobalVariables.strgAnalogData);
+                        //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                        //{
+                        //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Successful.");
+                        //}
+                        //else
+                        //{
+                        //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Failed.");
+                        //    //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
+                        //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
+                        //    //else
+                        //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+                        //}
+                        //clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VALUE, "10Volts", clsGlobalVariables.strgAnalogData);
 
 
                         break;
@@ -1509,23 +1533,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_V_FUNC_CODE, clsGlobalVariables.VOLT_5);
                             }
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                //This statement is added here for manual calibration only.
-                                //CA55 Program.objMainForm.lblSetVal.Text = "05.00";
-                                clsModelSettings.btmAnalogsetVal = clsGlobalVariables.FIVE_Volt;
-                            }
-                            else
-                            {
-                                clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Failed.");
-                                //if (Program.objMainForm.rad48by48DUT.Checked|| Program.objMainForm.rad96by96DUT.Checked)
-                                ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                                //else
-                                ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
 
-                                break;
                             }
-                           
+                            //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                            //{
+                            //    //This statement is added here for manual calibration only.
+                            //    //CA55 Program.objMainForm.lblSetVal.Text = "05.00";
+                            //    clsModelSettings.btmAnalogsetVal = clsGlobalVariables.FIVE_Volt;
+                            //}
+                            //else
+                            //{
+                            //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "5Volts", "Failed.");
+                            //    //if (Program.objMainForm.rad48by48DUT.Checked|| Program.objMainForm.rad96by96DUT.Checked)
+                            //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
+                            //    //else
+                            //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
+
+                            //    break;
+                            //}
+                            clsModelSettings.btmAnalogsetVal = clsGlobalVariables.FIVE_Volt;
                         }
 
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
@@ -1551,10 +1581,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                     clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_5 = clsGlobalVariables.strgAnalogData;
                                 }
-                                else
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;
+
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
