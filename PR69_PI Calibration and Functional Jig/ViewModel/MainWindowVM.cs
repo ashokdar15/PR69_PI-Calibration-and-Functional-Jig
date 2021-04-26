@@ -1355,7 +1355,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TestsDetailsVis = true;
             IsProductSelected = true;
             clsTotalConnectedDevicesList.Clear();
-            for (int Testnum = 0; Testnum < ListOfTests.Count; Testnum++)
+            for (int Testnum = 0; Testnum < clsGlobalVariables.algTests_Auto.Count; Testnum++)
             {
                 Dispatcher.CurrentDispatcher.Invoke( delegate{
 
