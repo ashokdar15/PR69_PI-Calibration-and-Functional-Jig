@@ -1522,7 +1522,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
-            //StartStopWatch(true);
+            StartStopWatch(false);
         }
 
         //Parameters

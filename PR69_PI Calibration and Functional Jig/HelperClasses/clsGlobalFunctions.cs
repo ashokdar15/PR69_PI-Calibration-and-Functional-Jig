@@ -425,43 +425,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     }
                 }
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                 {
-                    //Delays are applied for signal stabilization.
-
-                    {
-                        if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
-                        {
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
-                        }
-
-                        if (btmData == clsGlobalVariables.PT100_CNT)
-                        {
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
-                        }
-
-                        if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
-                        {
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
-                        }
-
-                        if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
-                        {
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE);
-                        }
-                        //-------Changed By Shubham
-                        //Date:- 27-02-2018
-                        //Version:- V16
-                        //Statement:- For VREF Start mode delay present in INI File is applied here.
-                        if (btmData == clsGlobalVariables.CALIB_VREF)
-                        {
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_STARTMODE);
-                        }
-                    }
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
                 }
-                else
+                if (btmData == clsGlobalVariables.PT100_CNT)
                 {
-                    return btmRetVal;
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
+                }
+                if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
+                }
+                if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE);
+                }
+                if (btmData == clsGlobalVariables.CALIB_VREF)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_STARTMODE);
                 }
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 {
@@ -471,55 +453,30 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                         continue;
-
                     }
                 }
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                 {
-                    //Delays are applied for signal stabilization.
-
-
-                    if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
-                    {
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
-                    }
-
-                    if (btmData == clsGlobalVariables.PT100_CNT)
-                    {
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE);
-                    }
-
-                    if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
-                    {
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE);
-                    }
-
-                    if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
-                    {
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE);
-                    }
-                    //-------Changed By Shubham
-                    //Date:- 27-02-2018
-                    //Version:- V16
-                    //Statement:- For VREF Run mode delay present in INI File is applied here.
-                    if (btmData == clsGlobalVariables.CALIB_VREF)
-                    {
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_RUNMODE);
-                    }
-                    //---------Changes End.
-
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
                 }
-                else
+                if (btmData == clsGlobalVariables.PT100_CNT)
                 {
-                    return btmRetVal;
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE);
                 }
-
+                if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE);
+                }
+                if (btmData == clsGlobalVariables.CALIB_1V || btmData == clsGlobalVariables.CALIB_9V)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE);
+                }
+                if (btmData == clsGlobalVariables.CALIB_VREF)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.VREF_READ_DELAY_RUNMODE);
+                }
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 {
-                    //-------Changed By Shubham
-                    //Date:- 27-02-2018
-                    //Version:- V16
-                    //Statement:- For VREF Calibration source should be OFF. So, Source OFF is cheked.
                     if (btmData == clsGlobalVariables.CALIB_VREF)
                     {
                         //Source OFF is checked. 
@@ -538,8 +495,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             continue;
                         }
                     }
-                    //--------Changes End.
-
                     //This check is for device having modbus.                
                     if (clsModelSettings.blnRS485Flag == true)
                     {
@@ -549,7 +504,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CALIBRATE_FUNC_CODE, btmData);
                     }
-
                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                     {
                         //This check is for device having modbus.                    
@@ -561,20 +515,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
-
                             }
-
                         }
                         else//Device without modbus
                         {
                             //For single acting device does not read data or validates the data.
                             //Device itself does the calculations, software checks only valid response.
                             lmData = GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
-
                             if (lmData != 2)
                             {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                         }
                     }
@@ -591,7 +542,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             }
             return btmRetVal;
         }
-
         ///<MemberName>ValidateCounts</MemberName>
         ///<MemberType>Function</MemberType>
         ///<CreatedBy>Shubham</CreatedBy>

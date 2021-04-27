@@ -1651,44 +1651,30 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_J_TYPE, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                //CA55 Program.objMainForm.ShowStatus( Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.ONEMV_CALIB_ERR);
-                                break;
-                            }
-
-
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }                           
                             //Callibrator SSource is made on.
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.ONEMV_CALIB_ERR);
-                                break;
-                            }
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }                            
                             //1mV value is adjusted in the Calibrator's source.  
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.ONE_MV, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.ONEMV_CALIB_ERR);
-                                break;
-                            }
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }                            
                         }
                         //Here software reads the count and validates that count for double acting. 
                         //For single acting devices software does not validates received counts.
-                        btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_1_CNT);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.ONEMV_CALIB_ERR);
-                            break;
-                        }
+                        clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_1_CNT);                        
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.PASS);
-                        //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.ONEMV_CALIB_SUCCESS);
                         break;
-
                     case "CALIB_50_MV_CNT":
                         //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1696,26 +1682,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.FIFTY_MV, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.FIFTYMV_CALIB_ERR);
-                                break;
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                         }
-                        btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
-                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                        {
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.FAIL);
-                            //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.FIFTYMV_CALIB_ERR);
-                            break;
-                        }
-
+                        clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.PASS);
-                        //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.FIFTYMV_CALIB_SUCCESS);
                         break;
-
                     case "CALC_SLOPE_OFFSET":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1729,11 +1703,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
                             }
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "CALIB_TC":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1750,12 +1722,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPType)
                                 {
                                     btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
-                                    break;
                                 }
                                 else
                                 {
                                     btmRetVal = clsGlobalVariables.objGlobalFunction.DeviceWrite((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), DUT);
-                                    break;
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                        continue;
+                                    }
                                 }
                             }
                             else//Device without modbus
@@ -1765,17 +1740,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     long lmData = clsGlobalVariables.objGlobalFunction.GetNumber(ref clsGlobalVariables.btgRxBuffer, 3, 1);
-
                                     if (lmData != 2)
                                     {
-
-                                        btmRetVal =(byte)clsGlobalVariables.enmResponseError.Invalid_data;
-                                        break;
+                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                        continue;
                                     }
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-
                         }
                         break;
 
