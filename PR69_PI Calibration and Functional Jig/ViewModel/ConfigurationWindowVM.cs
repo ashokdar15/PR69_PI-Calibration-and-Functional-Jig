@@ -899,6 +899,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _Description = value; OnPropertyChanged("Description"); }
         }
 
+        private string _Communication_Start_Time;
+
+        public string Communication_Start_Time
+        {
+            get { return _Communication_Start_Time; }
+            set { _Communication_Start_Time = value; OnPropertyChanged("Communication_Start_Time"); }
+        }
+
+
         private bool _ModbusSupport;
 
         public bool ModbusSupport
@@ -2281,6 +2290,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     DeviceId = _catList.DeviceId;
                     Description = _catList.Description;
                     ModbusSupport = _catList.ModbusSupport;
+                    Communication_Start_Time = _catList.Communication_Start_Time;
 
                     IsAnalogInputTest = _catList.IsAnalogInputTestApplicable;
                     IsAnalogOutputTest = _catList.IsAnalogOutputTestApplicable;
@@ -2778,6 +2788,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     DeviceName = DeviceName,
                     Description = Description,
                     ModbusSupport = ModbusSupport,
+                    Communication_Start_Time = Communication_Start_Time,
                     IsAnalogInputTestApplicable = IsAnalogInputTest,
                     AnalogIpTests = analogInputTestsDetails,
                     IsAnalogOutputTestApplicable = IsAnalogOutputTest,
@@ -2896,6 +2907,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 DeviceName = DeviceName,
                 Description = Description,
                 ModbusSupport = ModbusSupport,
+                Communication_Start_Time = Communication_Start_Time,
                 IsAnalogInputTestApplicable = IsAnalogInputTest,
                 AnalogIpTests = analogInputTestsDetails,
                 IsAnalogOutputTestApplicable = IsAnalogOutputTest,

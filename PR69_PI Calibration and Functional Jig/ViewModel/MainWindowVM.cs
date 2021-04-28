@@ -725,6 +725,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             {
                                 IsEnabledOkbtn = true;
                                 StartBtnVis = true;
+                                AssignConfigurationDetailsToUI();
+                                NumberOfDUTs = "4";
+                                BatchNumber = "1";
                                 ListOfTests.Clear();
                             }
                         }
@@ -737,10 +740,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     IsProductSelected = false;
                 }
                     
-                AssignConfigurationDetailsToUI();
-
-                NumberOfDUTs = "4";
-
                 OnPropertyChanged("SelectedDeviceName");
             }
         }
@@ -1006,6 +1005,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             get { return _IsEnabledOkbtn; }
             set { _IsEnabledOkbtn = value; OnPropertyChanged("IsEnabledOkbtn"); }
+        }
+
+        private string _BatchNumber;
+
+        public string BatchNumber
+        {
+            get { return _BatchNumber; }
+            set
+            {
+                _BatchNumber = value;
+
+                if (_BatchNumber != null && _BatchNumber != "")
+                {
+                    IsEnabledOkbtn = true;
+                }
+                else
+                {
+                    TestsDetailsVis = false;
+                    IsEnabledOkbtn = false;
+                }
+
+                OnPropertyChanged("BatchNumber");
+            }
         }
 
 
@@ -1341,11 +1363,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
             //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
             foreach (string test in clsGlobalVariables.algTests_Auto)
             {
@@ -1928,6 +1950,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         }
 
+
         private void AddAnalogOutputTests(CatIdList catId)
         {
             if (catId.AnalogOpTests[0].SET_DFALT_1MA_CNT)
@@ -2046,6 +2069,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private void OpenProdConfigClk(object obj)
         {
+            PasswordWindow passwordWindow = new PasswordWindow();
+            var pwdRes = passwordWindow.ShowDialog();
+
+            if (pwdRes == false)
+            {
+                MessageBox.Show("Incorrect password entered!","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                //ShowMessageBox("Incorrect password entered!", false, "", clsGlobalVariables.MsgIcon.Error);
+                return;
+            }
+
             ConfigurationWindow objconfiguration = new ConfigurationWindow();
             objconfiguration.ShowDialog();
         }

@@ -107,6 +107,9 @@
     <Compile Include="Views\DisplayMessage.xaml.cs">
       <DependentUpon>DisplayMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PasswordWindow.xaml.cs">
+      <DependentUpon>PasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProgrammingWindow.xaml.cs">
       <DependentUpon>ProgrammingWindow.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PasswordWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ProgrammingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

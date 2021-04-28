@@ -1325,6 +1325,13 @@
                                     IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                     Content="Modbus Support"/>
 
+                                <TextBox Margin="15 5 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="3" Grid.Row="0"  
+                                    materialDesign:HintAssist.Hint="Start Time" 
+                                    Text="{Binding Path=Communication_Start_Time, UpdateSourceTrigger=PropertyChanged}"
+                                    IsReadOnly="{Binding Path=IsNotEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                </TextBox>
+
                                 <TextBox Margin="5 5 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"  
                                     materialDesign:HintAssist.Hint="Description" 
                                     Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"

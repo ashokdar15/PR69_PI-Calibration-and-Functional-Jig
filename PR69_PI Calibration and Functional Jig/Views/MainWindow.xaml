@@ -204,6 +204,17 @@
                                         IsEnabled="{Binding IsProductSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 </TextBox>
+
+                                <TextBlock Margin="5 10 -5 10" Padding="5" Text="Batch Number : ">
+                                    <TextBlock.FontSize>12</TextBlock.FontSize>
+                                </TextBlock>
+
+                                <TextBox Width="30" Height="45" Margin="10 -10 10 8"
+                                        materialDesign:HintAssist.Hint="" 
+                                        Text="{Binding Path=BatchNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                        IsEnabled="{Binding IsProductSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                </TextBox>
                             </StackPanel>
                         </Grid>
 
