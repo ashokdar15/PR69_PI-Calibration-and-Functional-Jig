@@ -1706,6 +1706,263 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
+                    case "CALIB_PT100_313":
+
+                        if (clsGlobalVariables.blngIsDebugPresent == true && Program.objMainForm.chkRTD.Checked == true)
+                        {
+                            btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            break;
+                        }
+                        else
+                        {
+                            Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.INPROGRESS);
+                            if (Program.objMainForm.mnuAutoCalibration.Checked == true)
+                            {
+                             
+                                //for 96x96 Cat Id different connection image is displayed.
+                                //if (Program.objMainForm.rad96by96DUT.Checked == true)
+                                //{
+                                //    clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
+                                //}
+                                //else
+                                //{
+                                //    if (Program.objMainForm.rad48by48DUT.Checked)
+                                //    {
+                                //        clsMessages.DisplayMessage(clsMessageIDs.THREEWIRE_MSG_ID);
+                                //    }
+                                //    else
+                                //    {
+                                //        clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
+                                //    }
+
+                                //}                               
+
+                                btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.THREEOneThree_OHM);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                //btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE);
+                                //if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //{
+                                //    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                //    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                //    break;
+                                //}
+
+                                btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT313_CNT);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                clsMessages.DisplayMessage(clsMessageIDs.SET_350Ohm_IN_CALIB);
+                                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT313_CNT);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+                            }
+                            //This check is for device having modbus.
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                clsGlobalVariables.objGlobalFunction.Calc_Current();
+                                clsGlobalVariables.objGlobalFunction.ConvertCalibConst();
+                                //This check is added here because while calibrating the device having Analog IP sensor,
+                                //if this query is sent to the device after completion of PT100 sensor calibration,
+                                //slopes and offsets for analog IP sensors are get written as Zero.
+                                //Due to this on the device display proper values does not get displayed.
+                                //On the device display zero value gets displayed.
+                                if (clsGlobalVariables.igTYPE_OF_DEVICE != clsGlobalVariables.igDoubleActingWithAnalogIPType)
+                                {
+                                    btmRetVal = clsGlobalVariables.objGlobalFunction.DeviceWrite();
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.FAIL);
+                                        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm2, clsGlobalVariables.enmStatus.PASS);
+                        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_SUCCESS);
+                        break;
+                    case "CALIB_47_MV_CNT":
+                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.INPROGRESS);
+                        if (Program.objMainForm.mnuAutoCalibration.Checked == true)
+                        {
+                            btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.FOURTYSEVEN_MV);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.FAIL);
+                                clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FIFTYMV_CALIB_ERR);
+                                break;
+                            }
+
+                            btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.FAIL);
+                                clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FIFTYMV_CALIB_ERR);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            clsMessages.DisplayMessage(clsMessageIDs.SET_50mV_IN_CALIB);
+
+                            btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.FAIL);
+                                clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FIFTYMV_CALIB_ERR);
+                                break;
+                            }
+                        }
+                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.PASS);
+                        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FIFTYMV_CALIB_SUCCESS);
+                        break;
+                    case "CALIB_PT100_100":
+
+                        if (clsGlobalVariables.blngIsDebugPresent == true && Program.objMainForm.chkRTD.Checked == true)
+                        {
+                            btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                            break;
+                        }
+                        else
+                        {
+                            Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.INPROGRESS);
+                            if (Program.objMainForm.mnuAutoCalibration.Checked == true)
+                            {
+                                //-------Changed By Shubham
+                                //Date:- 28-04-2018
+                                //Version:- V17
+                                //Statement:- Proper name is stored in the global variable to display on the picture message box.
+                                clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Calibration";
+                                //------Changes End.
+                                //for 96x96 Cat Id different connection image is displayed.
+                                if (Program.objMainForm.rad96by96DUT.Checked == true)
+                                {
+                                    clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
+                                }
+                                else
+                                {
+                                    if (Program.objMainForm.rad48by48DUT.Checked)
+                                    {
+                                        clsMessages.DisplayMessage(clsMessageIDs.THREEWIRE_MSG_ID);
+                                    }
+                                    else
+                                    {
+                                        clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
+                                    }
+
+                                }
+
+                                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_RTD_KNOB_POS, clsGlobalVariables.SOURCE_RTD_KNOB_TEXT);
+
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn();
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.OneHund_OHM);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_CNT);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                clsMessages.DisplayMessage(clsMessageIDs.SET_350Ohm_IN_CALIB);
+                                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+
+                                btmRetVal = clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_CNT);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                    break;
+                                }
+                            }
+                            //This check is for device having modbus.
+                            if (clsModelSettings.blnRS485Flag == true)
+                            {
+                                clsGlobalVariables.objGlobalFunction.Calc_Current();
+                                clsGlobalVariables.objGlobalFunction.ConvertCalibConst();
+                                //This check is added here because while calibrating the device having Analog IP sensor,
+                                //if this query is sent to the device after completion of PT100 sensor calibration,
+                                //slopes and offsets for analog IP sensors are get written as Zero.
+                                //Due to this on the device display proper values does not get displayed.
+                                //On the device display zero value gets displayed.
+                                if (clsGlobalVariables.igTYPE_OF_DEVICE != clsGlobalVariables.igDoubleActingWithAnalogIPType)
+                                {
+                                    btmRetVal = clsGlobalVariables.objGlobalFunction.DeviceWrite();
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.FAIL);
+                                        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_ERR);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        Program.objMainForm.ShowStatus(Program.objMainForm.Shp350Ohm, clsGlobalVariables.enmStatus.PASS);
+                        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.THREEFIFTYOHM_CALIB_SUCCESS);
+                        break;
                     case "CALIB_TC":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {

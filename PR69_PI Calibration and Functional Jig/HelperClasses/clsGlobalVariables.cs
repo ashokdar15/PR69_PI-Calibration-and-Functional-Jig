@@ -384,6 +384,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const int igDOWNVal_PI = 0x40;
         public const int igEnterKeyVal_PI = 0x10;
 
+        public const int igESCVal_PR43 = 0x01;
+        public const int igUPKeyVal_PR43 = 0x04;
+        public const int igDOWNVal_PR43 = 0x08;
+        public const int igEnterKeyVal_PR43 = 0x02;
+
         public const byte BEFORE_SOAKING = 0;
         public const byte AFTER_SOAKING = 1;
         public const byte CALIB_DONE = 2;

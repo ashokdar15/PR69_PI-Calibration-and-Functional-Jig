@@ -1868,12 +1868,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 clsGlobalVariables.arrstrgKeysNames[2] = clsGlobalVariables.strgUP;
                 clsGlobalVariables.arrstrgKeysNames[3] = clsGlobalVariables.strgEnter;
 
-                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48  || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                 {
                     clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal;
                     clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal;
                     clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal;
-                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;                   
+                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;
+                }
+                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_43x43)
+                {
+                    clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal_PR43;
+                    clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal_PR43;
+                    clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal_PR43;
+                    clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal_PR43;
                 }
                 else
                 {
