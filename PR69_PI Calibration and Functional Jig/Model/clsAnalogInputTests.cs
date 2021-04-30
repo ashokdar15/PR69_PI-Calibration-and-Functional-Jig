@@ -154,7 +154,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             }
             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
                 clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
-                clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_43x43)
+                clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
             {
                 IsPR69Product = true;
                 IsPIProduct = false;

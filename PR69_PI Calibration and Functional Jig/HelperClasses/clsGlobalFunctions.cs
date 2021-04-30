@@ -1875,7 +1875,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal;
                     clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;
                 }
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_43x43)
+                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
                 {
                     clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal_PR43;
                     clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal_PR43;

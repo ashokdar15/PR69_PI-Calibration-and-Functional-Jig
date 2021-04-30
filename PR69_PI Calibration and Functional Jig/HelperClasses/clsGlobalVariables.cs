@@ -137,7 +137,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             PR69_48x48 = 1,
             PR69_96x96 = 2,
             PI = 3,
-            PR69_43x43 = 4
+            PR43_48x48 = 4,
+            PR43_96x96 = 5
         }
 
         public enum AccuracyParameter
@@ -762,6 +763,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte MV_1_CNT = 0x0;
         public const byte MV_50_CNT = 0x1;
         public const byte PT100_CNT = 0x2;
+        public const byte PT313_CNT = 0x3;
         public const byte TC_CNT = 0x3;
         public const byte CALIB_1V = 0x7;	
         public const byte CALIB_9V = 0x8;	
@@ -870,7 +872,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public const string ONE_MV = "1";
         public const string FIFTY_MV = "50";
+        public const string FOURTYSEVEN_MV = "47";
         public const string THREEFIFTY_OHM = "350";
+        public const string THREEOneThree_OHM = "313";
+        public const string OneHund_OHM = "100";
 
         public const byte CONST_CALIB_V1 = 1;
         public const byte CONST_CALIB_V2 = 50;

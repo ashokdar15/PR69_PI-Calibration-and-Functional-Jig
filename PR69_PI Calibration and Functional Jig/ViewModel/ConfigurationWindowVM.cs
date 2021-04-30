@@ -2080,7 +2080,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             else if (DeviceType.Contains("96"))
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
             else if (DeviceType.Contains("43"))
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_43x43;
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR43_48x48;
             else
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
         }
