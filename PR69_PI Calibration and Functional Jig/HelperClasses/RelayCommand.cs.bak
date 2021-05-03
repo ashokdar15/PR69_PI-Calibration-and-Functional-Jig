@@ -23,18 +23,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         {
         }
         private static bool DefaultCanExecute(object parameter)
-        {
-            if (clsGlobalVariables.mainWindowVM != null)
-            {
-                if (clsGlobalVariables.mainWindowVM.IsProcessOn == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
+        {            
             return true;
         }
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)

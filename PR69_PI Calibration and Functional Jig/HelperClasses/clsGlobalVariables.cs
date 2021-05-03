@@ -120,7 +120,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
 
         public static SelectedDeviceType selectedDeviceType;
-        public static MainWindowVM mainWindowVM = new MainWindowVM();
+        //public static MainWindowVM MainWindowVM = null;
+        public static MainWindowVM mainWindowVM = null;
 
         public static int FAILURE = -1;
         public static int SUCCESS = 0;
