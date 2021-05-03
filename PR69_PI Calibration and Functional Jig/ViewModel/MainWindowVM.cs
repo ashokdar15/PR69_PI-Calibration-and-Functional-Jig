@@ -471,6 +471,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _IsProductSelected = value; OnPropertyChanged("IsProductSelected"); }
         }
 
+        private bool _IsProcessOn = false;
+
+        public bool IsProcessOn
+        {
+            get { return _IsProcessOn; }
+            set { _IsProcessOn = value; OnPropertyChanged("IsProcessOn"); }
+        }
+
+
+
         private bool _DUT1DetailsVis;
 
         public bool DUT1DetailsVis
@@ -1248,7 +1258,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
           
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
-                        
+            IsProcessOn = true;
             StartStopWatch(true);
             objDataLog[0] = new clsDataLog();
             objDataLog[1] = new clsDataLog();
@@ -1556,6 +1566,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
             clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
             CloseAllComport();
+            IsProcessOn = false;
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
