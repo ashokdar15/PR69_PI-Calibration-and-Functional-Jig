@@ -433,6 +433,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 {
                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE);
                 }
+                if (btmData == clsGlobalVariables.PT313_CNT)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT313_DELAY_AFTER_STARTMODE);
+                }//PT100_100_CNT_PR43
+                if (btmData == clsGlobalVariables.PT100_100_CNT_PR43)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_PR43_DELAY_AFTER_STARTMODE);
+                }//PT100_100_CNT_PR43
                 if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
                 {
                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE);
@@ -462,6 +470,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 if (btmData == clsGlobalVariables.PT100_CNT)
                 {
                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE);
+                }
+                if (btmData == clsGlobalVariables.PT100_100_CNT_PR43)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT100_PR43_DELAY_AFTER_RUNMODE);
+                }
+                if (btmData == clsGlobalVariables.PT313_CNT)
+                {
+                    clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PT313_DELAY_AFTER_RUNMODE);
                 }
                 if (btmData == clsGlobalVariables.CALIB_4mA || btmData == clsGlobalVariables.CALIB_20mA)
                 {

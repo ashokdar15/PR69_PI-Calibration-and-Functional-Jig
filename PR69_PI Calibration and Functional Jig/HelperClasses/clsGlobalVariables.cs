@@ -602,6 +602,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte mA_SENSOR = 0x30;
         //These valuse will be set into calibrator.
         public const string strgONE_MV = "1";
+        public const string strgEight_MV = "8";
         public const string strgFIFTY_MV = "50";
         public const string strgTHREEFIFTY_OHM = "350";
 
@@ -739,6 +740,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         // These are delays used during device calibration.
         public static int PT100_DELAY_AFTER_STARTMODE = 20000;
         public static int PT100_DELAY_AFTER_RUNMODE = 20000;
+        public static int PT313_DELAY_AFTER_STARTMODE = 30000;
+        public static int PT313_DELAY_AFTER_RUNMODE = 30000;
+        public static int PT100_PR43_DELAY_AFTER_STARTMODE = 30000;
+        public static int PT100_PR43_DELAY_AFTER_RUNMODE = 30000;
         public static int ONEmV_DELAY_AFTER_STARTMODE = 20000;
         public static int ONEmV_DELAY_AFTER_RUNMODE = 20000;
         public static int FOURmA_DELAY_AFTER_STARTMODE = 20000;
@@ -763,6 +768,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte MV_1_CNT = 0x0;
         public const byte MV_50_CNT = 0x1;
         public const byte PT100_CNT = 0x2;
+        public const byte PT100_100_CNT_PR43 = 0x2;
         public const byte PT313_CNT = 0x3;
         public const byte TC_CNT = 0x3;
         public const byte CALIB_1V = 0x7;	
@@ -872,9 +878,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public const string ONE_MV = "1";
         public const string FIFTY_MV = "50";
-        public const string FOURTYSEVEN_MV = "47";
+        public const string FOURTYSEVEN_MV = "47.68";
         public const string THREEFIFTY_OHM = "350";
-        public const string THREEOneThree_OHM = "313";
+        public const string THREEOneThree_OHM = "313.71";
         public const string OneHund_OHM = "100";
 
         public const byte CONST_CALIB_V1 = 1;

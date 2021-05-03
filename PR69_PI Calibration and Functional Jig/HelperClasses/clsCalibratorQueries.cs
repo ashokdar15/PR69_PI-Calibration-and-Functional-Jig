@@ -1151,14 +1151,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             strtemp = strtemp + (char)arrbtData[i];
                         }
-
-                        if (Convert.ToInt32(Convert.ToDouble(strtemp.Replace(" ", string.Empty))) == Convert.ToInt32(strValue))
+                        if (strValue.Contains("."))
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Success;
+                            if (Convert.ToDouble(strtemp.Replace(" ", string.Empty)) == Convert.ToDouble(strValue))
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                            else
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
                         }
                         else
                         {
-                            return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            if (Convert.ToInt32(Convert.ToDouble(strtemp.Replace(" ", string.Empty))) == Convert.ToDouble(strValue))
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Success;
+                            }
+                            else
+                            {
+                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
                         }
                     }
                 }
