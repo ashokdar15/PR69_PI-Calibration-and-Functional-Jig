@@ -2009,7 +2009,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         {
            
                DisplayMessageWindow displayMessageWindow = new DisplayMessageWindow(TitleImgMsg, clsGlobalVariables.DispImgpath + DisplayImgPath, MsgDescription);
-            displayMessageWindow.ShowDialog();
+               displayMessageWindow.ShowDialog();
         }
 
 
