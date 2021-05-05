@@ -317,32 +317,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _StopBtnVis = value; OnPropertyChanged("StopBtnVis"); }
         }
         
-        private string _DisplayImgPath;
-
-        public string DisplayImgPath
-        {
-            get { return _DisplayImgPath; }
-            set { _DisplayImgPath = value; OnPropertyChanged("DisplayImgPath"); }
-        }
-
-        private string _MsgDescription;
-
-        public string MsgDescription
-        {
-            get { return _MsgDescription; }
-            set { _MsgDescription = value; OnPropertyChanged("MsgDescription"); }
-        }
-
-        private string _TitleImgMsg;
-
-        public string TitleImgMsg
-        {
-            get { return _TitleImgMsg; }
-            set { _TitleImgMsg = value; OnPropertyChanged("TitleImgMsg"); }
-        }
-
-
-
+        
         private string _StopwatchTime;
 
         public string StopwatchTime
@@ -1267,6 +1242,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsModelSettings.igDutID  need to set deive iD
 
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
+            //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
 
             if (ListOfTests.Count == 0)
             {

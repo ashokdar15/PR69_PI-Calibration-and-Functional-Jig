@@ -12,9 +12,9 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
     <Window.DataContext>
-        <vm:MainWindowVM x:Name="MainVM"/>
+        <vm:DisplayMessageVM x:Name="DisplayMessageVM"/>
     </Window.DataContext>
-    <Grid DataContext="{x:Reference MainVM}">
+    <Grid DataContext="{x:Reference DisplayMessageVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition />
@@ -28,12 +28,12 @@
                 <TextBlock  HorizontalAlignment="Left" Margin="15 0 0 0"
                             VerticalAlignment="Center"
                             FontWeight="Bold" 
-                            Text="{Binding TitleImgMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
+                            Text="{Binding TitleImgMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference DisplayMessageVM}}"
                             FontSize="16"/>
             </StackPanel>
-       
 
-            <Image Source="{Binding DisplayImgPath, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged,Source={x:Reference MainVM}}"
+
+        <Image Source="{Binding DisplayImgPath, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged,Source={x:Reference DisplayMessageVM}}"
                    Stretch="UniformToFill"
                    Grid.Row="1"
                    Grid.Column="0"

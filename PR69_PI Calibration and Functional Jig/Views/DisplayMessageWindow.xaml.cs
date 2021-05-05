@@ -10,11 +10,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
     public partial class DisplayMessageWindow : Window
     {
 
-        MainWindowVM vm = null;
+        DisplayMessageVM vm = null;
         public DisplayMessageWindow(string title, string dispImg, string dispMsg)
         {
             InitializeComponent();
-            vm = (MainWindowVM)DataContext;
+            vm = (DisplayMessageVM)DataContext;
             vm.TitleImgMsg = title;
             vm.DisplayImgPath = dispImg;
             vm.MsgDescription = dispMsg;
