@@ -1216,7 +1216,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 }
                 else
                 {
-                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, (5 + strValue.Length));
+                    Array.Resize(ref clsGlobalVariables.btgTxBuffer, (5 + strValue.Length-1));
                 }
                 
 
@@ -1231,18 +1231,36 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.btgTxBuffer[2] = clsGlobalVariables.PLUS;
                 }
 
-                
-                foreach (char item in strValue)
+                if (strValue.Contains("-"))
                 {
-                    if ((byte)item != clsGlobalVariables.NEG)
+                    foreach (char item in strValue)
                     {
-                        clsGlobalVariables.btgTxBuffer[2 + imCounter] = (byte)item;
-                        imCounter++;
+                        if ((byte)item != clsGlobalVariables.NEG)
+                        {
+                            clsGlobalVariables.btgTxBuffer[2 + imCounter] = (byte)item;
+                            imCounter++;
+                        }
+
                     }
-                   
+                    clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.CR;
+                    clsGlobalVariables.btgTxBuffer[imCounter + 3] = clsGlobalVariables.LF;
                 }
-                clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.CR;
-                clsGlobalVariables.btgTxBuffer[imCounter + 3] = clsGlobalVariables.LF;
+                else
+                {
+                    foreach (char item in strValue)
+                    {
+                        if ((byte)item != clsGlobalVariables.NEG)
+                        {
+                            clsGlobalVariables.btgTxBuffer[1 + imCounter] = (byte)item;
+                            imCounter++;
+                        }
+
+                    }
+                    clsGlobalVariables.btgTxBuffer[imCounter + 1] = clsGlobalVariables.CR;
+                    clsGlobalVariables.btgTxBuffer[imCounter + 2] = clsGlobalVariables.LF;
+
+                }
+                    
 
                btmRetVal = _clsSerialComm.SendQuery(clsGlobalVariables.btgTxBuffer, clsGlobalVariables.ig_Calib_Query_TimeOut);
 

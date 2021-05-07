@@ -33,7 +33,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceID(DUT);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
-                                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -46,7 +46,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDut((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
-                                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.WRONG_DEVICE_SELECTION);
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1139,6 +1139,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                             }
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
 
@@ -1160,6 +1166,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                             }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
                     //---------Changes End.

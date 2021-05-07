@@ -1365,12 +1365,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
             //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
             foreach (string test in clsGlobalVariables.algTests_Auto)
             {
                 clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
@@ -1429,7 +1429,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
             MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false);
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
-            OpenJigCOMPort();
+           OpenJigCOMPort();
             byte btmRetVal;
             int imLoopCntr;
             int imNumOfTests;
@@ -1710,7 +1710,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     break;
             }
         }
-        private void OpenJigCOMPort()
+        public void OpenJigCOMPort()
         {
             switch (clsGlobalVariables.NUMBER_OF_DUTS)
             {
@@ -1750,6 +1750,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 default:
                     break;
             }
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false, true);
+            MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false);
+            MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
         }
 
         private void FailurHandel()
@@ -1758,14 +1761,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CloseAllComport();
             StartStopWatch(false);
         }
-
         private void EnableDisableUI(bool v)
         {
             StartBtnVis = v;
             StopBtnVis = !v;
         }
 
-        private void CloseAllComport()
+        public void CloseAllComport()
         {
             MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.CloseCommPort();
             MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT2.CloseCommPort();
@@ -1774,9 +1776,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT5.CloseCommPort();
             MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT6.CloseCommPort();
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
-            MainWindowVM.initilizeCommonObject.objplcSerialComm.CloseCommPort();
-
-            
+            MainWindowVM.initilizeCommonObject.objplcSerialComm.CloseCommPort();            
         }
         private void GetListOfAllEnabledtests(CatIdList catId)
         {
@@ -2073,15 +2073,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private void OpenProdConfigClk(object obj)
         {
-            PasswordWindow passwordWindow = new PasswordWindow();
-            var pwdRes = passwordWindow.ShowDialog();
+            //PasswordWindow passwordWindow = new PasswordWindow();
+            //var pwdRes = passwordWindow.ShowDialog();
 
-            if (pwdRes == false)
-            {
-                MessageBox.Show("Incorrect password entered!","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
-                //ShowMessageBox("Incorrect password entered!", false, "", clsGlobalVariables.MsgIcon.Error);
-                return;
-            }
+            //if (pwdRes == false)
+            //{
+            //    MessageBox.Show("Incorrect password entered!","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+            //    //ShowMessageBox("Incorrect password entered!", false, "", clsGlobalVariables.MsgIcon.Error);
+            //    return;
+            //}
 
             ConfigurationWindow objconfiguration = new ConfigurationWindow();
             objconfiguration.ShowDialog();
@@ -2242,6 +2242,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     break;
                 default:
                     break;
+            }
+            clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
+            for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
+            {
+                clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
             hide();
         }

@@ -571,6 +571,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte SOURCE_mV_KNOB_POS = 0; //CA550
         public const string SOURCE_mV_KNOB_TEXT = "100mV";
         public const byte SOURCE_RTD_KNOB_POS = 2; //CA550
+        public const byte SOURCE_RTD_KNOB_POS_ACC = 4; //CA550
         //public const byte SOURCE_RTD_KNOB_POS = 4; 
         public const byte SOURCE_TC_KNOB_POS = 3; //CA550
         public const string SOURCE_RTD_KNOB_TEXT = "RTD";
@@ -601,6 +602,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte RTD_SENSOR = 0x30;
         public const byte VTG_SENSOR_30V= 0x33;
         public const byte mA_SENSOR = 0x30;
+
         //These valuse will be set into calibrator.
         public const string strgONE_MV = "1";
         public const string strgEight_MV = "8";
@@ -753,8 +755,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int ONEVolt_DELAY_AFTER_RUNMODE = 20000;
         //-------Changed By Shubham
 
-        public static int mA_V_AccuracyDelay = 10000;
-        public static int PT100_AccuracyDelay = 30000;
+        public static int mA_V_AccuracyDelay = 120000;
+        public static int PT100_AccuracyDelay = 120000;
         public static int ThermoCouple_AccuracyDelay = 120000;
 
 

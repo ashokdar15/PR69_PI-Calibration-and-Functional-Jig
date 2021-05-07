@@ -65,7 +65,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     try
                     {
                         almListOfComPorts.Add(strPort);
-                        comport.Open();
+                        comport.Open(); 
                         comport.Close();
                     }
                     catch (Exception)
