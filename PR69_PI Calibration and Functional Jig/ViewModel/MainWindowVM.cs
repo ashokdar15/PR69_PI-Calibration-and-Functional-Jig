@@ -1228,7 +1228,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopBtnVis = false;
             tmrMbTimer.Dispose();
         }
-        private async void btnStartClk(object obj)
+        private void btnStartClk(object obj)
         {
           
             CatIdList catId = clsGlobalVariables.Selectedcatid;
@@ -1549,6 +1549,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
             StartStopWatch(false);
+            AccuracyWindow accuracyWindow = new AccuracyWindow();
+            accuracyWindow.ShowDialog();
+
         }
 
         //Parameters

@@ -756,8 +756,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //-------Changed By Shubham
 
         public static int mA_V_AccuracyDelay = 120000;
-        public static int PT100_AccuracyDelay = 120000;
-        public static int ThermoCouple_AccuracyDelay = 120000;
+        public static int PT100_AccuracyDelay = 40000;
+        public static int ThermoCouple_AccuracyDelay = 60000;
 
 
         //Date:- 24-02-2018
