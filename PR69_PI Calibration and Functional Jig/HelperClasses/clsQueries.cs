@@ -128,26 +128,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///This is only applicable for Double Acting device. For single acting devices Erase query is not present.
         ///</summary>        
         ///<ClassName>clsQueries</ClassName>
-        //public byte MBErase()
-        //{
-        //    byte btmRetVal;
-        //    try
-        //    {
-        //        Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
-        //        Array.Resize(ref clsGlobalVariables.btgTxBuffer, 4);
+        public byte MBErase(byte salveID)
+        {
+            byte btmRetVal;
+            try
+            {
+                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 4);
 
-        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = clsGlobalVariables.MB_DUT_ID;
-        //        clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_ERASE;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = salveID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_ERASE;
 
-        //        btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
+                btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
 
-        //        return btmRetVal;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+                return btmRetVal;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         ///<MemberName>MBReadAdcCountSlaveToDut</MemberName>
         ///<MemberType>Function</MemberType>
@@ -463,36 +463,36 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.shrtgCJCDUT1 = (short)lmData;
                             if (clsGlobalVariables.shrtgCJCDUT1 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT1 > clsGlobalVariables.CJC_max_Value)
                             {
-                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT1.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT1.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
                                 break;
                         case 2:
                             clsGlobalVariables.shrtgCJCDUT2 = (short)lmData;
                             if (clsGlobalVariables.shrtgCJCDUT2 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT2 > clsGlobalVariables.CJC_max_Value)
                             {
-                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT2.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT2.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
                             break;
                         case 3:
                             clsGlobalVariables.shrtgCJCDUT3 = (short)lmData;
                             if (clsGlobalVariables.shrtgCJCDUT3 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT3 > clsGlobalVariables.CJC_max_Value)
                             {
-                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT3.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT3.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
                             break;
                         case 4:
                             clsGlobalVariables.shrtgCJCDUT4 = (short)lmData;
                             if (clsGlobalVariables.shrtgCJCDUT4 < clsGlobalVariables.CJC_min_Value || clsGlobalVariables.shrtgCJCDUT4 > clsGlobalVariables.CJC_max_Value)
                             {
-                                MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT4.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //MessageBox.Show("CJC faild value : " + clsGlobalVariables.shrtgCJCDUT4.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                                btmReturnVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                             }
                             break;
                     }
@@ -772,6 +772,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 throw ex;
             }
         }
+        
         public byte ReadDeviceIDSalveToDutPortDetection(int slaveID)
         {
 

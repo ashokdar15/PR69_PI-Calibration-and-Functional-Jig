@@ -550,6 +550,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                         continue;
                     }
+                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                 }
             }
             catch (Exception)
@@ -1801,7 +1802,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             if (clsModelSettings.blnRS485Flag == true)
                 btmMaxAttempt = 70;
             else
-                btmMaxAttempt = 30;
+                btmMaxAttempt = 70;
 
             try
             {

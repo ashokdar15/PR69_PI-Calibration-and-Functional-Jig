@@ -446,7 +446,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte MB_READ_HOLDIND_REG = 3;
         public const byte MB_WRITE_HOLDIND_REG = 6;
 
-        public const byte MB_MASTER_TO_DUT = 100;
+        public static byte MB_MASTER_TO_DUT = 100;
         public const byte MB_READ_CALIB_CONST_STATUS = 101;
         public const byte MB_READ_ADC_COUNT = 102;
         public const byte MB_START_TEST = 103;

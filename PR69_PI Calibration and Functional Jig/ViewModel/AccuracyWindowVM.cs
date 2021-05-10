@@ -22,7 +22,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
-
+            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+            clsModelSettings.blnRS485Flag = false;
+            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                clsGlobalVariables.MB_MASTER_TO_DUT = 200;
+            else
+                clsGlobalVariables.MB_MASTER_TO_DUT = 100;
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
