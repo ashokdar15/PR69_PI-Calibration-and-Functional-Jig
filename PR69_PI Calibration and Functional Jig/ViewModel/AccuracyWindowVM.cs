@@ -38,7 +38,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsModelSettings.blnRS485Flag = false;
             
             clsGlobalVariables.mainWindowVM.OpenJigCOMPort();
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR43_48x48;
+            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
             //PT100SensorTest("-100", 1, clsGlobalVariables.AccuracyParameter.PT100Sensor);
             //PT100SensorTest("200", 2, clsGlobalVariables.AccuracyParameter.PT100Sensor);
             //PT100SensorTest("300", 3, clsGlobalVariables.AccuracyParameter.PT100Sensor);

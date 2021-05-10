@@ -1233,8 +1233,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
           
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
-            IsProcessOn = true;
+            //IsProcessOn = true;
             StartStopWatch(true);
+            EnableDisableUI(false);
             objDataLog[0] = new clsDataLog();
             objDataLog[1] = new clsDataLog();
             objDataLog[2] = new clsDataLog();
@@ -1277,7 +1278,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
             clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY_PI");
             clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");
@@ -1305,7 +1306,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("CALIB_1V_CNT_PI");
             clsGlobalVariables.algTests_Auto.Add("CALIB_20mA_CNT_PI");
             clsGlobalVariables.algTests_Auto.Add("CALIB_1mA_CNT_PI");
-            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
 
             #endregion
 
@@ -1444,7 +1445,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //return;
 
 
-            EnableDisableUI(false);
+            
             clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
             //If usr change number of device then need to find com port again.
             if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
@@ -1529,7 +1530,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR43_48x48;
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
 
@@ -1596,7 +1597,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
             clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
             CloseAllComport();
-            IsProcessOn = false;
+            ///IsProcessOn = false;
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
@@ -1818,8 +1819,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private void EnableDisableUI(bool v)
         {
-            StartBtnVis = v;
-            StopBtnVis = !v;
+            //StartBtnVis = v;
+            //StopBtnVis = !v;
         }
 
         public void CloseAllComport()

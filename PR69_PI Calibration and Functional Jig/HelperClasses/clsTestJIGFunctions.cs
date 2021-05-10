@@ -3212,6 +3212,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
                 }
