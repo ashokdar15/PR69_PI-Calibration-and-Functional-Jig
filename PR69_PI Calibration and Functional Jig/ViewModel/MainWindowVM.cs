@@ -1278,7 +1278,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
             clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
             clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY_PI");
             clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");

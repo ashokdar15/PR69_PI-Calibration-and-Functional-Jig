@@ -755,9 +755,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int ONEVolt_DELAY_AFTER_RUNMODE = 20000;
         //-------Changed By Shubham
 
-        public static int mA_V_AccuracyDelay = 120000;
-        public static int PT100_AccuracyDelay = 40000;
-        public static int ThermoCouple_AccuracyDelay = 60000;
+        public static int mA_V_AccuracyDelay = 10000;
+        public static int PT100_AccuracyDelay = 30000;
+        public static int ThermoCouple_AccuracyDelay = 90000;
 
 
         //Date:- 24-02-2018
@@ -883,7 +883,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const string FIFTY_MV = "50";
         public const string FOURTYSEVEN_MV = "47.68";
         public const string THREEFIFTY_OHM = "350";
-        public const string THREEOneThree_OHM = "313.71";
+        public const string THREEOneThree_OHM = "313.713";
         public const string OneHund_OHM = "100";
 
         public const byte CONST_CALIB_V1 = 1;

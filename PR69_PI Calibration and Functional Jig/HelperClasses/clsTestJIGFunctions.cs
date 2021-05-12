@@ -3057,9 +3057,159 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "START_MODBUS_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, "Pending");
+                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(39);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            if (DUT != 1)
+                            {
+                                clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            }
+                            //56,60 On
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(56);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(60);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(57);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(61);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(58);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(62);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(59);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(63);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            //39 On
+                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(39);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+
+                            //delay 500 mSec
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+
+                            //Read Q19,
+                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBReadPLC_Output(19);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
+                            //56,60 On
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(56);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(60);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(57);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(61);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(58);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(62);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(59);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(63);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-                        btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
+                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(39);
                         break;
                     case "24V_OP_TEST":                        
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -3147,7 +3297,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        }                            
+                        }
+                        
+                        
                         break;
                     case "CJC_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)

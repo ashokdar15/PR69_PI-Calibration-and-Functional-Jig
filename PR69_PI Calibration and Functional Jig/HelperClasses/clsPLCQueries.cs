@@ -370,14 +370,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             }
         }
-        public byte MBReadPLC_Output()
+        public byte MBReadPLC_Output(byte outPutNumber)
         {
             Byte[] btmRspArr = { 0 };
             try
             {
                 //Read Q2
                 Byte[] btmInputRspArr = { 0 };
-                if (ReadCoilStatusQuery(clsGlobalVariables.PLC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + 3, 1, ref btmInputRspArr) == true)
+                if (ReadCoilStatusQuery(clsGlobalVariables.PLC_MODBUS_ID, clsGlobalVariables.BASE_ADDR + outPutNumber, 1, ref btmInputRspArr) == true)
                     if (btmInputRspArr[0] == 1)
                         return (byte)clsGlobalVariables.enmResponseError.Success;
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
