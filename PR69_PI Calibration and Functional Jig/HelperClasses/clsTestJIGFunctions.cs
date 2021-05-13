@@ -698,428 +698,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-                    #region"Commented code"
-
-                    //case "SLAVE1_OP1_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE1_OP2_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE1_OP3_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE1_OP1_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP1_ADDRESS, OP1_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                    //    break;
-
-                    //case "SLAVE1_OP2_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP2_ADDRESS, OP2_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                    //    break;
-
-                    //case "SLAVE1_OP3_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE1_ID, OP3_ADDRESS, OP3_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                    //    break;
-
-                    //case "SLAVE1_READ_ADC_CNT_RLY_OFF":
-                    //    //Relay test bypass logic is present here.
-
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_OFF);
-                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                    //    {
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                    //    }
-                    //    break;
-
-                    //case "SLAVE1_READ_ADC_CNT_RLY_ON":
-                    //    //relay bypass logic is handled here. 
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE1_ID, clsGlobalVariables.RLY_ON);
-                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                    //    {
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55//clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                    //    }
-                    //    break;
-
-                    //case "SLAVE2_OP1_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE2_OP2_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE2_OP3_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE2_OP1_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP1_ADDRESS, OP1_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                    //    break;
-
-                    //case "SLAVE2_OP2_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP2_ADDRESS, OP2_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                    //    break;
-
-                    //case "SLAVE2_OP3_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE2_ID, OP3_ADDRESS, OP3_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                    //    break;
-
-                    //case "SLAVE2_READ_ADC_CNT_RLY_OFF":
-                    //    //Relay test bypass logic is present here.
-
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_OFF);
-                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                    //    {
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                    //    }
-                    //    break;
-
-                    //case "SLAVE2_READ_ADC_CNT_RLY_ON":
-                    //    //relay bypass logic is handled here. 
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts(clsGlobalVariables.MB_SLAVE2_ID, clsGlobalVariables.RLY_ON);
-                    //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                    //    {
-                    //        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                    //        //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                    //    }
-                    //    break;
-
-                    //case "SLAVE3_OP3_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP_OFF)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE3_OP1_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP1_ON)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                    //    break;
-
-                    //case "SLAVE3_OP1_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP1_ADDRESS, OP_OFF)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE3_OP2_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP2_ON)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                    //    break;
-
-                    //case "SLAVE3_OP2_OFF":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP2_ADDRESS, OP_OFF)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "SLAVE3_OP3_ON":
-                    //    //MBWriteHoldingReg(MB_SLAVE3_ID, OP3_ADDRESS, OP3_ON)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                    //    break;
-
-                    //case "SLAVE3_READ_ADC_CNT_RLY_ON":
-                    //    //MBReadAdcCounts(MB_SLAVE3_ID, RLY_ON)
-                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    //        btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.RLY_ON);
-                    //    break;
-
-                    //case "CONVERTOR_OP1_ON":
-                    //    //ucmReturnVal = MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP1_ON)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                    //    break;
-
-                    //case "CONVERTOR_OP2_ON":
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                    //    break;
-
-                    //case "CONVERTOR_OP3_ON":
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                    //    break;
-
-                    //case "CONVERTOR_OP1_OFF":
-                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP1_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "CONVERTOR_OP2_OFF":
-                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP2_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    //case "CONVERTOR_OP3_OFF":
-                    //    //MBWriteHoldingReg(MB_CONVERTOR_ID, OP3_ADDRESS, OP_OFF)
-                    //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_CONVERTOR_ID, clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                    //    break;
-
-                    #endregion
-
-                    case "DUT_READ_ADC_CNT_RLY_ON":
-
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCounts((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.RLY_ON);
-                            }
-                            else //Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBReadAdcCountSlaveToDut(clsGlobalVariables.RLY_ON, DUT);
-                            }
-                        }
-                        break;
-
-                    case "DUT_OP1_ON":
-                        //relay bypass logic is handled here. 
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            clsGlobalVariables.blngIsOPOneON = true;
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.INPROGRESS);
-                            //This check is for device having modbus.                            
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                            }
-                            else //Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-                            }
-
-                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput( Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                            }
-                        }
-                        break;
-
-                    case "DUT_OP1_OFF":
-                        //relay bypass logic is handled here. 
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //This check is for device having modbus.                            
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                            }
-                            else //Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
-                            }
-                            //This condition tells that OP1 test is completed. If OP1 is previously in ON state and response
-                            //of query is also success then mark this test as completed(PASS).
-                            if ((btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success) && clsGlobalVariables.blngIsOPOneON == true)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.PASS);
-                                clsGlobalVariables.blngIsOPOneON = false;
-                            }
-                            else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                            }
-                        }
-                        break;
-
-                    case "DUT_OP2_ON":
-                        //Relay test bypass logic is written here.
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput( Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.INPROGRESS);
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
-                            }
-                            else //Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
-                            }
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                clsGlobalVariables.blngIsOPTwoON = true;
-                            }
-                            else
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput( Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                            }
-
-                            //After completion of this test default delay is applied.   
-                            //CA55 if (  Program.objMainForm.chkApplyDelay.Checked == true)
-                            //{
-                            //CA55clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
-                            //}
-                            // else
-                            // {
-                            //CA55clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
-                            // }
-                        }
-                        break;
-
-                    case "DUT_OP2_OFF":
-                        //Relay test bypass logic is added here.
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
-                            }
-                            //This condition tells that OP2 test is completed. If OP2 is previously in ON state and response
-                            //of query is also success then mark this test as completed(PASS).
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success && clsGlobalVariables.blngIsOPTwoON == true)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput( Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.PASS);
-                                clsGlobalVariables.blngIsOPTwoON = false;
-                            }
-                            else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput( Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                                clsGlobalVariables.blngIsOPTwoON = false;
-                            }
-
-                            //Default delay is applied here.
-                            //if (  Program.objMainForm.chkApplyDelay.Checked == true)
-                            //{
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
-                            //}
-                            //else
-                            //{
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
-                            //}
-                        }
-                        break;
-
-                    case "DUT_OP3_ON":
-                        //Relay test bypass logic is handled here.
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.INPROGRESS);
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-                            }
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                clsGlobalVariables.blngIsOPThreeON = true;
-                            }
-                            else
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                            }
-                            //Default delay is applied here.
-                            //if (  Program.objMainForm.chkApplyDelay.Checked == true)
-                            //{
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
-                            //}
-                            //else
-                            //{
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
-                            //}
-                        }
-                        break;
-
-                    case "DUT_OP3_OFF":
-                        //Relay bypass logic is added here.
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            //This check is for device having modbus.
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
-                            }
-                            //This condition tells that OP3 test is completed. If OP3 is previously in ON state and response
-                            //of query is also success then mark this test as completed(PASS).
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success && clsGlobalVariables.blngIsOPThreeON == true)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.PASS);
-                                clsGlobalVariables.blngIsOPThreeON = false;
-                            }
-                            else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                                //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                                clsGlobalVariables.blngIsOPThreeON = false;
-                            }
-                            //Default delay is applied here.
-                            //if (  Program.objMainForm.chkApplyDelay.Checked == true)
-                            //{
-                            // clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(Program.objMainForm.txtDelay.Text));
-                            //}
-                            //else
-                            //{
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.igFIXED_DELAY_IN_RELAYTEST);
-                            //}
-                        }
-                        break;
-
-                    case "START_REL_TEST":
-                        //Relay test bypass logic is present here.
-
-                        //Here in this test device itself checks the relay op1 and op2.
-                        //So, both relays shape color are handled here. 
-                        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.INPROGRESS);
-                        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.INPROGRESS);
-
-                        // btmRetVal = clsGlobalVariables.objQueriescls.MBStartRelayTest();
-
-                        //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                        //{
-                        //    //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.PASS);
-                        //    //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.PASS);
-                        //}
-                        //else
-                        //{
-                        //    //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP2, clsGlobalVariables.enmStatus.FAIL);
-                        //    //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                        //    //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.RELAY_DEBUG_MSG_ID);
-                        //}
-
-                        break;
-
-
-
                     case "WRITE_CALIB_CONST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1146,13 +724,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-                        break;
-
-                    //-------Changed By Shubham
-                    //Date:- 24-02-2018
-                    //Version:- V16
-                    //Statement:- New Test is added in the software.
-                    //Use of this test is to support the new Firmware V03.                    
+                        break;                                      
                     case "WRITE_CALIB_CONST_WITH_VREF":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1169,8 +741,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-                    //---------Changes End.
-
                     case "CALIBRATE_CURRENT":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1193,7 +763,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         }
                         break;
-
                     case "CALIBRATE_VOLTAGE":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1216,11 +785,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_DFALT_4MA_CNT":
-
-                        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.INPROGRESS);
-                        clsGlobalVariables.strgOngoingTestName = "Analog Output mA Calibration";
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1250,12 +815,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
                     case "SET_DFALT_1MA_CNT": //only for PI
-                        //analog op test bypass logic is present here.
-
-                        //CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.INPROGRESS);
-
-
-                        clsGlobalVariables.strgOngoingTestName = "Analog Output mA Calibration";
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1276,7 +835,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_DFALT_20MA_CNT":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1299,7 +857,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_DFALT_1V_CNT":                      
                         clsMessages.DisplayMessage(clsMessageIDs.VOLTAGE_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1327,7 +884,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_DFALT_10V_CNT":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1351,10 +907,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
                     case "SET_OBSRVED_4MA_CNT":
-
-
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
-
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
 
@@ -1397,15 +950,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
                     case "SET_OBSRVED_1MA_CNT":
                         //analog op test bypass logic is present here.
-
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);
-                        //Delay of 12 Seconds has been added here.
-                        //Here calibrator's measure knob position is checked. 
-                        // btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_mA_KNOB_POS, clsGlobalVariables.MEASURE_mA_KNOB_TEXT);
-                        //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             //Value present on the calibrator measure has been read and saved in a global variable.
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1445,7 +992,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Delay of 12 Seconds has been added here.                                            
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1453,7 +999,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                 //This function "ValidateAnalogVal" validates the value given by the calibrator's measure.
                                 btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.TWENTY_mAMP, DUT);
-
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 20mA Analog OP sensor is saved in log object
@@ -1479,10 +1024,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_OBSRVED_1V_CNT":
                         //analog op test bypass logic is present here.
-
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1527,12 +1070,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
                     case "SET_OBSRVED_10V_CNT":
                         //analog op test bypass logic is present here.
-
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             //Value present on the calibrator measure has been read and saved in a global variable.
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1570,23 +1111,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-
-                        //Messages related to analog test are displayed here.
-                        //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                        //{
-                        //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Successful.");
-                        //}
-                        //else
-                        //{
-                        //    clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VOLTAGE, "10Volts", "Failed.");
-                        //    //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-                        //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP1, clsGlobalVariables.enmStatus.FAIL);
-                        //    //else
-                        //    ////CA55 Program.objMainForm.ShowStatusOutput(Program.objMainForm.PictOP3, clsGlobalVariables.enmStatus.FAIL);
-                        //}
-                        //clsMessages.ShowAnalogMessageInProgressWindow(clsMessageIDs.ANALOG_TEST_VALUE, "10Volts", clsGlobalVariables.strgAnalogData);
-
-
                         break;
 
                     case "SET_12MA_ANLOP":
@@ -1609,8 +1133,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                             clsModelSettings.btmAnalogsetVal = clsGlobalVariables.TWELVE_mA;
-
-
                         }
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1635,7 +1157,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SET_5V_ANLOP":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1653,7 +1174,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
-
                             }
                             clsModelSettings.btmAnalogsetVal = clsGlobalVariables.FIVE_Volt;
                         }
@@ -1699,7 +1219,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "CALIB_1_MV_CNT":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1762,24 +1281,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
                     case "CALIB_PT100_313":
-
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            //if (Program.objMainForm.rad96by96DUT.Checked == true)
-                            //{
-                            //    clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
-                            //}
-                            //else
-                            //{
-                            //    if (Program.objMainForm.rad48by48DUT.Checked)
-                            //    {
-                            //        clsMessages.DisplayMessage(clsMessageIDs.THREEWIRE_MSG_ID);
-                            //    }
-                            //    else
-                            //    {
-                            //        clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
-                            //    }
-                            //}                               
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.THREEOneThree_OHM, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1790,7 +1293,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT313_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
@@ -1813,7 +1315,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-                        
                         break;
                     case "CALIB_47_MV_CNT":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1831,21 +1332,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
                     case "CALIB_PT100_100":
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
-                        }
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.THREEWIRE_MSG_ID);
-                        }
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
-                        }
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_96x96)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
-                        }
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //for 96x96 Cat Id different connection image is displayed.clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96
@@ -1855,29 +1348,24 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_RTD_KNOB_POS, clsGlobalVariables.SOURCE_RTD_KNOB_TEXT, DUT);
-
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.OneHund_OHM, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-
                             btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1888,7 +1376,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_100_CNT_PR43);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
@@ -1958,21 +1445,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;
 
                     case "CALIB_PT100":
-
                         clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Calibration";
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
-                        }
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.THREEWIRE_MSG_ID);
-                        }
                         else
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
-                        }
-
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
 
@@ -2031,7 +1510,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "CALIB_1V_CNT":
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2088,8 +1566,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     case "CALIB_9V_CNT":
                         //chkVtg test bypass logic is present here.
-
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpNineV, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
 
@@ -2102,7 +1578,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                         }
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_9V);
-                        
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //This check is for device having modbus.
@@ -2114,23 +1589,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.objGlobalFunction.ConvertCalibConst(DUT);
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpNineV, clsGlobalVariables.enmStatus.PASS);
-                        //CA55 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT,clsMessageIDs.NINEVOLT_CALIB_SUCCESS);
                         break;
-
                     case "CALIB_4mA_CNT":
                         //chkCurrent test bypass logic is present here.
-
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpFourmA, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
-                            //-------Changed By Shubham
-                            //Date:- 28-04-2018
-                            //Version:- V17
-                            //Statement:- Proper name is stored in the global variable to display on the picture message box.
                             clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
-                            //---------Changes End.
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                                 break;
                             clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
@@ -2187,11 +1651,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     case "CALIB_20mA_CNT":
                         //chkCurrent test bypass logic is present here.
-
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpTwentymA, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.TWENTY_mA_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -2200,8 +1661,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
-                        clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_20mA);
-                       
+                        clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_20mA);                       
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //This check is for device having modbus.
@@ -2215,9 +1675,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         break;                   
                     case "REF_VOLTAGE_CALC":
                         //Progress status to VREF shape is set.
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpVREF, clsGlobalVariables.enmStatus.INPROGRESS);
-                        //This check is for device having modbus.
-
                         if (clsModelSettings.blnRS485Flag == true)
                         {
                             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2255,8 +1712,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                             }
                         }
-
-
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             switch (DUT)
@@ -2337,9 +1792,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //Validation on VREF value is applied here.
 
                         }
-                        
                         break;
-                    
                     case "START_REL_TEST_OP1_RELAY":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2651,7 +2104,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-
                         break;
                     case "START_REL_TEST_OP1_RELAY_PR43_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2892,7 +2344,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;                    
                     case "CALIB_1V_CNT_PI":
-                        
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
 
@@ -2904,20 +2355,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                         }
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_1V);
-                        
-
-
-                            break;
+                        break;
                     case "CALIB_9V_CNT_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-                            
                         }
                         clsMessages.DisplayMessage(clsMessageIDs.VOLT_CALIBRATION_MSG_ID);
                         //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpNineV, clsGlobalVariables.enmStatus.INPROGRESS);
@@ -2969,11 +2415,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
                     case "CALIB_1mA_CNT_PI":
-
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpFourmA, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.ONE_mA_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -2989,12 +2432,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                         }
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_4mA);
-                        
                         break;
                     case "CALIB_20mA_CNT_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -3002,7 +2443,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                         }
                         clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
-                        //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpTwentymA, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mA_KNOB_POS, clsGlobalVariables.SOURCE_mA_KNOB_POS, DUT);
@@ -3043,8 +2483,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                         }
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_20mA);
-                        
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                       foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (clsModelSettings.blnRS485Flag == true)
                             {

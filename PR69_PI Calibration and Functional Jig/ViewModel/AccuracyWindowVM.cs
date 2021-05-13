@@ -38,22 +38,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsModelSettings.blnRS485Flag = false;
             
             clsGlobalVariables.mainWindowVM.OpenJigCOMPort();
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
-            //PT100SensorTest("-100", 1, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-            //PT100SensorTest("200", 2, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-            //PT100SensorTest("300", 3, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-            //PT100SensorTest("400", 4, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-            //PT100SensorTest("500", 5, clsGlobalVariables.AccuracyParameter.PT100Sensor);
-            //JSensorTest("-50", 1, clsGlobalVariables.AccuracyParameter.JSensor);
-            //JSensorTest("0", 2, clsGlobalVariables.AccuracyParameter.JSensor);
-            //JSensorTest("200", 3, clsGlobalVariables.AccuracyParameter.JSensor);
-            //JSensorTest("300", 4, clsGlobalVariables.AccuracyParameter.JSensor);
-            //JSensorTest("600", 5, clsGlobalVariables.AccuracyParameter.JSensor);
-            //public static string mAmpAccuracyTest = "mAmpAccTests";
-            //public static string voltAccuracyTest = "voltAccTests";
-            //public static string pt100sensorAccuracyTest = "pt100sensorAccTests";
-            //public static string RsensorAccuracyTest = "RsensorAccTests";
-            //public static string JsensorAccuracyTest = "JsensorAccTests";
+            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;           
             Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
             GetAccuracyDataFromJSON(AccuracyList);
             int currentTestNumber = 1;
@@ -73,6 +58,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         foreach (var actualTest in item.Value)
                         {
                             VoltSensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.Volt);
+
+
+                            //validate
                             currentTestNumber++;
                         }
                         break;
@@ -774,8 +762,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
                 throw ex;
             }
-        }
-        
+        }        
         private byte ChangeDP(byte btmdata,byte DUT)
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
@@ -893,7 +880,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             blnTimerElapsed = false;
         }
-
         private void Stoptesting(object obj)
         {
             StartBtnVis = true;
@@ -1661,8 +1647,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _NextAccuracyTesting; }
             set { _NextAccuracyTesting = value; }
         }
-
-
         public AccuracyWindowVM()
         {
             StartBtnVis = true;
