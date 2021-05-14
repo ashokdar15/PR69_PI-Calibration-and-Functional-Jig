@@ -14,7 +14,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     {
         private string BgColorgreen = "#43a047";
         private string BgColorred = "#e53935";
-        private string BgColororange = "#ff8a65";
 
         private string Testrespass = "PASS";
         private string Testresfail = "FAIL";
@@ -120,10 +119,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice1 = BgColorred;
                 }
-                else
-                    BackcolorDevice1 = BgColororange;
-
-
+                
                 OnPropertyChanged("TestresultDevice1");
             }
         }
@@ -151,8 +147,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice2 = BgColorred;
                 }
-                else
-                    BackcolorDevice2 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice2");
             }
@@ -181,8 +175,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice3 = BgColorred;
                 }
-                else
-                    BackcolorDevice3 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice3");
             }
@@ -211,8 +203,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice4 = BgColorred;
                 }
-                else
-                    BackcolorDevice4 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice4");
             }
@@ -241,8 +231,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice5 = BgColorred;
                 }
-                else
-                    BackcolorDevice5 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice5");
             }
@@ -271,8 +259,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice6 = BgColorred;
                 }
-                else
-                    BackcolorDevice6 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice6");
             }

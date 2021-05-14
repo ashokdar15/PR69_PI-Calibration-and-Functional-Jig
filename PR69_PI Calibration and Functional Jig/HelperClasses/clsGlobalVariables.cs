@@ -10,9 +10,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
     public class clsGlobalVariables
     {
-       
-              
-        
+        public enum Enmpointcalibration
+        {
+            P1 = 1,
+            P2 = 2,
+            P3 = 3,
+            P4 = 4,
+            P5 = 5,
+            P6 = 6,
+            P7 = 7,
+            P8 = 8,
+            P9 = 9,
+            P10 = 10,
+        }
+        public static Enmpointcalibration enmpointcalibration;
+
+        public static IList<AccuracyTests> accuracyTests = null;
+
+        public static bool Validateaccuracytestbackcolor = false;
+
         #region"-----Enum------"
         //This enum is used for response error handling
         public enum enmResponseError
@@ -149,6 +165,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             PT100Sensor,
             RSensor,
             JSensor
+        }
+
+        public enum DataLogStatus
+        {
+            Valid = 0,
+            Invalid = 1,
+            DatabaseConectionFailed = 3,
+            DataLogged = 4,
+            DataLoggedFailed = 5,            
+            NoRecordFound = 6,
+            ExceptionHandeled = 7
         }
 
         //Add to list of AccuracyTestsSequence
