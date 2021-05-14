@@ -98,11 +98,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             bool blnmStatus;
                             blnmStatus = false;
                             //Display bypass logic is added here. 
-
-
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", true);
                             Repeat:
-                            //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.INPROGRESS);
                             /*Here two tests gets carried out inside display test.
                              1.Display Test 
                              2.Leaky MOSFET Test:- After completion of display test leaky mosfet test gets conducted.
@@ -124,16 +121,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
                                 }
                             }
-
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.PASS);
-                            }
-                            else
-                            {
-                                //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpDisplay, clsGlobalVariables.enmStatus.FAIL);
-                            }
-
                             if (blnmStatus == false)
                             {
                                 //Requirement in the display test was to ask user to perform disply test once again.
@@ -141,7 +128,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 blnmStatus = true;
                                 dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                                 //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-
                                 if (dlgMsgBxRslt == DialogResult.OK)
                                 {
                                     goto Repeat;
@@ -151,8 +137,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", false);
                         }
                         break;
-
-
                     case "START_KEYPAD_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 1200;
                         //Keypad bypass logic is added here.
@@ -161,47 +145,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpKeypad, clsGlobalVariables.enmStatus.INPROGRESS);
                             btmRetVal = clsGlobalVariables.objGlobalFunction.TestKeyPad(DUT);
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "", false);
-                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                            {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                            }
-                            else
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
-
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
                     case "SWITCH_SENSOR_RELAY": //In this section calibrator settings are get done for further tests.
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
-                        {
                             clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
-                        }
+                        else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
+                            clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
                         else
-                        {
-                            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                                clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
-                            else
-                                clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
-                        }
+                            clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-
-
                             btmRetVal = clsGlobalVariables.objQueriescls.SwitchSensorRly(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
-
-                                //-------Changed By Shubham
-                                //Date:- 28-04-2018
-                                //Version:- V17
                                 //Statement:- Proper name is stored in the global variable to display on the picture message box. 
                                 clsGlobalVariables.strgOngoingTestName = "mV Sensor Calibration";
                                 btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_POS, DUT);
-                                //-----------Changes end.
-                                //for 96x96 Cat Id different connection image is displayed.
-
-
                                 //Check the source knob is present at mV.
                                 btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceKnobPos(clsGlobalVariables.SOURCE_mV_KNOB_POS, clsGlobalVariables.SOURCE_mV_KNOB_TEXT, DUT);
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -238,22 +204,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     }
                                 }
                             }
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         break;
-
                     case "SSR_Test":
-                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
-                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
-                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
-                        //btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-                        //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-
-
-
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (DUT == 1)
@@ -442,8 +401,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
-
-
                         break;
                     case "SSR_Test_PR69":
                         clsGlobalVariables.ig_Query_TimeOut = 5000;
@@ -2736,9 +2693,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        }
-                        
-                        
+                        }                      
                         break;
                     case "CJC_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2811,10 +2766,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
-                //throw ex;
-            }
-            return btmRetVal;
+                return btmRetVal;
+            }           
         }
     }
 }
