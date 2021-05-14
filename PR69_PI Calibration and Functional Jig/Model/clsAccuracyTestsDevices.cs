@@ -466,74 +466,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             return false;
         }
 
-        private void FillRedColor(int devicenumber)
-        {
-            switch (devicenumber)
-            {
-                case 1:
-                    BackcolorDevice1 = BgColorred;
-                    break;
-
-                case 2:
-                    BackcolorDevice2 = BgColorred;
-                    break;
-
-                case 3:
-                    BackcolorDevice3 = BgColorred;
-                    break;
-
-                case 4:
-                    BackcolorDevice4 = BgColorred;
-                    break;
-
-                case 5:
-                    BackcolorDevice5 = BgColorred;
-                    break;
-
-                case 6:
-                    BackcolorDevice6 = BgColorred;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        public void FillGreenColor(int devicenumber)
-        {
-            switch (devicenumber)
-            {
-                case 1:
-                    BackcolorDevice1 = BgColorgreen;
-                    break;
-
-                case 2:
-                    BackcolorDevice2 = BgColorgreen;
-                    break;
-
-                case 3:
-                    BackcolorDevice3 = BgColorgreen;
-                    break;
-
-                case 4:
-                    BackcolorDevice4 = BgColorgreen;
-                    break;
-
-                case 5:
-                    BackcolorDevice5 = BgColorgreen;
-                    break;
-
-                case 6:
-                    BackcolorDevice6 = BgColorgreen;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string PropertyName)
         {
