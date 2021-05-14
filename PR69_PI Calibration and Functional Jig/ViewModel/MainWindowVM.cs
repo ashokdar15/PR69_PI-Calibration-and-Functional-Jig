@@ -5,6 +5,7 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.Views;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -71,6 +72,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
             
+        }
+
+        public static List<IList<AccuracyTests>> accuracyTestsName = new List<IList<AccuracyTests>>();
+
+        public static void FillCollectionofAccuracy()
+        {
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.mAmpTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.VoltTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.RSensor);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.JSensor);
         }
 
         public void DisableControl()
@@ -2196,6 +2208,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         {
                             Selectedcatid = CatId[catid].ConfigurationData[ConfigData].CatIdLists[CatIDList];
                             clsGlobalVariables.Selectedcatid = Selectedcatid;
+                            accuracyTestsName.Clear();
+                            FillCollectionofAccuracy();
                             Description = Selectedcatid.Description;
                             found = 1;
                             break;

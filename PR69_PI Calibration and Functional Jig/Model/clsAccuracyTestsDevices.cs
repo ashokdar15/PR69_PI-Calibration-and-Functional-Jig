@@ -6,6 +6,7 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
@@ -104,76 +105,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice1 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice1 != null)
+                    if (_TestresultDevice1 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice1))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
-                            {
-                                BackcolorDevice1 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice1 = BgColorred;
+                            BackcolorDevice1 = BgColorgreen;
                         }
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice1 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
-                            {
-                                BackcolorDevice1 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice1 = BgColorred;
-                        }
-                      
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice1 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
-                            {
-                                BackcolorDevice1 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice1 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice1 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
-                            {
-                                BackcolorDevice1 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice1 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice1 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice1)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice1)))
-                            {
-                                BackcolorDevice1 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice1 = BgColorred;
-                        }
-                       
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice1 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice1 = BgColorred;
                 }
-
+                
                 OnPropertyChanged("TestresultDevice1");
             }
         }
@@ -187,75 +133,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice2 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice2 != null)
+                    if (_TestresultDevice2 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice2))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
-                            {
-                                BackcolorDevice2 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice2 = BgColorred;
+                            BackcolorDevice2 = BgColorgreen;
                         }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice2 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
-                            {
-                                BackcolorDevice2 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice2 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice2 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
-                            {
-                                BackcolorDevice2 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice2 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice2 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
-                            {
-                                BackcolorDevice2 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice2 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice2 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice2)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice2)))
-                            {
-                                BackcolorDevice2 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice2 = BgColorred;
-                        }
-                        
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice2 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice2 = BgColorred;
                 }
 
                 OnPropertyChanged("TestresultDevice2");
@@ -271,75 +161,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice3 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice3 != null)
+                    if (_TestresultDevice3 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice3))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
-                            {
-                                BackcolorDevice3 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice3 = BgColorred;
+                            BackcolorDevice3 = BgColorgreen;
                         }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice3 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
-                         (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
-                            {
-                                BackcolorDevice3 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice3 = BgColorred;
-                        }
-                      
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice3 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
-                            {
-                                BackcolorDevice3 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice3 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice3 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
-                            {
-                                BackcolorDevice3 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice3 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice3 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice3)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice3)))
-                            {
-                                BackcolorDevice3 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice3 = BgColorred;
-                        }
-                        
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice3 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice3 = BgColorred;
                 }
 
                 OnPropertyChanged("TestresultDevice3");
@@ -355,75 +189,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice4 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice4 != null)
+                    if (_TestresultDevice4 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice4))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
-                            {
-                                BackcolorDevice4 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice4 = BgColorred;
+                            BackcolorDevice4 = BgColorgreen;
                         }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice4 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
-                            {
-                                BackcolorDevice4 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice4 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice4 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
-                            {
-                                BackcolorDevice4 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice4 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice4 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
-                            {
-                                BackcolorDevice4 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice4 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice4 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice4)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice4)))
-                            {
-                                BackcolorDevice4 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice4 = BgColorred;
-                        }
-                       
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice4 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice4 = BgColorred;
                 }
 
                 OnPropertyChanged("TestresultDevice4");
@@ -439,74 +217,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice5 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice5 != null)
+                    if (_TestresultDevice5 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice5))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
-                            {
-                                BackcolorDevice5 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice5 = BgColorred;
+                            BackcolorDevice5 = BgColorgreen;
                         }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice5 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
-                            {
-                                BackcolorDevice5 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice5 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice5 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
-                            {
-                                BackcolorDevice5 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice5 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice5 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
-                            {
-                                BackcolorDevice5 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice5 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice5 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice5)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice5)))
-                            {
-                                BackcolorDevice5 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice5 = BgColorred;
-                        }                        
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice5 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice5 = BgColorred;
                 }
 
                 OnPropertyChanged("TestresultDevice5");
@@ -522,80 +245,273 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice6 = value;
 
-                switch (clsGlobalVariables.strAccuracyParameter)
+                if (clsGlobalVariables.Validateaccuracytestbackcolor)
                 {
-                    case clsGlobalVariables.AccuracyParameter.mAmp:
-                        if (_TestresultDevice6 != null)
+                    if (_TestresultDevice6 != null)
+                    {
+                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice6))
                         {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
-                            (Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.mAmpTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
-                            {
-                                BackcolorDevice6 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice6 = BgColorred;
+                            BackcolorDevice6 = BgColorgreen;
                         }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.Volt:
-                        if (_TestresultDevice6 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.VoltTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
-                            {
-                                BackcolorDevice6 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice6 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.PT100Sensor:
-                        if (_TestresultDevice6 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
-                          (Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.PT100SensorTests[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
-                            {
-                                BackcolorDevice6 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice6 = BgColorred;
-                        }
-                       
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.RSensor:
-                        if (_TestresultDevice6 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.RSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
-                            {
-                                BackcolorDevice6 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice6 = BgColorred;
-                        }
-                        
-                        break;
-                    case clsGlobalVariables.AccuracyParameter.JSensor:
-                        if (_TestresultDevice6 != null)
-                        {
-                            if ((Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) - Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) <= Convert.ToDouble(_TestresultDevice6)) &&
-                           (Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].P1) + Convert.ToDouble(clsGlobalVariables.Selectedcatid.JSensor[0].Tolerance) >= Convert.ToDouble(_TestresultDevice6)))
-                            {
-                                BackcolorDevice6 = BgColorgreen;
-                            }
-                            else
-                                BackcolorDevice6 = BgColorred;
-                        }
-                        
-                        break;
-                    default:
-                        break;
+                        else
+                            BackcolorDevice6 = BgColorred;
+                    }
+                    else
+                        BackcolorDevice6 = BgColorred;
                 }
 
                 OnPropertyChanged("TestresultDevice6");
             }
         }
+
+
+        public bool UpdateTestResult(IList<AccuracyTests> accuracyTests, clsGlobalVariables.Enmpointcalibration enmpointcalibration, string output)
+        {
+            foreach (var test in MainWindowVM.accuracyTestsName)
+            {
+                if (test == accuracyTests)
+                {
+                        
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P1)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P1) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P1) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P2)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P2) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P2) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P3)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P3) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P3) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P4)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P4) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P4) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P5)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P5) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P5) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P6)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P6) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P6) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P7)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P7) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P7) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P8)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P8) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P8) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P9)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P9) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P9) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+
+                    if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P10)
+                    {
+                        if (output != null)
+                        {
+                            if ((Convert.ToDouble(test[0].P10) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
+                            (Convert.ToDouble(test[0].P10) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
+                        }
+                        else
+                            return false;
+
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void FillRedColor(int devicenumber)
+        {
+            switch (devicenumber)
+            {
+                case 1:
+                    BackcolorDevice1 = BgColorred;
+                    break;
+
+                case 2:
+                    BackcolorDevice2 = BgColorred;
+                    break;
+
+                case 3:
+                    BackcolorDevice3 = BgColorred;
+                    break;
+
+                case 4:
+                    BackcolorDevice4 = BgColorred;
+                    break;
+
+                case 5:
+                    BackcolorDevice5 = BgColorred;
+                    break;
+
+                case 6:
+                    BackcolorDevice6 = BgColorred;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public void FillGreenColor(int devicenumber)
+        {
+            switch (devicenumber)
+            {
+                case 1:
+                    BackcolorDevice1 = BgColorgreen;
+                    break;
+
+                case 2:
+                    BackcolorDevice2 = BgColorgreen;
+                    break;
+
+                case 3:
+                    BackcolorDevice3 = BgColorgreen;
+                    break;
+
+                case 4:
+                    BackcolorDevice4 = BgColorgreen;
+                    break;
+
+                case 5:
+                    BackcolorDevice5 = BgColorgreen;
+                    break;
+
+                case 6:
+                    BackcolorDevice6 = BgColorgreen;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
