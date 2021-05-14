@@ -11,8 +11,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using static PR69_PI_Calibration_and_Functional_Jig.HelperClasses.clsGlobalVariables;
