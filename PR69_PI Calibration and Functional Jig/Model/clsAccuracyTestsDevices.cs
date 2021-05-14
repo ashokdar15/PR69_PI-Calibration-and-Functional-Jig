@@ -119,6 +119,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice1 = BgColorred;
+                    
                 }
                 else
                     BackcolorDevice1 = BgColororange;
@@ -150,6 +151,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice2 = BgColorred;
+                    
                 }
                 else
                     BackcolorDevice2 = BgColororange;
@@ -180,6 +182,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice3 = BgColorred;
+                    
                 }
                 else
                     BackcolorDevice3 = BgColororange;
@@ -210,6 +213,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice4 = BgColorred;
+                    
                 }
                 else
                     BackcolorDevice4 = BgColororange;
@@ -240,6 +244,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice5 = BgColorred;
+                    
                 }
                 else
                     BackcolorDevice5 = BgColororange;
@@ -270,6 +275,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     }
                     else
                         BackcolorDevice6 = BgColorred;
+                  
                 }
                 else
                     BackcolorDevice6 = BgColororange;

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Threading;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
@@ -13,6 +14,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
     public class AccuracyWindowVM : INotifyPropertyChanged
     {
 
+        private string DUT1Result = "";
+        private string DUT2Result = "";
+        private string DUT3Result = "";
+        private string DUT4Result = "";
         private void StartAccuracyTestingClk(object obj)
         {
            
@@ -42,6 +47,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
             GetAccuracyDataFromJSON(AccuracyList);
             int currentTestNumber = 1;
+
+            bool failuarFlag = false;
             foreach (var item in AccuracyList)
             {
                 currentTestNumber = 1;
@@ -51,6 +58,47 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         foreach (var actualTest in item.Value)
                         {
                             mAmpSensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.mAmp);
+                            
+                            clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.mAmpTests;
+                            clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
+                            failuarFlag = false;
+                            clsGlobalVariables.Validateaccuracytestbackcolor = true;
+                            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                            {
+                                
+                                if (DUT == 1)
+                                {
+                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (failuarFlag)
+                                            break;
+                                }
+                                else if (DUT == 2)
+                                {
+                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (failuarFlag)
+                                        break;
+                                }
+                                else if (DUT == 3)
+                                {
+                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (failuarFlag)
+                                        break;
+                                }
+                                else if (DUT == 4)
+                                {
+                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (failuarFlag)
+                                        break;
+                                }
+
+                            }
+                            clsGlobalVariables.Validateaccuracytestbackcolor = false;
+                            if (failuarFlag)
+                            {
+                               DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                if (dlgMsgBxRslt==DialogResult.Yes)
+                                    break;
+                            }
                             currentTestNumber++;
                         }
                         break;
@@ -738,12 +786,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 {
                                     flmData = ((float)clsGlobalVariables.shrtgPV / 100);
                                     UpdateTestResult(DUT, currentTestNumber, flmData.ToString(), sensorType);
+                                    if (DUT == 1)
+                                        DUT1Result = flmData.ToString();
+                                    else if (DUT == 2)
+                                        DUT2Result = flmData.ToString();
+                                    else if (DUT == 3)
+                                        DUT3Result = flmData.ToString();
+                                    else if (DUT == 4)
+                                        DUT4Result = flmData.ToString();
                                     //ADD data on UI
                                     //System.Windows.Forms.MessageBox.Show(flmData.ToString());
                                 }
                                 else
                                 {
                                     UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.shrtgPV.ToString(), sensorType);
+                                    if (DUT == 1)
+                                        DUT1Result = clsGlobalVariables.shrtgPV.ToString();
+                                    else if (DUT == 2)
+                                        DUT2Result = clsGlobalVariables.shrtgPV.ToString();
+                                    else if (DUT == 3)
+                                        DUT3Result = clsGlobalVariables.shrtgPV.ToString();
+                                    else if (DUT == 4)
+                                        DUT4Result = clsGlobalVariables.shrtgPV.ToString();
                                     //ADD data on UI
                                     //System.Windows.Forms.MessageBox.Show(clsGlobalVariables.shrtgPV.ToString());
                                 }
@@ -1764,7 +1828,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("In Timer Thread");
+                System.Windows.Forms.MessageBox.Show("In Timer Thread");
                 MyLogWriterDLL.LogWriter.WriteLog("ex.Message , ex.StackTrace" + ex.Message + "," + ex.StackTrace);
             }
         }
@@ -1778,7 +1842,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
             }
         }
-        public void UpdateTestResult(int DUTNumber, int testnumber, string result, clsGlobalVariables.AccuracyParameter accuracyParameter)
+        public bool UpdateTestResult(int DUTNumber, int testnumber, string result, clsGlobalVariables.AccuracyParameter accuracyParameter)
         {
             if (result ==clsGlobalVariables.FAIL)
             {
@@ -1970,7 +2034,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     break;
             }
 
-
+            return false;
         }
         #endregion
     }
