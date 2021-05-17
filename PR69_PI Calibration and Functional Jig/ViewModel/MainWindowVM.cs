@@ -1480,10 +1480,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 return;
                 //PLC off
             }
-            else
-            {
-
-            }
+            
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
             MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false);
             MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
@@ -1536,14 +1533,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                 {
-                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
+                    //clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
+
+                    //current test update
+
+
                 }
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
-
+                    //
                     // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
                     clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
 
@@ -1555,6 +1556,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     //    objfrmAccTest.ShowDialog();
                     //}
                     EnableDisableUI(true);
+
+                    AccuracyWindow accuracyWindow1 = new AccuracyWindow();
+                    accuracyWindow1.ShowDialog();
+
                     return;
                 }
                 else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
