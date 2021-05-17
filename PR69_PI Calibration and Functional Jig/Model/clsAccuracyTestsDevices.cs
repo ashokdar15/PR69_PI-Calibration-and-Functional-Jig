@@ -12,9 +12,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsAccuracyTestsDevices : INotifyPropertyChanged
     {
-        private string BgColorgreen = "#43a047";
-        private string BgColorred = "#e53935";
-        private string BgColororange = "#ff8a65";
+        private string BgColorgreen = "#80e27e";
+        private string BgColorred = "#f44336";
+        private string BgColororange = "#f4511e"; // "#FFA500";
 
         private string Testrespass = "PASS";
         private string Testresfail = "FAIL";
@@ -106,24 +106,35 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice1 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice1 != null)
                 {
-                    if (_TestresultDevice1 != null)
+                    if (_TestresultDevice1 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice1))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice1 = BgColorgreen;
+                            if (_TestresultDevice1 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice1))
+                                {
+                                    BackcolorDevice1 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice1 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice1 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice1 = BgColorred;
+                            BackcolorDevice1 = BgColororange;
                     }
                     else
                         BackcolorDevice1 = BgColorred;
+
+                    if (BackcolorDevice1 == BgColorred)                    
+                        clsGlobalVariables.listAccTest.Add(false);
                     
                 }
-                else
-                    BackcolorDevice1 = BgColororange;
-
 
                 OnPropertyChanged("TestresultDevice1");
             }
@@ -138,23 +149,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice2 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice2 != null)
                 {
-                    if (_TestresultDevice2 != null)
+                    if (_TestresultDevice2 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice2))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice2 = BgColorgreen;
+                            if (_TestresultDevice2 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice2))
+                                {
+                                    BackcolorDevice2 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice2 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice2 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice2 = BgColorred;
+                            BackcolorDevice2 = BgColororange;
                     }
                     else
                         BackcolorDevice2 = BgColorred;
-                    
+
+                    if (BackcolorDevice2 == BgColorred)
+                        clsGlobalVariables.listAccTest.Add(false);
                 }
-                else
-                    BackcolorDevice2 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice2");
             }
@@ -169,23 +191,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice3 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice3 != null)
                 {
-                    if (_TestresultDevice3 != null)
+                    if (_TestresultDevice3 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice3))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice3 = BgColorgreen;
+                            if (_TestresultDevice3 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice3))
+                                {
+                                    BackcolorDevice3 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice3 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice3 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice3 = BgColorred;
+                            BackcolorDevice3 = BgColororange;
                     }
                     else
                         BackcolorDevice3 = BgColorred;
-                    
+
+                    if (BackcolorDevice3 == BgColorred)
+                        clsGlobalVariables.listAccTest.Add(false);
                 }
-                else
-                    BackcolorDevice3 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice3");
             }
@@ -200,23 +233,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice4 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice4 != null)
                 {
-                    if (_TestresultDevice4 != null)
+                    if (_TestresultDevice4 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice4))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice4 = BgColorgreen;
+                            if (_TestresultDevice4 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice4))
+                                {
+                                    BackcolorDevice4 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice4 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice4 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice4 = BgColorred;
+                            BackcolorDevice4 = BgColororange;
                     }
                     else
                         BackcolorDevice4 = BgColorred;
-                    
+
+                    if (BackcolorDevice4 == BgColorred)
+                        clsGlobalVariables.listAccTest.Add(false);
                 }
-                else
-                    BackcolorDevice4 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice4");
             }
@@ -231,23 +275,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice5 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice5 != null)
                 {
-                    if (_TestresultDevice5 != null)
+                    if (_TestresultDevice5 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice5))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice5 = BgColorgreen;
+                            if (_TestresultDevice5 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice5))
+                                {
+                                    BackcolorDevice5 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice5 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice5 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice5 = BgColorred;
+                            BackcolorDevice5 = BgColororange;
                     }
                     else
                         BackcolorDevice5 = BgColorred;
-                    
+
+                    if (BackcolorDevice5 == BgColorred)
+                        clsGlobalVariables.listAccTest.Add(false);
                 }
-                else
-                    BackcolorDevice5 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice5");
             }
@@ -262,23 +317,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice6 = value;
 
-                if (clsGlobalVariables.Validateaccuracytestbackcolor)
+                if (_TestresultDevice6 != null)
                 {
-                    if (_TestresultDevice6 != null)
+                    if (_TestresultDevice6 != clsGlobalVariables.FAIL)
                     {
-                        if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice6))
+                        if (clsGlobalVariables.Validateaccuracytestbackcolor)
                         {
-                            BackcolorDevice6 = BgColorgreen;
+                            if (_TestresultDevice6 != null)
+                            {
+                                if (UpdateTestResult(clsGlobalVariables.accuracyTests, clsGlobalVariables.enmpointcalibration, _TestresultDevice6))
+                                {
+                                    BackcolorDevice6 = BgColorgreen;
+                                }
+                                else
+                                    BackcolorDevice6 = BgColorred;
+                            }
+                            else
+                                BackcolorDevice6 = BgColorred;
+
                         }
                         else
-                            BackcolorDevice6 = BgColorred;
+                            BackcolorDevice6 = BgColororange;
                     }
                     else
                         BackcolorDevice6 = BgColorred;
-                  
+
+                    if (BackcolorDevice6 == BgColorred)
+                        clsGlobalVariables.listAccTest.Add(false);
                 }
-                else
-                    BackcolorDevice6 = BgColororange;
 
                 OnPropertyChanged("TestresultDevice6");
             }

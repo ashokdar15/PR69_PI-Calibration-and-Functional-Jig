@@ -14,13 +14,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
     public class AccuracyWindowVM : INotifyPropertyChanged
     {
 
+        private bool stopBtnPress = false;
+
         private string DUT1Result = "";
         private string DUT2Result = "";
         private string DUT3Result = "";
         private string DUT4Result = "";
         private void StartAccuracyTestingClk(object obj)
         {
-           
+            bool DisplayMsg = true;
+            stopBtnPress = false;
             StartStopWatch(true);
             
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
@@ -48,97 +51,317 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             GetAccuracyDataFromJSON(AccuracyList);
             int currentTestNumber = 1;
 
-            bool failuarFlag = false;
+            bool TestOkFlag = false;
             foreach (var item in AccuracyList)
             {
+                if (stopBtnPress)
+                {
+                    break;
+                }
                 currentTestNumber = 1;
                 switch (item.Key)
                 {
                     case clsGlobalVariables.mAmpAccuracyTest:
                         foreach (var actualTest in item.Value)
                         {
+                            if (stopBtnPress)                            
+                                break;
+                            
                             mAmpSensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.mAmp);
                             
                             clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.mAmpTests;
+                            clsGlobalVariables.listAccTest.Clear();
                             clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
-                            failuarFlag = false;
+                            TestOkFlag = false;
                             clsGlobalVariables.Validateaccuracytestbackcolor = true;
                             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             {
                                 
                                 if (DUT == 1)
                                 {
-                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.mAmp);
-                                    if (failuarFlag)
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (!TestOkFlag)
                                             break;
                                 }
                                 else if (DUT == 2)
                                 {
-                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.mAmp);
-                                    if (failuarFlag)
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (!TestOkFlag)
                                         break;
                                 }
                                 else if (DUT == 3)
                                 {
-                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.mAmp);
-                                    if (failuarFlag)
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (!TestOkFlag)
                                         break;
                                 }
                                 else if (DUT == 4)
                                 {
-                                    failuarFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.mAmp);
-                                    if (failuarFlag)
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.mAmp);
+                                    if (!TestOkFlag)
                                         break;
                                 }
 
                             }
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
-                            if (failuarFlag)
+                            if (!TestOkFlag && DisplayMsg)
                             {
-                               DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                DisplayMsg = false;
+                                DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                                 if (dlgMsgBxRslt==DialogResult.Yes)
                                     break;
                             }
+                            
                             currentTestNumber++;
+
                         }
+                        if (!TestOkFlag)                        
+                            break;
+                        
                         break;
                     case clsGlobalVariables.voltAccuracyTest:
                         foreach (var actualTest in item.Value)
                         {
+                            if (stopBtnPress)
+                                break;
+
                             VoltSensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.Volt);
 
+                            clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.VoltTests;
+                            clsGlobalVariables.listAccTest.Clear();
+                            clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
+                            TestOkFlag = false;
+                            clsGlobalVariables.Validateaccuracytestbackcolor = true;
+                            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                            {
+
+                                if (DUT == 1)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.Volt);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 2)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.Volt);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 3)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.Volt);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 4)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.Volt);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+
+                            }
+                            clsGlobalVariables.Validateaccuracytestbackcolor = false;
+                            if (!TestOkFlag && DisplayMsg)
+                            {
+                                DisplayMsg = false;
+                                DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                if (dlgMsgBxRslt == DialogResult.Yes)
+                                    break;
+                            }
 
                             //validate
                             currentTestNumber++;
                         }
+                        if (!TestOkFlag)
+                            break;
                         break;
                     case clsGlobalVariables.pt100sensorAccuracyTest:
                         foreach (var actualTest in item.Value)
                         {
+                            if (stopBtnPress)
+                                break;
+
                             PT100SensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+
+                            clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.PT100SensorTests;
+                            clsGlobalVariables.listAccTest.Clear();
+                            clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
+                            TestOkFlag = false;
+                            clsGlobalVariables.Validateaccuracytestbackcolor = true;
+                            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                            {
+
+                                if (DUT == 1)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 2)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 3)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 4)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.PT100Sensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+
+                            }
+                            clsGlobalVariables.Validateaccuracytestbackcolor = false;
+                            if (!TestOkFlag && DisplayMsg)
+                            {
+                                DisplayMsg = false;
+                                DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                if (dlgMsgBxRslt == DialogResult.Yes)
+                                    break;
+                            }
+
                             currentTestNumber++;
                         }
+                        if (!TestOkFlag)
+                            break;
                         break;
                     case clsGlobalVariables.RsensorAccuracyTest:
                         foreach (var actualTest in item.Value)
                         {
+                            if (stopBtnPress)
+                                break;
+
                             RSensorText(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.RSensor);
+
+                            clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.RSensor;
+                            clsGlobalVariables.listAccTest.Clear();
+                            clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
+                            TestOkFlag = false;
+                            clsGlobalVariables.Validateaccuracytestbackcolor = true;
+                            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                            {
+
+                                if (DUT == 1)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.RSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 2)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.RSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 3)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.RSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 4)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.RSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+
+                            }
+                            clsGlobalVariables.Validateaccuracytestbackcolor = false;
+                            if (!TestOkFlag && DisplayMsg)
+                            {
+                                DisplayMsg = false;
+                                DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                if (dlgMsgBxRslt == DialogResult.Yes)
+                                    break;
+                            }
+
                             currentTestNumber++;
                         }
+                        if (!TestOkFlag)
+                            break;
                         break;
 
                     case clsGlobalVariables.JsensorAccuracyTest:
                         foreach (var actualTest in item.Value)
                         {
+                            if (stopBtnPress)
+                                break;
+
                             JSensorTest(actualTest, currentTestNumber, clsGlobalVariables.AccuracyParameter.JSensor);
+
+                            clsGlobalVariables.accuracyTests = clsGlobalVariables.Selectedcatid.JSensor;
+                            clsGlobalVariables.listAccTest.Clear();
+                            clsGlobalVariables.enmpointcalibration = (clsGlobalVariables.Enmpointcalibration)currentTestNumber;
+                            TestOkFlag = false;
+                            clsGlobalVariables.Validateaccuracytestbackcolor = true;
+                            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                            {
+
+                                if (DUT == 1)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT1Result, clsGlobalVariables.AccuracyParameter.JSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 2)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT2Result, clsGlobalVariables.AccuracyParameter.JSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 3)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT3Result, clsGlobalVariables.AccuracyParameter.JSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+                                else if (DUT == 4)
+                                {
+                                    TestOkFlag = UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.JSensor);
+                                    if (!TestOkFlag)
+                                        break;
+                                }
+
+                            }
+                            clsGlobalVariables.Validateaccuracytestbackcolor = false;
+                            if (!TestOkFlag && DisplayMsg)
+                            {
+                                DisplayMsg = false;
+                                DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                if (dlgMsgBxRslt == DialogResult.Yes)
+                                    break;
+                            }
+
                             currentTestNumber++;
                         }
+                        if (!TestOkFlag)
+                            break;
                         break;
                     default:
                         break;
                 }
+                //if (!TestOkFlag)
+                //{
+                //    break;
+
+                //}
+            }
+            if (TestOkFlag && !stopBtnPress)
+            {
+                //Accuracy completed.
+                //write data of accuracy in sqlite
+                //write calibration constant to all DUT
 
             }
+
             //start accuracy with user define point
             //write constant
             //write data log in sqlite.
@@ -562,6 +785,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
             }
+            // If test start and currentTestNumber is 1, then displaying messages, 
+            // change settings of calibrator and DUT. This is one time, at starting.
             if (currentTestNumber == 1)
             {
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -746,22 +971,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             try
             {
-
+                //Send accuracy pt. to calibrator
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 {
-                   // btmRetVal = clsGlobalVariables.objCalibQueriescls.ChangeCalibratorSensor(btmSensor, DUT);
-                    //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                    //{
-                        btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistanceZeroTemp(strmValue, DUT);
-                    //}
+                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistanceZeroTemp(strmValue, DUT);
                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                     {
                         UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
                         continue;
                     }
                 }
+                //Start timer here, time is given in database
                 EnablePVTimeoutTimer();
                 blnTimerElapsed = true;
+
+                //Get actual data from DUT's(read data) until press next button.  
                 while (blnTimerElapsed && btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                 {
                     foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -794,8 +1018,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                         DUT3Result = flmData.ToString();
                                     else if (DUT == 4)
                                         DUT4Result = flmData.ToString();
-                                    //ADD data on UI
-                                    //System.Windows.Forms.MessageBox.Show(flmData.ToString());
+                                   
                                 }
                                 else
                                 {
@@ -808,8 +1031,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                         DUT3Result = clsGlobalVariables.shrtgPV.ToString();
                                     else if (DUT == 4)
                                         DUT4Result = clsGlobalVariables.shrtgPV.ToString();
-                                    //ADD data on UI
-                                    //System.Windows.Forms.MessageBox.Show(clsGlobalVariables.shrtgPV.ToString());
+                                   
                                 }
                             }
                         }
@@ -946,6 +1168,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private void Stoptesting(object obj)
         {
+            stopBtnPress = true;
             StartBtnVis = true;
             StopBtnVis = false;
             StartStopWatch(false);
@@ -2033,8 +2256,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 default:
                     break;
             }
-
-            return false;
+            if (clsGlobalVariables.listAccTest.Contains(false) == true)
+            {
+                clsGlobalVariables.listAccTest.Clear();
+                return false;
+            }
+               
+            return true;
         }
         #endregion
     }

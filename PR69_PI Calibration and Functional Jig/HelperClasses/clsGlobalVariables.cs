@@ -25,6 +25,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
         public static Enmpointcalibration enmpointcalibration;
 
+        public static List<bool> listAccTest = new List<bool>();
+
         public static IList<AccuracyTests> accuracyTests = null;
 
         public static bool Validateaccuracytestbackcolor = false;
@@ -781,6 +783,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int ONEVolt_DELAY_AFTER_STARTMODE = 20000;
         public static int ONEVolt_DELAY_AFTER_RUNMODE = 20000;
         //-------Changed By Shubham
+
 
         public static int mA_V_AccuracyDelay = 10000;
         public static int PT100_AccuracyDelay = 30000;
