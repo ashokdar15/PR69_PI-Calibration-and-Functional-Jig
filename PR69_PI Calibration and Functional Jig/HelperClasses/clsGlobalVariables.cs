@@ -151,6 +151,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static AccuracyParameter strAccuracyParameter;
         //public static EnmConnectedDevices strConnectedDevice;
 
+        public static string PR69_96x96 = "PR69_96x96";
+        public static string PR69_48x48 = "PR69_48x48";
+        public static string PR43_96x96 = "PR43_96x96";
+        public static string PR43_48x48 = "PR43_48x48";
+        public static string PI = "Process Indicator";
+
         public enum SelectedDeviceType
         {
             PR69_48x48 = 1,
@@ -262,6 +268,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;
         public static List<byte> NUMBER_OF_DUTS_List = new List<byte>();
+        public static List<byte> NUMBER_OF_FAIL_DUTS_List = new List<byte>();
         public static int OLD_NUMBER_OF_DUTS = 0;
         public static int igTYPE_OF_DEVICE = 1;
         public static int ig_Query_TimeOut = 16000;

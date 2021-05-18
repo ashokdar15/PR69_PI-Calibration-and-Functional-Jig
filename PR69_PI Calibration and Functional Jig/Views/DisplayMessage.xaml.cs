@@ -23,6 +23,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
         public DisplayMessage()
         {
             InitializeComponent();
+           
         }
 
         public DisplayMessage(string Msg, string Msgtype)
@@ -51,6 +52,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
                     break;
             }
             this.txtMsg.Text = Msg;
+
+            okbtn.Focus();
+            Keyboard.Focus(okbtn);
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

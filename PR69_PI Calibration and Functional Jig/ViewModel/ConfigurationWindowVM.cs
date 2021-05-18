@@ -394,6 +394,30 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _OutputTypeList = value; OnPropertyChanged("OutputTypeList"); }
         }
 
+        private ObservableCollection<string> _OP1subtestList;
+
+        public ObservableCollection<string> OP1subtestList
+        {
+            get { return _OP1subtestList; }
+            set { _OP1subtestList = value; OnPropertyChanged("OP1subtestList"); }
+        }
+
+        private ObservableCollection<string> _OP2subtestList;
+
+        public ObservableCollection<string> OP2subtestList
+        {
+            get { return _OP2subtestList; }
+            set { _OP2subtestList = value; OnPropertyChanged("OP2subtestList"); }
+        }
+
+        private ObservableCollection<string> _OP3subtestList;
+
+        public ObservableCollection<string> OP3subtestList
+        {
+            get { return _OP3subtestList; }
+            set { _OP3subtestList = value; OnPropertyChanged("OP3subtestList"); }
+        }
+
 
         #region Accuracy RelayCommands
 

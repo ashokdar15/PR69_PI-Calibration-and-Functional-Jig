@@ -38,6 +38,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
+                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         }
                         else //Device without modbus
                         {
@@ -51,6 +52,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             }
+                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         }
                         break;
 
@@ -78,16 +80,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             else if (clsModelSettings.btmCalibConst == clsGlobalVariables.AFTER_SOAKING)
                             {
                                 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
-                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done;
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                             //This "clsGlobalVariables.Done" tells that device is calibrated & accuracy testing is also done.
                             else if (clsModelSettings.btmCalibConst == clsGlobalVariables.CALIB_DONE)
                             {
                                 clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, clsMessageIDs.CALIBRATED_DUT);
-                                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_DISP_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 16000;
@@ -136,6 +142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", false);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_KEYPAD_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 1200;
@@ -152,6 +159,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SWITCH_SENSOR_RELAY": //In this section calibrator settings are get done for further tests.
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
@@ -211,6 +219,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SSR_Test":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -401,6 +410,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SSR_Test_PR69":
                         clsGlobalVariables.ig_Query_TimeOut = 5000;
@@ -511,6 +521,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(10);
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(14);
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(18);
@@ -654,6 +665,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "WRITE_CALIB_CONST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -681,6 +693,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;                                      
                     case "WRITE_CALIB_CONST_WITH_VREF":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -697,6 +710,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIBRATE_CURRENT":
                         //analog op test bypass logic is present here.
@@ -719,6 +733,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
 
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIBRATE_VOLTAGE":
                         //analog op test bypass logic is present here.
@@ -741,6 +756,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_4MA_CNT":
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
@@ -770,6 +786,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_1MA_CNT": //only for PI
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
@@ -791,6 +808,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_20MA_CNT":
                         //analog op test bypass logic is present here.
@@ -813,6 +831,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_1V_CNT":                      
                         clsMessages.DisplayMessage(clsMessageIDs.VOLTAGE_SETTING_MSG_ID);
@@ -840,6 +859,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_10V_CNT":
                         //analog op test bypass logic is present here.
@@ -862,6 +882,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_OBSRVED_4MA_CNT":
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
@@ -904,6 +925,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_OBSRVED_1MA_CNT":
                         //analog op test bypass logic is present here.
@@ -942,6 +964,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_OBSRVED_20MA_CNT":
                         //analog op test bypass logic is present here.
@@ -980,6 +1003,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_OBSRVED_1V_CNT":
                         //analog op test bypass logic is present here.
@@ -1024,6 +1048,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_OBSRVED_10V_CNT":
                         //analog op test bypass logic is present here.
@@ -1068,6 +1093,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
 
                     case "SET_12MA_ANLOP":
@@ -1091,6 +1117,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsModelSettings.btmAnalogsetVal = clsGlobalVariables.TWELVE_mA;
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1113,6 +1140,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_5V_ANLOP":
                         //analog op test bypass logic is present here.
@@ -1134,6 +1162,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsModelSettings.btmAnalogsetVal = clsGlobalVariables.FIVE_Volt;
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1161,6 +1190,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break; 
                     case "CHK_ANALOG_OP_VAL":
                         //analog op test bypass logic is present here.
@@ -1175,6 +1205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_1_MV_CNT":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1201,7 +1232,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-                        }                   
+                        }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_1_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1217,6 +1249,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1236,6 +1269,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_PT100_313":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1247,6 +1281,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT313_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1272,6 +1307,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_47_MV_CNT":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1283,6 +1319,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.MV_50_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1330,6 +1367,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_100_CNT_PR43);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1355,6 +1393,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_TC":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1399,6 +1438,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
 
                     case "CALIB_PT100":
@@ -1439,6 +1479,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.PT100_CNT);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1466,6 +1507,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_1V_CNT":
                         //chkVtg test bypass logic is present here.
@@ -1516,6 +1558,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_1V);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1534,6 +1577,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_9V);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1546,6 +1590,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.objGlobalFunction.ConvertCalibConst(DUT);
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_4mA_CNT":
                         //chkCurrent test bypass logic is present here.
@@ -1601,6 +1646,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_4mA);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
@@ -1618,6 +1664,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 break;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_20mA);                       
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1629,6 +1676,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.objGlobalFunction.ConvertCalibConst(DUT);
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;                   
                     case "REF_VOLTAGE_CALC":
                         //Progress status to VREF shape is set.
@@ -1749,6 +1797,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //Validation on VREF value is applied here.
 
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_REL_TEST_OP1_RELAY":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1941,6 +1990,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_REL_TEST_OP2_RELAY":
                         //24,28,32,36
@@ -2061,6 +2111,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_REL_TEST_OP1_RELAY_PR43_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2180,6 +2231,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }                            
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_REL_TEST_OP2_RELAY_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2299,6 +2351,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;                    
                     case "CALIB_1V_CNT_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2311,6 +2364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_1V);
                         break;
                     case "CALIB_9V_CNT_PI":
@@ -2322,6 +2376,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsMessages.DisplayMessage(clsMessageIDs.VOLT_CALIBRATION_MSG_ID);
                         //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpNineV, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2360,6 +2415,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_9V);                        
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2370,6 +2426,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.objGlobalFunction.ConvertCalibConst(DUT);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_1mA_CNT_PI":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2388,6 +2445,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_4mA);
                         break;
                     case "CALIB_20mA_CNT_PI":
@@ -2399,6 +2457,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2439,6 +2498,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 continue;
                             }
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_20mA);
                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2449,6 +2509,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.objGlobalFunction.ConvertCalibConst(DUT);
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "START_MODBUS_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2605,6 +2666,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(39);
                         break;
                     case "24V_OP_TEST":                        
@@ -2693,7 +2755,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        }                      
+                        }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CJC_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2725,6 +2788,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
 
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2760,6 +2824,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                 }
                 return btmRetVal;

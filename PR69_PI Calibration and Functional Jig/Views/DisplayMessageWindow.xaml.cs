@@ -1,5 +1,6 @@
 ﻿using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System.Windows;
+using System.Windows.Input;
 using static PR69_PI_Calibration_and_Functional_Jig.HelperClasses.clsGlobalVariables;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.Views
@@ -20,6 +21,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             vm.MsgDescription = dispMsg;
             SetImg.Visibility = Visibility.Visible;
             OKBtn.Focus();
+            Keyboard.Focus(OKBtn);
         }
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)

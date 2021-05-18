@@ -34,75 +34,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _SWITCH_SENSOR_RELAY = value; OnPropertyChanged("SWITCH_SENSOR_RELAY"); }
         }
 
-        private bool _SLAVE1_OP1_OFF;
-
-        public bool SLAVE1_OP1_OFF
-        {
-            get { return _SLAVE1_OP1_OFF; }
-            set { _SLAVE1_OP1_OFF = value; OnPropertyChanged("SLAVE1_OP1_OFF"); }
-        }
-
-        private bool _SLAVE1_OP2_OFF;
-
-        public bool SLAVE1_OP2_OFF
-        {
-            get { return _SLAVE1_OP2_OFF; }
-            set { _SLAVE1_OP2_OFF = value; OnPropertyChanged("SLAVE1_OP2_OFF"); }
-        }
-
-        private bool _SLAVE1_OP3_OFF;
-
-        public bool SLAVE1_OP3_OFF
-        {
-            get { return _SLAVE1_OP3_OFF; }
-            set { _SLAVE1_OP3_OFF = value; OnPropertyChanged("SLAVE1_OP3_OFF"); }
-        }
-        private bool _SLAVE2_OP1_OFF;
-
-        public bool SLAVE2_OP1_OFF
-        {
-            get { return _SLAVE2_OP1_OFF; }
-            set { _SLAVE2_OP1_OFF = value; OnPropertyChanged("SLAVE2_OP1_OFF"); }
-        }
-        private bool _SLAVE2_OP2_OFF;
-
-        public bool SLAVE2_OP2_OFF
-        {
-            get { return _SLAVE2_OP2_OFF; }
-            set { _SLAVE2_OP2_OFF = value; OnPropertyChanged("SLAVE2_OP2_OFF"); }
-        }
-        private bool _SLAVE2_OP3_OFF;
-
-        public bool SLAVE2_OP3_OFF
-        {
-            get { return _SLAVE2_OP3_OFF; }
-            set { _SLAVE2_OP3_OFF = value; OnPropertyChanged("SLAVE2_OP3_OFF"); }
-        }
-
-        private bool _SLAVE3_OP3_OFF;
-
-        public bool SLAVE3_OP3_OFF
-        {
-            get { return _SLAVE3_OP3_OFF; }
-            set { _SLAVE3_OP3_OFF = value; OnPropertyChanged("SLAVE3_OP3_OFF"); }
-        }
-
-        private bool _CONVERTOR_OP1_OFF;
-
-        public bool CONVERTOR_OP1_OFF
-        {
-            get { return _CONVERTOR_OP1_OFF; }
-            set { _CONVERTOR_OP1_OFF = value; OnPropertyChanged("CONVERTOR_OP1_OFF"); }
-        }
-
-        private bool _CONVERTOR_OP2_OFF;
-
-        public bool CONVERTOR_OP2_OFF
-        {
-            get { return _CONVERTOR_OP2_OFF; }
-            set { _CONVERTOR_OP2_OFF = value; OnPropertyChanged("CONVERTOR_OP2_OFF"); }
-        }
-
+       
         private bool _START_DISP_TEST;
 
         public bool START_DISP_TEST
@@ -152,16 +84,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                 if (catId.CommonCalibTests.Count != 0)
                 {
                     READ_DEVICE_ID = catId.CommonCalibTests[0].READ_DEVICE_ID;
-                    CONVERTOR_OP1_OFF = catId.CommonCalibTests[0].CONVERTOR_OP1_OFF;
-                    CONVERTOR_OP2_OFF = catId.CommonCalibTests[0].CONVERTOR_OP2_OFF;                                       
+                                    
                     READ_CALIB_CONST = catId.CommonCalibTests[0].READ_CALIB_CONST;
-                    SLAVE1_OP1_OFF = catId.CommonCalibTests[0].SLAVE1_OP1_OFF;
-                    SLAVE1_OP2_OFF = catId.CommonCalibTests[0].SLAVE1_OP2_OFF;
-                    SLAVE1_OP3_OFF = catId.CommonCalibTests[0].SLAVE1_OP3_OFF;
-                    SLAVE2_OP1_OFF = catId.CommonCalibTests[0].SLAVE2_OP1_OFF;
-                    SLAVE2_OP2_OFF = catId.CommonCalibTests[0].SLAVE2_OP2_OFF;
-                    SLAVE2_OP3_OFF = catId.CommonCalibTests[0].SLAVE2_OP3_OFF;
-                    SLAVE3_OP3_OFF = catId.CommonCalibTests[0].SLAVE3_OP3_OFF;
+                   
                     START_DISP_TEST = catId.CommonCalibTests[0].START_DISP_TEST;
                     START_KEYPAD_TEST = catId.CommonCalibTests[0].START_KEYPAD_TEST;
                     SWITCH_SENSOR_RELAY = catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY;
@@ -179,16 +104,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                 CommonTests CommonTests = new CommonTests()
                 {
                     READ_DEVICE_ID = READ_DEVICE_ID,
-                    CONVERTOR_OP1_OFF = CONVERTOR_OP1_OFF,
-                    CONVERTOR_OP2_OFF = CONVERTOR_OP2_OFF,
+                  
                     READ_CALIB_CONST = READ_CALIB_CONST,
-                    SLAVE1_OP1_OFF = SLAVE1_OP1_OFF,
-                    SLAVE1_OP2_OFF = SLAVE1_OP2_OFF,
-                    SLAVE1_OP3_OFF = SLAVE1_OP3_OFF,
-                    SLAVE2_OP1_OFF = SLAVE2_OP1_OFF,
-                    SLAVE2_OP2_OFF = SLAVE2_OP2_OFF,
-                    SLAVE2_OP3_OFF = SLAVE2_OP3_OFF,
-                    SLAVE3_OP3_OFF = SLAVE3_OP3_OFF,
+                   
                     START_DISP_TEST = START_DISP_TEST,
                     START_KEYPAD_TEST = START_KEYPAD_TEST,
                     SWITCH_SENSOR_RELAY = SWITCH_SENSOR_RELAY,

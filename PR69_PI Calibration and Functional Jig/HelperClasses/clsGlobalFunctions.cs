@@ -425,6 +425,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     }
                 }
+                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
                 if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                 {
                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE);
@@ -463,6 +465,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         continue;
                     }
                 }
+                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 if (btmData == clsGlobalVariables.MV_1_CNT || btmData == clsGlobalVariables.MV_50_CNT)
                 {
                     clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE);
@@ -552,6 +555,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     }
                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                 }
+                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
             }
             catch (Exception)
             {
@@ -757,6 +761,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             catch (Exception)
             {
                 return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+            }
+        }
+
+        public void RemoveFailedDUT()
+        {
+            foreach (var item2 in clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List)
+            {
+                foreach (var item in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                {
+                    if (item == item2)
+                    {
+                        if (clsGlobalVariables.NUMBER_OF_DUTS_List.Contains(item))
+                        {
+                            clsGlobalVariables.NUMBER_OF_DUTS_List.Remove(item);
+                            break;
+                        }
+                    }
+                }
+
             }
         }
 
@@ -1883,7 +1906,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public void LoadKeypadData()
         {
             try
-            {
+             {
                 clsGlobalVariables.arrstrgKeysNames[0] = clsGlobalVariables.strgESC;
                 clsGlobalVariables.arrstrgKeysNames[1] = clsGlobalVariables.strgDOWN;
                 clsGlobalVariables.arrstrgKeysNames[2] = clsGlobalVariables.strgUP;
@@ -1896,14 +1919,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal;
                     clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal;
                 }
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
+                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_96x96)
                 {
                     clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal_PR43;
                     clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal_PR43;
                     clsGlobalVariables.arrigKeysValue[2] = clsGlobalVariables.igUPKeyVal_PR43;
                     clsGlobalVariables.arrigKeysValue[3] = clsGlobalVariables.igEnterKeyVal_PR43;
                 }
-                else
+                else if(clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
                 {
                     clsGlobalVariables.arrigKeysValue[0] = clsGlobalVariables.igESCVal_PI;
                     clsGlobalVariables.arrigKeysValue[1] = clsGlobalVariables.igDOWNVal_PI;

@@ -117,13 +117,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool OP1{ get; set; }
         public string SelectedOP1Type { get; set; }
         public string SelectedOP1RelayType { get; set; }
+        public string OP1subtest { get; set; }
 
         public bool OP2{ get; set; }
         public string SelectedOP2Type { get; set; }
+        public string OP2subtest { get; set; }
         public string SelectedOP2RelayType { get; set; }
 
         public bool OP3{ get; set; }
         public string SelectedOP3Type { get; set; }
+        public string OP3subtest { get; set; }
         public string SelectedOP3RelayType { get; set; }
         
 
@@ -139,16 +142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     {
         public bool READ_DEVICE_ID { get; set; }
         public bool READ_CALIB_CONST { get; set; }
-        public bool SWITCH_SENSOR_RELAY { get; set; }
-        public bool SLAVE1_OP1_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE1_OP2_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE1_OP3_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE2_OP1_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE2_OP2_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE2_OP3_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool SLAVE3_OP3_OFF { get; set; }               //For all PR69(48X48) & PR69(96X96)
-        public bool CONVERTOR_OP1_OFF { get; set; }            //For all PR69(48X48) & PR69(96X96)
-        public bool CONVERTOR_OP2_OFF { get; set; }            //For all PR69(48X48) & PR69(96X96)
+        public bool SWITCH_SENSOR_RELAY { get; set; }       
         public bool START_DISP_TEST { get; set; }
         public bool START_KEYPAD_TEST { get; set; }
         public bool Vtg24V_OP_TEST { get; set; }
