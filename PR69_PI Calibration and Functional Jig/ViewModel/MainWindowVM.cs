@@ -254,7 +254,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                      
             OpenJigCOMPort();
 
-            // clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1));
+            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1));
             //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2));
             //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3));
             //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4));
@@ -299,12 +299,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //ConfigurationData[0].
                 //CatId[1].CalibrationDelays
 
-                for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+               // for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                 {
                     //clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
 
                     //current test update
-
+                    CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
+                    CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
+                    CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
+                    CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
+                    CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
+                    CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
 
                 }
                 clsGlobalVariables.ig_Query_TimeOut = 1200;

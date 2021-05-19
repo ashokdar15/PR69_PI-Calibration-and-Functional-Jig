@@ -25,6 +25,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _calibrationconstDetails = new ObservableCollection<CalibrationConstants>();
             _commonTestsDetails = new ObservableCollection<CommonTests>();
 
+            _OP1subtestList = new ObservableCollection<string>();
+            _OP2subtestList = new ObservableCollection<string>();
+            _OP3subtestList = new ObservableCollection<string>();
+
             _ListOfGroupSequence = new ObservableCollection<string>();
             _EditUptestgrpCmd = new RelayCommand(EditUptestgrpClk);
             _EditDowntestgrpCmd = new RelayCommand(EditDowntestgrpClk);
@@ -1985,6 +1989,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 if (found == 1) { break; }
             }
+
+            OP1subtestList.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
+            OP1subtestList.Add("START_REL_TEST_OP1_RELAY");
+
+            OP2subtestList.Add("START_REL_TEST_OP2_RELAY_PI");
+            OP2subtestList.Add("START_REL_TEST_OP2_RELAY");
 
             OutputTypeList.Add("SSR");
             OutputTypeList.Add("Relay");
