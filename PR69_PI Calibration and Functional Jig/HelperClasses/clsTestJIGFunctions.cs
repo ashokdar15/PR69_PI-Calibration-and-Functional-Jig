@@ -911,14 +911,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_OBSERVED_4_MA, clsModelSettings.imAnalOpVal[DUT - 1]);
                                     }
-                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                    {
-                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                        continue;
-                                    }
+                                    
                                 }
                             }
-                            else
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;

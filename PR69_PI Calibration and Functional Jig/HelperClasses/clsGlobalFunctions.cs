@@ -1652,6 +1652,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 
                 if (clsGlobalVariables.strgComPortJIG == "")
                 {
+                    MessageBox.Show("DUT COM is not found");
                     return (byte)clsGlobalVariables.enmResponseError.Invalid_data; 
                 }
                 else
