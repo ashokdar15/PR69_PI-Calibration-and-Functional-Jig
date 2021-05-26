@@ -5,13 +5,12 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.Views;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using static PR69_PI_Calibration_and_Functional_Jig.HelperClasses.clsGlobalVariables;
@@ -23,6 +22,400 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
     {
         public static InitilizeCommonObject initilizeCommonObject = new InitilizeCommonObject();
         //Constructor
+        private async void btnStartClk(object obj)
+        {
+
+            CatIdList catId = clsGlobalVariables.Selectedcatid;
+            //Port detection.
+            //IsProcessOn = true;
+            StartStopWatch(true);
+            EnableDisableUI(false);
+            objDataLog[0] = new clsDataLog();
+            objDataLog[1] = new clsDataLog();
+            objDataLog[2] = new clsDataLog();
+            objDataLog[3] = new clsDataLog();
+            //clsModelSettings.igDutID  need to set deive iD
+
+            //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
+            //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
+
+            if (ListOfTests.Count == 0)
+            {
+                GetListOfAllEnabledtests(catId);
+            }
+
+            CurrenttstgrpDUT1 = catId.ListOfGroupSequence[0];
+            CurrentTestStatusDUT1 = ListOfTests[0];
+
+            CurrenttstgrpDUT2 = catId.ListOfGroupSequence[1];
+            CurrentTestStatusDUT2 = ListOfTests[0];
+
+            CurrenttstgrpDUT3 = catId.ListOfGroupSequence[2];
+            CurrentTestStatusDUT3 = ListOfTests[0];
+
+            CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
+            CurrentTestStatusDUT4 = ListOfTests[0];
+
+            clsTotalTestsGroups.Clear();
+            int count = 0;
+
+            clsGlobalVariables.algTests_Auto.Clear();
+            //    //PIB12C
+
+            #region "PI"
+            //clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
+            //clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
+            //clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
+            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY_PI");
+            //clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_MODBUS_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("CJC_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
+            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
+            //clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
+            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_9V_CNT_PI");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1V_CNT_PI");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_20mA_CNT_PI");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1mA_CNT_PI");
+            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+
+            #endregion
+            #region "151B12B"
+            clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
+            clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
+            clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
+            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST"); 
+            clsGlobalVariables.algTests_Auto.Add("SSR_Test_PR69");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
+            clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
+            clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
+            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            #endregion
+            #region "PR43"
+
+            //clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
+            //clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
+            //clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
+            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
+            //clsGlobalVariables.algTests_Auto.Add("SSR_Test_PR43");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_47_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100_100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100_313");
+            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            #endregion
+            //
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            ////clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            //
+            //CALIB_PT100_313
+            //clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
+            //SSR_Test2
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
+
+            //Analog 
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
+            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
+            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
+            //clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
+            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
+
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            //clsGlobalVariables.algTests_Auto.Add("");
+
+            //Test21 = SET_DFALT_4MA_CNT
+            //Test22 = SET_OBSRVED_4MA_CNT
+            //Test23 = SET_DFALT_20MA_CNT
+            //Test24 = SET_OBSRVED_20MA_CNT
+            //Test25 = CALIBRATE_CURRENT
+            //Test26 = SET_12MA_ANLOP
+            //Test27 = CHK_ANALOG_OP_VAL
+            //Test28 = SLAVE2_OP1_OFF
+            //Test29 = SLAVE2_OP2_ON
+            //Test30 = SET_DFALT_1V_CNT
+            //Test31 = SET_OBSRVED_1V_CNT
+            //Test32 = SET_DFALT_10V_CNT
+            //Test33 = SET_OBSRVED_10V_CNT
+            //Test34 = CALIBRATE_VOLTAGE
+            //Test35 = SET_5V_ANLOP
+            //Test36 = CHK_ANALOG_OP_VAL
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_ON");
+            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_ON");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
+            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
+            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
+            // clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+            foreach (string test in clsGlobalVariables.algTests_Auto)
+            {
+                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
+                count++;
+            }
+            TestsDetailsVis = true;
+            IsProductSelected = true;
+            clsTotalConnectedDevicesList.Clear();
+            for (int Testnum = 0; Testnum < clsGlobalVariables.algTests_Auto.Count; Testnum++)
+            {
+                Dispatcher.CurrentDispatcher.Invoke(delegate {
+
+                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() { TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
+
+                });
+            }
+
+            //clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
+
+            //Parameters
+            //1. DUT Number
+            //2. Test Number
+            //3. Test Status
+            clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
+            //If usr change number of device then need to find com port again.
+
+            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
+            {
+                clsGlobalVariables.blngIsComportDetected = false;
+                clsGlobalVariables.blngIsComportDetectedForPLC = false;
+            }
+            clsModelSettings.igDutID = 10;
+            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+            clsGlobalVariables.objGlobalFunction.LoadKeypadData();
+            clsModelSettings.blnRS485Flag = false;
+            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                clsGlobalVariables.MB_MASTER_TO_DUT = 200;
+            else
+                clsGlobalVariables.MB_MASTER_TO_DUT = 100;
+            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
+            {
+                //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+                //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
+                FailurHandel();
+                EnableDisableUI(true);
+                return;
+                //PLC off
+            }
+
+            OpenJigCOMPort();
+
+            // clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1));
+            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2));
+            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3));
+            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4));
+            byte btmRetVal;
+            int imLoopCntr;
+            int imNumOfTests;
+            ArrayList almTempTestList = null;
+            clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
+            for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
+            {
+                clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
+            }
+
+            imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
+            almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
+
+
+            //Data log object is cleared here. Default data will be written into all the data menbers of this object.
+            //clsGlobalVariables.objDataLog[DUT-1].Clear();
+            //--------Changed By Shubham
+            //Date:- 30-03-2018
+            //Version:- V16
+            //statement:- VREF text box value is cleared here.
+            //txtVREF.Text = "";
+            //-------Changes End.
+
+            //prgbar.Maximum = imNumOfTests;
+            //prgbar.Value = prgbar.Minimum;
+            //This timeout is resseted here to original.           
+
+            for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
+            {
+                clsGlobalVariables.CurrentTestNumber = imLoopCntr + 1;
+                if (clsGlobalVariables._StopFlag)
+                {
+
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    EnableDisableUI(true);
+                    return;
+                }
+                //show current test on each DUT
+                CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
+                CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
+                CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
+                CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
+                //clear fail dut list
+                clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
+                //query time out
+                clsGlobalVariables.ig_Query_TimeOut = 1200;
+                btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+                if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0)
+                    btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
+                {
+                    //
+                    // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+                    clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
+
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    //CA 55
+                    //if (mnuAutoCalibration.Checked == true)
+                    //{
+                    //    objfrmAccTest.ShowDialog();
+                    //}
+                    EnableDisableUI(true);
+
+                    AccuracyWindow accuracyWindow1 = new AccuracyWindow();
+                    accuracyWindow1.ShowDialog();
+
+                    return;
+                }
+                else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                {
+                    //In case of error response below changes are done in the software.
+                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    CloseAllComport();
+                    EnableDisableUI(true);
+                    //txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+                    clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
+
+                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_FAILED);
+
+                    //CA55 ClearSerialComPort();
+
+                    return;
+                }
+                else
+                {
+                    clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, "Test" + (imLoopCntr + 1) + " Pass." + "(" + almTempTestList[imLoopCntr] + ")");
+                    //CA55  txtProgressInfo.SelectionStart = txtProgressInfo.Text.Length - 1;
+                    //Fix delay of 300msec is applied here to maintain query and response timeout compatibility with VB6.0 software.
+                    //This delay is added by observing the query and response of the old VB software.
+                    //clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
+                }
+                //CA55 prgbar.Value = imLoopCntr;
+            }
+            //CA55 
+            //This function performs JIG Initialization tests. this is only for PR69 devices and not for PI.
+            //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
+            //{
+            //    //This function performs JIG Initialization tests.
+            //    btmRetVal = JIGInitializationTests();
+            //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+            //    {
+            //        clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
+            //        frmMain.objCalibratorSerialComm.CloseCommPort();
+            //        frmMain.objJIGSerialComm.CloseCommPort();
+            //        ClearSerialComPort();
+            //        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.JIG_INITIALZATION_FAILED);
+            //        EnableControls(true);
+            //        return;
+            //    }
+            //}
+            //btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
+            //shpPassFail.ShapeColor = Color.Green;
+            //shpPassFail.TextONShape = "PASS";
+            //shpPassFail.FontColor = Color.White;
+            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
+            clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
+            CloseAllComport();
+            ///IsProcessOn = false;
+            clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
+            //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
+            //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
+            StartStopWatch(false);
+            AccuracyWindow accuracyWindow = new AccuracyWindow();
+            accuracyWindow.ShowDialog();
+
+        }
+
         public MainWindowVM()
         {
             
@@ -56,7 +449,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 return;
             }
 
-            Is48TypeCatId = true;
+            IsPR69TypeCatId = true;
             IsProductSelected = true;
 
             MyLogWriterDLL.LogWriter logWritter = new MyLogWriterDLL.LogWriter();
@@ -71,6 +464,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
             
+        }
+
+        public static List<IList<AccuracyTests>> accuracyTestsName = new List<IList<AccuracyTests>>();
+
+        public static void FillCollectionofAccuracy()
+        {
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.mAmpTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.VoltTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.PT100SensorTests);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.RSensor);
+            accuracyTestsName.Add(clsGlobalVariables.Selectedcatid.JSensor);
         }
 
         public void DisableControl()
@@ -777,41 +1181,41 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _DeviceNameError = value; OnPropertyChanged("_DeviceNameError"); }
         }
 
-        private bool _Is48TypeCatId;
+        private bool _IsPR43TypeCatId;
 
-        public bool Is48TypeCatId
+        public bool IsPR43TypeCatId
         {
-            get { return _Is48TypeCatId; }
+            get { return _IsPR43TypeCatId; }
             set
             {
-                _Is48TypeCatId = value;
+                _IsPR43TypeCatId = value;
                 
-                if (_Is48TypeCatId)
+                if (_IsPR43TypeCatId)
                 {
                     clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
                     DeviceTypeList.Clear();
                     DeviceNameList.Clear();
                     for (int devtype = 0; devtype < CatId[0].ConfigurationData.Count; devtype++)
                     {
-                        if (CatId[0].ConfigurationData[devtype].DeviceType.Contains("48"))
+                        if (CatId[0].ConfigurationData[devtype].DeviceType.Contains("43"))
                         {
                             DeviceTypeList.Add(CatId[0].ConfigurationData[devtype].DeviceType);
                         }
                     }
-                    OnPropertyChanged("Is48TypeCatId");
+                    OnPropertyChanged("IsPR43TypeCatId");
                 }
             }
         }
 
-        private bool _Is96TypeCatId;
+        private bool _IsPR69TypeCatId;
 
-        public bool Is96TypeCatId
+        public bool IsPR69TypeCatId
         {
-            get { return _Is96TypeCatId; }
+            get { return _IsPR69TypeCatId; }
             set
             {
-                _Is96TypeCatId = value;
-                if (_Is96TypeCatId)
+                _IsPR69TypeCatId = value;
+                if (_IsPR69TypeCatId)
                 {                    
                     DeviceTypeList.Clear();
                     DeviceNameList.Clear();
@@ -819,13 +1223,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                     for (int devtype = 0; devtype < CatId[0].ConfigurationData.Count; devtype++)
                     {
-                        if (CatId[0].ConfigurationData[devtype].DeviceType.Contains("96"))
+                        if (CatId[0].ConfigurationData[devtype].DeviceType.Contains("69"))
                         {
                             DeviceTypeList.Add(CatId[0].ConfigurationData[devtype].DeviceType);
                         }
                     }
 
-                    OnPropertyChanged("Is96TypeCatId");
+                    OnPropertyChanged("IsPR69TypeCatId");
                 }
             }
         }
@@ -1228,384 +1632,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopBtnVis = false;
             tmrMbTimer.Dispose();
         }
-        private async void btnStartClk(object obj)
-        {
-          
-            CatIdList catId = clsGlobalVariables.Selectedcatid;
-            //Port detection.
-            //IsProcessOn = true;
-            StartStopWatch(true);
-            EnableDisableUI(false);
-            objDataLog[0] = new clsDataLog();
-            objDataLog[1] = new clsDataLog();
-            objDataLog[2] = new clsDataLog();
-            objDataLog[3] = new clsDataLog();
-            //clsModelSettings.igDutID  need to set deive iD
+        
 
-            //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
-            //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
-
-            if (ListOfTests.Count == 0)
-            {
-                GetListOfAllEnabledtests(catId);
-            }
-
-            CurrenttstgrpDUT1 = catId.ListOfGroupSequence[0];
-            CurrentTestStatusDUT1 = ListOfTests[0];
-
-            CurrenttstgrpDUT2 = catId.ListOfGroupSequence[1];
-            CurrentTestStatusDUT2 = ListOfTests[0];
-
-            CurrenttstgrpDUT3 = catId.ListOfGroupSequence[2];
-            CurrentTestStatusDUT3 = ListOfTests[0];
-
-            CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
-            CurrentTestStatusDUT4 = ListOfTests[0];
-
-            //DisplayMessage(1, 145);
-            //DisplayMessage(2, 145);
-            //DisplayMessage(3, 145);
-            //DisplayMessage(4, 145);
-
-            clsTotalTestsGroups.Clear();
-            int count = 0;
-
-            clsGlobalVariables.algTests_Auto.Clear();
-            //    //PIB12C
-
-            #region "PI"
-            clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
-            clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
-            clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
-            clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
-            clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY_PI");
-            clsGlobalVariables.algTests_Auto.Add("24V_OP_TEST");
-            clsGlobalVariables.algTests_Auto.Add("START_MODBUS_TEST");
-            clsGlobalVariables.algTests_Auto.Add("CJC_TEST");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
-            clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
-            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
-            clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
-            clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_9V_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1V_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_20mA_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("CALIB_1mA_CNT_PI");
-            clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
-
-            #endregion
-
-            #region "PR43"
-
-            //clsGlobalVariables.algTests_Auto.Add("READ_DEVICE_ID");
-            //clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
-            //clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
-            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
-            //clsGlobalVariables.algTests_Auto.Add("SSR_Test_PR43");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_47_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100_100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100_313");
-            //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
-            #endregion
-            //
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            ////clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            //
-            //CALIB_PT100_313
-            //clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
-            //SSR_Test2
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
-
-            //Analog 
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
-            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
-            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
-            //clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
-            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            //clsGlobalVariables.algTests_Auto.Add("");
-
-            //Test21 = SET_DFALT_4MA_CNT
-            //Test22 = SET_OBSRVED_4MA_CNT
-            //Test23 = SET_DFALT_20MA_CNT
-            //Test24 = SET_OBSRVED_20MA_CNT
-            //Test25 = CALIBRATE_CURRENT
-            //Test26 = SET_12MA_ANLOP
-            //Test27 = CHK_ANALOG_OP_VAL
-            //Test28 = SLAVE2_OP1_OFF
-            //Test29 = SLAVE2_OP2_ON
-            //Test30 = SET_DFALT_1V_CNT
-            //Test31 = SET_OBSRVED_1V_CNT
-            //Test32 = SET_DFALT_10V_CNT
-            //Test33 = SET_OBSRVED_10V_CNT
-            //Test34 = CALIBRATE_VOLTAGE
-            //Test35 = SET_5V_ANLOP
-            //Test36 = CHK_ANALOG_OP_VAL
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_ON");
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            // clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
-            foreach (string test in clsGlobalVariables.algTests_Auto)
-            {
-                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
-                count++;
-            }
-            TestsDetailsVis = true;
-            IsProductSelected = true;
-            clsTotalConnectedDevicesList.Clear();
-            for (int Testnum = 0; Testnum < clsGlobalVariables.algTests_Auto.Count; Testnum++)
-            {
-                Dispatcher.CurrentDispatcher.Invoke( delegate{
-
-                    clsTotalConnectedDevicesList.Add(new clsTotalConnectedDevices() {TestNumber = Testnum + 1, TestresultDevice1 = "", TestresultDevice2 = "", TestresultDevice3 = "", TestresultDevice4 = "", TestresultDevice5 = "", TestresultDevice6 = "" });
-
-                });                
-            }
-
-            //clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
-
-            //Parameters
-            //1. DUT Number
-            //2. Test Number
-            //3. Test Status
-
-
-            //clsGlobalVariables.CurrentTestNumber = 2;
-            //UpdateTestResult(4, "FAIL");
-
-            //return;
-
-
-            
-            clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
-            //If usr change number of device then need to find com port again.
-            if (clsGlobalVariables.NUMBER_OF_DUTS != clsGlobalVariables.OLD_NUMBER_OF_DUTS)
-            {
-                clsGlobalVariables.blngIsComportDetected = false;
-                clsGlobalVariables.blngIsComportDetectedForPLC = false;
-            }
-            clsModelSettings.igDutID = 205;
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
-            clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;
-            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                clsGlobalVariables.MB_MASTER_TO_DUT = 200;
-            else
-                clsGlobalVariables.MB_MASTER_TO_DUT = 100;
-            if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
-            {
-                //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
-                //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
-                FailurHandel();
-                EnableDisableUI(true);
-                return;
-                //PLC off
-            }
-            else
-            {
-
-            }
-            MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false,true);
-            MainWindowVM.initilizeCommonObject.objplcSerialComm.OpenCommPort(clsGlobalVariables.strgComPortPLC, false);
-            MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 50;
-           OpenJigCOMPort();
-
-           // clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1));
-            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 2));
-            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 3));
-            //clsGlobalVariables.objQueriescls.MBErase((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 4));
-            byte btmRetVal;
-            int imLoopCntr;
-            int imNumOfTests;
-            ArrayList almTempTestList = null;
-            clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
-            for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
-            {
-                clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
-            }
-
-            imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
-            almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
-
-
-            //Data log object is cleared here. Default data will be written into all the data menbers of this object.
-            //clsGlobalVariables.objDataLog[DUT-1].Clear();
-            //--------Changed By Shubham
-            //Date:- 30-03-2018
-            //Version:- V16
-            //statement:- VREF text box value is cleared here.
-            //txtVREF.Text = "";
-            //-------Changes End.
-
-            //prgbar.Maximum = imNumOfTests;
-            //prgbar.Value = prgbar.Minimum;
-            //This timeout is resseted here to original.           
-            
-            for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
-            {
-                clsGlobalVariables.CurrentTestNumber = imLoopCntr +1;
-                if (clsGlobalVariables._StopFlag)
-                {
-
-                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
-                    CloseAllComport();
-                    EnableDisableUI(true);
-                    return;
-                }
-                //ConfigurationData[0].
-                //CatId[1].CalibrationDelays
-
-                for (int DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
-                {
-                    clsGlobalVariables.mainWindowVM.DisplayMessage(DUT, almTempTestList[imLoopCntr].ToString());
-                }
-                clsGlobalVariables.ig_Query_TimeOut = 1200;
-                btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
-                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
-                {
-
-                    // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
-                    clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
-
-                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
-                    CloseAllComport();
-                    //CA 55
-                    //if (mnuAutoCalibration.Checked == true)
-                    //{
-                    //    objfrmAccTest.ShowDialog();
-                    //}
-                    EnableDisableUI(true);
-                    return;
-                }
-                else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    //In case of error response below changes are done in the software.
-                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
-                    CloseAllComport();
-                    EnableDisableUI(true);
-                    //txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
-                    clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
-
-                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_FAILED);
-
-                    //CA55 ClearSerialComPort();
-
-                    return;
-                }
-                else
-                {
-                    clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, "Test" + (imLoopCntr + 1) + " Pass." + "(" + almTempTestList[imLoopCntr] + ")");
-                    //CA55  txtProgressInfo.SelectionStart = txtProgressInfo.Text.Length - 1;
-                    //Fix delay of 300msec is applied here to maintain query and response timeout compatibility with VB6.0 software.
-                    //This delay is added by observing the query and response of the old VB software.
-                    //clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
-                }
-                //CA55 prgbar.Value = imLoopCntr;
-            }
-            //CA55 
-            //This function performs JIG Initialization tests. this is only for PR69 devices and not for PI.
-            //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-            //{
-            //    //This function performs JIG Initialization tests.
-            //    btmRetVal = JIGInitializationTests();
-            //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-            //    {
-            //        clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
-            //        frmMain.objCalibratorSerialComm.CloseCommPort();
-            //        frmMain.objJIGSerialComm.CloseCommPort();
-            //        ClearSerialComPort();
-            //        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.JIG_INITIALZATION_FAILED);
-            //        EnableControls(true);
-            //        return;
-            //    }
-            //}
-            //btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
-            //shpPassFail.ShapeColor = Color.Green;
-            //shpPassFail.TextONShape = "PASS";
-            //shpPassFail.FontColor = Color.White;
-             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                    clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
-            clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
-            CloseAllComport();
-            ///IsProcessOn = false;
-            clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
-            //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
-            //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
-            StartStopWatch(false);
-            AccuracyWindow accuracyWindow = new AccuracyWindow();
-            accuracyWindow.ShowDialog();
-
-        }
 
         //Parameters
         //1. DUT Number
@@ -1615,7 +1643,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             if (status==clsGlobalVariables.FAIL)
             {
-
+                clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Add((byte)DUTNumber);
             }
             int testnumber = clsGlobalVariables.CurrentTestNumber;
             switch (DUTNumber)
@@ -1882,34 +1910,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             if (catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY)
                 ListOfTests.Add("SWITCH_SENSOR_RELAY");
-
-            if (catId.CommonCalibTests[0].SLAVE1_OP1_OFF)
-                ListOfTests.Add("SLAVE1_OP1_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE1_OP2_OFF)
-                ListOfTests.Add("SLAVE1_OP2_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE1_OP3_OFF)
-                ListOfTests.Add("SLAVE1_OP3_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE2_OP1_OFF)
-                ListOfTests.Add("SLAVE2_OP1_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE2_OP2_OFF)
-                ListOfTests.Add("SLAVE2_OP2_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE2_OP3_OFF)
-                ListOfTests.Add("SLAVE2_OP3_OFF");
-
-            if (catId.CommonCalibTests[0].SLAVE3_OP3_OFF)
-                ListOfTests.Add("SLAVE3_OP3_OFF");
-
-            if (catId.CommonCalibTests[0].CONVERTOR_OP1_OFF)
-                ListOfTests.Add("CONVERTOR_OP1_OFF");
-
-            if (catId.CommonCalibTests[0].CONVERTOR_OP2_OFF)
-                ListOfTests.Add("CONVERTOR_OP2_OFF");
-
+            
             if (catId.CommonCalibTests[0].START_DISP_TEST)
                 ListOfTests.Add("START_DISP_TEST");
 
@@ -2196,6 +2197,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         {
                             Selectedcatid = CatId[catid].ConfigurationData[ConfigData].CatIdLists[CatIDList];
                             clsGlobalVariables.Selectedcatid = Selectedcatid;
+                            accuracyTestsName.Clear();
+                            FillCollectionofAccuracy();
                             Description = Selectedcatid.Description;
                             found = 1;
                             break;
@@ -2288,7 +2291,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             switch (obj.ToString())
             {
                 case "Ok":
-                   
+                    clsModelSettings.igDutID = Selectedcatid.DeviceId;
+                    clsGlobalVariables.selectedDeviceType = GetDevicetypeFromString(SelectedDeviceType);
+                    clsModelSettings.blnRS485Flag = Selectedcatid.ModbusSupport;
                     break;
                 case "Yes":
 
@@ -2305,6 +2310,28 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
             hide();
+        }
+
+        private SelectedDeviceType GetDevicetypeFromString(string selectedDeviceType)
+        {
+            if (selectedDeviceType == clsGlobalVariables.PR69_96x96)            
+                return clsGlobalVariables.SelectedDeviceType.PR69_96x96;
+            else if (selectedDeviceType == clsGlobalVariables.PR69_48x48)
+                return clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+            else if (selectedDeviceType == clsGlobalVariables.PR43_96x96)
+                return clsGlobalVariables.SelectedDeviceType.PR43_96x96;
+            else if (selectedDeviceType == clsGlobalVariables.PR43_48x48)
+                return clsGlobalVariables.SelectedDeviceType.PR43_48x48;
+            else if (selectedDeviceType == clsGlobalVariables.PI)
+                return clsGlobalVariables.SelectedDeviceType.PI;
+            else
+            {
+                MessageBox.Show("Not Implemented");
+                return 0;
+            }
+
+           
+
         }
 
         private void hide()

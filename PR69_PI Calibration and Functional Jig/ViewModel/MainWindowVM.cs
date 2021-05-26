@@ -328,14 +328,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
                 CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
                 CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
-                //clear fail dut list
-                clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
-                //query time out
+                CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
+                CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
+
+                SelectedIndexDG1 = imLoopCntr;
+                SelectedIndexDG2 = imLoopCntr;
+
+
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+
                 if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0)
+                {
                     btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                }
+
                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
                     //
@@ -1092,6 +1100,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             get { return _Description; }
             set { _Description = value; OnPropertyChanged("Description"); }
+        }
+
+        private int _SelectedIndexDG1;
+
+        public int SelectedIndexDG1
+        {
+            get { return _SelectedIndexDG1; }
+            set { _SelectedIndexDG1 = value; OnPropertyChanged("SelectedIndexDG1"); }
+        }
+
+        private int _SelectedIndexDG2;
+
+        public int SelectedIndexDG2
+        {
+            get { return _SelectedIndexDG2; }
+            set { _SelectedIndexDG2 = value; OnPropertyChanged("SelectedIndexDG2"); }
         }
 
 

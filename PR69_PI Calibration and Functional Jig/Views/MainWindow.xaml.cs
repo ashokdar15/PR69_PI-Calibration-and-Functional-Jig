@@ -38,6 +38,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             clsGlobalVariables.mainWindowVM = vm;
         }
 
+        public ScrollViewer GetScrollViewer()
+        {
+            
+
+            if (VisualTreeHelper.GetChildrenCount(this) == 0)
+            {
+                return null;
+            }
+            var x = VisualTreeHelper.GetChild(this, 0);
+
+            if (x == null)
+            {
+                return null;
+            }
+
+            if (VisualTreeHelper.GetChildrenCount (x) == 0)
+            {
+                return null;
+            }
+
+            return VisualTreeHelper.GetChild(x, 0) as ScrollViewer;
+
+            
+        }
+
         private void minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -54,6 +79,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DG1.ScrollIntoView(DG1.SelectedItem);
+        }
+
+        private void DG2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DG2.ScrollIntoView(DG2.SelectedItem);
         }
     }
 }

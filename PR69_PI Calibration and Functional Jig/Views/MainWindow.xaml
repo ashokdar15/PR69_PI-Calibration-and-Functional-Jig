@@ -416,7 +416,7 @@
                                         
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -427,7 +427,7 @@
                                             </TextBlock.Inlines>                                            
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -476,7 +476,7 @@
                                       
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -487,7 +487,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -535,7 +535,7 @@
                                       
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -546,7 +546,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -595,7 +595,7 @@
 
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -606,7 +606,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1">
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -653,7 +653,7 @@
 
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -664,7 +664,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
-                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -713,7 +713,7 @@
                                        
                                         <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -724,7 +724,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
-                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="30" FontStyle="Italic">
+                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightGreen" Offset="0" />
@@ -774,10 +774,11 @@
                                                       Width="auto" Height="auto" Grid.Column="0"  Grid.Row="0"                                        
                                                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
                                                       IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      AutoGenerateColumns="False"
+                                                      AutoGenerateColumns="False" Name="DG1"
                                                       CanUserAddRows="False"
                                                       GridLinesVisibility="Horizontal"  
                                                       SelectionUnit="Cell" SelectionMode="Extended"
+                                                      SelectionChanged="DG1_SelectionChanged"
                                                       ItemsSource="{Binding Path=clsTotalTestsGroups,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
@@ -796,7 +797,8 @@
                                                 </DataGrid.Columns>
                                             </DataGrid>
 
-                                            <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" 
+                                            <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" Name="DG2"
+                                                      SelectionChanged="DG2_SelectionChanged"
                                               ItemsSource="{Binding Path=clsTotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}">

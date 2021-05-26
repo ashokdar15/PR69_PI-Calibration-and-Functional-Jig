@@ -1990,15 +1990,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (found == 1) { break; }
             }
 
+            OP1subtestList.Clear();
+
             OP1subtestList.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
             OP1subtestList.Add("START_REL_TEST_OP1_RELAY");
+
+            OP2subtestList.Clear();
 
             OP2subtestList.Add("START_REL_TEST_OP2_RELAY_PI");
             OP2subtestList.Add("START_REL_TEST_OP2_RELAY");
 
+            OutputTypeList.Clear();
+
             OutputTypeList.Add("SSR");
             OutputTypeList.Add("Relay");
             OutputTypeList.Add("A/O");
+
+            RelayTypeList.Clear();
 
             RelayTypeList.Add("1C/O");
             RelayTypeList.Add("2C/O");
