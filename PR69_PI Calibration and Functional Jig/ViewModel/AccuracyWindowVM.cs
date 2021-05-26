@@ -30,8 +30,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
             //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
-            clsModelSettings.blnRS485Flag = false;
+            //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+            //clsModelSettings.blnRS485Flag = false;
             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
                 clsGlobalVariables.MB_MASTER_TO_DUT = 200;
             else
@@ -43,10 +43,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 StartStopWatch(false);
                 return;
             }
-            clsModelSettings.blnRS485Flag = false;
+           // clsModelSettings.blnRS485Flag = false;
             
             clsGlobalVariables.mainWindowVM.OpenJigCOMPort();
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;           
+           // clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;           
             Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
             GetAccuracyDataFromJSON(AccuracyList);
             int currentTestNumber = 1;

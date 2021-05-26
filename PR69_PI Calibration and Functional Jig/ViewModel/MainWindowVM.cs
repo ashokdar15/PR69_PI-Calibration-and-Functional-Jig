@@ -261,10 +261,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.blngIsComportDetected = false;
                 clsGlobalVariables.blngIsComportDetectedForPLC = false;
             }
-            clsModelSettings.igDutID = 2;
-            clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
+            //clsModelSettings.igDutID = 2;
+            //clsModelSettings.igDutID = clsGlobalVariables.Selectedcatid.DeviceId;
+            //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-            clsModelSettings.blnRS485Flag = false;
+          
             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
                 clsGlobalVariables.MB_MASTER_TO_DUT = 200;
             else

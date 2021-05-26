@@ -762,7 +762,7 @@
                                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="340" />
+                                                <ColumnDefinition Width="320" />
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>

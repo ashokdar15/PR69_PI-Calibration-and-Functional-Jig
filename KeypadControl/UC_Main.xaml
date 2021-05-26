@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
               d:DesignHeight="130" d:DesignWidth="190">
     <Canvas Height="130" Width="190" x:Name="canvas" Background="White">
-        <Ellipse Name="tealCircle" Width="180" Height="120" Fill="Teal"  Canvas.Top="5" Canvas.Left="5"/>
+        <Ellipse Name="tealCircle" Width="170" Height="110" Fill="Teal"  Canvas.Top="5" Canvas.Left="5"/>
     </Canvas>
 </UserControl>
