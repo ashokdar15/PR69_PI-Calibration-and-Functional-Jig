@@ -676,10 +676,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int One_VOLT_MAX_PI = 1030;
         public static int One_VOLT_MIN_PI = 960;
         public static int TEN_VOLT_MAX = 10080;
-        public static int TEN_VOLT_MIN = 9920;
+        public static int TEN_VOLT_MIN = 9900;
         public static int TEN_VOLT_MAX_PI = 10470;
         public static int TEN_VOLT_MIN_PI = 9750;
-        public static int FOUR_mAMP_MAX = 4100;
+        public static int FOUR_mAMP_MAX = 4200;
         public static int FOUR_mAMP_MIN = 3900;
         public static int ONE_mAMP_MAX_PI = 1050;//0.9538               1.0129
         public static int ONE_mAMP_MIN_PI = 950;

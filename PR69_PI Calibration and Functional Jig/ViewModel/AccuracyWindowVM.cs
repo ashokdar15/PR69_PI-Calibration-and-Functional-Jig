@@ -27,7 +27,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StartStopWatch(true);
             
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
-
+            clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
             //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
             clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
