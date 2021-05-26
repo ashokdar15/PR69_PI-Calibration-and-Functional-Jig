@@ -261,7 +261,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.blngIsComportDetected = false;
                 clsGlobalVariables.blngIsComportDetectedForPLC = false;
             }
-            clsModelSettings.igDutID = 10;
+            clsModelSettings.igDutID = 2;
             clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
             clsModelSettings.blnRS485Flag = false;
@@ -298,7 +298,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
             almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
 
-
+            clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
             //Data log object is cleared here. Default data will be written into all the data menbers of this object.
             //clsGlobalVariables.objDataLog[DUT-1].Clear();
             //--------Changed By Shubham
@@ -337,7 +337,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
+                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
 
                 if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0)
                 {
@@ -1608,7 +1608,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 OnPropertyChanged("NumberOfDUTs");
             }
         }
-        
         private ObservableCollection<string> _DeviceList;
 
         public ObservableCollection<string> DeviceTypeList
@@ -1669,6 +1668,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
                 clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Add((byte)DUTNumber);
             }
+            
             int testnumber = clsGlobalVariables.CurrentTestNumber;
             switch (DUTNumber)
             {

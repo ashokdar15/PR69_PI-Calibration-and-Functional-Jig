@@ -770,15 +770,11 @@
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <DataGrid ScrollViewer.CanContentScroll="True" Focusable="false"
+                                            <DataGrid ScrollViewer.CanContentScroll="True" 
                                                       Width="auto" Height="auto" Grid.Column="0"  Grid.Row="0"                                        
-                                                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"
-                                                      IsReadOnly="{Binding Path=IsNotEditable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      AutoGenerateColumns="False" Name="DG1"
-                                                      CanUserAddRows="False"
-                                                      GridLinesVisibility="Horizontal"  
-                                                      SelectionUnit="Cell" SelectionMode="Extended"
-                                                      SelectionChanged="DG1_SelectionChanged"
+                                                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"                                                     
+                                                       Name="DG1"
+                                                      SelectedIndex="{Binding SelectedIndexDG1}" SelectionChanged="MydataGrid_SelectionChanged"
                                                       ItemsSource="{Binding Path=clsTotalTestsGroups,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
@@ -798,8 +794,7 @@
                                             </DataGrid>
 
                                             <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" Name="DG2"
-                                                      SelectionChanged="DG2_SelectionChanged"
-                                              ItemsSource="{Binding Path=clsTotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                      ItemsSource="{Binding Path=clsTotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}">
                                                         <Setter Property="Background" Value="#b2ebf2"/>

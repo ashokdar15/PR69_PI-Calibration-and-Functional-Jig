@@ -36,6 +36,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
 
             vm = (MainWindowVM)DataContext;
             clsGlobalVariables.mainWindowVM = vm;
+
         }
 
         public ScrollViewer GetScrollViewer()
@@ -83,12 +84,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
 
         private void DG1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DG1.ScrollIntoView(DG1.SelectedItem);
+          //  if (DG1.SelectedItem != null)
+             //   DG1.ScrollIntoView(DG1.SelectedItem);
         }
 
         private void DG2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DG2.ScrollIntoView(DG2.SelectedItem);
+           // if (DG2.SelectedItem != null)
+             //   DG2.ScrollIntoView(DG2.SelectedItem);
+        }
+
+        private void MydataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DG1.SelectedItem != null)
+              DG1.ScrollIntoView(DG1.SelectedItem);
         }
     }
 }
