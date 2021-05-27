@@ -773,7 +773,7 @@
                                             <DataGrid ScrollViewer.CanContentScroll="True" 
                                                       Width="auto" Height="auto" Grid.Column="0"  Grid.Row="0"                                        
                                                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"                                                     
-                                                       Name="DG1"
+                                                      Name="DG1"
                                                       SelectedIndex="{Binding SelectedIndexDG1}" SelectionChanged="MydataGrid_SelectionChanged"
                                                       ItemsSource="{Binding Path=clsTotalTestsGroups,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>

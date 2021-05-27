@@ -407,8 +407,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int[] arrigKeysValue = new int[4];
         public static string[] arrstrgKeysNames = new string[4];
         public const byte NUM_OF_KEYS = 4;
-        public const string strgEnter = "   ENTER";
-        public const string strgUP    = "      UP";
+        public const string strgEnter = "    ENTER";
+        public const string strgUP    = "        UP";
         public const string strgDOWN  = "     DOWN";
         public const string strgESC   = "      ESC";
 

@@ -2,6 +2,7 @@
 using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -2249,6 +2250,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         }
                     }
 
+
+
                     CalibrationDelaysPIDetails.Clear();
                     if (_configurationDataList.CalibrationDelaysPI != null)
                     {
@@ -3082,23 +3085,74 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void SavewholecalibDataDetails()
         {
-            ModifiedCatId[0].CalibrationDelays[0] = CalibrationDelaysDetails[0];
-            ModifiedCatId[0].CalibrationDelaysPR43[0] = CalibrationDelaysDetailsPR43[0];
-            ModifiedCatId[0].CalibrationDelaysPI[0] = CalibrationDelaysPIDetails[0];
-            ModifiedCatId[0].TolerancesofPI[0] = TolerancesofPIDetails[0];
-            ModifiedCatId[0].TolerancesOfPR69[0] = TolerancesofPR69Details[0];
-            ModifiedCatId[0].motfilepath = Motfilepath;
-
-            string res = JsonConvert.SerializeObject(ModifiedCatId[0], Formatting.Indented);
-            System.IO.File.WriteAllText(clsGlobalVariables.configJsonfilepath, res);
-            ModifiedCatId.Clear();
-            ConfigurationDataList result = new ConfigurationDataList();
-            using (StreamReader file = File.OpenText(clsGlobalVariables.configJsonfilepath))
+            try
             {
-                JsonSerializer serializer = new JsonSerializer();
-                result = (ConfigurationDataList)serializer.Deserialize(file, typeof(ConfigurationDataList));
+                if (ModifiedCatId[0].CalibrationDelays[0] == null)
+                {
+                    ModifiedCatId[0].CalibrationDelays = new List<CalibrationDelays>();
+                    ModifiedCatId[0].CalibrationDelays.Add(new CalibrationDelays());
+                }
+
+                if (CalibrationDelaysDetails.Count == 0)
+                    CalibrationDelaysDetails.Add(new CalibrationDelays());
+                ModifiedCatId[0].CalibrationDelays[0] = CalibrationDelaysDetails[0];
+
+                if (ModifiedCatId[0].CalibrationDelaysPR43 == null)
+                {
+                    ModifiedCatId[0].CalibrationDelaysPR43 = new List<CalibrationDelaysPR43>();
+                    ModifiedCatId[0].CalibrationDelaysPR43.Add(new CalibrationDelaysPR43());
+                }
+
+                if (CalibrationDelaysDetailsPR43.Count == 0)
+                    CalibrationDelaysDetailsPR43.Add(new CalibrationDelaysPR43());
+                ModifiedCatId[0].CalibrationDelaysPR43[0] = CalibrationDelaysDetailsPR43[0];
+
+                if (ModifiedCatId[0].CalibrationDelaysPI == null)
+                {
+                    ModifiedCatId[0].CalibrationDelaysPI = new List<CalibrationDelaysPI>();
+                    ModifiedCatId[0].CalibrationDelaysPI.Add(new CalibrationDelaysPI());
+                }
+
+                if (CalibrationDelaysPIDetails.Count == 0)
+                    CalibrationDelaysPIDetails.Add(new CalibrationDelaysPI());
+                ModifiedCatId[0].CalibrationDelaysPI[0] = CalibrationDelaysPIDetails[0];
+
+                if (ModifiedCatId[0].TolerancesofPI == null)
+                {
+                    ModifiedCatId[0].TolerancesofPI = new List<TolerancesOfPI>();
+                    ModifiedCatId[0].TolerancesofPI.Add(new TolerancesOfPI());
+                }
+
+                if (TolerancesofPIDetails.Count == 0)
+                    TolerancesofPIDetails.Add(new TolerancesOfPI());
+                ModifiedCatId[0].TolerancesofPI[0] = TolerancesofPIDetails[0];
+
+                if (ModifiedCatId[0].TolerancesOfPR69 == null)
+                {
+                    ModifiedCatId[0].TolerancesOfPR69 = new List<TolerancesOfPR69>();
+                    ModifiedCatId[0].TolerancesOfPR69[0] = new TolerancesOfPR69();
+                }
+
+                if (TolerancesofPR69Details.Count == 0)
+                    TolerancesofPR69Details.Add(new TolerancesOfPR69());
+                ModifiedCatId[0].TolerancesOfPR69[0] = TolerancesofPR69Details[0];
+                ModifiedCatId[0].motfilepath = Motfilepath;
+
+                string res = JsonConvert.SerializeObject(ModifiedCatId[0], Formatting.Indented);
+                System.IO.File.WriteAllText(clsGlobalVariables.configJsonfilepath, res);
+                ModifiedCatId.Clear();
+                ConfigurationDataList result = new ConfigurationDataList();
+                using (StreamReader file = File.OpenText(clsGlobalVariables.configJsonfilepath))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    result = (ConfigurationDataList)serializer.Deserialize(file, typeof(ConfigurationDataList));
+                }
+                ModifiedCatId.Add(result);
             }
-            ModifiedCatId.Add(result);
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         private void EditToleranceClk(object obj)

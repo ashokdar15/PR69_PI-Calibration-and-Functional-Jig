@@ -401,7 +401,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //        clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
             //        frmMain.objCalibratorSerialComm.CloseCommPort();
             //        frmMain.objJIGSerialComm.CloseCommPort();
-            //        ClearSerialComPort();
+            //        ClearSerimalComPort();
             //        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.JIG_INITIALZATION_FAILED);
             //        EnableControls(true);
             //        return;
@@ -472,7 +472,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //keypadTextDevice4 = "ESCAPE";
 
             clsGlobalVariables.DispImgpath = Directory.GetCurrentDirectory()+ "\\Images\\";
+
+            if (CatId[0].motfilepath != null)
+            {
+                if (Directory.Exists(CatId[0].motfilepath))
+                {
+                    DirectoryInfo diSource_96x96 = new DirectoryInfo(CatId[0].motfilepath);
+                    DirectoryInfo diTarget_96x96 = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\Config Data\\Mot_96x96");
+
+                    CopyFilesRecursively(diSource_96x96, diTarget_96x96);
+                }
+            }
+
             
+        }
+
+        public void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        {
+            foreach (DirectoryInfo dir in source.GetDirectories())
+                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+            foreach (FileInfo file in source.GetFiles())
+                file.CopyTo(Path.Combine(target.FullName, file.Name));
         }
 
         public static List<IList<AccuracyTests>> accuracyTestsName = new List<IList<AccuracyTests>>();
@@ -2185,6 +2205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 CatId.Clear();
                 CatId.Add(result);
+                
 
                 foreach (ConfigurationData item in result.ConfigurationData)
                 {
