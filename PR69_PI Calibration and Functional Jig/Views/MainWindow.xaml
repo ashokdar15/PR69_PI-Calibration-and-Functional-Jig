@@ -405,7 +405,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="48"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -427,11 +427,11 @@
                                             </TextBlock.Inlines>                                            
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
@@ -464,7 +464,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="48" />
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -487,11 +487,11 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
@@ -524,7 +524,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="48"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -546,11 +546,11 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
@@ -583,7 +583,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="48"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -606,11 +606,11 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1">
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
@@ -642,7 +642,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="48"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -664,11 +664,11 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
@@ -701,7 +701,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="48"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -724,11 +724,11 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>

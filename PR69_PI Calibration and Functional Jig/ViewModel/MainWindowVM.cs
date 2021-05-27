@@ -1890,10 +1890,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             CloseAllComport();
             StartStopWatch(false);
         }
-        private void EnableDisableUI(bool v)
+        private void EnableDisableUI(bool state)
         {
-            //StartBtnVis = v;
-            //StopBtnVis = !v;
+            //StartBtnVis = state;
+            //StopBtnVis = !state;
         }
 
         public void CloseAllComport()
