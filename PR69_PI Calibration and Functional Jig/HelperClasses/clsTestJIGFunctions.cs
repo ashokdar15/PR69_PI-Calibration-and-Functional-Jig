@@ -162,6 +162,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SWITCH_SENSOR_RELAY": //In this section calibrator settings are get done for further tests.
+                        clsGlobalVariables.strgOngoingTestName = "mV Sensor Calibration";
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                             clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
@@ -759,6 +760,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_4MA_CNT":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Output mA Calibration";
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -789,6 +791,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "SET_DFALT_1MA_CNT": //only for PI
+                        clsGlobalVariables.strgOngoingTestName = "Analog Output mA Calibration";
                         clsMessages.DisplayMessage(clsMessageIDs.CURRENT_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -833,7 +836,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_DFALT_1V_CNT":                      
+                    case "SET_DFALT_1V_CNT":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Output Volt Calibration";
                         clsMessages.DisplayMessage(clsMessageIDs.VOLTAGE_SETTING_MSG_ID);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1268,6 +1272,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_PT100_313":
+                        clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.THREEOneThree_OHM, DUT);
@@ -1321,6 +1326,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         break;
                     case "CALIB_PT100_100":
+                        clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Calibration";
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
                         else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
@@ -1506,6 +1512,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_1V_CNT":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Calibration";
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1589,6 +1596,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_4mA_CNT":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                         //chkCurrent test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2364,6 +2372,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_1V);
                         break;
                     case "CALIB_9V_CNT_PI":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -2425,6 +2434,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CALIB_1mA_CNT_PI":
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";

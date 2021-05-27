@@ -405,28 +405,28 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
+                                            <RowDefinition Height="45"/>
                                             <RowDefinition/>
-                                            <RowDefinition Height="50"/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>                                            
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
                                               <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
@@ -452,7 +452,7 @@
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice1Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
-                                                       Lables="{Binding keypadTextDevice1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                       Lables="{Binding keypadTextDevice1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -464,29 +464,29 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition />
+                                            <RowDefinition Height="45" />
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
                                       
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
                                               <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
@@ -512,7 +512,7 @@
                                         
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice2Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
-                                                       Lables="{Binding keypadTextDevice2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                       Lables="{Binding keypadTextDevice2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -524,28 +524,28 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="45"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                       
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
                                               <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
@@ -571,7 +571,7 @@
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice3Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
-                                                       Lables="{Binding keypadTextDevice3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                       Lables="{Binding keypadTextDevice3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -583,29 +583,29 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="45"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                     
 
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0" >
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1">
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1">
                                               <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
@@ -630,7 +630,7 @@
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice4Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
-                                                       Lables="{Binding keypadTextDevice4,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                       Lables="{Binding keypadTextDevice4,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -642,28 +642,28 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="45"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0">
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
                                                 <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
@@ -689,7 +689,7 @@
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice5Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
-                                                       Lables="{Binding keypadTextDevice5,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                       Lables="{Binding keypadTextDevice5,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
                                     </Grid>
                                 </GroupBox>
                             </Border>
@@ -701,29 +701,29 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="45"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="185"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
                                        
-                                        <TextBlock Margin="20 5 0 0" Grid.Row="0" Grid.Column="0" >
+                                        <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Italic">
+                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                                                            <GradientStop Color="LightGreen" Offset="0" />
-                                                            <GradientStop Color="Green" Offset="1"/>
+                                                            <GradientStop Color="LightSkyBlue" Offset="0" />
+                                                            <GradientStop Color="Black" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Run.Foreground>
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" >
+                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
                                             <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Italic">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >

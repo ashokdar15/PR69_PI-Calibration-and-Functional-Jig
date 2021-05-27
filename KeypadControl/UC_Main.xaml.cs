@@ -57,8 +57,8 @@ namespace KeypadControl
                         Foreground = Brushes.White,
                         FontSize = 20,
                         FontWeight = FontWeights.Bold,
-                        TextAlignment = TextAlignment.Center
-                       
+                        TextAlignment = TextAlignment.Left,                        
+
                     });
 
 
@@ -74,7 +74,7 @@ namespace KeypadControl
                     canvas.Children.Add(lbl);
 
                     Canvas.SetTop(lbl, 50);
-                    Canvas.SetLeft(lbl, 68);
+                    Canvas.SetLeft(lbl, 30);
 
                 }
             }

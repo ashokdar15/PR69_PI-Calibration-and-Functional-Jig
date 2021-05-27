@@ -24,7 +24,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //Constructor
         private async void btnStartClk(object obj)
         {
-
+            
             CatIdList catId = clsGlobalVariables.Selectedcatid;
             //Port detection.
             //IsProcessOn = true;
@@ -103,7 +103,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.algTests_Auto.Add("READ_CALIB_CONST_STATUS");
             clsGlobalVariables.algTests_Auto.Add("SWITCH_SENSOR_RELAY");
             clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST"); 
+            clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST"); 
             clsGlobalVariables.algTests_Auto.Add("SSR_Test_PR69");
             clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
             clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
@@ -2167,6 +2167,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             ConfigurationWindow objconfiguration = new ConfigurationWindow();
             objconfiguration.ShowDialog();
+
+
         }
 
         private bool refresDataOfJsonFile()

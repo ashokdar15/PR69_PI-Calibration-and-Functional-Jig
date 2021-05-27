@@ -62,6 +62,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 switch (item.Key)
                 {
                     case clsGlobalVariables.mAmpAccuracyTest:
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input mA Accuracy";
                         foreach (var actualTest in item.Value)
                         {
                             if (stopBtnPress)                            
@@ -121,6 +122,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         
                         break;
                     case clsGlobalVariables.voltAccuracyTest:
+                        clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Accuracy";
                         foreach (var actualTest in item.Value)
                         {
                             if (stopBtnPress)
@@ -179,6 +181,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             break;
                         break;
                     case clsGlobalVariables.pt100sensorAccuracyTest:
+                        clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Accuracy";
                         foreach (var actualTest in item.Value)
                         {
                             if (stopBtnPress)
@@ -236,6 +239,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             break;
                         break;
                     case clsGlobalVariables.RsensorAccuracyTest:
+                        clsGlobalVariables.strgOngoingTestName = "R Sensor Accuracy";
                         foreach (var actualTest in item.Value)
                         {
                             if (stopBtnPress)
@@ -294,6 +298,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         break;
 
                     case clsGlobalVariables.JsensorAccuracyTest:
+                        clsGlobalVariables.strgOngoingTestName = "J Sensor Accuracy";
                         foreach (var actualTest in item.Value)
                         {
                             if (stopBtnPress)
@@ -362,8 +367,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             if (TestOkFlag && !stopBtnPress)
             {
                 //Accuracy completed.
-                //write data of accuracy in sqlite
+                
+
                 //write calibration constant to all DUT
+                byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                if (clsGlobalVariables.algTests_Auto.Contains("WRITE_CALIB_CONST_WITH_VREF"))
+                {
+                    btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("WRITE_CALIB_CONST_WITH_VREF");
+                }
+                else
+                {
+                    btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("WRITE_CALIB_CONST");
+                }
+
+                //write data of accuracy in sqlite
 
             }
 
@@ -658,12 +675,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                     //btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices(clsGlobalVariables.CJC_ON_OFF, clsGlobalVariables.CJC_ON,DUT);
-                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CJC_ON_OFF, clsGlobalVariables.CJC_OFF);
-                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI )
                     {
-                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                        continue;
+                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CJC_ON_OFF, clsGlobalVariables.CJC_OFF);
+                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                        {
+                            UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                            continue;
+                        }
                     }
+                    
                     //This check is for device having modbus.                        
                     if (clsModelSettings.blnRS485Flag == true)
                     {
