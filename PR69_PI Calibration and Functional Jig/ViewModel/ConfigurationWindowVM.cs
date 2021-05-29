@@ -2497,23 +2497,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         SaveNewcatId();
                         IsDialogOpen = false;
                         IsCheckBoxEnabled = false;
+                        clsGlobalVariables.IsFileChanged = true;
                         break;
 
                     case "SaveNewSeriesType":
                         SaveNewSeries();
                         IsDialogOpen = false;
+                        clsGlobalVariables.IsFileChanged = true;
                         break;
 
                     case "SaveEditedJson":
                         SaveEditedcatId();
                         IsDialogOpen = false;
                         IsCheckBoxEnabled = false;
+                        clsGlobalVariables.IsFileChanged = true;
                         break;
 
                     case "DeleteCatId":
                         DeleteCatID(EventParam);
                         EventParam = "";
                         IsDialogOpen = false;
+                        clsGlobalVariables.IsFileChanged = true;
                         break;
 
                     case "DeleteDeviceType":
@@ -2600,6 +2604,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     case "SavewholeCalibData":
                         DelaytoleranceVisibility(false);
                         SavewholecalibDataDetails();
+                        clsGlobalVariables.IsFileChanged = true;
                         break;
                         
                     case "SaveAccuracyTests":

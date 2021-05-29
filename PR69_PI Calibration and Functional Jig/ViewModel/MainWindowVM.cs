@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Threading;
 using static PR69_PI_Calibration_and_Functional_Jig.HelperClasses.clsGlobalVariables;
 
@@ -480,10 +481,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     DirectoryInfo diSource_96x96 = new DirectoryInfo(CatId[0].motfilepath);
                     DirectoryInfo diTarget_96x96 = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\Config Data\\Mot_96x96");
 
-                    CopyFilesRecursively(diSource_96x96, diTarget_96x96);
+                    //CopyFilesRecursively(diSource_96x96, diTarget_96x96);
                 }
             }
-
             
         }
 
@@ -1892,8 +1892,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
         private void EnableDisableUI(bool state)
         {
-            //StartBtnVis = state;
-            //StopBtnVis = !state;
+            StartBtnVis = state;
+            StopBtnVis = !state;
         }
 
         public void CloseAllComport()
@@ -2085,19 +2085,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             if (catId.AnalogOpTests[0].CHK_ANALOG_OP_VAL)
                 ListOfTests.Add("CHK_ANALOG_OP_VAL");
-
-            //if (catId.AnalogOpTests[0].SLAVE2_OP1_ON)
-            //    ListOfTests.Add("SLAVE2_OP1_ON");
-
-            //if (catId.AnalogOpTests[0].SLAVE2_OP1_OFF)
-            //    ListOfTests.Add("SLAVE2_OP1_OFF");
-
-            //if (catId.AnalogOpTests[0].SLAVE2_OP2_ON)
-            //    ListOfTests.Add("SLAVE2_OP2_ON");
-
-            //if (catId.AnalogOpTests[0].SLAVE2_OP2_OFF)
-            //    ListOfTests.Add("SLAVE2_OP2_OFF");
-
+           
             if (catId.AnalogOpTests[0].SET_DFALT_1V_CNT)
                 ListOfTests.Add("SET_DFALT_1V_CNT");
 
@@ -2186,8 +2174,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //}
 
             ConfigurationWindow objconfiguration = new ConfigurationWindow();
-            objconfiguration.ShowDialog();
+            var res = objconfiguration.ShowDialog();
 
+            if (res == false)
+            {
+                if (clsGlobalVariables.IsFileChanged)
+                {
+                    DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("It seems you have done some changes to JSON filesnWarning!", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        if (!refresDataOfJsonFile())
+                        {
+                            ShowMessageBox("Json file not found!", true, "", clsGlobalVariables.MsgIcon.Message);
+                            
+                        }
+                        ShowProductSelectionWindow();
+                    }
+                }
+                    
+                    //ShowMessageBox("It seems you have done some changes to JSON filesnWarning!", true, "RefreshData", clsGlobalVariables.MsgIcon.Message);
+                // refresDataFromTimer225_File();
+            }
 
         }
 
@@ -2205,6 +2212,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 CatId.Clear();
                 CatId.Add(result);
+                
                 
 
                 foreach (ConfigurationData item in result.ConfigurationData)
@@ -2336,16 +2344,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void BtnOkclk(object obj)
         { 
             clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
+
             switch (obj.ToString())
             {
                 case "Ok":
+                    AssignConfigurationDetailsToUI();
                     clsModelSettings.igDutID = Selectedcatid.DeviceId;
                     clsGlobalVariables.selectedDeviceType = GetDevicetypeFromString(SelectedDeviceType);
                     clsModelSettings.blnRS485Flag = Selectedcatid.ModbusSupport;
                     break;
                 case "Yes":
-
-                    break;
+                    
+                    //if (Sender == "RefreshData")
+                    //{
+                    //    if (!refresDataOfJsonFile())
+                    //        ShowMessageBox("JSON file path not found.", false, "JsonFilenotfound", clsGlobalVariables.MsgIcon.Error);
+                    //}
+                    //break;
                 case "Cancel":
 
                     break;
@@ -2374,7 +2389,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 return clsGlobalVariables.SelectedDeviceType.PI;
             else
             {
-                MessageBox.Show("Not Implemented");
+                //MessageBox.Show("Not Implemented");
                 return 0;
             }
 
@@ -2473,7 +2488,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("In Timer Thread");
+                //MessageBox.Show("In Timer Thread");
                 MyLogWriterDLL.LogWriter.WriteLog("ex.Message , ex.StackTrace" + ex.Message + "," + ex.StackTrace);
             }
         }

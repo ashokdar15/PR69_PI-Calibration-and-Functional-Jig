@@ -981,6 +981,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         internal static int DUT2=2;
         internal static int DUT3=3;
         internal static int DUT4=4;
+
+        public static bool IsFileChanged = false;
     }
     public static class clsModelSettings
     {
