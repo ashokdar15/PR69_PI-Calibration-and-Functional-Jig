@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Medium"
-        TextElement.FontSize="15"
+        TextElement.FontSize="14"
         TextElement.FontFamily="{materialDesign:MaterialDesignFont}"
         Title="ConfigurationWindow" Height="740" Width="1262" WindowStartupLocation="CenterScreen" WindowStyle="None"
                  WindowState="Normal" ResizeMode="NoResize">
@@ -77,7 +77,7 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
 
-                                <CheckBox Content="CALIBRATION 0to20mA" 
+                                <CheckBox Content="CALIBRATION 4to20mA" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 15"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="{Binding clsAnalogInputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -126,19 +126,19 @@
                                 <CheckBox Content="CALIBRATION 0to20mA" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsAnalogOutputTests.IsPIProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="CALIBRATION 4to20mA" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsAnalogOutputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_4MA_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="CALIBRATION 0to10V" 
                                       Grid.Column="2" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsAnalogOutputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
@@ -360,7 +360,7 @@
                                       IsEnabled="True"
                                       IsChecked="{Binding clsCommonTests.READ_DEVICE_ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="READ CALIB CONST" 
+                                <CheckBox Content="READ CALIB CONST STATUS" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="True"
@@ -1323,51 +1323,30 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Margin="10,0,0,10" Grid.Row="0" Grid.Column="0" Orientation="Horizontal"
                                             HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom">
-                                            <CheckBox  
-                                            IsChecked="{Binding Path=IsAnalogInputTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"                                     
-                                            IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                            Content="Analog Input Tests"/>
+                                            <CheckBox   
+                                                IsChecked="{Binding Path=IsCommonTests,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
+                                                IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                Content="Common Tests"/>
 
-                                            <Button Command="{Binding Path=EditAnalogInputTestsCmd}"  Margin="5 0"
+                                            <Button Command="{Binding Path=EditCommonTestsCmd}"  Margin="5 0"
                                                 CommandParameter="{Binding DeviceName}"                                                        
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                Visibility="{Binding Path=IsAnalogInputTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                Visibility="{Binding Path=IsCommonTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
                                                 materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                                <Button.Content >
+                                                <Button.Content>
                                                     <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
                                                 </Button.Content>
                                                 <Button.ToolTip>
-                                                    <TextBlock Text="Edit Analog Input Tests Details"></TextBlock>
+                                                    <TextBlock Text="Edit Common Tests Details"></TextBlock>
                                                 </Button.ToolTip>
                                             </Button>
-
+                                            
                                         </StackPanel>
 
                                         <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" Margin="10,0,0,10"
                                             HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
-                                            <CheckBox  
-                                            IsChecked="{Binding Path=IsAnalogOutputTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                     
-                                            IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                            Content="Analog Output Tests"/>
 
-                                            <Button Command="{Binding Path=EditAnalogOutputTestsCmd}"  Margin="5 0"
-                                                CommandParameter="{Binding DeviceName}"                                                        
-                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                Visibility="{Binding Path=IsAnalogOutputTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
-                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                                <Button.Content >
-                                                    <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                                </Button.Content>
-                                                <Button.ToolTip>
-                                                    <TextBlock Text="Edit Analog Output Tests Details"></TextBlock>
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </StackPanel>
-
-                                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10,0,0,10"
-                                            HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                            <CheckBox   
-                                            IsChecked="{Binding Path=IsTC_RTDTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                     
+                                            <CheckBox  IsChecked="{Binding Path=IsTC_RTDTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                     
                                             IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                             Content="TC RTD Tests"/>
 
@@ -1383,10 +1362,12 @@
                                                     <TextBlock Text="Edit TC_RTD Tests Details"></TextBlock>
                                                 </Button.ToolTip>
                                             </Button>
+                                            
                                         </StackPanel>
 
-                                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="10,10"
-                                                HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
+                                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10,0,0,10"
+                                            HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
+
                                             <CheckBox   
                                                 IsChecked="{Binding Path=IsRelayTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -1404,9 +1385,53 @@
                                                     <TextBlock Text="Edit Output Tests Details"></TextBlock>
                                                 </Button.ToolTip>
                                             </Button>
+                                            
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="10,10"
+                                                HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
+
+                                            <CheckBox  IsChecked="{Binding Path=IsAnalogInputTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"                                     
+                                            IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                            Content="Analog Input Tests"/>
+
+                                            <Button Command="{Binding Path=EditAnalogInputTestsCmd}"  Margin="5 0"
+                                                CommandParameter="{Binding DeviceName}"                                                        
+                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                Visibility="{Binding Path=IsAnalogInputTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                                <Button.Content >
+                                                    <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                                </Button.Content>
+                                                <Button.ToolTip>
+                                                    <TextBlock Text="Edit Analog Input Tests Details"></TextBlock>
+                                                </Button.ToolTip>
+                                            </Button>
+                                            
+                                           
                                         </StackPanel>
                                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,10"
-                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
+                                        HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
+                                            <CheckBox  IsChecked="{Binding Path=IsAnalogOutputTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                     
+                                            IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                            Content="Analog Output Tests"/>
+
+                                            <Button Command="{Binding Path=EditAnalogOutputTestsCmd}"  Margin="5 0"
+                                                CommandParameter="{Binding DeviceName}"                                                        
+                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                Visibility="{Binding Path=IsAnalogOutputTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                                <Button.Content >
+                                                    <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                                </Button.Content>
+                                                <Button.ToolTip>
+                                                    <TextBlock Text="Edit Analog Output Tests Details"></TextBlock>
+                                                </Button.ToolTip>
+                                            </Button>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="10,0,0,10"
+                                        HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
                                             <CheckBox   
                                                 IsChecked="{Binding Path=IsCalibConstantTest,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
                                                 IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -1422,26 +1447,6 @@
                                                 </Button.Content>
                                                 <Button.ToolTip>
                                                     <TextBlock Text="Edit Calib constant Tests Details"></TextBlock>
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="10,0,0,10"
-                                        HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                            <CheckBox   
-                                                IsChecked="{Binding Path=IsCommonTests,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Source={x:Reference ConfigurationWindowVM}}"                                     
-                                                IsEnabled="{Binding Path=IsCheckBoxEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                Content="Common Tests"/>
-
-                                            <Button Command="{Binding Path=EditCommonTestsCmd}"  Margin="5 0"
-                                                CommandParameter="{Binding DeviceName}"                                                        
-                                                IsEnabled="{Binding Path=IsCheckBoxEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                Visibility="{Binding Path=IsCommonTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
-                                                materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                                <Button.Content>
-                                                    <materialDesign:PackIcon Kind="CircleEditOutline" Height="15" Width="15" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                                </Button.Content>
-                                                <Button.ToolTip>
-                                                    <TextBlock Text="Edit Common Tests Details"></TextBlock>
                                                 </Button.ToolTip>
                                             </Button>
                                         </StackPanel>

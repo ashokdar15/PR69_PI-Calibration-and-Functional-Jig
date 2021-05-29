@@ -1951,7 +1951,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 ListOfTests.Add("READ_DEVICE_ID");
 
             if (catId.CommonCalibTests[0].READ_CALIB_CONST)
-                ListOfTests.Add("READ_CALIB_CONST");
+                ListOfTests.Add("READ_CALIB_CONST_STATUS");
 
             if (catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY)
                 ListOfTests.Add("SWITCH_SENSOR_RELAY");
@@ -2293,8 +2293,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             MesssageVis = false;
             CancelBtnVis = true;
             ProductSelectionVis = false;
-            ComSelectionVis = true;
-            
+            ComSelectionVis = true;            
             Sender = "CommunicationSettingWindow";
             IsDialogOpen = true;
         }

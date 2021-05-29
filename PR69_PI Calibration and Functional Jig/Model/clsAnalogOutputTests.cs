@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -129,7 +130,25 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             get { return _CHK_ANALOG_OP_VAL; }
             set { _CHK_ANALOG_OP_VAL = value; OnPropertyChanged("CHK_ANALOG_OP_VAL"); }
         }
-        
+
+        private bool _IsPR69Product;
+
+        public bool IsPR69Product
+        {
+            get { return _IsPR69Product; }
+            set { _IsPR69Product = value; OnPropertyChanged("IsPR69Product"); }
+        }
+
+        private bool _IsPIProduct;
+
+        public bool IsPIProduct
+        {
+            get { return _IsPIProduct; }
+            set { _IsPIProduct = value; OnPropertyChanged("IsPIProduct"); }
+        }
+
+
+
         private bool _SET_DFALT_1V_CNT;
 
         public bool SET_DFALT_1V_CNT
@@ -223,6 +242,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SET_OBSRVED_1V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1V_CNT;
                     SET_OBSRVED_20MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_20MA_CNT;
                     SET_OBSRVED_4MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT;
+                }
+
+                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
+                    clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
+                    clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
+                {
+                    IsPR69Product = true;
+                    IsPIProduct = false;
+                }
+                else
+                {
+                    IsPR69Product = false;
+                    IsPIProduct = true;
                 }
             }
         }

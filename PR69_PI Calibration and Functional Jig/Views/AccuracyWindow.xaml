@@ -9,7 +9,7 @@
         xmlns:local="clr-namespace:PR69_PI_Calibration_and_Functional_Jig.Views"
         mc:Ignorable="d" TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Medium"
-        TextElement.FontSize="13"
+        TextElement.FontSize="12"
         TextElement.FontFamily="{materialDesign:MaterialDesignFont}"
         Title="ConfigurationWindow" Height="800" Width="1350" WindowStartupLocation="CenterScreen" WindowStyle="None"
                  WindowState="Normal" ResizeMode="NoResize">
