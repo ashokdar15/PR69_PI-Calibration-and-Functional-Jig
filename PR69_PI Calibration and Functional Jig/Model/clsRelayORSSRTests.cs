@@ -130,7 +130,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string SelectedOP2RelayType
         {
             get { return _SelectedOP2RelayType; }
-            set { _SelectedOP2RelayType = value; OnPropertyChanged("SelectedOP2RelayType"); }
+            set
+            {
+                _SelectedOP2RelayType = value;
+
+                OnPropertyChanged("SelectedOP2RelayType");
+            }
         }
 
         private string _SelectedOP3RelayType;
@@ -178,7 +183,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public int SelectedIndexOP2Relay
         {
             get { return _SelectedIndexOP2Relay; }
-            set { _SelectedIndexOP2Relay = value; OnPropertyChanged("SelectedIndexOP2Relay"); }
+            set
+            {
+                _SelectedIndexOP2Relay = value;
+
+                //SelectedOP3Type = "";
+
+                OnPropertyChanged("SelectedIndexOP2Relay");
+            }
         }
 
         private int _SelectedIndexOP3Relay;

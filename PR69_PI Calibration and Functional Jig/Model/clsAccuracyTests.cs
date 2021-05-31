@@ -19,10 +19,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 string res = String.Empty;
 
+                int result;
+
                 switch (propertyname)
                 {
                     case "P1":
-                        if (P1 != null && Min != null && Max != null && P1 != "" && Min != "" && Max != "")
+                        if (P1 != null && Min != null && Max != null && P1 != "" && Min != "" && Max != "" && int.TryParse(P1,out result))
                         {
                             if (Convert.ToInt32(P1) < Convert.ToInt32(Min) || Convert.ToInt32(P1) > Convert.ToInt32(Max))
                             {
@@ -34,7 +36,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P2":
-                        if (P2 != null && Min != null && Max != null && P2 != "" && Min != "" && Max != "")
+                        if (P2 != null && Min != null && Max != null && P2 != "" && Min != "" && Max != "" && int.TryParse(P2, out result))
                         {
                             if (Convert.ToInt32(P2) < Convert.ToInt32(Min) || Convert.ToInt32(P2) > Convert.ToInt32(Max))
                             {
@@ -46,7 +48,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P3":
-                        if (P3 != null && Min != null && Max != null && P3 != "" && Min != "" && Max != "")
+                        if (P3 != null && Min != null && Max != null && P3 != "" && Min != "" && Max != "" && int.TryParse(P3, out result))
                         {
                             if (Convert.ToInt32(P3) < Convert.ToInt32(Min) || Convert.ToInt32(P3) > Convert.ToInt32(Max))
                             {
@@ -58,7 +60,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P4":
-                        if (P4 != null && Min != null && Max != null && P4 != "" && Min != "" && Max != "")
+                        if (P4 != null && Min != null && Max != null && P4 != "" && Min != "" && Max != "" && int.TryParse(P4, out result))
                         {
                             if (Convert.ToInt32(P4) < Convert.ToInt32(Min) || Convert.ToInt32(P4) > Convert.ToInt32(Max))
                             {
@@ -70,7 +72,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P5":
-                        if (P5 != null && Min != null && Max != null && P5 != "" && Min != "" && Max != "")
+                        if (P5 != null && Min != null && Max != null && P5 != "" && Min != "" && Max != "" && int.TryParse(P5, out result))
                         {
                             if (Convert.ToInt32(P5) < Convert.ToInt32(Min) || Convert.ToInt32(P5) > Convert.ToInt32(Max))
                             {
@@ -82,7 +84,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P6":
-                        if (P6 != null && Min != null && Max != null && P6 != "" && Min != "" && Max != "")
+                        if (P6 != null && Min != null && Max != null && P6 != "" && Min != "" && Max != "" && int.TryParse(P6, out result))
                         {
                             if (Convert.ToInt32(P6) < Convert.ToInt32(Min) || Convert.ToInt32(P6) > Convert.ToInt32(Max))
                             {
@@ -94,7 +96,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P7":
-                        if (P7 != null && Min != null && Max != null && P7 != "" && Min != "" && Max != "")
+                        if (P7 != null && Min != null && Max != null && P7 != "" && Min != "" && Max != "" && int.TryParse(P7, out result))
                         {
                             if (Convert.ToInt32(P7) < Convert.ToInt32(Min) || Convert.ToInt32(P7) > Convert.ToInt32(Max))
                             {
@@ -106,7 +108,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P8":
-                        if (P8 != null && Min != null && Max != null && P8 != "" && Min != "" && Max != "")
+                        if (P8 != null && Min != null && Max != null && P8 != "" && Min != "" && Max != "" && int.TryParse(P8, out result))
                         {
                             if (Convert.ToInt32(P8) < Convert.ToInt32(Min) || Convert.ToInt32(P8) > Convert.ToInt32(Max))
                             {
@@ -118,7 +120,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P9":
-                        if (P9 != null && Min != null && Max != null && P9 != "" && Min != "" && Max != "")
+                        if (P9 != null && Min != null && Max != null && P9 != "" && Min != "" && Max != "" && int.TryParse(P9, out result))
                         {
                             if (Convert.ToInt32(P9) < Convert.ToInt32(Min) || Convert.ToInt32(P9) > Convert.ToInt32(Max))
                             {
@@ -130,7 +132,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         break;
 
                     case "P10":
-                        if (P10 != null && Min != null && Max != null && P10 != "" && Min != "" && Max != "")
+                        if (P10 != null && Min != null && Max != null && P10 != "" && Min != "" && Max != "" && int.TryParse(P10, out result))
                         {
                             if (Convert.ToInt32(P10) < Convert.ToInt32(Min) || Convert.ToInt32(P10) > Convert.ToInt32(Max))
                             {

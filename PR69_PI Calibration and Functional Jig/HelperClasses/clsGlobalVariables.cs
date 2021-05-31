@@ -977,6 +977,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         internal static byte OP1_DUT2_PLC_ON_Number = 28;
         internal static byte OP1_DUT3_PLC_ON_Number = 32;
         internal static byte OP1_DUT4_PLC_ON_Number = 36;
+
+        internal static byte OP3_DUT1_PLC_ON_Number = 25;
+        internal static byte OP3_DUT2_PLC_ON_Number = 29;
+        internal static byte OP3_DUT3_PLC_ON_Number = 33;
+        internal static byte OP3_DUT4_PLC_ON_Number = 37;
         internal static int DUT1=1;
         internal static int DUT2=2;
         internal static int DUT3=3;

@@ -243,18 +243,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SET_OBSRVED_20MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_20MA_CNT;
                     SET_OBSRVED_4MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT;
                 }
-
+                IsPR69Product = true;
+                IsPIProduct = true;
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
                     clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
                     clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
                 {
-                    IsPR69Product = true;
-                    IsPIProduct = false;
+                    //IsPR69Product = true;
+                    //IsPIProduct = false;
                 }
                 else
                 {
-                    IsPR69Product = false;
-                    IsPIProduct = true;
+                    //IsPR69Product = false;
+                    //IsPIProduct = true;
                 }
             }
         }

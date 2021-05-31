@@ -26,9 +26,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _calibrationconstDetails = new ObservableCollection<CalibrationConstants>();
             _commonTestsDetails = new ObservableCollection<CommonTests>();
 
-            _OP1subtestList = new ObservableCollection<string>();
-            _OP2subtestList = new ObservableCollection<string>();
-            _OP3subtestList = new ObservableCollection<string>();
+            //_OP1subtestList = new ObservableCollection<string>();
+            //_OP2subtestList = new ObservableCollection<string>();
+            //_OP3subtestList = new ObservableCollection<string>();
 
             _ListOfGroupSequence = new ObservableCollection<string>();
             _EditUptestgrpCmd = new RelayCommand(EditUptestgrpClk);
@@ -51,6 +51,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _EditTC_RTDTestsCmd = new RelayCommand(EditTC_RTDTestsClk);
             _EditRelayTestsCmd = new RelayCommand(EditRelayTestsClk);
             _OutputTypeList = new ObservableCollection<string>();
+            _OutputTypeListOP2 = new ObservableCollection<string>();
             _RelayTypeList = new ObservableCollection<string>();
             _EditCalibConstantTestsCmd = new RelayCommand(EditCalibConstantTestsClk);
             _EditCommonTestsCmd = new RelayCommand(EditCommonTestsClk);
@@ -94,8 +95,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             OriginalCatId.Add(result);
             ModifiedCatId.Add(result);
 
-            IsSaveBtnVis = false;
-            
+            IsSaveBtnVis = false;            
         }
 
         private void EditCalibrationDelaysPR43Clk(object obj)
@@ -205,8 +205,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 
         private void EditmAmpInputTestsClk(object obj)
         {            
-
-
+            
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.mAmp;
             AccParameter = "mAmp";
             EditAccuracyTestsDetails(obj);
@@ -399,29 +398,38 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _OutputTypeList = value; OnPropertyChanged("OutputTypeList"); }
         }
 
-        private ObservableCollection<string> _OP1subtestList;
+        private ObservableCollection<string> _OutputTypeListOP2;
 
-        public ObservableCollection<string> OP1subtestList
+        public ObservableCollection<string> OutputTypeListOP2
         {
-            get { return _OP1subtestList; }
-            set { _OP1subtestList = value; OnPropertyChanged("OP1subtestList"); }
+            get { return _OutputTypeListOP2; }
+            set { _OutputTypeListOP2 = value; OnPropertyChanged("OutputTypeListOP2"); }
         }
 
-        private ObservableCollection<string> _OP2subtestList;
 
-        public ObservableCollection<string> OP2subtestList
-        {
-            get { return _OP2subtestList; }
-            set { _OP2subtestList = value; OnPropertyChanged("OP2subtestList"); }
-        }
+        //private ObservableCollection<string> _OP1subtestList;
 
-        private ObservableCollection<string> _OP3subtestList;
+        //public ObservableCollection<string> OP1subtestList
+        //{
+        //    get { return _OP1subtestList; }
+        //    set { _OP1subtestList = value; OnPropertyChanged("OP1subtestList"); }
+        //}
 
-        public ObservableCollection<string> OP3subtestList
-        {
-            get { return _OP3subtestList; }
-            set { _OP3subtestList = value; OnPropertyChanged("OP3subtestList"); }
-        }
+        //private ObservableCollection<string> _OP2subtestList;
+
+        //public ObservableCollection<string> OP2subtestList
+        //{
+        //    get { return _OP2subtestList; }
+        //    set { _OP2subtestList = value; OnPropertyChanged("OP2subtestList"); }
+        //}
+
+        //private ObservableCollection<string> _OP3subtestList;
+
+        //public ObservableCollection<string> OP3subtestList
+        //{
+        //    get { return _OP3subtestList; }
+        //    set { _OP3subtestList = value; OnPropertyChanged("OP3subtestList"); }
+        //}
 
 
         #region Accuracy RelayCommands
@@ -1991,26 +1999,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (found == 1) { break; }
             }
 
-            OP1subtestList.Clear();
+            //OP1subtestList.Clear();
 
-            OP1subtestList.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
-            OP1subtestList.Add("START_REL_TEST_OP1_RELAY");
+            //OP1subtestList.Add("START_REL_TEST_OP1_RELAY_PR43_PI");
+            //OP1subtestList.Add("START_REL_TEST_OP1_RELAY");
 
-            OP2subtestList.Clear();
+            //OP2subtestList.Clear();
 
-            OP2subtestList.Add("START_REL_TEST_OP2_RELAY_PI");
-            OP2subtestList.Add("START_REL_TEST_OP2_RELAY");
+            //OP2subtestList.Add("START_REL_TEST_OP2_RELAY_PI");
+            //OP2subtestList.Add("START_REL_TEST_OP2_RELAY");
 
             OutputTypeList.Clear();
 
             OutputTypeList.Add("SSR");
             OutputTypeList.Add("Relay");
-            OutputTypeList.Add("A/O");
+
+            OutputTypeListOP2.Clear();
+
+            OutputTypeListOP2.Add("SSR");
+            OutputTypeListOP2.Add("Relay");
+            OutputTypeListOP2.Add("Relay + SSR");
 
             RelayTypeList.Clear();
 
-            RelayTypeList.Add("1C/O");
-            RelayTypeList.Add("2C/O");
+            RelayTypeList.Add("1NC/NO");
+            RelayTypeList.Add("1NO");
 
             EventSender = "SaveRelayOrSSRTests";
             AnalogIPTestsEditVis = false;

@@ -206,7 +206,6 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Content="OP1" 
@@ -223,15 +222,15 @@
                                       ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding clsRelayORSSRTests.SelectedOP1Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="2" Margin="20 20"
+                                <!--<ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.OP1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsEditable="False"                                       
                                       ItemsSource="{Binding Path=OP1subtestList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding clsRelayORSSRTests.OP1subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      SelectedItem="{Binding clsRelayORSSRTests.OP1subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="3" Margin="20 20"
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="0" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.IsOP1RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -251,18 +250,18 @@
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.OP2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsEditable="False"  
-                                      ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding Path=OutputTypeListOP2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding clsRelayORSSRTests.SelectedOP2Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="2" Margin="20 20"
+                                <!--<ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.OP2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsEditable="False"                                       
                                       ItemsSource="{Binding Path=OP2subtestList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding clsRelayORSSRTests.OP2subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      SelectedItem="{Binding clsRelayORSSRTests.OP2subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="3" Margin="20 20"
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="1" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.IsOP2RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -285,15 +284,15 @@
                                       ItemsSource="{Binding Path=OutputTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding clsRelayORSSRTests.SelectedOP3Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="2" Margin="20 20"
+                                <!--<ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.OP3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsEditable="False"                                       
                                       ItemsSource="{Binding Path=OP3subtestList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding clsRelayORSSRTests.OP3subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                      SelectedItem="{Binding clsRelayORSSRTests.OP3subtest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="3" Margin="20 20"
+                                <ComboBox materialDesign:HintAssist.Hint="Type" Grid.Column="2" Grid.Row="2" Margin="20 20"
                                       materialDesign:TextFieldAssist.HasClearButton="False"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"  
                                       IsEnabled="{Binding clsRelayORSSRTests.IsOP3RelaySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

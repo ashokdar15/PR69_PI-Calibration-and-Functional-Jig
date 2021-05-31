@@ -405,7 +405,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
+                                            <RowDefinition Height="47"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -416,7 +416,7 @@
                                         
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -464,7 +464,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48" />
+                                            <RowDefinition Height="47" />
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -476,7 +476,7 @@
                                       
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -524,7 +524,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
+                                            <RowDefinition Height="47"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -535,7 +535,7 @@
                                       
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -583,7 +583,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
+                                            <RowDefinition Height="47"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -595,7 +595,7 @@
 
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -642,7 +642,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
+                                            <RowDefinition Height="47"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -653,7 +653,7 @@
 
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0">
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -701,7 +701,7 @@
                                     </GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
+                                            <RowDefinition Height="47"/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
@@ -713,7 +713,7 @@
                                        
                                         <TextBlock Margin="20 10 0 0" Grid.Row="0" Grid.Column="0" >
                                             <TextBlock.Inlines>
-                                                <Run Text="Current Test   : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run Text="Current Test : " FontWeight="Normal" FontSize="25" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />

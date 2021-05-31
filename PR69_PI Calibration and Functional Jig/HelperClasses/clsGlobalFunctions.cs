@@ -1596,8 +1596,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         if (!CheckAllCalibratorConnected())
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-
-
+                        
                         RemoveClibratorPort();   
                         
                         //Intercharacter delay is set here. For programming this delay is set to 10msec.
@@ -1617,7 +1616,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
                                 else
                                 {
-                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE_ID_WO_BASE+1);
+                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1);
                                 }
                                
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
