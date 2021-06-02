@@ -223,40 +223,46 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
         public void ParseAnalogOPDetails(CatIdList catId)
         {
-            if (catId.AnalogOpTests != null)
+            try
             {
-                if (catId.AnalogOpTests.Count != 0)
+                if (catId.AnalogOpTests != null)
                 {
-                    SET_DFALT_1MA_CNT = catId.AnalogOpTests[0].SET_DFALT_1MA_CNT;
-                    CALIBRATE_CURRENT = catId.AnalogOpTests[0].CALIBRATE_CURRENT;
-                    CALIBRATE_VOLTAGE = catId.AnalogOpTests[0].CALIBRATE_VOLTAGE;
-                    CHK_ANALOG_OP_VAL = catId.AnalogOpTests[0].CHK_ANALOG_OP_VAL;
-                    SET_12MA_ANLOP = catId.AnalogOpTests[0].SET_12MA_ANLOP;
-                    SET_5V_ANLOP = catId.AnalogOpTests[0].SET_5V_ANLOP;
-                    SET_DFALT_10V_CNT = catId.AnalogOpTests[0].SET_DFALT_10V_CNT;
-                    SET_DFALT_1V_CNT = catId.AnalogOpTests[0].SET_DFALT_1V_CNT;
-                    SET_DFALT_20MA_CNT = catId.AnalogOpTests[0].SET_DFALT_20MA_CNT;
-                    SET_DFALT_4MA_CNT = catId.AnalogOpTests[0].SET_DFALT_4MA_CNT;
-                    SET_OBSRVED_10V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_10V_CNT;
-                    SET_OBSRVED_1MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1MA_CNT;
-                    SET_OBSRVED_1V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1V_CNT;
-                    SET_OBSRVED_20MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_20MA_CNT;
-                    SET_OBSRVED_4MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT;
+                    if (catId.AnalogOpTests.Count != 0)
+                    {
+                        SET_DFALT_1MA_CNT = catId.AnalogOpTests[0].SET_DFALT_1MA_CNT;
+                        CALIBRATE_CURRENT = catId.AnalogOpTests[0].CALIBRATE_CURRENT;
+                        CALIBRATE_VOLTAGE = catId.AnalogOpTests[0].CALIBRATE_VOLTAGE;
+                        CHK_ANALOG_OP_VAL = catId.AnalogOpTests[0].CHK_ANALOG_OP_VAL;
+                        SET_12MA_ANLOP = catId.AnalogOpTests[0].SET_12MA_ANLOP;
+                        SET_5V_ANLOP = catId.AnalogOpTests[0].SET_5V_ANLOP;
+                        SET_DFALT_10V_CNT = catId.AnalogOpTests[0].SET_DFALT_10V_CNT;
+                        SET_DFALT_1V_CNT = catId.AnalogOpTests[0].SET_DFALT_1V_CNT;
+                        SET_DFALT_20MA_CNT = catId.AnalogOpTests[0].SET_DFALT_20MA_CNT;
+                        SET_DFALT_4MA_CNT = catId.AnalogOpTests[0].SET_DFALT_4MA_CNT;
+                        SET_OBSRVED_10V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_10V_CNT;
+                        SET_OBSRVED_1MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1MA_CNT;
+                        SET_OBSRVED_1V_CNT = catId.AnalogOpTests[0].SET_OBSRVED_1V_CNT;
+                        SET_OBSRVED_20MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_20MA_CNT;
+                        SET_OBSRVED_4MA_CNT = catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT;
+                    }
+
                 }
-                IsPR69Product = true;
-                IsPIProduct = true;
-                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
                     clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
                     clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
-                {
-                    //IsPR69Product = true;
-                    //IsPIProduct = false;
-                }
-                else
-                {
-                    //IsPR69Product = false;
-                    //IsPIProduct = true;
-                }
+            {
+                IsPR69Product = true;
+                IsPIProduct = false;
+            }
+            else
+            {
+                IsPR69Product = false;
+                IsPIProduct = true;
             }
         }
 

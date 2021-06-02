@@ -17,13 +17,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _OP1 = value; OnPropertyChanged("OP1"); }
         }
 
-        private string _OP1subtest;
+        //private string _OP1subtest;
 
-        public string OP1subtest
-        {
-            get { return _OP1subtest; }
-            set { _OP1subtest = value; OnPropertyChanged("OP1subtest"); }
-        }
+        //public string OP1subtest
+        //{
+        //    get { return _OP1subtest; }
+        //    set { _OP1subtest = value; OnPropertyChanged("OP1subtest"); }
+        //}
 
 
         private bool _OP2;
@@ -34,13 +34,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _OP2 = value; OnPropertyChanged("OP2"); }
         }
 
-        private string _OP2subtest;
+        //private string _OP2subtest;
 
-        public string OP2subtest
-        {
-            get { return _OP2subtest; }
-            set { _OP2subtest = value; OnPropertyChanged("OP2subtest"); }
-        }
+        //public string OP2subtest
+        //{
+        //    get { return _OP2subtest; }
+        //    set { _OP2subtest = value; OnPropertyChanged("OP2subtest"); }
+        //}
 
 
         private bool _OP3;
@@ -51,13 +51,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set { _OP3 = value; OnPropertyChanged("OP3"); }
         }
 
-        private string _OP3subtest;
+        //private string _OP3subtest;
 
-        public string OP3subtest
-        {
-            get { return _OP3subtest; }
-            set { _OP3subtest = value; OnPropertyChanged("OP3subtest"); }
-        }
+        //public string OP3subtest
+        //{
+        //    get { return _OP3subtest; }
+        //    set { _OP3subtest = value; OnPropertyChanged("OP3subtest"); }
+        //}
 
 
         private string _SelectedOP1Type;
@@ -86,10 +86,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string SelectedOP2Type
         {
             get { return _SelectedOP2Type; }
-            set { _SelectedOP2Type = value;
+            set
+            {
+                _SelectedOP2Type = value;
 
                 if (_SelectedOP2Type == "Relay")
                     IsOP2RelaySelected = true;
+                else if (_SelectedOP2Type == "Relay + SSR")
+                {
+                    OP3 = true;
+                    SelectedOP3Type = "SSR";
+                }                   
                 else
                 {
                     SelectedIndexOP2Relay = -1;
@@ -211,9 +218,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     OP2 = catId.RelayOrSSRTests[0].OP2;
                     OP3 = catId.RelayOrSSRTests[0].OP3;
 
-                    OP1subtest = catId.RelayOrSSRTests[0].OP1subtest;
-                    OP2subtest = catId.RelayOrSSRTests[0].OP2subtest;
-                    OP3subtest = catId.RelayOrSSRTests[0].OP3subtest;
+                    //OP1subtest = catId.RelayOrSSRTests[0].OP1subtest;
+                    //OP2subtest = catId.RelayOrSSRTests[0].OP2subtest;
+                    //OP3subtest = catId.RelayOrSSRTests[0].OP3subtest;
 
                     SelectedOP1Type = catId.RelayOrSSRTests[0].SelectedOP1Type;
                     SelectedOP2Type = catId.RelayOrSSRTests[0].SelectedOP2Type;
@@ -236,9 +243,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     OP1=OP1,
                     OP2=OP2,
                     OP3=OP3,
-                    OP1subtest = OP1subtest,
-                    OP2subtest = OP2subtest,
-                    OP3subtest = OP3subtest,
+                    //OP1subtest = OP1subtest,
+                    //OP2subtest = OP2subtest,
+                    //OP3subtest = OP3subtest,
                     SelectedOP1Type=SelectedOP1Type,
                     SelectedOP2Type=SelectedOP2Type,
                     SelectedOP3Type=SelectedOP3Type,

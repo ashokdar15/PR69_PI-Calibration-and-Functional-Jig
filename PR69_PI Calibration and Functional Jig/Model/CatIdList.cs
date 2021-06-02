@@ -107,7 +107,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool CALIB_PT100 { get; set; }            //PR69 (48X48 & 96X96) & PI
         public bool CALIB_TC { get; set; }               //PR69 (48X48 & 96X96)
         public bool CALIB_100_OHM { get; set; }          //PR43 (48X48 & 96X96)
-        public bool CALIB_350_OHM { get; set; }       //PR43 (48X48 & 96X96)
+       // public bool CALIB_350_OHM { get; set; }       //PR43 (48X48 & 96X96)
         public bool CALIB_313_71_OHM { get; set; }       //PR43 (48X48 & 96X96)
 
     }
@@ -117,16 +117,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool OP1{ get; set; }
         public string SelectedOP1Type { get; set; }
         public string SelectedOP1RelayType { get; set; }
-        public string OP1subtest { get; set; }
 
         public bool OP2{ get; set; }
         public string SelectedOP2Type { get; set; }
-        public string OP2subtest { get; set; }
         public string SelectedOP2RelayType { get; set; }
 
         public bool OP3{ get; set; }
         public string SelectedOP3Type { get; set; }
-        public string OP3subtest { get; set; }
         public string SelectedOP3RelayType { get; set; }
         
 

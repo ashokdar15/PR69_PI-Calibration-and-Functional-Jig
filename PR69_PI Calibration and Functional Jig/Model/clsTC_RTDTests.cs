@@ -199,10 +199,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                 else
                     CALIB_MV_CNT_PR69_PI = false;
 
+                if (CALIB_PT100)
+                    CALIB_PT100_PR69_PI = true;
+                else
+                    CALIB_PT100_PR69_PI = false;
+
                 if (CALIB_47_68_MV_CNT)
                     CALIB_MV_CNT_PR43 = true;              
                 else
-                    CALIB_PT100_PR69_PI = false;
+                    CALIB_MV_CNT_PR43 = false;
 
                 if (CALIB_100_OHM)
                     CALIB_PT100_PR43 = true;

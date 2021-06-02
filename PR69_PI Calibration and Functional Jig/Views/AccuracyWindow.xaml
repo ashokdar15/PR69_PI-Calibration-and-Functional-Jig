@@ -562,6 +562,7 @@
                                      HorizontalAlignment="Left"
                                      Margin="15 15 5 0"
                                      Style="{StaticResource MaterialDesignRaisedButton}"
+                                     IsEnabled="{Binding IsStartEnable , Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
                                      Command="{Binding StartAccuracyTesting}" Foreground="WhiteSmoke" Background="#26c6da"
                                      Visibility="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">START</Button>
 
@@ -585,6 +586,7 @@
                                      Margin="15 15 5 0"
                                      Style="{StaticResource MaterialDesignRaisedButton}"
                                      Command="{Binding NextAccuracyTesting}" Foreground="WhiteSmoke" Background="#26c6da"
+                                     IsEnabled="{Binding IsStopEnable , Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"        
                                      Visibility="Visible">NEXT</Button>
 
                                 </StackPanel>

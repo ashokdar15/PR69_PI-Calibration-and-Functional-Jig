@@ -56,7 +56,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         break;
 
-                    case "READ_CALIB_CONST_STATUS":
+                    case "READ_CALIB_STATUS":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //This check is for device having modbus.                        
@@ -95,7 +95,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "START_DISP_TEST":
+                    case "DISPLAY_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 16000;
                         clsGlobalVariables.objGlobalFunction.DisplayMessageBox(clsMessages.DisplayMessage(clsMessageIDs.OBSERVE_DISP_TEST), clsGlobalVariables.strNotifyMsg);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -144,7 +144,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "START_KEYPAD_TEST":
+                    case "KEYPAD_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 1200;
                         //Keypad bypass logic is added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -222,198 +222,198 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SSR_Test":
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            if (DUT == 1)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 2)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 3)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 4)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
-                            }
-                            int count = 0;
-                            if (clsGlobalVariables.objPLCQueriescls.ReadInputRegistersQuery(clsGlobalVariables.ANALOG_INPUT_REG_OFFSET_ADD_STD + (DUT - 1), ref count))
-                            {
-                                //check count.
-                                if (count < 418 || count > 462)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 1)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 2)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 3)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 4)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 1)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(8);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 2)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(12);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 3)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(16);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 4)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(20);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            bool testPassFlag = false;
-                            //Display message to to check SSR on dispaly of DUt
-                            if (DialogResult.Yes != MessageBox.Show("Check SSR on DUT : " + DUT.ToString(), "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                            {
-                                //Fails
-                                testPassFlag = true;
-                                //clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                //continue;
-                            }
-                            if (clsModelSettings.blnRS485Flag == true)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
-                            }
-                            else//Device without modbus
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
-                            }
-                            if (DUT == 1)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(8);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 2)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(12);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 3)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(16);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (DUT == 4)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(20);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
-                                }
-                            }
-                            if (testPassFlag)
-                            {
-                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                continue;
-                            }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        }
-                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-                        break;
-                    case "SSR_Test_PR69":
+                    //case "SSR_Test":
+                    //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                    //    {
+                    //        if (DUT == 1)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 2)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 3)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 4)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (clsModelSettings.blnRS485Flag == true)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                    //        }
+                    //        else//Device without modbus
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                    //        }
+                    //        int count = 0;
+                    //        if (clsGlobalVariables.objPLCQueriescls.ReadInputRegistersQuery(clsGlobalVariables.ANALOG_INPUT_REG_OFFSET_ADD_STD + (DUT - 1), ref count))
+                    //        {
+                    //            //check count.
+                    //            if (count < 418 || count > 462)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 1)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 2)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 3)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 4)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 1)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(8);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 2)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(12);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 3)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(16);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 4)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(20);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        bool testPassFlag = false;
+                    //        //Display message to to check SSR on dispaly of DUt
+                    //        if (DialogResult.Yes != MessageBox.Show("Check SSR on DUT : " + DUT.ToString(), "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    //        {
+                    //            //Fails
+                    //            testPassFlag = true;
+                    //            //clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //            //continue;
+                    //        }
+                    //        if (clsModelSettings.blnRS485Flag == true)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                    //        }
+                    //        else//Device without modbus
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
+                    //        }
+                    //        if (DUT == 1)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(8);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 2)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(12);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 3)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(16);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (DUT == 4)
+                    //        {
+                    //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(20);
+                    //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    //            {
+                    //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //                continue;
+                    //            }
+                    //        }
+                    //        if (testPassFlag)
+                    //        {
+                    //            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                    //            continue;
+                    //        }
+                    //        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                    //    }
+                    //    clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                    //    break;
+                    case "OP2_OP3_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 5000;
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -528,7 +528,156 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(18);
                         btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(22);
                         break;
-                    case "SSR_Test_PR43":
+                   
+
+                    case "OP1_SSR_TEST":
+                        clsGlobalVariables.ig_Query_TimeOut = 5000;
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            if (clsModelSettings.blnRS485Flag)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+
+                            }
+                            else
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+
+                            if (DUT == 1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(9);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(13);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(17);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            if (DUT == 4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(21);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+
+
+                            int count = 0;
+
+                            if (clsGlobalVariables.objPLCQueriescls.ReadInputRegistersQuery(clsGlobalVariables.ANALOG_INPUT_REG_OFFSET_ADD_STD + (DUT - 1), ref count))
+                            {
+                                //check count.
+                                if (count < 418 || count > 525)
+                                {
+
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    if (clsModelSettings.blnRS485Flag)
+                                    {
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                        {
+                                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                            continue; ;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                        if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                        {
+                                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                            continue; ;
+                                        }
+                                    }
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                if (clsModelSettings.blnRS485Flag)
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                        continue; ;
+                                    }
+
+                                }
+                                else
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                        continue; ;
+                                    }
+                                }
+                                continue; ;
+                            }
+                            if (clsModelSettings.blnRS485Flag)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+
+                            }
+                            else
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                        }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
+
+                        break;
+
+                    case "OP2_SSR_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 5000;
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -538,7 +687,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
 
                             }
@@ -548,7 +697,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
 
@@ -605,7 +754,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                            continue;;
+                                            continue; ;
                                         }
 
                                     }
@@ -615,7 +764,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                            continue;;
+                                            continue; ;
                                         }
                                     }
                                     continue;
@@ -630,7 +779,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
                                         clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                        continue;;
+                                        continue; ;
                                     }
 
                                 }
@@ -640,10 +789,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
                                         clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                        continue;;
+                                        continue; ;
                                     }
                                 }
-                                continue;;
+                                continue; ;
                             }
                             if (clsModelSettings.blnRS485Flag)
                             {
@@ -651,7 +800,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
 
                             }
@@ -661,13 +810,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
+
                         break;
+
                     case "WRITE_CALIB_CONST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -927,7 +1083,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_OBSRVED_1MA_CNT":
+                    case "1mA_ANALOG_OP_TEST":
                         //analog op test bypass logic is present here.
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -966,7 +1122,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_OBSRVED_20MA_CNT":
+                    case "20mA_ANALOG_OP_TEST":
                         //analog op test bypass logic is present here.
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);
                         //Delay of 12 Seconds has been added here.                                            
@@ -1005,7 +1161,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_OBSRVED_1V_CNT":
+                    case "1V_ANALOG_OP_TEST":
                         //analog op test bypass logic is present here.
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
@@ -1050,7 +1206,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_OBSRVED_10V_CNT":
+                    case "10V_ANALOG_OP_TEST":
                         //analog op test bypass logic is present here.
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         //btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorMeasureOnAndReadKnobPos(clsGlobalVariables.MEASURE_10VOLT_KNOB_POS, clsGlobalVariables.MEASURE_10VOLT_KNOB_TEXT);
@@ -1192,7 +1348,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break; 
-                    case "CHK_ANALOG_OP_VAL":
+                    case "12mA_ANALOG_OP_TEST":
+                    case "5V_ANALOG_OP_TEST":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1207,7 +1364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "CALIB_1_MV_CNT":
+                    case "1mV_CALIB_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp1mv, clsGlobalVariables.enmStatus.INPROGRESS);
@@ -1238,7 +1395,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         break;
-                    case "CALIB_50_MV_CNT":
+                    case "50mV_CALIB_TEST":
                         //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.Shp50mV, clsGlobalVariables.enmStatus.INPROGRESS);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1443,7 +1600,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
 
-                    case "CALIB_PT100":
+                    case "350_OHM_CALIB_TEST":
                         clsGlobalVariables.strgOngoingTestName = "PT100 Sensor Calibration";
                         if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                             clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
@@ -1511,7 +1668,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "CALIB_1V_CNT":
+                    case "PR69_1V_ANALOG_IP_TEST":
                         clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Calibration";
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1567,7 +1724,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         break;
 
-                    case "CALIB_9V_CNT":
+                    case "PR69_9V_ANALOG_IP_TEST":
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1595,7 +1752,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "CALIB_4mA_CNT":
+                    case "PR69_1mA_ANALOG_IP_TEST":
                         clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                         //chkCurrent test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1656,7 +1813,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         break;
 
-                    case "CALIB_20mA_CNT":
+                    case "PR69_20mA_ANALOG_IP_TEST":
                         //chkCurrent test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1803,7 +1960,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "START_REL_TEST_OP1_RELAY":
+                    case "OP1_1NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             //24,28,32,36
@@ -1957,7 +2114,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (DUT == clsGlobalVariables.DUT1)
                             {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(24);
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT1_PLC_ON_Number);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -1966,7 +2123,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (DUT == clsGlobalVariables.DUT2)
                             {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(28);
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT2_PLC_ON_Number);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -1976,7 +2133,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (DUT == clsGlobalVariables.DUT3)
                             {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(32);
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT3_PLC_ON_Number);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -1985,7 +2142,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (DUT == clsGlobalVariables.DUT4)
                             {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(36);
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT4_PLC_ON_Number);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -1995,20 +2152,62 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT1_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT2_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT3_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT4_PLC_ON_Number);
                         break;
-                    case "START_REL_TEST_OP2_RELAY":
-                        //24,28,32,36
+
+                    case "OP2_1NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
+                            //26,30,34,38
+                            if (DUT == clsGlobalVariables.DUT1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
                             if (clsModelSettings.blnRS485Flag)
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
-                                
+
                             }
                             else
                             {
@@ -2016,9 +2215,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
-                                
                             }
                             if (DUT == clsGlobalVariables.DUT1)
                             {
@@ -2026,7 +2224,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT2)
@@ -2035,7 +2233,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT3)
@@ -2044,16 +2242,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT4)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(15);
+
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (clsModelSettings.blnRS485Flag)
@@ -2062,9 +2261,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
-                                
+
                             }
                             else
                             {
@@ -2072,9 +2271,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
-                                
+
                             }
                             if (DUT == clsGlobalVariables.DUT1)
                             {
@@ -2082,7 +2281,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT2)
@@ -2091,7 +2290,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT3)
@@ -2100,28 +2299,69 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT4)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(15);
-
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;;
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-                        break;
 
-                    case "START_REL_TEST_OP3_RELAY":
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+                        break;
+                        
+                    case "OP3_1NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            //24,28,32,36
+                            //25,29,33,37
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP3_DUT1_PLC_ON_Number);
@@ -2160,7 +2400,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (clsModelSettings.blnRS485Flag)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -2170,7 +2410,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             else
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -2216,7 +2456,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             if (clsModelSettings.blnRS485Flag)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -2226,7 +2466,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             else
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -2310,9 +2550,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT1_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT2_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT3_PLC_ON_Number);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT4_PLC_ON_Number);
                         break;
 
-                    case "OP1_1CO_TEST":
+                    case "OP1_1NC_NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (clsModelSettings.blnRS485Flag)
@@ -2432,109 +2677,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
 
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(0);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(4);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(8);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(12);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(1);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(5);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(9);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(13);
-
                         break;
 
-                    case "OP1_1NO_TEST":
-                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-                        {
-                            if (clsModelSettings.blnRS485Flag)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-
-                            }
-                            else
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-                            }
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
-                            if (DUT == clsGlobalVariables.DUT1)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(1);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-                            }
-                            if (DUT == clsGlobalVariables.DUT2)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(5);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-                            }
-                            if (DUT == clsGlobalVariables.DUT3)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(9);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-                            }
-                            if (DUT == clsGlobalVariables.DUT4)
-                            {
-                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(13);
-
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-                            }
-                            if (clsModelSettings.blnRS485Flag)
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-
-                            }
-                            else
-                            {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
-                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                                {
-                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; ;
-                                }
-
-                            }
-
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
-                        }
-                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(1);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(5);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(9);
-                        btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(13);
-
-                        break;
-                    case "START_REL_TEST_OP2_RELAY_PI":
+                    case "OP2_1NC_NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (clsModelSettings.blnRS485Flag)
@@ -2543,7 +2688,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
 
                             }
@@ -2553,17 +2698,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
-                            //clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(3);
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT2)
@@ -2572,7 +2717,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT3)
@@ -2581,7 +2726,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT4)
@@ -2591,7 +2736,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (clsModelSettings.blnRS485Flag)
@@ -2600,7 +2745,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
 
                             }
@@ -2610,7 +2755,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
 
                             }
@@ -2620,7 +2765,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT2)
@@ -2629,7 +2774,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT3)
@@ -2638,7 +2783,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue;
+                                    continue; ;
                                 }
                             }
                             if (DUT == clsGlobalVariables.DUT4)
@@ -2647,14 +2792,742 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
-                                    continue; 
+                                    continue; ;
                                 }
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-                        break;                    
-                    case "CALIB_1V_CNT_PI":
+
+                        break;
+
+                    case "OP3_1NC_NO_TEST":
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            if (clsModelSettings.blnRS485Flag)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+
+                            }
+                            else
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            if (DUT == clsGlobalVariables.DUT1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(20);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(21);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(22);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(23);
+
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (clsModelSettings.blnRS485Flag)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+
+                            }
+                            else
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+
+                            }
+                            if (DUT == clsGlobalVariables.DUT1)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(16);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT2)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(17);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT3)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(18);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            if (DUT == clsGlobalVariables.DUT4)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(19);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue; ;
+                                }
+                            }
+                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                        }
+                        clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                        break;
+
+                    #region Commented
+                    /*
+
+                                //case "OP1_1CO_TEST_PR69":
+                                //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                                //    {
+                                //        //24,28,32,36
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP1_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP1_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP1_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP1_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP1_ON);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP1);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(1);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(5);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(9);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(13);
+
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP1_ADDRESS, clsGlobalVariables.OP_OFF);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP1);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(0);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(4);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(8);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(12);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                                //    }
+                                //    clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT1_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT2_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT3_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT4_PLC_ON_Number);
+
+                                //    break;
+
+                                //case "OP2_1CO_TEST_PR69":
+                                //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                                //    {
+                                //        //26,30,34,38
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP2);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(3);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(7);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(11);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(15);
+
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP_OFF);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP2);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(2);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(6);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(10);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(14);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                                //    }
+                                //    clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT1_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT2_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT3_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP2_DUT4_PLC_ON_Number);
+
+                                //    break;
+
+                                //case "OP3_1CO_TEST_PR69":
+                                //    foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                                //    {
+                                //        //25,29,33,37
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP3_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP3_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP3_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP3_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP3_ON);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_ON_FUNC_CODE, clsGlobalVariables.OP3);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(20);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(21);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(22);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(23);
+
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (clsModelSettings.blnRS485Flag)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP3_ADDRESS, clsGlobalVariables.OP_OFF);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        else
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SWITCH_OFF_FUNC_CODE, clsGlobalVariables.OP3);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(16);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(17);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(18);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(19);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT1)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT1_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT2)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT2_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT3)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT3_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        if (DUT == clsGlobalVariables.DUT4)
+                                //        {
+                                //            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT4_PLC_ON_Number);
+                                //            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                //            {
+                                //                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                //                continue; ;
+                                //            }
+                                //        }
+                                //        clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                                //    }
+                                //    clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT1_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT2_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT3_PLC_ON_Number);
+                                //    clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP3_DUT4_PLC_ON_Number);
+
+                                //    break;
+                                */ 
+                    #endregion
+                    case "PI_1V_ANALOG_IP_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
 
@@ -2668,7 +3541,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_1V);
                         break;
-                    case "CALIB_9V_CNT_PI":
+                    case "PI_9V_ANALOG_IP_TEST":
                         clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2730,7 +3603,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "CALIB_1mA_CNT_PI":
+                    case "PI_1mA_ANALOG_IP_TEST":
                         clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -2751,7 +3624,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         clsGlobalVariables.objGlobalFunction.GetCounts(clsGlobalVariables.CALIB_4mA);
                         break;
-                    case "CALIB_20mA_CNT_PI":
+                    case "PI_20mA_ANALOG_IP_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -2814,7 +3687,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "START_MODBUS_TEST":
+                    case "MODBUS_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(39);

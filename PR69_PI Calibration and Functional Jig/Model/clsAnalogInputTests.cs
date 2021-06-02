@@ -53,9 +53,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             set
             {
                 _CALIB_9V_CNT = value;
-
-
-
+                
                 OnPropertyChanged("CALIB_9V_CNT");
             }
         }
@@ -136,21 +134,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
         public void ParseAnalogIPDetails(CatIdList catId)
         {
-            if (catId.AnalogIpTests != null)
+            try
             {
-                if (catId.AnalogIpTests.Count != 0)
+                if (catId.AnalogIpTests != null)
                 {
-                    CALIB_1mA_CNT_PI = catId.AnalogIpTests[0].CALIB_1mA_CNT_PI;
-                    CALIB_1V_CNT = catId.AnalogIpTests[0].CALIB_1V_CNT;
-                    CALIB_1V_CNT_PI = catId.AnalogIpTests[0].CALIB_1V_CNT_PI;
-                    CALIB_20mA_CNT = catId.AnalogIpTests[0].CALIB_20mA_CNT;
-                    CALIB_20mA_CNT_PI = catId.AnalogIpTests[0].CALIB_20mA_CNT_PI;
-                    CALIB_4mA_CNT = catId.AnalogIpTests[0].CALIB_4mA_CNT;
-                    CALIB_9V_CNT = catId.AnalogIpTests[0].CALIB_9V_CNT;
-                    CALIB_9V_CNT_PI = catId.AnalogIpTests[0].CALIB_9V_CNT_PI;
-                                       
+                    if (catId.AnalogIpTests.Count != 0)
+                    {
+                        CALIB_1mA_CNT_PI = catId.AnalogIpTests[0].CALIB_1mA_CNT_PI;
+                        CALIB_1V_CNT = catId.AnalogIpTests[0].CALIB_1V_CNT;
+                        CALIB_1V_CNT_PI = catId.AnalogIpTests[0].CALIB_1V_CNT_PI;
+                        CALIB_20mA_CNT = catId.AnalogIpTests[0].CALIB_20mA_CNT;
+                        CALIB_20mA_CNT_PI = catId.AnalogIpTests[0].CALIB_20mA_CNT_PI;
+                        CALIB_4mA_CNT = catId.AnalogIpTests[0].CALIB_4mA_CNT;
+                        CALIB_9V_CNT = catId.AnalogIpTests[0].CALIB_9V_CNT;
+                        CALIB_9V_CNT_PI = catId.AnalogIpTests[0].CALIB_9V_CNT_PI;
+
+                    }
+
                 }
-                
+            }
+            catch (Exception ex)
+            {
             }
             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
                 clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||

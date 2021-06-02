@@ -28,7 +28,7 @@
                     <StackPanel Name="MainContainer" HorizontalAlignment="Center" MinHeight="150" VerticalAlignment="Center" MinWidth="350">
                         <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"
                             Margin="20 20 20 0"
-                            Width="300" Height="auto"
+                            Width="auto" Height="auto"
                             Visibility="{Binding Path = MesssageVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -50,8 +50,7 @@
                                    Margin="20"
                                    VerticalAlignment="Center"
                                    Text="{Binding Path=Msg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                           
-                                   Foreground="Red"
-                                   TextWrapping="Wrap"/>
+                                   Foreground="Red"/>
                             </Grid>
                         </StackPanel>
                         
@@ -100,7 +99,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        <!--<StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"
                             Margin="20 20 20 0"
                             Width="300"
                             Visibility="{Binding Path = MesssageVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}" >
@@ -127,7 +126,7 @@
                                    Foreground="Red"
                                    TextWrapping="Wrap"/>
                             </Grid>
-                        </StackPanel>
+                        </StackPanel>-->
 
                         <Grid HorizontalAlignment="Center" Width="500" Height="150" Margin="10 10"
                           Visibility="{Binding Path = ProductSelectionVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
@@ -805,7 +804,7 @@
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
-                                                            <Label Content="Device1" FontSize="15" FontWeight="Bold"/>
+                                                            <Label Content="DUT1" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
                                                         <DataGridTextColumn.CellStyle>
                                                             <Style TargetType="DataGridCell">
@@ -823,7 +822,7 @@
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber2Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
-                                                            <Label Content="Device2" FontSize="15" FontWeight="Bold"/>
+                                                            <Label Content="DUT2" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
                                                         <DataGridTextColumn.CellStyle>
                                                             <Style TargetType="DataGridCell">
@@ -841,7 +840,7 @@
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber3Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
-                                                            <Label Content="Device3" FontSize="15" FontWeight="Bold"/>
+                                                            <Label Content="DUT3" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
                                                         <DataGridTextColumn.CellStyle>
                                                             <Style TargetType="DataGridCell">
@@ -859,7 +858,7 @@
                                                     <DataGridTextColumn Binding="{Binding TestresultDevice4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                                         Visibility="{Binding DeviceNumber4Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference MainVM}}">
                                                         <DataGridTextColumn.Header>
-                                                            <Label Content="Device4" FontSize="15" FontWeight="Bold"/>
+                                                            <Label Content="DUT4" FontSize="15" FontWeight="Bold"/>
                                                         </DataGridTextColumn.Header>
                                                         <DataGridTextColumn.CellStyle>
                                                             <Style TargetType="DataGridCell">
