@@ -204,11 +204,11 @@
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 </TextBox>
 
-                                <TextBlock Margin="5 10 -5 10" Padding="5" Text="Batch Number : ">
+                                <TextBlock Margin="5 10 -5 10" Padding="5" Width="auto" Text="Batch Number : ">
                                     <TextBlock.FontSize>12</TextBlock.FontSize>
                                 </TextBlock>
 
-                                <TextBox Width="30" Height="45" Margin="10 -10 10 8"
+                                <TextBox Width="auto" Height="45" Margin="10 -10 10 8"
                                         materialDesign:HintAssist.Hint="" 
                                         Text="{Binding Path=BatchNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                         IsEnabled="{Binding IsProductSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -300,7 +300,7 @@
                                     </Button.Content>
                                 </Button>
 
-                                <Button ToolTip="Product Selection"
+                                <Button ToolTip="Product Selection/Calibration"
                                         Foreground="WhiteSmoke"
                                         Background="#26c6da"
                                         FontSize="14"
@@ -959,27 +959,89 @@
                                             </StackPanel>
                                         </Border>
 
-                                        <StackPanel Orientation="Horizontal" Margin="20 10 0 10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
-                                            <StackPanel HorizontalAlignment="Left" >
-                                                <Button  Width="75" Height="30" Padding="5" 
+                                        <StackPanel Orientation="Horizontal" Margin="20 10 0 10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="3">
+                                            <StackPanel Orientation="Vertical">
+                                                <StackPanel HorizontalAlignment="Left" >
+                                                    <Button  Width="75" Height="30" Padding="5" 
                                                         Style="{StaticResource MaterialDesignRaisedButton}"
                                                         Command="{Binding btnStart}" Foreground="WhiteSmoke" Background="#26c6da"
                                                         Visibility="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">START</Button>
 
-                                                <Button Width="75" Height="30" Padding="5"  
+                                                    <Button Width="75" Height="30" Padding="5"  
                                                         Style="{StaticResource MaterialDesignRaisedButton}"
                                                         Command="{Binding BtnStopCmd}" Foreground="WhiteSmoke" Background="Red"
                                                         Visibility="{Binding Path=StopBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">STOP</Button>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
-                                                <TextBlock Text="Cycle Time : " Margin="10 10 0 0"/>
-                                                <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
+                                                </StackPanel>
+                                                <StackPanel Orientation="Vertical">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                                                            <TextBlock Text="Calibration Time : " Margin="5 10 0 0"/>
+                                                            <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
                                                           FontWeight="Bold"
                                                           Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           IsReadOnly="True"                                     
                                                           Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                                    <TextBox.FontSize>16</TextBox.FontSize>
-                                                </TextBox>
+                                                                <TextBox.FontSize>16</TextBox.FontSize>
+                                                            </TextBox>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal" Margin="5 0 0 0">
+                                                            <TextBlock Text="Accuracy Time : " Margin="5 10 0 0"/>
+                                                            <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="5 -30 0 0"
+                                                          FontWeight="Bold"
+                                                          Text="{Binding Path=StopwatchTime2,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsReadOnly="True"                                     
+                                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                                <TextBox.FontSize>16</TextBox.FontSize>
+                                                            </TextBox>
+                                                        </StackPanel>
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                                                        <TextBlock Text="Total Time : " Margin="5 10 0 0"/>
+                                                        <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -30 0 0"
+                                                          FontWeight="Bold"
+                                                          Text="{Binding Path=StopwatchTime2,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsReadOnly="True"                                     
+                                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                            <TextBox.FontSize>16</TextBox.FontSize>
+                                                        </TextBox>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <TextBlock Text="Final Status : " Margin="5 30 0 0"/>                                                    
+                                                    <TextBox  Width="Auto" Height="50" materialDesign:HintAssist.Hint="DUT1Status" Margin="5 0 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT1Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsReadOnly="True"                                     
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                        <TextBox.FontSize>16</TextBox.FontSize>
+                                                    </TextBox>
+                                                    <TextBox  Width="Auto" Height="50" materialDesign:HintAssist.Hint="DUT2Status" Margin="15 5 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT2Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsReadOnly="True"                                     
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                        <TextBox.FontSize>16</TextBox.FontSize>
+                                                    </TextBox>
+                                                    <TextBox  Width="Auto" Height="50" materialDesign:HintAssist.Hint="DUT3Status" Margin="15 5 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT3Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsReadOnly="True"                                     
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                        <TextBox.FontSize>16</TextBox.FontSize>
+                                                    </TextBox>
+                                                    <TextBox  Width="Auto" Height="50" materialDesign:HintAssist.Hint="DUT4Status" Margin="15 5 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT4Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsReadOnly="True"                                     
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                        <TextBox.FontSize>16</TextBox.FontSize>
+                                                    </TextBox>
+                                                   
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
 
@@ -996,10 +1058,9 @@
                                 <TextBlock Text="{Binding Path=SelectedDeviceType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock Text=" | Product Name: "/>
                                 <TextBlock Text="{Binding Path=SelectedDeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <TextBlock Text=" | COM Port: "/>
-                                <TextBlock Text="{Binding Path=SelectedComPort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <TextBlock Text=" | Baudrate: "/>
-                                <TextBlock Text="{Binding Path=SelectedBaudRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              
+                                <TextBlock Text=" | Batch Number : "/>
+                                <TextBlock Text="{Binding Path=BatchNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
                             </StackPanel>

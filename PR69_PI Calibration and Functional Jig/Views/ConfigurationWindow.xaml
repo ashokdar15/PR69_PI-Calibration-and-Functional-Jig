@@ -1293,7 +1293,7 @@
                                     Content="Modbus Support"/>
 
                                 <TextBox Margin="15 5 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="3" Grid.Row="0"  
-                                    materialDesign:HintAssist.Hint="Start Time" 
+                                    materialDesign:HintAssist.Hint="Stabilization Time" 
                                     Text="{Binding Path=Communication_Start_Time, UpdateSourceTrigger=PropertyChanged}"
                                     IsReadOnly="{Binding Path=IsNotEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -1524,80 +1524,100 @@
                     <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="0 0" Height="190">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="35*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
-
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="40,20,7.6,20.2">
-                                <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                    <TextBlock Text="Edit Calibration Delays(PR69)" FontSize="16" Margin="0 10"/>
-                                    <Button Command="{Binding Path=EditCalibrationDelaysCmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
-                                        Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
-                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                        <Button.Content >
-                                            <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                        </Button.Content>
-                                        <Button.ToolTip>
-                                            <TextBlock Text="Edit Calibration Delays Details"></TextBlock>
-                                        </Button.ToolTip>
-                                    </Button>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal"  Margin="5 0 0 0"
-                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                    <TextBlock Text="Edit Calibration Delays(PI)" FontSize="16" Margin="10 10"/>
-                                    <Button Command="{Binding Path=EditCalibrationDelaysPICmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
-                                        Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
-                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                        <Button.Content >
-                                            <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                        </Button.Content>
-                                        <Button.ToolTip>
-                                            <TextBlock Text="Edit Calibration Delays PI Details"></TextBlock>
-                                        </Button.ToolTip>
-                                    </Button>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" 
+                            
+                            <GroupBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="25 10 0 0" HorizontalAlignment="Left" Padding="0"
+                                    Height="100" Width="285" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1">
+                                <GroupBox.Header>
+                                    <TextBlock Text="PR69" FontSize="15"></TextBlock>
+                                </GroupBox.Header>
+                                <StackPanel Orientation="Vertical" >
+                                    <StackPanel Orientation="Horizontal" Margin="10 15"
                                     HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
-                                    <TextBlock Text="Edit Analog O/P Tolerance(PI)" FontSize="16" Margin="15 10"/>
-                                    <Button Command="{Binding Path=EditToleranceCmd, Source={x:Reference ConfigurationWindowVM}}"  
+                                        <TextBlock Text="Calibration Delays" FontSize="16" />
+                                        <Button Command="{Binding Path=EditCalibrationDelaysCmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="10 0"
+                                        Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
+                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                            <Button.Content >
+                                                <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                            </Button.Content>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Edit Calibration Delays Details"></TextBlock>
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Analog O/P Tolerance" FontSize="16" Margin="10 0"/>
+                                        <Button Command="{Binding Path=EditTolerancePR69Cmd, Source={x:Reference ConfigurationWindowVM}}"  
                                         Visibility="{Binding Path=IstolerancebtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                        <Button.Content >
-                                            <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                        </Button.Content>
-                                        <Button.ToolTip>
-                                            <TextBlock Text="Edit Tolerance Of PI Details"></TextBlock>
-                                        </Button.ToolTip>
-                                    </Button>
-                                    <TextBlock Text="Edit Analog O/P Tolerance(PR69)" FontSize="16" Margin="15 10"/>
-                                    <Button Command="{Binding Path=EditTolerancePR69Cmd, Source={x:Reference ConfigurationWindowVM}}"  
-                                        Visibility="{Binding Path=IstolerancebtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
-                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
-                                        <Button.Content >
-                                            <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
-                                        </Button.Content>
-                                        <Button.ToolTip>
-                                            <TextBlock Text="Edit Tolerance Of PR69 Details"></TextBlock>
-                                        </Button.ToolTip>
-                                    </Button>
-
-
-
+                                            <Button.Content >
+                                                <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                            </Button.Content>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Edit Tolerance Of PR69 Details"></TextBlock>
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="40,63,7.6,62.8" Grid.RowSpan="3">
-                                
-                                <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"  >
-                                    <TextBlock Text="Edit Calibration Delays(PR43)" FontSize="16" Margin="0 10"/>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="25 10 0 0" HorizontalAlignment="Left" Padding="0"
+                                    Height="100" Width="280" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1">
+                                <GroupBox.Header>
+                                    <TextBlock Text="Process Indicator" FontSize="15"></TextBlock>
+                                </GroupBox.Header>
+                                <StackPanel Orientation="Vertical" >
+                                    <StackPanel Orientation="Horizontal" Margin="10 15"
+                                    HorizontalAlignment="Left" Width="Auto"  VerticalAlignment="Bottom"  >
+                                        <TextBlock Text="Calibration Delays" FontSize="16"/>
+                                        <Button Command="{Binding Path=EditCalibrationDelaysPICmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="10 0"
+                                        Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
+                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                            <Button.Content >
+                                                <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                            </Button.Content>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Edit Calibration Delays PI Details"></TextBlock>
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+                               
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Analog O/P Tolerance" FontSize="16" Margin="10 0"/>
+                                        <Button Command="{Binding Path=EditToleranceCmd, Source={x:Reference ConfigurationWindowVM}}"  
+                                        Visibility="{Binding Path=IstolerancebtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
+                                        materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
+                                            <Button.Content >
+                                                <materialDesign:PackIcon Kind="CircleEditOutline" Height="20" Width="20" Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                            </Button.Content>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Edit Tolerance Of PI Details"></TextBlock>
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="25 20 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="285" Padding="0"
+                                      BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1">
+                                <GroupBox.Header>
+                                    <TextBlock Text="PR43" FontSize="15"></TextBlock>
+                                </GroupBox.Header>
+                               
+                                <StackPanel Orientation="Horizontal" Margin="10 12" VerticalAlignment="Top"
+                                HorizontalAlignment="Left" Width="Auto"   >
+                                    <TextBlock Text="Calibration Delays" FontSize="16" Margin="10 0"/>
                                     <Button Command="{Binding Path=EditCalibrationDelaysPR43Cmd, Source={x:Reference ConfigurationWindowVM}}"  Margin="12 0"
                                         Visibility="{Binding Path=IsCalibDelayTestsbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                         materialDesign:ButtonAssist.CornerRadius="10" Background="Transparent" BorderThickness="0" Height="20" Padding="0" Width="20">
@@ -1608,32 +1628,39 @@
                                             <TextBlock Text="Edit Calibration Delays (PR43) Details"></TextBlock>
                                         </Button.ToolTip>
                                     </Button>
-                                </StackPanel>
-                                
-                                <TextBox Margin="15 0 0 0"   Width="500" Height="50"  materialDesign:HintAssist.Hint="MotFilePath" 
+                                </StackPanel>                                    
+                               
+                            </GroupBox>
+
+                            <Border Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" Margin="25 0 0 8"
+                                    Height="auto" Width="auto" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Margin="15 0 0 0"   Width="500" Height="50"  materialDesign:HintAssist.Hint="MotFilePath" 
                                      Text="{Binding Path=Motfilepath, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, Source={x:Reference ConfigurationWindowVM}}"
                                      IsReadOnly="True" VerticalAlignment="Center" FontSize="15"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="{DynamicResource MaterialDesignBody}"></TextBox>
-                                <Button Content="Browse Mot File Path" Height="35" Width="auto" Margin="5 10" 
+                                    <Button Content="Browse Mot/Hex File" Height="35" Width="auto" Margin="5 10" 
                                                 Visibility="{Binding Path=BrowsemotfileBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" Background="Teal" materialDesign:ButtonAssist.CornerRadius="5"
                                                 Foreground="WhiteSmoke" VerticalAlignment="Center" FontSize="12" Command="{Binding Path=BrowsemotfileCmd, Source={x:Reference ConfigurationWindowVM}}"/>
 
+                                    
+                                </StackPanel>
+                            </Border>
 
-                                <Button  Height="35" Width="118" Margin="40 0"
+                            <Button  Height="38" Width="128" Margin="20 20"  Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"
                                              Visibility="{Binding Path=IsSaveDelayToleranceBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}, Source={x:Reference ConfigurationWindowVM}}"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0" Background="Teal" materialDesign:ButtonAssist.CornerRadius="5"
                                              Foreground="WhiteSmoke" VerticalAlignment="Center" FontSize="12" Command="{Binding Path=SaveDelayToleranceCmd, Source={x:Reference ConfigurationWindowVM}}">
 
-                                    <Button.Content>
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="ContentSave" Foreground="WhiteSmoke" Height="20" Width="15" VerticalAlignment="Center" />
-                                            <TextBlock  Margin="5 0 0 0" Text="Save Details"
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ContentSave" Foreground="WhiteSmoke" Height="20" Width="15" VerticalAlignment="Center" />
+                                        <TextBlock  Margin="5 0 0 0" Text="Save Details"
                                                     VerticalAlignment="Center" Foreground="WhiteSmoke"/>
-                                        </StackPanel>
-                                    </Button.Content>
-                                </Button>
-                            </StackPanel>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
 
                         </Grid>
                     </Border>

@@ -1452,6 +1452,39 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _IsEnabledOkbtn = value; OnPropertyChanged("IsEnabledOkbtn"); }
         }
 
+        private string _DUT1Status;
+
+        public string DUT1Status
+        {
+            get { return _DUT1Status; }
+            set { _DUT1Status = value; OnPropertyChanged("DUT1Status"); }
+        }
+
+        private string _DUT2Status;
+
+        public string DUT2Status
+        {
+            get { return _DUT2Status; }
+            set { _DUT2Status = value; OnPropertyChanged("DUT2Status"); }
+        }
+
+        private string _DUT3Status;
+
+        public string DUT3Status
+        {
+            get { return _DUT3Status; }
+            set { _DUT3Status = value; OnPropertyChanged("DUT3Status"); }
+        }
+
+        private string _DUT4Status;
+
+        public string DUT4Status
+        {
+            get { return _DUT4Status; }
+            set { _DUT4Status = value; OnPropertyChanged("DUT4Status"); }
+        }
+
+
         private string _BatchNumber;
 
         public string BatchNumber
@@ -1463,7 +1496,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (_BatchNumber != null && _BatchNumber != "")
                 {
-                    IsEnabledOkbtn = true;
+                    if (IsDigitsOnly(_BatchNumber))
+                    {
+                        IsEnabledOkbtn = true;
+                    }
+                    else
+                    {
+                        //ShowMessageBox("Please enter value only digits", false,"",MsgIcon.Error);
+                        System.Windows.MessageBox.Show("Please enter value only digits", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        IsEnabledOkbtn = false;
+                    }
+                        
                 }
                 else
                 {
