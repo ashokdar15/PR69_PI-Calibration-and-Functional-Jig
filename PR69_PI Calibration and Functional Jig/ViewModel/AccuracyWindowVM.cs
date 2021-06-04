@@ -396,6 +396,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
             StartStopWatch(false);
+
+            clsGlobalVariables.AccuracyStopwatchTime = StopwatchTime;
+            clsGlobalVariables.accuracyWindow.Close();
         }
         private void GetAccuracyDataFromJSON(Dictionary<string, List<string>> AccuracyList)
         {
@@ -662,7 +665,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
                         continue;
                     }
-                    System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator.");
+                    if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of all calibrator.");
+                    }
+                    else
+                        System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator.");
+
                     //
                     btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
                     if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -717,7 +726,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
             
-
             if (currentTestNumber == 1)
             {
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -2009,69 +2017,71 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             EnableDUT();
 
-            if (clsGlobalVariables.Selectedcatid.IsmAmpTestEnabled)
+            if (clsGlobalVariables.Selectedcatid != null)
             {
-                IsmAmpVis = true;
+                if (clsGlobalVariables.Selectedcatid.IsmAmpTestEnabled)
+                {
+                    IsmAmpVis = true;
 
-                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.mAmpTests[0], clsGlobalVariables.AccuracyParameter.mAmp);
+                    FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.mAmpTests[0], clsGlobalVariables.AccuracyParameter.mAmp);
 
+                }
+                else
+                    IsmAmpVis = false;
+
+
+                if (clsGlobalVariables.Selectedcatid.IsVoltTestEnabled)
+                {
+                    IsVoltVis = true;
+
+                    FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.VoltTests[0], clsGlobalVariables.AccuracyParameter.Volt);
+
+                }
+                else
+                    IsVoltVis = false;
+
+                if (clsGlobalVariables.Selectedcatid.IsPT100SensorTestEnabled)
+                {
+                    IsPT100SensorVis = true;
+
+                    FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.PT100SensorTests[0], clsGlobalVariables.AccuracyParameter.PT100Sensor);
+
+                }
+                else
+                    IsPT100SensorVis = false;
+
+                if (clsGlobalVariables.Selectedcatid.IsRSensorTestEnabled)
+                {
+                    IsRSensorVis = true;
+
+                    FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.RSensor[0], clsGlobalVariables.AccuracyParameter.RSensor);
+
+                }
+                else
+                    IsRSensorVis = false;
+
+                if (clsGlobalVariables.Selectedcatid.IsJSensorTestEnabled)
+                {
+                    IsJSensorVis = true;
+
+                    FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.JSensor[0], clsGlobalVariables.AccuracyParameter.JSensor);
+
+                }
+                else
+                    IsJSensorVis = false;
+
+
+                if (IsmAmpVis == false && IsVoltVis == false & IsPT100SensorVis == false && IsRSensorVis == false && IsJSensorVis == false)
+                {
+                    IsStartEnable = false;
+                    IsStopEnable = false;
+                }
+                else
+                {
+                    IsStartEnable = true;
+                    IsStopEnable = true;
+                }
             }
-            else
-                IsmAmpVis = false;
-
-            if (clsGlobalVariables.Selectedcatid.IsVoltTestEnabled)
-            {
-                IsVoltVis = true;
-
-                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.VoltTests[0], clsGlobalVariables.AccuracyParameter.Volt);
-
-            }
-            else
-                IsVoltVis = false;
-
-            if (clsGlobalVariables.Selectedcatid.IsPT100SensorTestEnabled)
-            {
-                IsPT100SensorVis = true;
-
-                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.PT100SensorTests[0], clsGlobalVariables.AccuracyParameter.PT100Sensor);
-
-            }
-            else
-                IsPT100SensorVis = false;
-
-            if (clsGlobalVariables.Selectedcatid.IsRSensorTestEnabled)
-            {
-                IsRSensorVis = true;
-
-                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.RSensor[0], clsGlobalVariables.AccuracyParameter.RSensor);
-
-            }
-            else
-                IsRSensorVis = false;
-
-            if (clsGlobalVariables.Selectedcatid.IsJSensorTestEnabled)
-            {
-                IsJSensorVis = true;
-
-                FillTotalNumberOfPointsDetails(clsGlobalVariables.Selectedcatid.JSensor[0], clsGlobalVariables.AccuracyParameter.JSensor);
-
-            }
-            else
-                IsJSensorVis = false;
-
-
-            if (IsmAmpVis == false && IsVoltVis == false & IsPT100SensorVis == false && IsRSensorVis == false && IsJSensorVis == false)
-            {
-                IsStartEnable = false;
-                IsStopEnable = false;
-            }
-            else
-            {
-                IsStartEnable = true;
-                IsStopEnable = true;
-            }
-
-
         }
 
         /// <summary>

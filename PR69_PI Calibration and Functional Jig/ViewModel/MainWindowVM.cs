@@ -27,6 +27,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             
             CatIdList catId = clsGlobalVariables.Selectedcatid;
+
+            clsGlobalVariables.accuracyWindow = new AccuracyWindow(); 
             //Port detection.
             //IsProcessOn = true;
             StartStopWatch(true);
@@ -36,6 +38,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             objDataLog[2] = new clsDataLog();
             objDataLog[3] = new clsDataLog();
             //clsModelSettings.igDutID  need to set deive iD
+
+            DUT1Status = "";
+            DUT2Status = "";
+            DUT3Status = "";
+            DUT4Status = "";
+            DUT1Statusbk = "#ffffff";
+            DUT2Statusbk = "#ffffff";
+            DUT3Statusbk = "#ffffff";
+            DUT4Statusbk = "#ffffff";
+
+            StopwatchTime = "00:00:00";
+            AccuracyStopwatchTime = "00:00:00";
+            TotalStopwatchTime = "00:00:00";
 
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
             //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
@@ -51,17 +66,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
             }
 
-            CurrenttstgrpDUT1 = catId.ListOfGroupSequence[0];
-            CurrentTestStatusDUT1 = ListOfTests[0];
+            //CurrenttstgrpDUT1 = catId.ListOfGroupSequence[0];
+            //CurrentTestStatusDUT1 = ListOfTests[0];
 
-            CurrenttstgrpDUT2 = catId.ListOfGroupSequence[1];
-            CurrentTestStatusDUT2 = ListOfTests[0];
+            //CurrenttstgrpDUT2 = catId.ListOfGroupSequence[1];
+            //CurrentTestStatusDUT2 = ListOfTests[0];
 
-            CurrenttstgrpDUT3 = catId.ListOfGroupSequence[2];
-            CurrentTestStatusDUT3 = ListOfTests[0];
+            //CurrenttstgrpDUT3 = catId.ListOfGroupSequence[2];
+            //CurrentTestStatusDUT3 = ListOfTests[0];
 
-            CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
-            CurrentTestStatusDUT4 = ListOfTests[0];
+            //CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
+            //CurrentTestStatusDUT4 = ListOfTests[0];
 
             clsTotalTestsGroups.Clear();
             int count = 0;
@@ -337,16 +352,48 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     return;
                 }
                 //show current test on each DUT
-                CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
-                CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
-                CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
-                CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
-                CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
-                CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
+                //if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(1))                
+                //    CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
+                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(2))
+                //    CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
+                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(3))
+                //    CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
+                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(4))
+                //    CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
+                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(5))
+                //    CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
+                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(6))
+                //    CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
+
+                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                {
+                    switch (DUT)
+                    {
+                        case 1:
+                            CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        case 2:
+                            CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        case 3:
+                            CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        case 4:
+                            CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        case 5:
+                            CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        case 6:
+                            CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
 
                 SelectedIndexDG1 = imLoopCntr;
-                SelectedIndexDG2 = imLoopCntr;
-
 
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
@@ -371,9 +418,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     //    objfrmAccTest.ShowDialog();
                     //}
                     EnableDisableUI(true);
-
-                    AccuracyWindow accuracyWindow1 = new AccuracyWindow();
-                    accuracyWindow1.ShowDialog();
+                    
+                    clsGlobalVariables.accuracyWindow.ShowDialog();
 
                     return;
                 }
@@ -394,7 +440,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 else
                 {
-                    clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, "Test" + (imLoopCntr + 1) + " Pass." + "(" + almTempTestList[imLoopCntr] + ")");
+                    //clsGlobalVariables.mainWindowVM.DisplayMessage(clsGlobalVariables.DISPLAY_MSG_DUT_NUMBER, "Test" + (imLoopCntr + 1) + " Pass." + "(" + almTempTestList[imLoopCntr] + ")");
                     //CA55  txtProgressInfo.SelectionStart = txtProgressInfo.Text.Length - 1;
                     //Fix delay of 300msec is applied here to maintain query and response timeout compatibility with VB6.0 software.
                     //This delay is added by observing the query and response of the old VB software.
@@ -432,9 +478,75 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
             StartStopWatch(false);
-            AccuracyWindow accuracyWindow = new AccuracyWindow();
-            accuracyWindow.ShowDialog();
 
+            clsGlobalVariables.accuracyWindow.ShowDialog();
+
+            AccuracyStopwatchTime = clsGlobalVariables.AccuracyStopwatchTime;
+            if (clsGlobalVariables.AccuracyStopwatchTime != null && AccuracyStopwatchTime != "")
+            {
+                DateTime duration1 = DateTime.Parse(StopwatchTime);
+                DateTime duration2 = DateTime.Parse(AccuracyStopwatchTime);
+
+                TimeSpan Calibtime = duration1.TimeOfDay;
+                TimeSpan Acctime = duration2.TimeOfDay;
+                TimeSpan TotalReqTime = Calibtime.Add(Acctime);
+
+                TotalStopwatchTime = TotalReqTime.ToString();
+            }
+
+            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+            {
+                switch (DUT)
+                {
+                    case 1:
+                        DUT1Status = "PASS";
+                        DUT1Statusbk = "#43a047";
+                        break;
+                    case 2:
+                        DUT2Status = "PASS";
+                        DUT2Statusbk = "#43a047";
+                        break;
+                    case 3:
+                        DUT3Status = "PASS";
+                        DUT3Statusbk = "#43a047";
+                        break;
+                    case 4:
+                        DUT4Status = "PASS";
+                        DUT4Statusbk = "#43a047";
+                        break;
+                   
+                    default:
+                        break;
+                }
+            }
+
+            foreach (var DUT in clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List)
+            {
+                switch (DUT)
+                {
+                    case 1:
+                        DUT1Status = "FAIL";
+                        DUT1Statusbk = "#f44336";
+                        break;
+                    case 2:
+                        DUT1Status = "FAIL";
+                        DUT1Statusbk = "#f44336";
+                        break;
+                    case 3:
+                        DUT1Status = "FAIL";
+                        DUT1Statusbk = "#f44336";
+                        break;
+                    case 4:
+                        DUT1Status = "FAIL";
+                        DUT1Statusbk = "#f44336";
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            EnableDisableUI(true);
         }
 
         public MainWindowVM()
@@ -948,6 +1060,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _DUT6DetailsVis = value; OnPropertyChanged("DUT6DetailsVis"); }
         }
 
+        private string _AccuracyStopwatchTime;
+
+        public string AccuracyStopwatchTime
+        {
+            get { return _AccuracyStopwatchTime; }
+            set { _AccuracyStopwatchTime = value; OnPropertyChanged("AccuracyStopwatchTime"); }
+        }
+
+        private string _TotalStopwatchTime;
+
+        public string TotalStopwatchTime
+        {
+            get { return _TotalStopwatchTime; }
+            set { _TotalStopwatchTime = value; OnPropertyChanged("TotalStopwatchTime"); }
+        }
+
+
         private bool _TestsDetailsVis;
 
         public bool TestsDetailsVis
@@ -1141,15 +1270,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             get { return _SelectedIndexDG1; }
             set { _SelectedIndexDG1 = value; OnPropertyChanged("SelectedIndexDG1"); }
         }
-
-        private int _SelectedIndexDG2;
-
-        public int SelectedIndexDG2
-        {
-            get { return _SelectedIndexDG2; }
-            set { _SelectedIndexDG2 = value; OnPropertyChanged("SelectedIndexDG2"); }
-        }
-
+        
 
         private string _SelectedDeviceName;
 
@@ -1484,6 +1605,39 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _DUT4Status = value; OnPropertyChanged("DUT4Status"); }
         }
 
+        private string _DUT1Statusbk;
+
+        public string DUT1Statusbk
+        {
+            get { return _DUT1Statusbk; }
+            set { _DUT1Statusbk = value; OnPropertyChanged("DUT1Statusbk"); }
+        }
+
+        private string _DUT2Statusbk;
+
+        public string DUT2Statusbk
+        {
+            get { return _DUT2Statusbk; }
+            set { _DUT2Statusbk = value; OnPropertyChanged("DUT2Statusbk"); }
+        }
+
+        private string _DUT3Statusbk;
+
+        public string DUT3Statusbk
+        {
+            get { return _DUT3Statusbk; }
+            set { _DUT3Statusbk = value; OnPropertyChanged("DUT3Statusbk"); }
+        }
+
+        private string _DUT4Statusbk;
+
+        public string DUT4Statusbk
+        {
+            get { return _DUT4Statusbk; }
+            set { _DUT4Statusbk = value; OnPropertyChanged("DUT4Statusbk"); }
+        }
+
+
 
         private string _BatchNumber;
 
@@ -1749,8 +1903,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             return true;
         }
-
-
 
         //Parameters
         //1. DUT Number
@@ -2080,7 +2232,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         ListOfTests.Add("OP1_1NO_TEST");                        
                     }
                 }
-                else if (catId.RelayOrSSRTests[0].SelectedOP1RelayType == "SSR")
+                else if (catId.RelayOrSSRTests[0].SelectedOP1Type == "SSR")
                 {                  
                     ListOfTests.Add("OP1_SSR_TEST");
                 }
@@ -2101,11 +2253,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         ListOfTests.Add("OP2_1NO_TEST"); 
                     }
                 }
-                else if (catId.RelayOrSSRTests[0].SelectedOP2RelayType == "SSR")
+                else if (catId.RelayOrSSRTests[0].SelectedOP2Type == "SSR")
                 {
                     ListOfTests.Add("OP2_SSR_TEST");
                 }
-                else if (catId.RelayOrSSRTests[0].SelectedOP2RelayType == "Relay + SSR")
+                else if (catId.RelayOrSSRTests[0].SelectedOP2Type == "Relay + SSR")
                 {
                     ListOfTests.Add("OP2_OP3_TEST");
                 }
@@ -2372,12 +2524,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 CatId.Clear();
                 CatId.Add(result);
                 
-                
-
-                foreach (ConfigurationData item in result.ConfigurationData)
-                {
-                    DeviceTypeList.Add(item.DeviceType); 
-                }
+                //foreach (ConfigurationData item in result.ConfigurationData)
+                //{
+                //    DeviceTypeList.Add(item.DeviceType); 
+                //}
                 return true;
 
                 #region Cmt
@@ -2516,9 +2666,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                     if (Sender == "RefreshData")
                     {
+                       
                         if (!refresDataOfJsonFile())
                             ShowMessageBox("JSON file path not found.", false, "JsonFilenotfound", clsGlobalVariables.MsgIcon.Error);
                         ShowProductSelectionWindow();
+
+                        SelectedDeviceType = "";
+                        DeviceTypeList.Clear();
+                        IsPR69TypeCatId = true;
                     }
                     else
                         hide();
@@ -2554,9 +2709,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //MessageBox.Show("Not Implemented");
                 return 0;
             }
-
-           
-
+            
         }
 
         private void hide()

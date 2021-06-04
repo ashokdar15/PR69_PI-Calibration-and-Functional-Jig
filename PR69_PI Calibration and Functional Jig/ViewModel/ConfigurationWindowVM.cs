@@ -2806,13 +2806,30 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             SaveParameter = "SaveNewCatId";
 
             ListOfGroupSequence.Clear();
+            DeviceId = 0;
 
-            ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
-            ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
-            ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
-            ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
-            ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
-            ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogInputTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strAnalogOutputTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strTCRTDTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strRelaysSSRTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
+            //ListOfGroupSequence.Add(clsGlobalVariables.strCommonTests);
+
+            Description = "";
+
+            IsAnalogInputTest = false;
+            IsAnalogOutputTest = false;
+            IsRelayTest = false;
+            IsTC_RTDTest = false;
+            IsCommonTests = false;
+            IsCalibConstantTest = false;
+
+            AccuracyTestSequenceList.Clear();
+            IsmAmpInputTest = false;
+            IsVoltInputTest = false;
+            IsPT100sensorInputTest = false;
+            IsRsensorInputTest = false;
+            IsJsensorInputTest = false;
         }
 
         private void AddSeriesClk(object obj)

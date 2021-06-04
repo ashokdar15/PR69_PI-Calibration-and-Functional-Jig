@@ -898,7 +898,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         return true;
                     MainWindowVM.initilizeCommonObject.objplcSerialComm.CloseCommPort();
                     if (flag)
-                        clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.PLC_ON_TIME_DELAY);
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(Convert.ToInt32(clsGlobalVariables.Selectedcatid.Communication_Start_Time) * 1000);
                 }
                 catch (Exception ex)
                 {

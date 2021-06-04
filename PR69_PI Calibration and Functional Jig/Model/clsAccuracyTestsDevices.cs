@@ -12,13 +12,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsAccuracyTestsDevices : INotifyPropertyChanged
     {
-        private string BgColorgreen = "#80e27e";
+        private string BgColorgreen = "#66bb6a";
         private string BgColorred = "#f44336";
-        private string BgColororange = "#f4511e"; // "#FFA500";
-
-        private string Testrespass = "PASS";
-        private string Testresfail = "FAIL";
-
+        private string BgColororange = "#ffd740"; // "#FFA500";
+                
         private string _backcolorDevice1;
 
         public string BackcolorDevice1

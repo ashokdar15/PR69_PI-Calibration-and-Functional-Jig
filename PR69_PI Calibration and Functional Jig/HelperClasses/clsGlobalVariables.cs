@@ -5,6 +5,7 @@ using System.Globalization;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System.Collections.Generic;
+using PR69_PI_Calibration_and_Functional_Jig.Views;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
@@ -141,8 +142,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //public static MainWindowVM MainWindowVM = null;
         public static MainWindowVM mainWindowVM = null;
 
+        public static AccuracyWindow accuracyWindow = null;
+
         public static int FAILURE = -1;
         public static int SUCCESS = 0;
+
+        public static string AccuracyStopwatchTime = ""; 
 
         public static CatIdList Selectedcatid = new CatIdList();
         public static string SelectedDeviceNameOfTreeView = "";
