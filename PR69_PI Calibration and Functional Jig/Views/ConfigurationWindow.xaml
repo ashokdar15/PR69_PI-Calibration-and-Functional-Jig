@@ -931,13 +931,15 @@
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Button Content="Ok"
-                                Visibility="{Binding Path=ErrorMsgVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                Visibility="{Binding Path=okbtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
                                 Command="{Binding Path=BtnYesCmd}" Width="80" HorizontalAlignment="Center" Margin="10 20"/>
                         <StackPanel Orientation="Horizontal" 
                                     Visibility="{Binding Path=MsgVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
                                     VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Button Content="Yes" Foreground="WhiteSmoke" Command="{Binding Path=BtnYesCmd, Source={x:Reference ConfigurationWindowVM}}" Width="80" HorizontalAlignment="Center" Margin="10 20"/>
-                            <Button Content="No" Foreground="WhiteSmoke" Command="{Binding Path=BtnNoCmd, Source={x:Reference ConfigurationWindowVM}}" BorderBrush="IndianRed" Background="IndianRed" Width="80" HorizontalAlignment="Center" Margin="10 20"/>
+                            <Button Content="Yes" Foreground="WhiteSmoke" Command="{Binding Path=BtnYesCmd, Source={x:Reference ConfigurationWindowVM}}" Width="80"
+                                    HorizontalAlignment="Center" Margin="10 20"/>
+                            <Button Content="No" Foreground="WhiteSmoke" Command="{Binding Path=BtnNoCmd, Source={x:Reference ConfigurationWindowVM}}" BorderBrush="IndianRed" 
+                                    Background="IndianRed" Width="80" HorizontalAlignment="Center" Margin="10 20"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

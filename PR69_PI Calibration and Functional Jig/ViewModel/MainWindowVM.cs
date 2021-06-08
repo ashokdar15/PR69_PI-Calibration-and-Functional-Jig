@@ -25,7 +25,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //Constructor
         private async void btnStartClk(object obj)
         {
-            
+                      
             CatIdList catId = clsGlobalVariables.Selectedcatid;
 
             clsGlobalVariables.accuracyWindow = new AccuracyWindow(); 
@@ -169,94 +169,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
             #endregion
             //
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            ////clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
+            
             //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            //
-            //CALIB_PT100_313
-            //clsGlobalVariables.algTests_Auto.Add("SSR_Test2");
-            //SSR_Test2
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP1_RELAY");
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST_OP2_RELAY");
-
-            //Analog 
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_4MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_4MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_20MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_20MA_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_CURRENT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_12MA_ANLOP");
-            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
-            ////clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_1V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_1V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_DFALT_10V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("SET_OBSRVED_10V_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIBRATE_VOLTAGE");
-            //clsGlobalVariables.algTests_Auto.Add("SET_5V_ANLOP");
-            //clsGlobalVariables.algTests_Auto.Add("CHK_ANALOG_OP_VAL");
-
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            //clsGlobalVariables.algTests_Auto.Add("");
-
-            //Test21 = SET_DFALT_4MA_CNT
-            //Test22 = SET_OBSRVED_4MA_CNT
-            //Test23 = SET_DFALT_20MA_CNT
-            //Test24 = SET_OBSRVED_20MA_CNT
-            //Test25 = CALIBRATE_CURRENT
-            //Test26 = SET_12MA_ANLOP
-            //Test27 = CHK_ANALOG_OP_VAL
-            //Test28 = SLAVE2_OP1_OFF
-            //Test29 = SLAVE2_OP2_ON
-            //Test30 = SET_DFALT_1V_CNT
-            //Test31 = SET_OBSRVED_1V_CNT
-            //Test32 = SET_DFALT_10V_CNT
-            //Test33 = SET_OBSRVED_10V_CNT
-            //Test34 = CALIBRATE_VOLTAGE
-            //Test35 = SET_5V_ANLOP
-            //Test36 = CHK_ANALOG_OP_VAL
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CONVERTOR_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_ON");
-            //clsGlobalVariables.algTests_Auto.Add("START_REL_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_ON");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_ON");
-            //clsGlobalVariables.algTests_Auto.Add("DUT_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_READ_ADC_CNT_RLY_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE2_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP3_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE1_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("START_DISP_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("START_KEYPAD_TEST");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP1_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("SLAVE3_OP2_OFF");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_1_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_50_MV_CNT");
-            //clsGlobalVariables.algTests_Auto.Add("CALC_SLOPE_OFFSET");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100");
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-            // clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
+     
+            
             foreach (string test in clsGlobalVariables.algTests_Auto)
             {
                 clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
@@ -499,6 +415,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 switch (DUT)
                 {
                     case 1:
+
                         DUT1Status = "PASS";
                         DUT1Statusbk = "#43a047";
                         break;
@@ -581,6 +498,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 ShowMessageBox("Error while reading data from json, something is wrong in json OR check json file path", false, "", clsGlobalVariables.MsgIcon.Error);
                 return;
             }
+
+            StreamReader SR = new StreamReader(File.OpenRead(Path.Combine(Environment.CurrentDirectory, "DBfilePath.txt")));
+            clsGlobalVariables.DatabasePath = SR.ReadLine().Trim();
+            SR.Close();
+
 
             IsPR69TypeCatId = true;
             IsProductSelected = true;

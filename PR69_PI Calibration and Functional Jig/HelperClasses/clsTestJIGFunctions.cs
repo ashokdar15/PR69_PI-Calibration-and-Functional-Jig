@@ -30,7 +30,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceID(DUT);
+                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceID((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -458,7 +458,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             //This check is for device having modbus.                
                             if (clsModelSettings.blnRS485Flag == true)
                             {
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.TEST_REL, DUT);
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBStartTest(clsGlobalVariables.TEST_REL, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
                             }
                             else//Device without modbus
                             {
@@ -2008,7 +2008,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;;
                                 }
-
                             }
                             else
                             {
@@ -2019,6 +2018,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue;;
                                 }
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(1);
@@ -2074,8 +2074,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;;
                                 }
-
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(1);
@@ -2207,7 +2207,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue; ;
                                 }
-
                             }
                             else
                             {
@@ -2218,6 +2217,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue; ;
                                 }
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(3);
@@ -2263,7 +2263,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue; ;
                                 }
-
                             }
                             else
                             {
@@ -2275,6 +2274,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
 
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(3);
@@ -2406,7 +2406,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue; ;
                                 }
-
                             }
                             else
                             {
@@ -2417,6 +2416,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue; ;
                                 }
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(20);
@@ -2474,6 +2474,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
 
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_OFF(20);
@@ -2579,7 +2580,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue;;
                                 }
                             }
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(1);
@@ -2637,6 +2638,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
 
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(0);
@@ -2701,7 +2703,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue; ;
                                 }
                             }
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(3);
@@ -2759,6 +2761,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
 
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(2);
@@ -2823,7 +2826,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue; ;
                                 }
                             }
-                            clsGlobalVariables.objGlobalFunction.ApplyDelay(250);
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(20);
@@ -2881,6 +2884,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 }
 
                             }
+                            clsGlobalVariables.objGlobalFunction.ApplyDelay(500);
                             if (DUT == clsGlobalVariables.DUT1)
                             {
                                 btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartReadPLC_Input_ON(16);

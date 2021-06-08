@@ -661,6 +661,30 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             }
         }
 
+
+        public byte MBWriteChangeCommMode(byte btmSlaveID, int imTTLModeOrOnewire)
+        {
+            byte btmRetVal;
+
+            try
+            {
+                Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
+                Array.Resize(ref clsGlobalVariables.btgTxBuffer, 6);
+
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = btmSlaveID;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_WRITE_CHANGE_COMM_MODE;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = (byte)(imTTLModeOrOnewire / 256);
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = (byte)(imTTLModeOrOnewire & 0xFF);
+              
+                btmRetVal = MainWindowVM.initilizeCommonObject.objJIGSerialComm.SendQueryGetResponse(clsGlobalVariables.ig_Query_TimeOut, true);
+                return btmRetVal;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         ///<MemberName>ReadSensorTypeDoubleActing</MemberName>
         ///<MemberType>Function</MemberType>
         ///<CreatedBy>Shubham</CreatedBy>

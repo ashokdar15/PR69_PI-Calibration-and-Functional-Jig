@@ -399,6 +399,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             clsGlobalVariables.AccuracyStopwatchTime = StopwatchTime;
             clsGlobalVariables.accuracyWindow.Close();
+
+            //AccuracymAmpTestsDetails  
+
+            
+
+           // MainWindowVM.initilizeCommonObject.clsLoggingDatas[0] = clsLoggingData;
         }
         private void GetAccuracyDataFromJSON(Dictionary<string, List<string>> AccuracyList)
         {

@@ -1612,7 +1612,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                 if (clsModelSettings.blnRS485Flag)
                                 {
-                                     btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MB_TTL_COM_MODE);
+                                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MVER_ADDRESS, 1);
+                                    }                                     
                                 }
                                 else
                                 {
@@ -1626,7 +1630,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     {
                                         if (clsModelSettings.blnRS485Flag)
                                         {
-                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
+                                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                            {
+                                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                            }
                                         }
                                         else
                                         {

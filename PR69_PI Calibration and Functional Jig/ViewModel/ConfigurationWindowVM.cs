@@ -307,7 +307,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {           
             YesNoBtnVis = state;
             CancelBtnVis = !state;
-            ErrorMsgVis = !state; //Ok btn
+            okbtnVis = !state; //Ok btn
         }
 
         private RelayCommand _BtnYesCmd;
@@ -1726,12 +1726,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _IsCheckBoxEnabled = value; OnPropertyChanged("IsCheckBoxEnabled"); }
         }
 
-        private bool _ErrorMsgVis;
+        private bool _okbtnVis;
 
-        public bool ErrorMsgVis
+        public bool okbtnVis
         {
-            get { return _ErrorMsgVis; }
-            set { _ErrorMsgVis = value; OnPropertyChanged("ErrorMsgVis"); }
+            get { return _okbtnVis; }
+            set { _okbtnVis = value; OnPropertyChanged("okbtnVis"); }
         }
 
 
@@ -3094,8 +3094,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             Msg = msg;
             EventSender = sender;
             EventParam = eventParam;
+            PopupBtnVisibility(true);            
             MesssageVis = true;
-            MsgVis = yesNo;            
+            MsgVis = yesNo;
+            if (!MsgVis)
+                okbtnVis = true;
             IsDialogOpen = true;
         }
 

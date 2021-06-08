@@ -37,21 +37,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public enum enmResponseError
         {
             Success = 0,
-            Function_Code_Mismatch_err,
-            Address_Mismatch_err,
-            Data_Limit_Exceed_err,
-            Device_ID_Mismatch_err,
-            PageNo_err,
-            InvalidNoOfBytes_err,
-            Invalid_Password_err,
-            Incorrect_CRC_Err,
-            Invalid_ModbusID_err,
-            QueryLength_Exceed_Err,
-            Invalid_SubFunctionCode_Err,
-            Failed,
-            Data_Receive_Failed,
-            ERR_While_Sending_Data,
-            Timeout_Err,
+            Function_Code_Mismatch_err = 1,
+            Address_Mismatch_err = 2,
+            Data_Limit_Exceed_err = 3,
+            Device_ID_Mismatch_err= 4,
+            PageNo_err = 5,
+            InvalidNoOfBytes_err = 6,
+            Invalid_Password_err = 7,
+            Incorrect_CRC_Err = 8,
+            Invalid_ModbusID_err = 9,
+            QueryLength_Exceed_Err = 10,
+            Invalid_SubFunctionCode_Err = 11,
+            Failed = 12,
+            Data_Receive_Failed = 13,
+            ERR_While_Sending_Data = 14,
+            Timeout_Err = 15,
             Max_Retries_Reached_Err,
             Accuracy_Test_Not_Done,
             Invalid_data,
@@ -437,7 +437,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte CALIB_DONE = 2;
 
         //public const byte MB_DUT_ID = 0x1;
-        public const byte MB_DUT_ID_WM_BASE = 0x0;
+        public const byte MB_DUT_ID_WM_BASE = 0x9;
+        public const byte MB_TTL_COM_MODE = 0x1;
+        public const byte MB_1WIRE_COM_MODE = 0x2;
         public const byte MB_SLAVE_ID_WO_BASE = 0x9;
         //public const byte MB_SLAVE1_ID = 0xA;
        // public const byte MB_SLAVE2_ID = 0xB;
@@ -486,6 +488,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public const byte MB_READ_HOLDIND_REG = 3;
         public const byte MB_WRITE_HOLDIND_REG = 6;
+        public const byte MB_WRITE_CHANGE_COMM_MODE = 120;
 
         public static byte MB_MASTER_TO_DUT = 100;
         public const byte MB_READ_CALIB_CONST_STATUS = 101;
@@ -998,6 +1001,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         internal static int DUT4=4;
 
         public static bool IsFileChanged = false;
+
+        public static string DatabasePath = "";
     }
     public static class clsModelSettings
     {
