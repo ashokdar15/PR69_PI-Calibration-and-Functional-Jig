@@ -102,7 +102,10 @@ namespace PR69_Function_and_Calibration_JIG.Classes
             tmrTimeOut = new System.Threading.Timer(tmrTimeoutCallback, null, 10000, 10000);
         }// End of Constructor.
         #endregion
-
+        public void SetBaudRate(int baudRate)
+        {
+            comPort.BaudRate = baudRate;
+        }
         #region "----Comport Related Methods-----"
         ///<MemberName>MbTimerIntr</MemberName>
         ///<MemberType>Event</MemberType>

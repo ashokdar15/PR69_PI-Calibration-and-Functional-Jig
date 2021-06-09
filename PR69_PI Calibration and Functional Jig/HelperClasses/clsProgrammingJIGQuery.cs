@@ -385,7 +385,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 //Fix number of pages are 284.
                 for (int imPageCounter = 0; imPageCounter < 284; imPageCounter++)
                 {
-                    //CA55 clsGlobalVariables.objfrmProgramming.prgBar.Value = clsGlobalVariables.objfrmProgramming.prgBar.Value + 1;
+
+                    clsGlobalVariables.ObjprogVM.CurrentValue = (int)((imPageCounter * 100) / 284) + 1;
+                    clsGlobalVariables.ObjprogVM.StatusInPercentage = (int)((imPageCounter * 100) / 284) + 1;
                     Array.Clear(clsGlobalVariables.btgTxBuffer, 0, clsGlobalVariables.btgTxBuffer.Length);
                     Array.Resize(ref clsGlobalVariables.btgTxBuffer, 262);
 
@@ -468,6 +470,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                     }
                 }
+
                 omBinStream.Close();
                 return btmRetVal;
             }

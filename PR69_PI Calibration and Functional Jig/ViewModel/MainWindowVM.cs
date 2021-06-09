@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -524,12 +525,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (Directory.Exists(CatId[0].motfilepath))
                 {
                     DirectoryInfo diSource_96x96 = new DirectoryInfo(CatId[0].motfilepath);
-                    DirectoryInfo diTarget_96x96 = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\Config Data\\Mot_96x96");
+                    DirectoryInfo diTarget_96x96 = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData");
 
-                    //CopyFilesRecursively(diSource_96x96, diTarget_96x96);
+                  
+                    if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData"))
+                    {
+                        ClearReadOnly(diTarget_96x96);
+                        //File.SetAttributes(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData", File.GetAttributes(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData") & ~FileAttributes.ReadOnly);
+                        Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData", true);
+                    }
+                                       
+                    CopyFilesRecursively(diSource_96x96, diTarget_96x96);
+
+                    clsGlobalVariables.strgMotFileFolderPath_PR69_48x48 = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData";
+                    clsGlobalVariables.strgMotFileFolderPath_PR69_96x96 = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData";
+                    clsGlobalVariables.strgMotFileFolderPath_PR43_48x48 = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData";
+                    clsGlobalVariables.strgMotFileFolderPath_PR43_96x96 = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData";
+                    clsGlobalVariables.strgHexFileFolderPath_PI = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData\\PI";
                 }
             }
             
+        }
+
+        private void ClearReadOnly(DirectoryInfo parentDirectory)
+        {
+            if (parentDirectory != null)
+            {
+                parentDirectory.Attributes = FileAttributes.Normal;
+                foreach (FileInfo fi in parentDirectory.GetFiles())
+                {
+                    fi.Attributes = FileAttributes.Normal;
+                }
+                foreach (DirectoryInfo di in parentDirectory.GetDirectories())
+                {
+                    ClearReadOnly(di);
+                }
+            }
         }
 
         public void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)

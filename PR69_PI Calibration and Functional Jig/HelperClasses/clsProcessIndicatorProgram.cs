@@ -57,8 +57,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public event delegateClearLOG ClearLog;
         public delegate void EnableUI(bool enable);
         public event EnableUI _EnableUI;
-        public delegate void ChnageShapeColor(string color);
-        public event ChnageShapeColor _ChangeShapeColor;
+        //public delegate void ChnageShapeColor(string color);
+        //public event ChnageShapeColor _ChangeShapeColor;
 
 
         public clsProcessIndicatorProgram(string filePath)
@@ -83,7 +83,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 using (Process cmd = new Process())
                 {
                     cmd.StartInfo.FileName = "cmd.exe";
-                    cmd.StartInfo.WorkingDirectory = clsGlobalVariables.WorkingDirectory;
+                    cmd.StartInfo.WorkingDirectory = "C:\\Program Files (x86)\\Nuvoton Tools\\NuLink Command Tool";
+                    //cmd.StartInfo.WorkingDirectory = clsGlobalVariables.WorkingDirectory;
                     cmd.StartInfo.RedirectStandardInput = true;
                     cmd.StartInfo.RedirectStandardOutput = true;
                     cmd.StartInfo.UseShellExecute = false;
@@ -126,7 +127,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return retString = "Error";
             }
@@ -142,7 +143,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             else
                 EraseAllData = "NuLink -e ALL";
 
-            _ChangeShapeColor(None);
+            //_ChangeShapeColor(None);
             //int retryCount = 0;
            bool FirstIteration = true;
             do
@@ -168,12 +169,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         if (evenOddIteration)
                         {
-                            _ChangeShapeColor(RED);
+                            //_ChangeShapeColor(RED);
                             evenOddIteration = false;
                         }
                         else
                         {
-                            _ChangeShapeColor(YELLOW);
+                            //_ChangeShapeColor(YELLOW);
                             evenOddIteration = true;
                         }
                         result = ExecuteCMD(ReadPartNo);
@@ -190,14 +191,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         {
                             AddMessageOnUI(STOP_PROGRAMMING, 0);
                             _EnableUI(true);
-                            _ChangeShapeColor(None);
+                           // _ChangeShapeColor(None);
                             return;
                         }
                     } while (true);
 
                 }
                 ClearLog();
-                _ChangeShapeColor(None);
+                //_ChangeShapeColor(None);
                 if (result.Contains(ERROR) || result.Contains(ErrorMessage) || result == "")
                 {
                     AddMessageOnUI( CHIP_NOT_FOUND + Environment.NewLine +COMM_FAIL + Environment.NewLine + Environment.NewLine, 0);
@@ -331,10 +332,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     }
                 }
                 
-            } while (true);
+            } while (false);
             //CA55 true above condition
             _EnableUI(true);
         }
 
+       
     }
 }

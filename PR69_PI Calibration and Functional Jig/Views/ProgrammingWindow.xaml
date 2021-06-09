@@ -47,7 +47,9 @@
                             <TextBlock Text="Programming" Padding="6" Margin="2 0 0 0" Foreground="White"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Background="#1c313a">
-                            <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
+                            <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" 
+                                    IsEnabled="{Binding IsStartBtnEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="White">
                                 <materialDesign:PackIcon Kind="Multiply" Height="12" Foreground="White" Width="12" Background="IndianRed"/>
                             </Button>
@@ -61,27 +63,53 @@
                             </GroupBox.Header>
 
                             <StackPanel Orientation="Vertical">
-                                <xctk:RichTextBox Text="{Binding Path=strtestReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              Width="auto" Height="250"
+                                <!--<xctk:RichTextBox Text="{Binding Path=strtestReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Width="auto" Height="250" 
                                               IsReadOnly="True" FontWeight="Bold" FontSize="22" Margin="15 15 15 15">
                                     <xctk:RichTextBoxFormatBarManager.FormatBar>
                                         <xctk:RichTextBoxFormatBar />
                                     </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                </xctk:RichTextBox>
+                                </xctk:RichTextBox>-->
+
+                                <TextBox Width="auto" Height="250" 
+                                        IsReadOnly="True" FontWeight="Bold" FontSize="12" Margin="2 2 2 2"
+                                        TextWrapping="Wrap" Text="{Binding Path=strtestReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        ></TextBox>
                                 <StackPanel Orientation="Horizontal">
                                     <ProgressBar Value="{Binding CurrentValue, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Left" Margin="15 0 0 0" Height="25" Width="700"/>
+                                    HorizontalAlignment="Left" Margin="15 18 0 0" Height="25" Width="700"/>
 
-                                    <TextBlock Text="{Binding StatusInPercentage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 0 0" FontWeight="Bold" FontSize="16"/>
-                                    <TextBlock Text="%" Margin="0 5 0 0" FontWeight="Bold" FontSize="16"/>
+                                    <TextBlock Text="{Binding StatusInPercentage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 20 0 0" FontWeight="Bold" FontSize="16"/>
+                                    <TextBlock Text="%" Margin="0 20 0 0" FontWeight="Bold" FontSize="16"/>
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
 
-                        <Button  Width="85" Height="30" Padding="5" Margin="5 10"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                            <CheckBox Content="Skip calibration constant erase"                                      
+                                      HorizontalAlignment="Left" Width="auto"
+                                      Visibility="{Binding IsBatchProgEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                      IsChecked="{Binding chkSkipCalibration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <CheckBox Content="Batch Programming" Margin="18 5"                                 
+                                      HorizontalAlignment="Left" Width="auto"
+                                      Visibility="{Binding IsBatchProgEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
+                                      IsChecked="{Binding chkbatchProgramming, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <Button  Width="85" Height="30" Padding="5" Margin="18 5"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Command="{Binding btnStartProgram}" Foreground="WhiteSmoke" Background="#26c6da"
-                                Visibility="{Binding Path=StartProgramBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">PROGRAM</Button>
+                                Visibility="{Binding Path=StartProgramBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"
+                                IsEnabled="{Binding IsStartBtnEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">Start</Button>
+
+                            <!--<Button  Width="85" Height="30" Padding="5" Margin="40 5 0 0"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding StopProgramBtn}" Foreground="WhiteSmoke" Background="#26c6da"                                
+                                IsEnabled="{Binding IsStopBtnEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                Visibility="{Binding IsBatchProgEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"   >Stop</Button>-->
+                               
+                        </StackPanel>
 
 
                     </StackPanel>

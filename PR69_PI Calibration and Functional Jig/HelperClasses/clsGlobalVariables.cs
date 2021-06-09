@@ -6,11 +6,14 @@ using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System.Collections.Generic;
 using PR69_PI_Calibration_and_Functional_Jig.Views;
+using System.Windows;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
     public class clsGlobalVariables
     {
+
+        public static ProgrammingWindowVM ObjprogVM = new ProgrammingWindowVM();
         public enum Enmpointcalibration
         {
             P1 = 1,
@@ -161,6 +164,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string PR43_96x96 = "PR43_96x96";
         public static string PR43_48x48 = "PR43_48x48";
         public static string PI = "Process Indicator";
+
+        public static string strgMotFileFolderPath_PR69_48x48 = "";
+        public static string strgMotFileFolderPath_PR69_96x96 = "";
+        public static string strgMotFileFolderPath_PR43_96x96 = "";
+        public static string strgMotFileFolderPath_PR43_48x48 = "";
+        public static string strgHexFileFolderPath_PI = "";
 
         public enum SelectedDeviceType
         {

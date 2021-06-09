@@ -40,202 +40,201 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 switch (imMsgID)
                 {
                     
-
                     case clsMessageIDs.FAIL_TO_CONNECT:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAIL_TO_CONNECT", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("FAIL_TO_CONNECT", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.DEVICE_CONNECTED:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("DEVICE_CONNECTED", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("DEVICE_CONNECTED", clsGlobalVariables.objCultureinfo) + "\n";
                         break;
 
                     case clsMessageIDs.FAIL_TO_SET_BAUDRATE:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAIL_TO_SET_BAUDRATE", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("FAIL_TO_SET_BAUDRATE", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.BAUDRATE_SET_SUCCESSFUL:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("BAUDRATE_SET_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("BAUDRATE_SET_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + "\n";
                         break;
 
                     case clsMessageIDs.CODE_LOCK_NOT_MATCH:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("CODE_LOCK_NOT_MATCH", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("CODE_LOCK_NOT_MATCH", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.CODE_LOCK_MATCHED:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("CODE_LOCK_MATCHED", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("CODE_LOCK_MATCHED", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.FAILED_TO_ERASE:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAILED_TO_ERASE", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("FAILED_TO_ERASE", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.ERASED_SUCCESSFULLY:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("ERASED_SUCCESSFULLY", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("ERASED_SUCCESSFULLY", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.FAIL_TO_PROGRAM:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAIL_TO_PROGRAM", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("FAIL_TO_PROGRAM", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.PROGRAM_SUCCESSFUL:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("PROGRAM_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("PROGRAM_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.FAIL_ENDPROGRAM:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("FAIL_ENDPROGRAM", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("FAIL_ENDPROGRAM", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.ENDPROGRAMMING_SUCCESSFUL:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("ENDPROGRAMMING_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("ENDPROGRAMMING_SUCCESSFUL", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.PROGRAMMING:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("PROGRAMMING", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("PROGRAMMING", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
                     case clsMessageIDs.CHECK_CONNECTIONS:
-                        //CA55 clsGlobalVariables.objfrmProgramming.txtReport.Text = clsGlobalVariables.objfrmProgramming.txtReport.Text + objResManager.GetString("CHECK_CONNECTIONS1", clsGlobalVariables.objCultureinfo) + Environment.NewLine + objResManager.GetString("CHECK_CONNECTIONS2", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
+                          clsGlobalVariables.ObjprogVM.strtestReport = clsGlobalVariables.ObjprogVM.strtestReport + objResManager.GetString("CHECK_CONNECTIONS1", clsGlobalVariables.objCultureinfo) + Environment.NewLine + objResManager.GetString("CHECK_CONNECTIONS2", clsGlobalVariables.objCultureinfo) + Environment.NewLine;
                         break;
 
-                    case clsMessageIDs.PORT_NOT_PRESENT:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("PORT_NOT_PRESENT", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.PORT_NOT_PRESENT:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("PORT_NOT_PRESENT", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE1_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("SLAVE1_OK", clsGlobalVariables.objCultureinfo) ;
-                        break;
+                   // case clsMessageIDs.SLAVE1_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("SLAVE1_OK", clsGlobalVariables.objCultureinfo) ;
+                   //     break;
 
-                    case clsMessageIDs.SLAVE2_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE2_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE2_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE2_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE3_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE3_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE3_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE3_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE4_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE4_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE4_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE4_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE1_NOT_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("SLAVE1_NOT_OK", clsGlobalVariables.objCultureinfo) ;
-                        break;
+                   // case clsMessageIDs.SLAVE1_NOT_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = objResManager.GetString("SLAVE1_NOT_OK", clsGlobalVariables.objCultureinfo) ;
+                   //     break;
 
-                    case clsMessageIDs.SLAVE2_NOT_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE2_NOT_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE2_NOT_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE2_NOT_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE3_NOT_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE3_NOT_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE3_NOT_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE3_NOT_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.SLAVE4_NOT_OK:
-                        //CA55 clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE4_NOT_OK", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.SLAVE4_NOT_OK:
+                   //       clsGlobalVariables.objTestSetupfrm.txtDescription.Text = clsGlobalVariables.objTestSetupfrm.txtDescription.Text + Environment.NewLine + objResManager.GetString("SLAVE4_NOT_OK", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.CALIB_CONST_WRITE_SUCCESSFUL:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("CALIB_CONST_WRITE_SUCCESSFUL", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.CALIB_CONST_WRITE_SUCCESSFUL:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("CALIB_CONST_WRITE_SUCCESSFUL", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.CALIB_CONST_WRITE_UNSUCCESSFUL:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("CALIB_CONST_WRITE_UNSUCCESSFUL", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.CALIB_CONST_WRITE_UNSUCCESSFUL:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("CALIB_CONST_WRITE_UNSUCCESSFUL", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ERR_IN_ACCURACY:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ERR_IN_ACCURACY", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ERR_IN_ACCURACY:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ERR_IN_ACCURACY", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_PT100_0:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_0", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_PT100_NEG_100:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_NEG_100", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_PT100_400:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_400", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_PT100_300:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_300", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_PT100_0:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_0", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_PT100_NEG_100:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_NEG_100", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_PT100_400:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_400", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_PT100_300:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_300", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_PT100_700:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_700", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_PT100_700:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_PT100_700", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_R_1750:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_1750", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_R_1750:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_1750", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_R_1000:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_1000", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_R_1000:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_1000", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_R_0:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_0", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_R_0:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_R_0", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_J_0:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_0", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_J_0:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_0", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_J_400:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_400", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_J_300:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_300", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_J_400:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_400", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_J_300:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_300", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_J_700:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_700", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_J_NEG_100:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_NEG_100", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_J_700:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_700", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_J_NEG_100:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_J_NEG_100", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_mA_4:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_4", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_mA_1:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_1", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_mA_4:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_4", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_mA_1:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_1", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_mA_12:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_12", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.ACCURACY_mA_12_PI:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_12_PI", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_mA_12:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_12", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.ACCURACY_mA_12_PI:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_12_PI", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
 
-                    case clsMessageIDs.ACCURACY_mA_20:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_20", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_mA_20:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_20", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_mA_20_PI:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_20_PI", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_mA_20_PI:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_mA_20_PI", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_VOLT_1:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_1", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_VOLT_1:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_1", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_VOLT_5:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_5", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_VOLT_5:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_5", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.ACCURACY_VOLT_10:
-                        //CA55 Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_10", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.ACCURACY_VOLT_10:
+                   //       Program.objMainForm.objfrmAccTest.txtDescription.Text = objResManager.GetString("ACCURACY_VOLT_10", clsGlobalVariables.objCultureinfo);
+                   //     break;
 
-                    case clsMessageIDs.VREF_TOLERANCE_ERR:
-                        //CA55 Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("VREF_TOLERANCE_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
-                   case clsMessageIDs.CJC_Test:
-                        //CA55 Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("CJC_TEST", clsGlobalVariables.objCultureinfo);
-                        break;
-                    case clsMessageIDs.VREF_CALIB_ERR:
-                        //CA55 Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("VREF_CALIB_ERR", clsGlobalVariables.objCultureinfo);
-                        break;
+                   // case clsMessageIDs.VREF_TOLERANCE_ERR:
+                   //       Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("VREF_TOLERANCE_ERR", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   //case clsMessageIDs.CJC_Test:
+                   //       Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("CJC_TEST", clsGlobalVariables.objCultureinfo);
+                   //     break;
+                   // case clsMessageIDs.VREF_CALIB_ERR:
+                   //       Program.objMainForm.txtProgressInfo.Text = Program.objMainForm.txtProgressInfo.Text + Environment.NewLine + objResManager.GetString("VREF_CALIB_ERR", clsGlobalVariables.objCultureinfo);
+                   //     break;
                 }
             }
             catch (Exception ex)
