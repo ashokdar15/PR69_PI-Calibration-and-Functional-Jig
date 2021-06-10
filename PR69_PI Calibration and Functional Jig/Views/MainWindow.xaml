@@ -253,8 +253,8 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1"
                                     Margin="0 0 10 0" Background="#1c313a">
                             <Button Name="minimize" Click="minimize_Click" Margin="15 0 0 0" Height="20" Width="20"
-                                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="White">
-
+                                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                    IsEnabled="{Binding StartBtnVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                                 <Button.Content>
                                     <materialDesign:PackIcon Kind="MinusBox" Padding="0" Height="1" Width="6" Foreground="White" Background="White"/>
                                 </Button.Content>
@@ -267,7 +267,8 @@
                                 </Button.Content>
                             </Button>-->
                             <Button Name="Close" Click="Close_Click" Height="20" Width="20" Background="IndianRed" Margin="5 0 0 0"
-                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="White">
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                                    IsEnabled="{Binding StartBtnVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                                 <Button.Content>
                                     <materialDesign:PackIcon Kind="Multiply" Height="12" Width="12" Foreground="White" Background="IndianRed"/>
                                 </Button.Content>
@@ -288,7 +289,7 @@
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
                                 Command="{Binding OpenProdConfigWindow}"
-                                IsEnabled="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:ButtonAssist.CornerRadius="3">
                                     <Button.Content>
                                         <materialDesign:PackIcon Kind="SettingsBox"
@@ -310,7 +311,7 @@
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
                                 Command="{Binding OpenDeviceSelectionWindow}"
-                                IsEnabled="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:ButtonAssist.CornerRadius="3">
                                     <Button.Content>
                                         <materialDesign:PackIcon Kind="Selection"
@@ -330,7 +331,7 @@
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
                                 Command="{Binding OpenAccuracyWindow}"
-                                IsEnabled="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:ButtonAssist.CornerRadius="3">
                                     <Button.Content>
                                         <materialDesign:PackIcon Kind="CheckAll"
@@ -350,7 +351,7 @@
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
                                 Command="{Binding OpenProgrammingWindow}"
-                                IsEnabled="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:ButtonAssist.CornerRadius="3">
                                     <Button.Content>
                                         <materialDesign:PackIcon Kind="ProgressDownload"
@@ -370,7 +371,7 @@
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
                                 Command="{Binding OpenAboutWindow}"
-                                IsEnabled="{Binding Path=IsProductSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:ButtonAssist.CornerRadius="3">
                                     <Button.Content>
                                         <materialDesign:PackIcon Kind="About"
@@ -425,8 +426,8 @@
                                                 </Run>
                                             </TextBlock.Inlines>                                            
                                         </TextBlock>
-                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                        <TextBlock Margin="0 14 0 0" Grid.Row="0" Grid.Column="1" >
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="20" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -445,9 +446,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                                      
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                                      
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT1" HorizontalAlignment="Center"
-                                                Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice1Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -485,8 +486,8 @@
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                        <TextBlock Margin="0 14 0 0" Grid.Row="0" Grid.Column="1" >
+                                              <Run  Text="{Binding Path=CurrentTestStatusDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="20" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -505,9 +506,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                    
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                    
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT2" HorizontalAlignment="Center" 
-                                                Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice2Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -544,8 +545,8 @@
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                        <TextBlock Margin="0 14 0 0" Grid.Row="0" Grid.Column="1" >
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Normal" FontSize="20" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -564,9 +565,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"                                                    
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"                                                    
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT3" HorizontalAlignment="Center" Margin="0 0 0 5" Grid.Row="2" Grid.ColumnSpan="2"
-                                                Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice3Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -604,8 +605,8 @@
                                                 </Run>
                                             </TextBlock.Inlines>
                                         </TextBlock>
-                                        <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1">
-                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                        <TextBlock Margin="0 14 0 0" Grid.Row="0" Grid.Column="1">
+                                              <Run Text="{Binding Path=CurrentTestStatusDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="20" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -623,9 +624,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT4" HorizontalAlignment="Center" Margin="0 0 0 5"
-                                                Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice4Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -663,7 +664,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                                <Run  Text="{Binding Path=CurrentTestStatusDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="22" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -682,9 +683,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"  Grid.Row="2" Grid.ColumnSpan="2"                                                   
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"  Grid.Row="2" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT5" HorizontalAlignment="Center" Margin="0 0 0 5"
-                                                Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice5Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -723,7 +724,7 @@
                                             </TextBlock.Inlines>
                                         </TextBlock>
                                         <TextBlock Margin="0 10 0 0" Grid.Row="0" Grid.Column="1" >
-                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="25" FontStyle="Normal">
+                                            <Run Text="{Binding Path=CurrentTestStatusDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Normal" FontSize="22" FontStyle="Normal">
                                                     <Run.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
                                                             <GradientStop Color="LightSkyBlue" Offset="0" />
@@ -741,9 +742,9 @@
                                         </xctk:RichTextBox>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
-                                        <Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   
+                                        <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   
                                                 Command="{Binding Path=OkTestCmd}" CommandParameter="OkTestDUT6"  HorizontalAlignment="Center" Margin="0 0 0 5"
-                                                Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>
+                                                Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
 
                                         <keypad:UCMain Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"
                                                        Visibility="{Binding keypadDevice6Vis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
@@ -761,7 +762,7 @@
                                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="260" />
+                                                <ColumnDefinition Width="265" />
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>

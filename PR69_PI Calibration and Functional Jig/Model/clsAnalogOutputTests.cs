@@ -11,6 +11,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     public class clsAnalogOutputTests : INotifyPropertyChanged
     {
 
+        public clsAnalogOutputTests()
+        {
+            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
+                   clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
+                   clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
+            {
+                IsPR69Product = true;
+                IsPIProduct = false;
+            }
+            else
+            {
+                IsPR69Product = false;
+                IsPIProduct = true;
+            }
+        }
+
         private bool _SET_DFALT_1MA_CNT;
 
         public bool SET_DFALT_1MA_CNT

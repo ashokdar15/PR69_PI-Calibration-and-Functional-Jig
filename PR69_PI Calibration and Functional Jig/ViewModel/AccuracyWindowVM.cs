@@ -25,7 +25,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             bool DisplayMsg = true;
             stopBtnPress = false;
             StartStopWatch(true);
-            
+
+            clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
+            for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
+            {
+                clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
+            }
+
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
             clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
             //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
@@ -398,12 +404,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StartStopWatch(false);
 
             clsGlobalVariables.AccuracyStopwatchTime = StopwatchTime;
-            clsGlobalVariables.accuracyWindow.Close();
-
-            //AccuracymAmpTestsDetails  
-
-            
-
+            if (clsGlobalVariables.accuracyWindow != null)
+            {
+                clsGlobalVariables.accuracyWindow.Close();
+            }            
+                        
            // MainWindowVM.initilizeCommonObject.clsLoggingDatas[0] = clsLoggingData;
         }
         private void GetAccuracyDataFromJSON(Dictionary<string, List<string>> AccuracyList)
@@ -673,10 +678,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                     {
-                        System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of all calibrator.");
+                        System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of calibrator"+ DUT.ToString() +".");
                     }
                     else
-                        System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator.");
+                        System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator" + DUT.ToString() + ".");
 
                     //
                     btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
@@ -744,16 +749,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                 }
                 clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
-                    clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
-                    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
-                    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
-                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_96x96)
-                    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
+                //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                //    clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
+                //else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
+                //    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
+                //else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                //    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
+                //else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
+                //    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
+                //else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_96x96)
+                //    clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID_PI);
 
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.ThermoCouple_AccuracyDelay;
             }

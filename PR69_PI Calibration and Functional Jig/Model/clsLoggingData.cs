@@ -238,11 +238,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                 {
                     string dabasePath = clsGlobalVariables.DatabasePath;
                     using (SQLiteConnection conn = new SQLiteConnection(dabasePath))
-                    {               
+                    {   
+                        var obj = conn.Table<clsLoggingData>().ToList().Where(u => u.Date <= date).ToList();
                         
-
                         var res = conn.Delete("");
-                        //var res = conn.Table<clsLoggingData>().ToList().Where(u => u.Date <= d1).ToList();
+
                         //InvoiceDate BETWEEN '2010-01-01' AND '2010-01-31'
                     }
                 }

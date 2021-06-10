@@ -11,7 +11,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="12"
         TextElement.FontFamily="{materialDesign:MaterialDesignFont}"
-        Title="ConfigurationWindow" Height="800" Width="1350" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="ConfigurationWindow" Height="680" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None"
                  WindowState="Normal" ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -45,7 +45,8 @@
                             <TextBlock Text="Accuracy" Padding="6" Margin="2 0 0 0" Foreground="White"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Background="#1c313a">
-                            <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
+                            <Button x:Name="Close" Click="Close_Click" Height="18" Width="18" 
+                                    IsEnabled="{Binding StartBtnVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Background="IndianRed" Margin="2,5,10.4,5" HorizontalAlignment="Right"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="White">
                                 <materialDesign:PackIcon Kind="Multiply" Height="12" Foreground="White" Width="12" Background="IndianRed"/>
                             </Button>
@@ -54,7 +55,7 @@
                     <Grid Grid.Row="1">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="665" Height="245"
+                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="645" Height="200"
                                 Visibility="{Binding IsmAmpVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                     <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2" >
                                         <GroupBox.Header>
@@ -153,7 +154,7 @@
                                     </GroupBox>
                                 </Border>
 
-                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="665" Height="245"
+                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="645" Height="200"
                                 Visibility="{Binding IsVoltVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                     <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
                                         <GroupBox.Header>
@@ -255,7 +256,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="665" Height="245"
+                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="645" Height="200"
                                 Visibility="{Binding IsPT100SensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                     <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
                                         <GroupBox.Header>
@@ -354,7 +355,7 @@
                                     </GroupBox>
                                 </Border>
 
-                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="665" Height="245"
+                                <Border BorderBrush="Red" BorderThickness="0.2" Margin="2 2 2 2" Width="645" Height="200"
                                 Visibility="{Binding IsRSensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                     <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
                                         <GroupBox.Header>
@@ -456,7 +457,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Border BorderBrush="Red" BorderThickness="0.5" Margin="2 2 2 2" Width="665" Height="245" HorizontalAlignment="Left"
+                                <Border BorderBrush="Red" BorderThickness="0.5" Margin="2 2 2 2" Width="645" Height="200" HorizontalAlignment="Left"
                                 Visibility="{Binding IsJSensorVis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                     <GroupBox Margin="5 5" Padding="0"  Width="auto" Height="auto" BorderThickness="2">
                                         <GroupBox.Header>

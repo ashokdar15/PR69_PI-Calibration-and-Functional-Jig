@@ -67,18 +67,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
             }
 
-            //CurrenttstgrpDUT1 = catId.ListOfGroupSequence[0];
-            //CurrentTestStatusDUT1 = ListOfTests[0];
-
-            //CurrenttstgrpDUT2 = catId.ListOfGroupSequence[1];
-            //CurrentTestStatusDUT2 = ListOfTests[0];
-
-            //CurrenttstgrpDUT3 = catId.ListOfGroupSequence[2];
-            //CurrentTestStatusDUT3 = ListOfTests[0];
-
-            //CurrenttstgrpDUT4 = catId.ListOfGroupSequence[0];
-            //CurrentTestStatusDUT4 = ListOfTests[0];
-
             clsTotalTestsGroups.Clear();
             int count = 0;
 
@@ -316,7 +304,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
                 clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
 
-                if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0)
+                if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0 && btmRetVal != (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
                     btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                 }
@@ -325,8 +313,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     //
                     // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+
                     clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
 
+                    clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
+                   
+                    for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
+                    {
+                        clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
+                    }
                     clsGlobalVariables.objGlobalFunction.PLC_OFF();
                     CloseAllComport();
                     //CA 55
@@ -338,6 +333,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     
                     clsGlobalVariables.accuracyWindow.ShowDialog();
 
+                    AccuracyStopwatchTime = clsGlobalVariables.AccuracyStopwatchTime;
+                    if (clsGlobalVariables.AccuracyStopwatchTime != null && AccuracyStopwatchTime != "")
+                    {
+                        DateTime duration1 = DateTime.Parse(StopwatchTime);
+                        DateTime duration2 = DateTime.Parse(AccuracyStopwatchTime);
+
+                        TimeSpan Calibtime = duration1.TimeOfDay;
+                        TimeSpan Acctime = duration2.TimeOfDay;
+                        TimeSpan TotalReqTime = Calibtime.Add(Acctime);
+
+                        TotalStopwatchTime = TotalReqTime.ToString();
+                    }
+
+                    StartStopWatch(false);
                     return;
                 }
                 else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -346,6 +355,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsGlobalVariables.objGlobalFunction.PLC_OFF();
                     CloseAllComport();
                     EnableDisableUI(true);
+                    StartStopWatch(false);
                     //txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
                     clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
 
@@ -652,6 +662,21 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             AccuracyWindow accuracyWindow = new AccuracyWindow();
             accuracyWindow.ShowDialog();
+
+            AccuracyStopwatchTime = clsGlobalVariables.AccuracyStopwatchTime;
+            if (clsGlobalVariables.AccuracyStopwatchTime != null && AccuracyStopwatchTime != "")
+            {
+                DateTime duration1 = DateTime.Parse(StopwatchTime);
+                DateTime duration2 = DateTime.Parse(AccuracyStopwatchTime);
+
+                TimeSpan Calibtime = duration1.TimeOfDay;
+                TimeSpan Acctime = duration2.TimeOfDay;
+                TimeSpan TotalReqTime = Calibtime.Add(Acctime);
+
+                TotalStopwatchTime = TotalReqTime.ToString();
+            }
+
+
         }
 
         private void OkTestClk(object obj)
@@ -662,27 +687,27 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             switch (obj.ToString())
             {
                 case "OkTestDUT1":
-                    OkTestBtnVisDUT1 = false;
+                    //OkTestBtnVisDUT1 = false;
                     break;
 
                 case "OkTestDUT2":
-                    OkTestBtnVisDUT2 = false;
+                    //OkTestBtnVisDUT2 = false;
                     break;
 
                 case "OkTestDUT3":
-                    OkTestBtnVisDUT3 = false;
+                    //OkTestBtnVisDUT3 = false;
                     break;
 
                 case "OkTestDUT4":
-                    OkTestBtnVisDUT4 = false;
+                    //OkTestBtnVisDUT4 = false;
                     break;
 
                 case "OkTestDUT5":
-                    OkTestBtnVisDUT5 = false;
+                    //OkTestBtnVisDUT5 = false;
                     break;
 
                 case "OkTestDUT6":
-                    OkTestBtnVisDUT6 = false;
+                    //OkTestBtnVisDUT6 = false;
                     break;
 
                 default:
@@ -1038,53 +1063,53 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _TestsDetailsVis = value; OnPropertyChanged("TestsDetailsVis"); }
         }
 
-        private bool _OkTestBtnVisDUT1;
+        //private bool _OkTestBtnVisDUT1;
 
-        public bool OkTestBtnVisDUT1
-        {
-            get { return _OkTestBtnVisDUT1; }
-            set { _OkTestBtnVisDUT1 = value; OnPropertyChanged("OkTestBtnVisDUT1"); }
-        }
+        //public bool OkTestBtnVisDUT1
+        //{
+        //    get { return _OkTestBtnVisDUT1; }
+        //    set { _OkTestBtnVisDUT1 = value; OnPropertyChanged("OkTestBtnVisDUT1"); }
+        //}
 
-        private bool _OkTestBtnVisDUT2;
+        //private bool _OkTestBtnVisDUT2;
 
-        public bool OkTestBtnVisDUT2
-        {
-            get { return _OkTestBtnVisDUT2; }
-            set { _OkTestBtnVisDUT2 = value; OnPropertyChanged("OkTestBtnVisDUT2"); }
-        }
+        //public bool OkTestBtnVisDUT2
+        //{
+        //    get { return _OkTestBtnVisDUT2; }
+        //    set { _OkTestBtnVisDUT2 = value; OnPropertyChanged("OkTestBtnVisDUT2"); }
+        //}
 
-        private bool _OkTestBtnVisDUT3;
+        //private bool _OkTestBtnVisDUT3;
 
-        public bool OkTestBtnVisDUT3
-        {
-            get { return _OkTestBtnVisDUT3; }
-            set { _OkTestBtnVisDUT3 = value; OnPropertyChanged("OkTestBtnVisDUT3"); }
-        }
+        //public bool OkTestBtnVisDUT3
+        //{
+        //    get { return _OkTestBtnVisDUT3; }
+        //    set { _OkTestBtnVisDUT3 = value; OnPropertyChanged("OkTestBtnVisDUT3"); }
+        //}
 
-        private bool _OkTestBtnVisDUT4;
+        //private bool _OkTestBtnVisDUT4;
 
-        public bool OkTestBtnVisDUT4
-        {
-            get { return _OkTestBtnVisDUT4; }
-            set { _OkTestBtnVisDUT4 = value; OnPropertyChanged("OkTestBtnVisDUT4"); }
-        }
+        //public bool OkTestBtnVisDUT4
+        //{
+        //    get { return _OkTestBtnVisDUT4; }
+        //    set { _OkTestBtnVisDUT4 = value; OnPropertyChanged("OkTestBtnVisDUT4"); }
+        //}
 
-        private bool _OkTestBtnVisDUT5;
+        //private bool _OkTestBtnVisDUT5;
 
-        public bool OkTestBtnVisDUT5
-        {
-            get { return _OkTestBtnVisDUT5; }
-            set { _OkTestBtnVisDUT5 = value; OnPropertyChanged("OkTestBtnVisDUT5"); }
-        }
+        //public bool OkTestBtnVisDUT5
+        //{
+        //    get { return _OkTestBtnVisDUT5; }
+        //    set { _OkTestBtnVisDUT5 = value; OnPropertyChanged("OkTestBtnVisDUT5"); }
+        //}
 
-        private bool _OkTestBtnVisDUT6;
+        //private bool _OkTestBtnVisDUT6;
 
-        public bool OkTestBtnVisDUT6
-        {
-            get { return _OkTestBtnVisDUT6; }
-            set { _OkTestBtnVisDUT6 = value; OnPropertyChanged("OkTestBtnVisDUT6"); }
-        }
+        //public bool OkTestBtnVisDUT6
+        //{
+        //    get { return _OkTestBtnVisDUT6; }
+        //    set { _OkTestBtnVisDUT6 = value; OnPropertyChanged("OkTestBtnVisDUT6"); }
+        //}
 
         private string _strmsgDUT1;
 
@@ -1946,32 +1971,32 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             switch (DeviceNumber)
             {
                 case 1:
-                    OkTestBtnVisDUT1 = true;
+                    //OkTestBtnVisDUT1 = true;
                     strmsgDUT1 = clsMessages.DisplayMessage(msgID);                    
                     break;
 
                 case 2:
-                    OkTestBtnVisDUT2 = true;
+                    //OkTestBtnVisDUT2 = true;
                     strmsgDUT2 = clsMessages.DisplayMessage(msgID);
                     break;
 
                 case 3:
-                    OkTestBtnVisDUT3 = true;
+                    //OkTestBtnVisDUT3 = true;
                     strmsgDUT3 = clsMessages.DisplayMessage(msgID);
                     break;
 
                 case 4:
-                    OkTestBtnVisDUT4 = true;
+                    //OkTestBtnVisDUT4 = true;
                     strmsgDUT4 = clsMessages.DisplayMessage(msgID);
                     break;
 
                 case 5:
-                    OkTestBtnVisDUT5 = true;
+                    //OkTestBtnVisDUT5 = true;
                     strmsgDUT5 = clsMessages.DisplayMessage(msgID);
                     break;
 
                 case 6:
-                    OkTestBtnVisDUT6 = true;
+                    //OkTestBtnVisDUT6 = true;
                     strmsgDUT6 = clsMessages.DisplayMessage(msgID);
                     break;
 
@@ -1984,32 +2009,32 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             switch (DeviceNumber)
             {
                 case 1:
-                    OkTestBtnVisDUT1 = true;
+                    //OkTestBtnVisDUT1 = true;
                     strmsgDUT1 = msgID;
                     break;
 
                 case 2:
-                    OkTestBtnVisDUT2 = true;
+                    //OkTestBtnVisDUT2 = true;
                     strmsgDUT2 = msgID;
                     break;
 
                 case 3:
-                    OkTestBtnVisDUT3 = true;
+                    //OkTestBtnVisDUT3 = true;
                     strmsgDUT3 = msgID;
                     break;
 
                 case 4:
-                    OkTestBtnVisDUT4 = true;
+                    //OkTestBtnVisDUT4 = true;
                     strmsgDUT4 = msgID;
                     break;
 
                 case 5:
-                    OkTestBtnVisDUT5 = true;
+                    //OkTestBtnVisDUT5 = true;
                     strmsgDUT5 = msgID;
                     break;
 
                 case 6:
-                    OkTestBtnVisDUT6 = true;
+                    //OkTestBtnVisDUT6 = true;
                     strmsgDUT6 = msgID;
                     break;
 
