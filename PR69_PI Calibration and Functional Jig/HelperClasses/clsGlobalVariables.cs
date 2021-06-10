@@ -253,7 +253,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static clsProgrammingJIGQuery objProgramingQrycls = new clsProgrammingJIGQuery();  
         public static CultureInfo objCultureinfo = CultureInfo.CreateSpecificCulture("en-US");   
         public static clsTestJIGFunctions objTestJIGFunctions = new clsTestJIGFunctions();
-        public static clsDataLog []objDataLog = new clsDataLog[4];
+        public static clsLoggingData[] objDataLog = new clsLoggingData[4];
         //CA55public static Forms.frmProgramming objfrmProgramming = new PR69_Function_and_Calibration_JIG.Forms.frmProgramming();
         //CA55public static PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage objPictMsg = new PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage();
         //-------Changed By Shubham

@@ -31,17 +31,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         [NotNull]
         public double VDC24Volt { get; set; }
         [NotNull]
-        public double OutputCurrent4mA { get; set; }
+        public double AnalogInputCurrent1 { get; set; }
         [NotNull]
-        public double OutputCurrent12mA { get; set; }
+        public double AnalogInputCurrent2 { get; set; }
         [NotNull]
-        public double OutputCurrent20mA { get; set; }
+        public double AnalogInputCurrent3 { get; set; }
         [NotNull]
-        public double OutputVoltage1V { get; set; }
+        public double OutputVoltage1 { get; set; }
         [NotNull]
-        public double OutputVoltage5V { get; set; }
+        public double OutputVoltage2 { get; set; }
         [NotNull]
-        public double OutputVoltage10V { get; set; }
+        public double OutputVoltage3 { get; set; }
         [NotNull]
         public double InputCurrent4mA { get; set; }
         [NotNull]
@@ -55,23 +55,23 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         [NotNull]
         public double InputVoltage10V { get; set; }
         [NotNull]
-        public double PT100SensTemp0Degreecelcius { get; set; }
+        public double PT100SensTemp1 { get; set; }
         [NotNull]
-        public double PT100SensTemp400Degreecelcius { get; set; }
+        public double PT100SensTemp2 { get; set; }
         [NotNull]
-        public double PT100SensTemp700Degreecelcius { get; set; }
+        public double PT100SensTemp3 { get; set; }
         [NotNull]
-        public double RSensTemp0Degreecelcius { get; set; }
+        public double RSensTemp1 { get; set; }
         [NotNull]
-        public double RSensTemp1750Degreecelcius { get; set; }
+        public double RSensTemp2 { get; set; }
         [NotNull]
-        public double RSensTemp1000Degreecelcius { get; set; }
+        public double RSensTemp3 { get; set; }
         [NotNull]
-        public double JSensTemp0Degreecelcius { get; set; }
+        public double JSensTemp1 { get; set; }
         [NotNull]
-        public double JSensTemp400Degreecelcius { get; set; }
+        public double JSensTemp2 { get; set; }
         [NotNull]
-        public double JSensTemp700Degreecelcius { get; set; }
+        public double JSensTemp3 { get; set; }
 
         //public clsAnalogOPCurrrent clsAnalogOPCurrrent { get; set; }
         //public clsAnalogOPVoltage clsAnalogOPVoltage { get; set; }       
@@ -84,85 +84,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
         public static clsGlobalVariables.DataLogStatus addDataLog(clsLoggingData Datalogging)
         {
+            Datalogging.BatchNumber = "123";
+            
+            Datalogging.CatlogId= "123";
+            
+            
+
+
+
+
             DateTime FromDate = new DateTime(2021, 6, 14);
             DateTime ToDate = new DateTime(2021, 6, 24);
-
-            // clsLoggingData.getDataLog(FromDate, ToDate);
-                        
-            //for (int i = 0; i < 30; i++)
-            //{
-
-            //    clsLoggingData clsLoggingData = new clsLoggingData()
-            //    {
-
-            //        //Date = new DateTime(2021, 06, i),
-
-            //        BatchNumber = Convert.ToString(1000 + i),
-
-            //        SerialNumber = 10,
-
-            //        CatlogId = "",
-
-            //        CalibrationPoint1mV = 12.5,
-
-            //        CalibrationPoint5mV = 12.5,
-
-            //        SSROutput = 12.5,
-
-            //        CJCOutput = 12.5,
-
-            //        VDC24Volt = 12.5,
-
-            //        OutputCurrent4mA = 12.5,
-
-            //        OutputCurrent12mA = 12.5,
-
-            //        OutputCurrent20mA = 12.5,
-
-            //        OutputVoltage1V = 12.5,
-
-            //        OutputVoltage5V = 12.5,
-
-            //        OutputVoltage10V = 12.5,
-
-            //        InputCurrent4mA = 12.5,
-
-            //        InputCurrent12mA = 12.5,
-
-            //        InputCurrent20mA = 12.5,
-
-            //        InputVoltage1V = 12.5,
-
-            //        InputVoltage5V = 12.5,
-
-            //        InputVoltage10V = 12.5,
-
-            //        PT100SensTemp0Degreecelcius = 12.5,
-
-            //        PT100SensTemp400Degreecelcius = 12.5,
-
-            //        PT100SensTemp700Degreecelcius = 12.5,
-
-            //        RSensTemp0Degreecelcius = 12.5,
-
-            //        RSensTemp1750Degreecelcius = 12.5,
-
-            //        RSensTemp1000Degreecelcius = 12.5,
-
-            //        JSensTemp0Degreecelcius = 12.5,
-
-            //        JSensTemp400Degreecelcius = 12.5,
-
-            //        JSensTemp700Degreecelcius = 12.5
-            //        //AccuracymAmpTestsDetails[0].
-
-            //    };
-
-            //    clsLoggingData.addDataLog(clsLoggingData);
-            //}
-
-            //return;
-
             try
             {
                 clsGlobalVariables.DatabasePath = "temp.db";
@@ -189,7 +121,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     return clsGlobalVariables.DataLogStatus.DatabaseConectionFailed;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return clsGlobalVariables.DataLogStatus.ExceptionHandeled;
             }

@@ -390,6 +390,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 //write data of accuracy in sqlite
 
+                AddAccuracyDataInDatabase(AccuracyList);
+                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[0]);
+                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[1]);
+                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[2]);
+                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[3]);
             }
 
             //start accuracy with user define point
@@ -411,6 +416,186 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         
            // MainWindowVM.initilizeCommonObject.clsLoggingDatas[0] = clsLoggingData;
         }
+
+        private void AddAccuracyDataInDatabase(Dictionary<string, List<string>> AccuracyList)
+        {
+            clsGlobalVariables.objDataLog[0] = new clsLoggingData();
+            clsGlobalVariables.objDataLog[1] = new clsLoggingData();
+            clsGlobalVariables.objDataLog[2] = new clsLoggingData();
+            clsGlobalVariables.objDataLog[3] = new clsLoggingData();
+            foreach (var item in AccuracyList)
+            {
+                int currentTestNumber = 0;
+                switch (item.Key)
+                {
+                    case clsGlobalVariables.mAmpAccuracyTest:
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            switch (DUT)
+                            {
+                                case 1:
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent1 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent2 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 1].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent3 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 2].TestresultDevice1);
+                                    break;
+                                case 2:
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent1 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent2 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 1].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent3 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 2].TestresultDevice2);
+                                    break;
+                                case 3:
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent1 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent2 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 1].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent3 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 2].TestresultDevice3);
+                                    break;
+                                case 4:
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent1 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent2 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 1].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].AnalogInputCurrent3 = Convert.ToDouble(AccuracymAmpTestsDetails[currentTestNumber + 2].TestresultDevice4);
+                                    break;
+
+
+                                default:
+                                    break;
+                            }
+
+                        }
+                        break;
+                    case clsGlobalVariables.voltAccuracyTest:
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            switch (DUT)
+                            {
+                                case 1:
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage1 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage2 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 1].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage3 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 2].TestresultDevice1);
+                                    break;                                 
+                                case 2:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage1 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage2 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 1].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage3 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 2].TestresultDevice2);
+                                    break;                                 
+                                case 3:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage1 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage2 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 1].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage3 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 2].TestresultDevice3);
+                                    break;                                 
+                                case 4:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage1 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage2 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 1].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].OutputVoltage3 = Convert.ToDouble(AccuracyVoltTestsDetails[currentTestNumber + 2].TestresultDevice4);
+                                    break;
+
+
+                                default:
+                                    break;
+                            }
+
+                        }
+                        break;
+                    case clsGlobalVariables.pt100sensorAccuracyTest:
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            switch (DUT)
+                            {
+                                case 1:
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp1 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp2 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 1].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp3 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 2].TestresultDevice1);
+                                    break;                                 
+                                case 2:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp1 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp2 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 1].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp3 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 2].TestresultDevice2);
+                                    break;                                 
+                                case 3:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp1 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp2 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 1].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp3 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 2].TestresultDevice3);
+                                    break;                                 
+                                case 4:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp1 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp2 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 1].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].PT100SensTemp3 = Convert.ToDouble(AccuracyPT100SnsrTestsDetails[currentTestNumber + 2].TestresultDevice4);
+                                    break;
+
+
+                                default:
+                                    break;
+                            }
+
+                        }
+                        break;
+                    case clsGlobalVariables.RsensorAccuracyTest:
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            switch (DUT)
+                            {
+                                case 1:
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp1 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp2 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 1].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp3 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 2].TestresultDevice1);
+                                    break;
+                                case 2:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp1 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp2 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 1].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp3= Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 2].TestresultDevice2);
+                                    break;                                 
+                                case 3:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp1 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp2 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 1].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp3 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 2].TestresultDevice3);
+                                    break;                                 
+                                case 4:                                    
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp1 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp2 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 1].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].RSensTemp3 = Convert.ToDouble(AccuracyRSensorTestsDetails[currentTestNumber + 2].TestresultDevice4);
+                                    break;
+
+
+                                default:
+                                    break;
+                            }
+
+                        }
+                        break;
+                    case clsGlobalVariables.JsensorAccuracyTest:
+                        foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
+                        {
+                            switch (DUT)
+                            {
+                                case 1:
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp1 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp2 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 1].TestresultDevice1);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp3 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 2].TestresultDevice1);
+                                    break;                                                    
+                                case 2:                                                       
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp1 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp2 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 1].TestresultDevice2);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp3 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 2].TestresultDevice2);
+                                    break;                                                  
+                                case 3:                                                     
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp1 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp2 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 1].TestresultDevice3);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp3 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 2].TestresultDevice3);
+                                    break;                                                    
+                                case 4:                                                       
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp1 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp2 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 1].TestresultDevice4);
+                                    clsGlobalVariables.objDataLog[DUT - 1].JSensTemp3 = Convert.ToDouble(AccuracyJSensorTestsDetails[currentTestNumber + 2].TestresultDevice4);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         private void GetAccuracyDataFromJSON(Dictionary<string, List<string>> AccuracyList)
         {
             foreach (var item in clsGlobalVariables.Selectedcatid.ListOfAccuracyTestsSequence)
@@ -1082,14 +1267,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 {
                                     UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.shrtgPV.ToString(), sensorType);
                                     if (DUT == 1)
+                                    {
                                         DUT1Result = clsGlobalVariables.shrtgPV.ToString();
+                                        
+                                    }
+
                                     else if (DUT == 2)
                                         DUT2Result = clsGlobalVariables.shrtgPV.ToString();
                                     else if (DUT == 3)
                                         DUT3Result = clsGlobalVariables.shrtgPV.ToString();
                                     else if (DUT == 4)
                                         DUT4Result = clsGlobalVariables.shrtgPV.ToString();
-                                   
+                                    
                                 }
                             }
                         }

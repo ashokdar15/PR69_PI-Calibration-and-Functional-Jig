@@ -19,10 +19,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public  clsSerialCommunication objCalibratorSerialDUT6 = new clsSerialCommunication();
 
         public  clsSerialCommunication objplcSerialComm = new clsSerialCommunication();
-
-        public clsLoggingData[] clsLoggingDatas = new clsLoggingData[4];
-
-        
+                
 
     }
 }

@@ -1062,7 +1062,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 4mA Analog OP sensor is saved in log object
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_4 = clsGlobalVariables.strgAnalogData;
+                                   // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_4 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1102,7 +1102,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 1mA Analog OP sensor is saved in log object
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_1 = clsGlobalVariables.strgAnalogData;
+                                   // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_1 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1139,7 +1139,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 20mA Analog OP sensor is saved in log object
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_20 = clsGlobalVariables.strgAnalogData;
+                                  //  clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_20 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1180,7 +1180,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 1V Analog OP sensor is saved in log object
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_1 = clsGlobalVariables.strgAnalogData;
+                                    //clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_1 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1225,7 +1225,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 10V Analog OP sensor is saved in log object
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_10 = clsGlobalVariables.strgAnalogData;
+                                   // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_10 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1293,7 +1293,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     continue;
                                 }
                                 //Value read from calibrator for 12mA Analog OP sensor is saved in log object
-                                clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_12 = clsGlobalVariables.strgAnalogData;
+                               // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_12 = clsGlobalVariables.strgAnalogData;
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
@@ -1337,7 +1337,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                     continue;
                                 }
-                                clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_5 = clsGlobalVariables.strgAnalogData;
+                                //clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_5 = clsGlobalVariables.strgAnalogData;
                             }                           
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1893,7 +1893,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         break;
                                     }
                                     //Here vref value is stored in the datalog object.
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT1.ToString();
+                                    //clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT1.ToString();
                                     //Here vref value is added in the calib const array.
                                     clsGlobalVariables.strgarrCalibConstDUT1[clsGlobalVariables.VREF_VALUE] = clsGlobalVariables.objGlobalFunction.Float2Hex(clsGlobalVariables.fltgREF_VtgDUT1);
                                     //Pass status to VREF shape is set.
@@ -1911,7 +1911,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         break;
                                     }
                                     //Here vref value is stored in the datalog object.
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT2.ToString();
+                                  //  clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT2.ToString();
                                     //Here vref value is added in the calib const array.
                                     clsGlobalVariables.strgarrCalibConstDUT2[clsGlobalVariables.VREF_VALUE] = clsGlobalVariables.objGlobalFunction.Float2Hex(clsGlobalVariables.fltgREF_VtgDUT2);
                                     //Pass status to VREF shape is set.
@@ -1929,8 +1929,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         break;
                                     }
                                     //Here vref value is stored in the datalog object.
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT3.ToString();
-                                    //Here vref value is added in the calib const array.
+///clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT3.ToString();
+                                    ///Here vref value is added in the calib const array.
                                     clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.VREF_VALUE] = clsGlobalVariables.objGlobalFunction.Float2Hex(clsGlobalVariables.fltgREF_VtgDUT3);
                                     //Pass status to VREF shape is set.
                                     //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpVREF, clsGlobalVariables.enmStatus.PASS);                            
@@ -1947,7 +1947,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         break;
                                     }
                                     //Here vref value is stored in the datalog object.
-                                    clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT4.ToString();
+                                    //clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT4.ToString();
                                     //Here vref value is added in the calib const array.
                                     clsGlobalVariables.strgarrCalibConstDUT4[clsGlobalVariables.VREF_VALUE] = clsGlobalVariables.objGlobalFunction.Float2Hex(clsGlobalVariables.fltgREF_VtgDUT4);
                                     //Pass status to VREF shape is set.

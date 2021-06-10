@@ -25,19 +25,20 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public static InitilizeCommonObject initilizeCommonObject = new InitilizeCommonObject();
         //Constructor
         private async void btnStartClk(object obj)
-        {
-                      
+        {            
+
             CatIdList catId = clsGlobalVariables.Selectedcatid;
 
             clsGlobalVariables.accuracyWindow = new AccuracyWindow(); 
             //Port detection.
             //IsProcessOn = true;
+
             StartStopWatch(true);
             EnableDisableUI(false);
-            objDataLog[0] = new clsDataLog();
-            objDataLog[1] = new clsDataLog();
-            objDataLog[2] = new clsDataLog();
-            objDataLog[3] = new clsDataLog();
+            objDataLog[0] = new clsLoggingData();
+            objDataLog[1] = new clsLoggingData();
+            objDataLog[2] = new clsLoggingData();
+            objDataLog[3] = new clsLoggingData();
             //clsModelSettings.igDutID  need to set deive iD
 
             DUT1Status = "";

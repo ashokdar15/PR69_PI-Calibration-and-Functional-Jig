@@ -1961,41 +1961,41 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         ///4) Device without analog output but with Analog input sensors.
         ///</summary>
         ///<ClassName>clsGlobalFunctions</ClassName>
-        public void GenerateLog(byte DUT)
-        {  
-            //Analog device without analog ip sensors
-            if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
-                && clsModelSettings.blnAnalogDUT == true)
-            {
-                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP, DUT);
-            }
-            //Device without analog output and input sensors.
-            else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
-                && clsModelSettings.blnAnalogDUT == false)
-            {
-                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP, DUT);
-            }
-            //Analog device with analog ip sensors.
-            else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
-                && clsModelSettings.blnAnalogDUT == true)
-            {
-                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP, DUT);
-            }
-            //Device without analog output but with Analog input sensors.
-            else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPType
-                || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
-                && clsModelSettings.blnAnalogDUT == false)
-            {
-                clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP, DUT);
-            }
-        }
+        //public void GenerateLog(byte DUT)
+        //{  
+        //    //Analog device without analog ip sensors
+        //    if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
+        //        && clsModelSettings.blnAnalogDUT == true)
+        //    {
+        //        clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithoutAnalogIP, DUT);
+        //    }
+        //    //Device without analog output and input sensors.
+        //    else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWOModbusType)
+        //        && clsModelSettings.blnAnalogDUT == false)
+        //    {
+        //        clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithoutAnalogIP, DUT);
+        //    }
+        //    //Analog device with analog ip sensors.
+        //    else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
+        //        && clsModelSettings.blnAnalogDUT == true)
+        //    {
+        //        clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithAnalogOP_WithAnalogIP, DUT);
+        //    }
+        //    //Device without analog output but with Analog input sensors.
+        //    else if ((clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igSingleActingWithAnalogIPType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPType
+        //        || clsGlobalVariables.igTYPE_OF_DEVICE == clsGlobalVariables.igDoubleActingWithAnalogIPWOModbusType)
+        //        && clsModelSettings.blnAnalogDUT == false)
+        //    {
+        //        clsGlobalVariables.objDataLog[DUT-1].WriteLogFile(clsGlobalVariables.Case_WithoutAnalogOP_WithAnalogIP, DUT);
+        //    }
+        //}
 
         ///<MemberName>DeleteDirectory</MemberName>
         ///<MemberType>Function</MemberType>
