@@ -374,9 +374,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             if (TestOkFlag && !stopBtnPress)
             {
-                //Accuracy completed.
                 
-
                 //write calibration constant to all DUT
                 byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                 if (clsGlobalVariables.algTests_Auto.Contains("WRITE_CALIB_CONST_WITH_VREF"))
@@ -391,6 +389,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //write data of accuracy in sqlite
 
                 AddAccuracyDataInDatabase(AccuracyList);
+
                 clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[0]);
                 clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[1]);
                 clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[2]);

@@ -82,17 +82,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         //public JSensor JSensor { get; set; }
 
 
+
+
         public static clsGlobalVariables.DataLogStatus addDataLog(clsLoggingData Datalogging)
         {
             Datalogging.BatchNumber = "123";
             
             Datalogging.CatlogId= "123";
             
-            
-
-
-
-
             DateTime FromDate = new DateTime(2021, 6, 14);
             DateTime ToDate = new DateTime(2021, 6, 24);
             try
@@ -192,62 +189,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         }
 
     }
-    //[Table("AnalogOPCurrrent")]
-    //public class clsAnalogOPCurrrent
-    //{
-    //    public double OutputCurrent4mA { get; set; }
-    //    public double OutputCurrent12mA { get; set; }
-    //    public double OutputCurrent20mA { get; set; }
-    //}
 
-    //[Table("AnalogOPVoltage")]
-    //public class clsAnalogOPVoltage
-    //{
-    //    public double OutputVoltage1V { get; set; }
-    //    public double OutputVoltage5V { get; set; }
-    //    public double OutputVoltage10V { get; set; }
-    //}
-
-    //[Table("AnalogIPCurrrent")]
-    //public class clsAnalogIPCurrrent
-    //{
-    //    public double InputCurrent4mA { get; set; }
-    //    public double InputCurrent12mA { get; set; }
-    //    public double InputCurrent20mA { get; set; }
-    //}
-
-    //[Table("AnalogIPVoltage")]
-    //public class clsAnalogIPVoltage
-    //{
-    //    public double InputVoltage1V { get; set; }
-    //    public double InputVoltage5V { get; set; }
-    //    public double InputVoltage10V { get; set; }
-    //}
-
-    //[Table("PT100Sensor")]
-    //public class PT100Sensor
-    //{
-    //    public double Temp0Degreecelcius { get; set; }
-    //    public double Temp400Degreecelcius { get; set; }
-    //    public double Temp700Degreecelcius { get; set; }
-        
-    //}
-
-    //[Table("RSensor")]
-    //public class RSensor
-    //{
-    //    public double Temp0Degreecelcius { get; set; }
-    //    public double Temp1750Degreecelcius { get; set; }
-    //    public double Temp1000Degreecelcius { get; set; }
-    //}
-
-    //[Table("JSensor")]
-    //public class JSensor
-    //{
-    //    public double Temp0Degreecelcius { get; set; }
-    //    public double Temp400Degreecelcius { get; set; }
-    //    public double Temp700Degreecelcius { get; set; }
-    //}
-
+    public class CalibrationPoints
+    {
+        public string BatchNumber { get; set; }
+        public string CatlogId { get; set; }
+        public string Date { get; set; }
+        public string IPAddress { get; set; }
+        public string Current4mA { get; set; }
+        public string Current12mA { get; set; }
+        public string Current20mA { get; set; }
+        public string Voltage1V { get; set; }
+        public string Voltage5V { get; set; }
+        public string Voltage10V { get; set; }
+    }
 
 }

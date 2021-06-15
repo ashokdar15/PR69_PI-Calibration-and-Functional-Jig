@@ -870,6 +870,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
+                        //12mA
                     case "CALIBRATE_CURRENT":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -883,6 +884,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.CALIBRATE_FUNC_CODE, clsGlobalVariables.CURRENT);
                             }
+
+
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -893,6 +896,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
+                        //5V
                     case "CALIBRATE_VOLTAGE":
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
@@ -1045,7 +1049,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
-                    case "SET_OBSRVED_4MA_CNT":
+                        //4mA
+                    case "4mA_ANALOG_OP_TEST":
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
@@ -1064,6 +1069,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     //Value read from calibrator for 4mA Analog OP sensor is saved in log object
                                    // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_4 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
+
+                                    //Log
+
+
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBWriteMeasuredAnlopVal(clsGlobalVariables.MB_SET_CURRENT_OBSERVED_COUNT, clsGlobalVariables.MA_4, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1141,6 +1150,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     //Value read from calibrator for 20mA Analog OP sensor is saved in log object
                                   //  clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_20 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
+
+                                    //log
+
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBWriteMeasuredAnlopVal(clsGlobalVariables.MB_SET_CURRENT_OBSERVED_COUNT, clsGlobalVariables.MA_20, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1929,7 +1941,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                         break;
                                     }
                                     //Here vref value is stored in the datalog object.
-///clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT3.ToString();
+                                    ///clsGlobalVariables.objDataLog[DUT - 1].StrmRef_Vtg = clsGlobalVariables.fltgREF_VtgDUT3.ToString();
                                     ///Here vref value is added in the calib const array.
                                     clsGlobalVariables.strgarrCalibConstDUT3[clsGlobalVariables.VREF_VALUE] = clsGlobalVariables.objGlobalFunction.Float2Hex(clsGlobalVariables.fltgREF_VtgDUT3);
                                     //Pass status to VREF shape is set.

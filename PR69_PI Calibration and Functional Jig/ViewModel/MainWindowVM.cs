@@ -478,6 +478,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             EnableDisableUI(true);
         }
 
+        private ObservableCollection<CalibrationPoints> _ListCalibrationPoints;
+
+        public ObservableCollection<CalibrationPoints> ListCalibrationPoints
+        {
+            get { return _ListCalibrationPoints; }
+            set { _ListCalibrationPoints = value; OnPropertyChanged("ListCalibrationPoints"); }
+        }
+
+
         public MainWindowVM()
         {
             
@@ -502,6 +511,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _clsTotalTestsGroups = new ObservableCollection<clsTotalTestsGroups>();
             _TotalConnectedDevicesList = new ObservableCollection<clsTotalConnectedDevices>();
             _ListOfTests = new ObservableCollection<string>();
+            _ListCalibrationPoints = new ObservableCollection<CalibrationPoints>();
 
             ShowProductSelectionWindow();
 
@@ -665,7 +675,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             accuracyWindow.ShowDialog();
 
             AccuracyStopwatchTime = clsGlobalVariables.AccuracyStopwatchTime;
-            if (clsGlobalVariables.AccuracyStopwatchTime != null && AccuracyStopwatchTime != "")
+            if (clsGlobalVariables.AccuracyStopwatchTime != null && AccuracyStopwatchTime != "" && StopwatchTime != null && StopwatchTime != "")
             {
                 DateTime duration1 = DateTime.Parse(StopwatchTime);
                 DateTime duration2 = DateTime.Parse(AccuracyStopwatchTime);
@@ -676,8 +686,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 TotalStopwatchTime = TotalReqTime.ToString();
             }
-
-
+            
         }
 
         private void OkTestClk(object obj)
@@ -2345,7 +2354,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     ListOfTests.Add("1mA_ANALOG_OP_TEST");
 
                 if (catId.AnalogOpTests[0].SET_OBSRVED_4MA_CNT)
-                    ListOfTests.Add("SET_OBSRVED_4MA_CNT");
+                    ListOfTests.Add("4mA_ANALOG_OP_TEST");
 
                 if (catId.AnalogOpTests[0].SET_DFALT_20MA_CNT)
                     ListOfTests.Add("SET_DFALT_20MA_CNT");

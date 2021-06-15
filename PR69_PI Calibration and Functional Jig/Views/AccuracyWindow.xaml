@@ -61,14 +61,14 @@
                                         <GroupBox.Header>
                                             <TextBlock Text="mAmp" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                         </GroupBox.Header>
-                                        <DataGrid  AutoGenerateColumns="False" Background="#b2ebf2"                                 
+                                        <DataGrid  AutoGenerateColumns="False" Background="#b2ebf2" CanUserSortColumns="False"                                
                                               ItemsSource="{Binding Path=AccuracymAmpTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{ Binding Testnumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
                                                     Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                                     <DataGridTextColumn.Header>
-                                                        <Label Content="Sr. No." FontSize="15" FontWeight="Bold"/>
+                                                        <Label Content="Sr. No." FontSize="15" FontWeight="Bold" />
                                                     </DataGridTextColumn.Header>
                                                 </DataGridTextColumn>
                                                 <DataGridTextColumn Binding="{Binding TestPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
@@ -77,16 +77,31 @@
                                                         <Label Content="Actual Values" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding TestresultDevice1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
+                                                <DataGridTextColumn Binding="{Binding TestresultDevice1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto" 
                                                     Visibility="{Binding DeviceNumber1Vis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis},Source={x:Reference AccuracyVM}}">
                                                     <DataGridTextColumn.Header>
                                                         <Label Content="DUT1" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
+
+
                                                     </DataGridTextColumn.CellStyle>
                                                 </DataGridTextColumn>
                                                 <DataGridTextColumn Binding="{Binding TestresultDevice2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"  Width="auto"
@@ -95,7 +110,20 @@
                                                         <Label Content="DUT2" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
@@ -107,7 +135,20 @@
                                                         <Label Content="DUT3" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
@@ -119,7 +160,20 @@
                                                         <Label Content="DUT4" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
@@ -131,7 +185,20 @@
                                                         <Label Content="DUT5" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
@@ -143,7 +210,20 @@
                                                         <Label Content="DUT6" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <Style TargetType="DataGridCell">
+                                                        <!--<Style TargetType="DataGridCell">
+                                                            <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="Margin" Value="1 1 1 1"/>
+                                                        </Style>-->
+                                                        <Style  TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter VerticalAlignment="Center" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
@@ -160,7 +240,7 @@
                                         <GroupBox.Header>
                                             <TextBlock Text="Volt" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                         </GroupBox.Header>
-                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"                                           
+                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2" CanUserSortColumns="False"                                          
                                            ItemsSource="{Binding Path=AccuracyVoltTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>
@@ -262,7 +342,7 @@
                                         <GroupBox.Header>
                                             <TextBlock Text="PT100 Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                         </GroupBox.Header>
-                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"                                  
+                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2" CanUserSortColumns="False"                                 
                                            ItemsSource="{Binding Path=AccuracyPT100SnsrTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>
@@ -361,7 +441,7 @@
                                         <GroupBox.Header>
                                             <TextBlock Text="R Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                         </GroupBox.Header>
-                                        <DataGrid AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"                                  
+                                        <DataGrid AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"    CanUserSortColumns="False"                              
                                   ItemsSource="{Binding Path=AccuracyRSensorTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>
@@ -463,7 +543,7 @@
                                         <GroupBox.Header>
                                             <TextBlock Text="J Sensor" FontSize="15" Margin="5,0,10,0"></TextBlock>
                                         </GroupBox.Header>
-                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2"                                 
+                                        <DataGrid  AutoGenerateColumns="False" Margin="0 5 0 0" Background="#b2ebf2" CanUserSortColumns="False"                                
                                            ItemsSource="{Binding Path=AccuracyJSensorTestsDetails,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                                             <DataGrid.Columns>

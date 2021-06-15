@@ -211,6 +211,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             else
                             {
+
                                 btmRetVal = (byte)clsGlobalVariables.enmResponseError.Success;
                             }
                         }
