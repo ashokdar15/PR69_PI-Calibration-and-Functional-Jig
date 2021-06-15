@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PR69_PI_Calibration_and_Functional_Jig.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,6 +10,37 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsTC_RTDTests : INotifyPropertyChanged
     {
+
+        public clsTC_RTDTests()
+        {
+            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
+            {
+                IsPR43Product = true;
+                IsPR69Product = false;
+            }
+            else
+            {
+                IsPR43Product = false;
+                IsPR69Product = true;
+            }
+        }
+
+        private bool _IsPR43Product;
+
+        public bool IsPR43Product
+        {
+            get { return _IsPR43Product; }
+            set { _IsPR43Product = value; OnPropertyChanged("IsPR43Product"); }
+        }
+
+        private bool _IsPR69Product;
+
+        public bool IsPR69Product
+        {
+            get { return _IsPR69Product; }
+            set { _IsPR69Product = value; OnPropertyChanged("IsPR69Product"); }
+        }
+
 
         private bool _CALIB_MV_CNT;
 

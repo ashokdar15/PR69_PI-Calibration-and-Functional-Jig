@@ -99,29 +99,5 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             if (DG1.SelectedItem != null)
               DG1.ScrollIntoView(DG1.SelectedItem);
         }
-
-        private void gif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            gif.Position = new TimeSpan(0, 0, 1);
-            gif.Play();
-        }
-
-        private void gif4_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            gif4.Position = new TimeSpan(0, 0, 1);
-            gif4.Play();
-        }
-
-        private void gif3_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            gif3.Position = new TimeSpan(0, 0, 1);
-            gif3.Play();
-        }
-
-        private void gif2_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            gif2.Position = new TimeSpan(0, 0, 1);
-            gif2.Play();
-        }
     }
 }

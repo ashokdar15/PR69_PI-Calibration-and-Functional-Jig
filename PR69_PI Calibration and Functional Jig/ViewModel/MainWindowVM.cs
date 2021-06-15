@@ -25,8 +25,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public static InitilizeCommonObject initilizeCommonObject = new InitilizeCommonObject();
         //Constructor
         private async void btnStartClk(object obj)
-        {            
-
+        {
             CatIdList catId = clsGlobalVariables.Selectedcatid;
 
             clsGlobalVariables.accuracyWindow = new AccuracyWindow(); 
@@ -565,7 +564,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsGlobalVariables.strgHexFileFolderPath_PI = Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments) + "\\ConfigData\\PI";
                 }
             }
-            
+
+            GIFImgVisDUT1 = true;
+            GIFImgVisDUT2 = false;
+            GIFImgVisDUT3 = false;
+            GIFImgVisDUT4 = false;
+
+
         }
 
         private void ClearReadOnly(DirectoryInfo parentDirectory)
@@ -1833,6 +1838,39 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 OnPropertyChanged("NumberOfDUTs");
             }
         }
+
+        private bool _GIFImgVisDUT1;
+
+        public bool GIFImgVisDUT1
+        {
+            get { return _GIFImgVisDUT1; }
+            set { _GIFImgVisDUT1 = value; OnPropertyChanged("GIFImgVisDUT1"); }
+        }
+
+        private bool _GIFImgVisDUT2;
+
+        public bool GIFImgVisDUT2
+        {
+            get { return _GIFImgVisDUT2; }
+            set { _GIFImgVisDUT2 = value; OnPropertyChanged("GIFImgVisDUT2"); }
+        }
+
+        private bool _GIFImgVisDUT3;
+
+        public bool GIFImgVisDUT3
+        {
+            get { return _GIFImgVisDUT3; }
+            set { _GIFImgVisDUT3 = value; OnPropertyChanged("GIFImgVisDUT3"); }
+        }
+
+        private bool _GIFImgVisDUT4;
+
+        public bool GIFImgVisDUT4
+        {
+            get { return _GIFImgVisDUT4; }
+            set { _GIFImgVisDUT4 = value; OnPropertyChanged("GIFImgVisDUT4"); }
+        }
+        
         private ObservableCollection<string> _DeviceList;
 
         public ObservableCollection<string> DeviceTypeList

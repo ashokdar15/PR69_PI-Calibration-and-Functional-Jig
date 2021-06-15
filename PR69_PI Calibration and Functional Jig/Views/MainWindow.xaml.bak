@@ -444,14 +444,6 @@
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
                                         </xctk:RichTextBox>
-
-
-                                        <MediaElement Source="loadingspinner.gif" x:Name="gif" 
-                                                      UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif_MediaEnded"
-                                                      IsEnabled="True"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                                                      Visibility="{Binding Path=GIFImgVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                                        </MediaElement>
-
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                                      
@@ -512,13 +504,6 @@
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
                                         </xctk:RichTextBox>
-
-                                        <MediaElement Source="loadingspinner.gif" x:Name="gif2" 
-                                                      UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif2_MediaEnded"
-                                                      IsEnabled="True"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                                                      Visibility="{Binding Path=GIFImgVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                                        </MediaElement>
-
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 0 0 5"                                    
@@ -578,12 +563,6 @@
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
                                         </xctk:RichTextBox>
-
-                                        <MediaElement Source="loadingspinner.gif" x:Name="gif3" 
-                                                      UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif3_MediaEnded"
-                                                      IsEnabled="True"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                                                      Visibility="{Binding Path=GIFImgVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                                        </MediaElement>
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"                                                    
@@ -643,14 +622,6 @@
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
                                         </xctk:RichTextBox>
-
-
-                                        <MediaElement Source="loadingspinner.gif" x:Name="gif4" 
-                                                      UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif4_MediaEnded"
-                                                      IsEnabled="True"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
-                                                      Visibility="{Binding Path=GIFImgVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                                        </MediaElement>
-
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   

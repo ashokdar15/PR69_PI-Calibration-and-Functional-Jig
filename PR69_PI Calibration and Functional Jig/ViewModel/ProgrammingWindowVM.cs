@@ -60,6 +60,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 StatusInPercentage = 0;
                 strtestReport = "";
                 IsStartBtnEnable = false;
+
                 clsGlobalVariables.objGlobalFunction.GetAvailablePortName("");
 
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
@@ -86,16 +87,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             byte btmRetVal;
             string strmPath = "";
-
-            btmRetVal = CheckCOMPORT();
-            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+            if (clsGlobalVariables.strgComPortJIG == null || clsGlobalVariables.strgComPortJIG == "")
             {
-                clsMessages.DisplayMessage(clsMessageIDs.UNABLE_TO_CONNECT);
-                clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
-                MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
-                IsStartBtnEnable = true;
-                return;
-            }
+                btmRetVal = CheckCOMPORT();
+                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                {
+                    clsMessages.DisplayMessage(clsMessageIDs.UNABLE_TO_CONNECT);
+                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
+                    MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
+                    IsStartBtnEnable = true;
+                    return;
+                }
+            }            
+           
             //strgMotFileFolderPath_PR69_48x48
             //strgMotFileFolderPath_PR69_96x96
             //strgMotFileFolderPath_PR43_96x96

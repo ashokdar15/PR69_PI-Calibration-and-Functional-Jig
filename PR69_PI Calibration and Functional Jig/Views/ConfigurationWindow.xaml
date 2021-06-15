@@ -138,7 +138,7 @@
                                 <CheckBox Content="CALIBRATION 0to10V" 
                                       Grid.Column="2" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="{Binding clsAnalogOutputTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEnabled="True"
                                       IsChecked="{Binding clsAnalogOutputTests.SET_DFALT_1V_CNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
@@ -165,25 +165,25 @@
                                 <CheckBox Content="CALIB MV" 
                                       Grid.Column="0" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsTC_RTDTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsTC_RTDTests.CALIB_MV_CNT_PR69_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="CALIB PT100" 
                                       Grid.Column="1" Grid.Row="0" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsTC_RTDTests.IsPR69Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsTC_RTDTests.CALIB_PT100_PR69_PI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="CALIB MV(PR43)" 
                                       Grid.Column="0" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsTC_RTDTests.IsPR43Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsTC_RTDTests.CALIB_MV_CNT_PR43, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="CALIB PT100(PR43)" 
                                       Grid.Column="1" Grid.Row="1" Margin="20 20"
                                       HorizontalAlignment="Left" Width="auto"
-                                      IsEnabled="True"
+                                      IsEnabled="{Binding clsTC_RTDTests.IsPR43Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsChecked="{Binding clsTC_RTDTests.CALIB_PT100_PR43, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
@@ -407,7 +407,7 @@
 
                     <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
                                 Visibility="{Binding Path=CalibDelaysEditVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Edit Calibration Delays Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                        <TextBlock Text="Edit Calibration Delays Details(mSec)" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                             <Grid>
@@ -495,7 +495,7 @@
 
                     <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
                                 Visibility="{Binding Path=CalibDelaysPR43EditVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Edit Calibration Delays Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                        <TextBlock Text="Edit Calibration Delays Details(mSec)" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                             <Grid>
@@ -539,7 +539,7 @@
 
                     <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
                                 Visibility="{Binding Path=CalibDelaysPIEditVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Edit Calibration Delays PI Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
+                        <TextBlock Text="Edit Calibration Delays PI Details(mSec)" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" Margin="2 0 0 0">
                             <Grid>
@@ -1295,7 +1295,7 @@
                                     Content="Modbus Support"/>
 
                                 <TextBox Margin="15 5 0 0" HorizontalAlignment="Left" Width="auto" Grid.Column="3" Grid.Row="0"  
-                                    materialDesign:HintAssist.Hint="Stabilization Time" 
+                                    materialDesign:HintAssist.Hint="Stabilization Time (Sec)" 
                                     Text="{Binding Path=Communication_Start_Time, UpdateSourceTrigger=PropertyChanged}"
                                     IsReadOnly="{Binding Path=IsNotEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">

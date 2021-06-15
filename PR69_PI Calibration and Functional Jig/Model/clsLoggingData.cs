@@ -101,6 +101,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     using (SQLiteConnection conn = new SQLiteConnection(dabasePath))
                     {
                         conn.CreateTable<clsLoggingData>();
+
                         int rows = conn.Insert(Datalogging);
 
                         if (rows > 0)

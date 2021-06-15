@@ -20,7 +20,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private string DUT2Result = "";
         private string DUT3Result = "";
         private string DUT4Result = "";
-        private void StartAccuracyTestingClk(object obj)
+
+        private void btnStartClk(object obj)
         {
             bool DisplayMsg = true;
             stopBtnPress = false;
@@ -2202,7 +2203,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             StartBtnVis = true;
             StopBtnVis = false;
-            _StartAccuracyTesting = new RelayCommand(StartAccuracyTestingClk);
+            _StartAccuracyTesting = new RelayCommand(btnStartClk);
             tmrPVTimerTimeout.Tick += TmrPVTimerTimeout_Tick;
 
             _StopAccuracyTesting = new RelayCommand(Stoptesting);
