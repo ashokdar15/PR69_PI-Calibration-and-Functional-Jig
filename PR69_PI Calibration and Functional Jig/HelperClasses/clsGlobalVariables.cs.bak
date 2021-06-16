@@ -5,34 +5,56 @@ using System.Globalization;
 using PR69_PI_Calibration_and_Functional_Jig.Model;
 using PR69_PI_Calibration_and_Functional_Jig.ViewModel;
 using System.Collections.Generic;
+using PR69_PI_Calibration_and_Functional_Jig.Views;
+using System.Windows;
 
 namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 {
     public class clsGlobalVariables
     {
-       
-              
-        
+
+        public static ProgrammingWindowVM ObjprogVM = new ProgrammingWindowVM();
+        public enum Enmpointcalibration
+        {
+            P1 = 1,
+            P2 = 2,
+            P3 = 3,
+            P4 = 4,
+            P5 = 5,
+            P6 = 6,
+            P7 = 7,
+            P8 = 8,
+            P9 = 9,
+            P10 = 10,
+        }
+        public static Enmpointcalibration enmpointcalibration;
+
+        public static List<bool> listAccTest = new List<bool>();
+
+        public static IList<AccuracyTests> accuracyTests = null;
+
+        public static bool Validateaccuracytestbackcolor = false;
+
         #region"-----Enum------"
         //This enum is used for response error handling
         public enum enmResponseError
         {
             Success = 0,
-            Function_Code_Mismatch_err,
-            Address_Mismatch_err,
-            Data_Limit_Exceed_err,
-            Device_ID_Mismatch_err,
-            PageNo_err,
-            InvalidNoOfBytes_err,
-            Invalid_Password_err,
-            Incorrect_CRC_Err,
-            Invalid_ModbusID_err,
-            QueryLength_Exceed_Err,
-            Invalid_SubFunctionCode_Err,
-            Failed,
-            Data_Receive_Failed,
-            ERR_While_Sending_Data,
-            Timeout_Err,
+            Function_Code_Mismatch_err = 1,
+            Address_Mismatch_err = 2,
+            Data_Limit_Exceed_err = 3,
+            Device_ID_Mismatch_err= 4,
+            PageNo_err = 5,
+            InvalidNoOfBytes_err = 6,
+            Invalid_Password_err = 7,
+            Incorrect_CRC_Err = 8,
+            Invalid_ModbusID_err = 9,
+            QueryLength_Exceed_Err = 10,
+            Invalid_SubFunctionCode_Err = 11,
+            Failed = 12,
+            Data_Receive_Failed = 13,
+            ERR_While_Sending_Data = 14,
+            Timeout_Err = 15,
             Max_Retries_Reached_Err,
             Accuracy_Test_Not_Done,
             Invalid_data,
@@ -123,8 +145,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         //public static MainWindowVM MainWindowVM = null;
         public static MainWindowVM mainWindowVM = null;
 
+        public static AccuracyWindow accuracyWindow = null;
+
         public static int FAILURE = -1;
         public static int SUCCESS = 0;
+
+        public static string AccuracyStopwatchTime = ""; 
 
         public static CatIdList Selectedcatid = new CatIdList();
         public static string SelectedDeviceNameOfTreeView = "";
@@ -132,6 +158,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string DispImgpath = "";
         public static AccuracyParameter strAccuracyParameter;
         //public static EnmConnectedDevices strConnectedDevice;
+
+        public static string PR69_96x96 = "PR69_96x96";
+        public static string PR69_48x48 = "PR69_48x48";
+        public static string PR43_96x96 = "PR43_96x96";
+        public static string PR43_48x48 = "PR43_48x48";
+        public static string PI = "Process Indicator";
+
+        public static string strgMotFileFolderPath_PR69_48x48 = "";
+        public static string strgMotFileFolderPath_PR69_96x96 = "";
+        public static string strgMotFileFolderPath_PR43_96x96 = "";
+        public static string strgMotFileFolderPath_PR43_48x48 = "";
+        public static string strgHexFileFolderPath_PI = "";
 
         public enum SelectedDeviceType
         {
@@ -149,6 +187,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             PT100Sensor,
             RSensor,
             JSensor
+        }
+
+        public enum DataLogStatus
+        {
+            Valid = 0,
+            Invalid = 1,
+            DatabaseConectionFailed = 3,
+            DataLogged = 4,
+            DataLoggedFailed = 5,            
+            NoRecordFound = 6,
+            ExceptionHandeled = 7
         }
 
         //Add to list of AccuracyTestsSequence
@@ -204,7 +253,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static clsProgrammingJIGQuery objProgramingQrycls = new clsProgrammingJIGQuery();  
         public static CultureInfo objCultureinfo = CultureInfo.CreateSpecificCulture("en-US");   
         public static clsTestJIGFunctions objTestJIGFunctions = new clsTestJIGFunctions();
-        public static clsDataLog []objDataLog = new clsDataLog[4];
+        public static clsLoggingData[] objDataLog = new clsLoggingData[4];
         //CA55public static Forms.frmProgramming objfrmProgramming = new PR69_Function_and_Calibration_JIG.Forms.frmProgramming();
         //CA55public static PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage objPictMsg = new PR69_Function_and_Calibration_JIG.Forms.frmPictureMessage();
         //-------Changed By Shubham
@@ -233,6 +282,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;
         public static List<byte> NUMBER_OF_DUTS_List = new List<byte>();
+        public static List<byte> NUMBER_OF_FAIL_DUTS_List = new List<byte>();
         public static int OLD_NUMBER_OF_DUTS = 0;
         public static int igTYPE_OF_DEVICE = 1;
         public static int ig_Query_TimeOut = 16000;
@@ -371,10 +421,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int[] arrigKeysValue = new int[4];
         public static string[] arrstrgKeysNames = new string[4];
         public const byte NUM_OF_KEYS = 4;
-        public const string strgEnter = "ENTER";
-        public const string strgUP = "UP";
-        public const string strgDOWN = "DOWN";
-        public const string strgESC = "ESC";
+        public const string strgEnter = "    ENTER";
+        public const string strgUP    = "        UP";
+        public const string strgDOWN  = "     DOWN";
+        public const string strgESC   = "      ESC";
 
         public const int igESCVal = 0x10;        
         public const int igUPKeyVal = 0x40;
@@ -396,7 +446,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte CALIB_DONE = 2;
 
         //public const byte MB_DUT_ID = 0x1;
-        public const byte MB_DUT_ID_WM_BASE = 0x0;
+        public const byte MB_DUT_ID_WM_BASE = 0x9;
+        public const byte MB_TTL_COM_MODE = 0x1;
+        public const byte MB_1WIRE_COM_MODE = 0x2;
         public const byte MB_SLAVE_ID_WO_BASE = 0x9;
         //public const byte MB_SLAVE1_ID = 0xA;
        // public const byte MB_SLAVE2_ID = 0xB;
@@ -445,6 +497,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public const byte MB_READ_HOLDIND_REG = 3;
         public const byte MB_WRITE_HOLDIND_REG = 6;
+        public const byte MB_WRITE_CHANGE_COMM_MODE = 120;
 
         public static byte MB_MASTER_TO_DUT = 100;
         public const byte MB_READ_CALIB_CONST_STATUS = 101;
@@ -640,10 +693,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int One_VOLT_MAX_PI = 1030;
         public static int One_VOLT_MIN_PI = 960;
         public static int TEN_VOLT_MAX = 10080;
-        public static int TEN_VOLT_MIN = 9920;
+        public static int TEN_VOLT_MIN = 9900;
         public static int TEN_VOLT_MAX_PI = 10470;
         public static int TEN_VOLT_MIN_PI = 9750;
-        public static int FOUR_mAMP_MAX = 4100;
+        public static int FOUR_mAMP_MAX = 4200;
         public static int FOUR_mAMP_MIN = 3900;
         public static int ONE_mAMP_MAX_PI = 1050;//0.9538               1.0129
         public static int ONE_mAMP_MIN_PI = 950;
@@ -754,6 +807,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int ONEVolt_DELAY_AFTER_STARTMODE = 20000;
         public static int ONEVolt_DELAY_AFTER_RUNMODE = 20000;
         //-------Changed By Shubham
+
 
         public static int mA_V_AccuracyDelay = 10000;
         public static int PT100_AccuracyDelay = 30000;
@@ -940,10 +994,29 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         internal static byte OP1_DUT2_PLC_ON_Number = 28;
         internal static byte OP1_DUT3_PLC_ON_Number = 32;
         internal static byte OP1_DUT4_PLC_ON_Number = 36;
+
+        internal static byte OP1_DUT1_NC_PLC_ON_Number = 40;
+        internal static byte OP1_DUT2_NC_PLC_ON_Number = 44;
+        internal static byte OP1_DUT3_NC_PLC_ON_Number = 48;
+        internal static byte OP1_DUT4_NC_PLC_ON_Number = 52;
+
+        internal static byte OP2_DUT1_PLC_ON_Number = 26;
+        internal static byte OP2_DUT2_PLC_ON_Number = 30;
+        internal static byte OP2_DUT3_PLC_ON_Number = 34;
+        internal static byte OP2_DUT4_PLC_ON_Number = 38;
+
+        internal static byte OP3_DUT1_PLC_ON_Number = 25;
+        internal static byte OP3_DUT2_PLC_ON_Number = 29;
+        internal static byte OP3_DUT3_PLC_ON_Number = 33;
+        internal static byte OP3_DUT4_PLC_ON_Number = 37;
         internal static int DUT1=1;
         internal static int DUT2=2;
         internal static int DUT3=3;
         internal static int DUT4=4;
+
+        public static bool IsFileChanged = false;
+
+        public static string DatabasePath = "";
     }
     public static class clsModelSettings
     {

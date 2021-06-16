@@ -202,6 +202,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.MB_MASTER_TO_DUT = 200;
             else
                 clsGlobalVariables.MB_MASTER_TO_DUT = 100;
+
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
@@ -566,9 +567,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
 
             GIFImgVisDUT1 = true;
-            GIFImgVisDUT2 = false;
-            GIFImgVisDUT3 = false;
-            GIFImgVisDUT4 = false;
+            GIFImgVisDUT2 = true;
+            GIFImgVisDUT3 = true;
+            GIFImgVisDUT4 = true;
 
 
         }

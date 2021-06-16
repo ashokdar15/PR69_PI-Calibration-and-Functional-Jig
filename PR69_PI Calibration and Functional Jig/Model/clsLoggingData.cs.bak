@@ -20,57 +20,57 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string BatchNumber { get; set; }
         [NotNull]
         public string CatlogId { get; set; }
-        
+        [NotNull]
         public double CalibrationPoint1mV { get; set; }
-        
+        [NotNull]
         public double CalibrationPoint5mV { get; set; }
-        
+        [NotNull]
         public double SSROutput { get; set; }
-       
+        [NotNull]
         public double CJCOutput { get; set; }
-       
+        [NotNull]
         public double VDC24Volt { get; set; }
-        
+        [NotNull]
         public double AnalogInputCurrent1 { get; set; }
-        
+        [NotNull]
         public double AnalogInputCurrent2 { get; set; }
-        
+        [NotNull]
         public double AnalogInputCurrent3 { get; set; }
-        
+        [NotNull]
         public double OutputVoltage1 { get; set; }
-        
+        [NotNull]
         public double OutputVoltage2 { get; set; }
-        
+        [NotNull]
         public double OutputVoltage3 { get; set; }
-        
+        [NotNull]
         public double InputCurrent4mA { get; set; }
-        
+        [NotNull]
         public double InputCurrent12mA { get; set; }
-        
+        [NotNull]
         public double InputCurrent20mA { get; set; }
-        
+        [NotNull]
         public double InputVoltage1V { get; set; }
-        
+        [NotNull]
         public double InputVoltage5V { get; set; }
-        
+        [NotNull]
         public double InputVoltage10V { get; set; }
-        
+        [NotNull]
         public double PT100SensTemp1 { get; set; }
-        
+        [NotNull]
         public double PT100SensTemp2 { get; set; }
-       
+        [NotNull]
         public double PT100SensTemp3 { get; set; }
-       
+        [NotNull]
         public double RSensTemp1 { get; set; }
-       
+        [NotNull]
         public double RSensTemp2 { get; set; }
-       
+        [NotNull]
         public double RSensTemp3 { get; set; }
-    
+        [NotNull]
         public double JSensTemp1 { get; set; }
-    
+        [NotNull]
         public double JSensTemp2 { get; set; }
-        
+        [NotNull]
         public double JSensTemp3 { get; set; }
 
         //public clsAnalogOPCurrrent clsAnalogOPCurrrent { get; set; }

@@ -988,6 +988,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
          public const byte Case_WithoutAnalogOP_WithAnalogIP = 3;
         #endregion
 
+
+        public static byte[] Relay_SSR_OP2_OP3_TEST = new byte[] {10, 14, 18, 22 }; //Optimisation
+        public static byte[] OP_SSR_TEST = new byte[] {9, 13, 17, 21 }; //Optimisation
+
         public static Int32 PLC_ZIG_COMM_DELAY = 100;
         public static Int32 PLC_ZIG_MODBUS_DELAY = 100;
         internal static byte OP1_DUT1_PLC_ON_Number = 24;
