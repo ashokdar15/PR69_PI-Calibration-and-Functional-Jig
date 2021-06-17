@@ -509,26 +509,26 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Width="auto"
-                                    materialDesign:HintAssist.Hint="mV Start Delay" 
-                                    Text="{Binding clsCalibrationDelaysPR43.OnemVOrFiftymVStartModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="PT100 Start Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.PT100_Start_Delay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
 
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Width="auto"
-                                    materialDesign:HintAssist.Hint="mV Run Delay" 
-                                    Text="{Binding clsCalibrationDelaysPR43.OnemVOrFiftymVRunModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="PT100 Run Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.PT100_Run_Delay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
 
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Width="auto"
-                                    materialDesign:HintAssist.Hint="ohm Start Delay" 
-                                    Text="{Binding clsCalibrationDelaysPR43.ThreeFiftyOhmStartModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="PT313 Start Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.PT313_Start_Delay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
 
                                 <TextBox Margin="10 10" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="auto"
-                                    materialDesign:HintAssist.Hint="ohm Run Delay" 
-                                    Text="{Binding clsCalibrationDelaysPR43.ThreeFiftyOhmRunModeDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="PT313 Run Delay" 
+                                    Text="{Binding clsCalibrationDelaysPR43.PT313_Run_Delay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     ToolTip=""></TextBox>
 

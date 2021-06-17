@@ -52,6 +52,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             StopwatchTime = "00:00:00";
             AccuracyStopwatchTime = "00:00:00";
             TotalStopwatchTime = "00:00:00";
+            clsGlobalVariables._StopFlag = false;
 
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
             //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
@@ -185,6 +186,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //1. DUT Number
             //2. Test Number
             //3. Test Status
+
+            EnableProcessingWindow(clsGlobalVariables.AllDUTON);
+
             clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
             //If usr change number of device then need to find com port again.
 
@@ -208,6 +212,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
                 //almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
                 FailurHandel();
+                EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
                 EnableDisableUI(true);
                 return;
                 //PLC off
@@ -251,7 +256,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.CurrentTestNumber = imLoopCntr + 1;
                 if (clsGlobalVariables._StopFlag)
                 {
-
+                    EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
                     clsGlobalVariables.objGlobalFunction.PLC_OFF();
                     CloseAllComport();
                     EnableDisableUI(true);
@@ -476,6 +481,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
 
             EnableDisableUI(true);
+            EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
         }
 
         private ObservableCollection<CalibrationPoints> _ListCalibrationPoints;
@@ -566,12 +572,63 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
             }
 
-            GIFImgVisDUT1 = true;
-            GIFImgVisDUT2 = true;
-            GIFImgVisDUT3 = true;
-            GIFImgVisDUT4 = true;
+            GIFImgVisDUT1 = false;
+            GIFImgVisDUT2 = false;
+            GIFImgVisDUT3 = false;
+            GIFImgVisDUT4 = false;
 
 
+        }
+
+        public void EnableProcessingWindow(int DutNumber)
+        {
+            switch (DutNumber)
+            {
+                case clsGlobalVariables.DUT1:
+                    GIFImgVisDUT1 = true;
+                    GIFImgVisDUT2 = false;
+                    GIFImgVisDUT3 = false;
+                    GIFImgVisDUT4 = false;
+                    break;
+
+                case clsGlobalVariables.DUT2:
+                    GIFImgVisDUT1 = false;
+                    GIFImgVisDUT2 = true;
+                    GIFImgVisDUT3 = false;
+                    GIFImgVisDUT4 = false;
+                    break;
+
+                case clsGlobalVariables.DUT3:
+                    GIFImgVisDUT1 = false;
+                    GIFImgVisDUT2 = false;
+                    GIFImgVisDUT3 = true;
+                    GIFImgVisDUT4 = false;
+                    break;
+
+                case clsGlobalVariables.DUT4:
+                    GIFImgVisDUT1 = false;
+                    GIFImgVisDUT2 = false;
+                    GIFImgVisDUT3 = false;
+                    GIFImgVisDUT4 = true;
+                    break;
+
+                case clsGlobalVariables.AllDUTON:
+                    GIFImgVisDUT1 = true;
+                    GIFImgVisDUT2 = true;
+                    GIFImgVisDUT3 = true;
+                    GIFImgVisDUT4 = true;
+                    break;
+
+                case clsGlobalVariables.ALLDUTOFF:
+                    GIFImgVisDUT1 = false;
+                    GIFImgVisDUT2 = false;
+                    GIFImgVisDUT3 = false;
+                    GIFImgVisDUT4 = false;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void ClearReadOnly(DirectoryInfo parentDirectory)
@@ -1915,7 +1972,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void btnStopClk(object obj)
         {
-            StartBtnVis = true;
+            clsGlobalVariables._StopFlag = true;
+            //StartBtnVis = true;
             StopBtnVis = false;
             tmrMbTimer.Dispose();
         }
@@ -2687,6 +2745,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsModelSettings.igDutID = Selectedcatid.DeviceId;
                     clsGlobalVariables.selectedDeviceType = GetDevicetypeFromString(SelectedDeviceType);
                     clsModelSettings.blnRS485Flag = Selectedcatid.ModbusSupport;
+
+                    ApplyCalibrationDelays(clsGlobalVariables.selectedDeviceType);
+
                     hide();
                     break;
                 case "Yes":
@@ -2717,6 +2778,52 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
             
+        }
+
+        private void ApplyCalibrationDelays(SelectedDeviceType selectedDeviceType)
+        {
+            switch (selectedDeviceType)
+            {
+                case clsGlobalVariables.SelectedDeviceType.PR69_48x48:
+                case clsGlobalVariables.SelectedDeviceType.PR69_96x96:
+
+                    clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelays[0].ONEmV_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelays[0].ONEmV_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelays[0].FOURmA_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelays[0].FOURmA_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelays[0].ONEVolt_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelays[0].ONEVolt_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelays[0].PT100_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelays[0].PT100_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.CALIB_MEASURE_DELAY = CatId[0].CalibrationDelays[0].CALIB_MEASURE_DELAY;
+                    clsGlobalVariables.VREF_READ_DELAY_STARTMODE = CatId[0].CalibrationDelays[0].VREF_READ_DELAY_STARTMODE;
+                    clsGlobalVariables.VREF_READ_DELAY_RUNMODE = CatId[0].CalibrationDelays[0].VREF_READ_DELAY_RUNMODE;
+
+                    break;
+                
+                case clsGlobalVariables.SelectedDeviceType.PI:
+                    
+                    clsGlobalVariables.ONEmV_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPI[0].ONEmV_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.ONEmV_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPI[0].ONEmV_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.FOURmA_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPI[0].FOURmA_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.FOURmA_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPI[0].FOURmA_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.ONEVolt_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.ONEVolt_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.PT100_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPI[0].PT100_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.PT100_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPI[0].PT100_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.CALIB_MEASURE_DELAY = CatId[0].CalibrationDelaysPI[0].CALIB_MEASURE_DELAY;
+
+                    break;
+                case clsGlobalVariables.SelectedDeviceType.PR43_48x48:
+                case clsGlobalVariables.SelectedDeviceType.PR43_96x96:
+                    clsGlobalVariables.PT100_PR43_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPR43[0].PT100_PR43_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.PT100_PR43_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPR43[0].PT100_PR43_DELAY_AFTER_RUNMODE;
+                    clsGlobalVariables.PT313_DELAY_AFTER_STARTMODE = CatId[0].CalibrationDelaysPR43[0].PT313_DELAY_AFTER_STARTMODE;
+                    clsGlobalVariables.PT313_DELAY_AFTER_RUNMODE = CatId[0].CalibrationDelaysPR43[0].PT313_DELAY_AFTER_RUNMODE;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private SelectedDeviceType GetDevicetypeFromString(string selectedDeviceType)

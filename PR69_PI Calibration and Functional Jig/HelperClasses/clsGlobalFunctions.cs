@@ -923,6 +923,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             clsGlobalVariables.blngApplyDelayOver = false;
         }
 
+        public void Refresh()
+        {
+            Application.DoEvents();
+            
+        }
+
 
         ///<MemberName>ConvertCounts</MemberName>
         ///<MemberType>Function</MemberType>

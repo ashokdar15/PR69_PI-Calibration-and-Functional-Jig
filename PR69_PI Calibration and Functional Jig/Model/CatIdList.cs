@@ -168,42 +168,41 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
     public class CalibrationDelays
     {
-        public int OnemVOrFiftymVStartModeDelay { get; set; }
-        public int OnemVOrFiftymVRunModeDelay { get; set; }
-        public int ThreeFiftyOhmStartModeDelay { get; set; }
-        public int ThreeFiftyOhmRunModeDelay { get; set; }
-        public int FourmAORTwentymAStartModeDelay { get; set; }
-        public int FourmAORTwentymARunModeDelay { get; set; }
-        public int OneVoltOrNineVoltStartModeDelay { get; set; }
-        public int OneVoltOrNineVoltRunModeDelay { get; set; }
-        public int AnalogOutputObservedValueDelay { get; set; }
-        public int VREFReadDelayStartMode { get; set; }
-        public int VREFReadDelayRunMode { get; set; }
+        public int ONEmV_DELAY_AFTER_STARTMODE { get; set; }
+        public int ONEmV_DELAY_AFTER_RUNMODE { get; set; }
+        public int PT100_DELAY_AFTER_STARTMODE { get; set; }
+        public int PT100_DELAY_AFTER_RUNMODE { get; set; }
+        public int FOURmA_DELAY_AFTER_STARTMODE { get; set; }
+        public int FOURmA_DELAY_AFTER_RUNMODE { get; set; }
+        public int ONEVolt_DELAY_AFTER_STARTMODE { get; set; }
+        public int ONEVolt_DELAY_AFTER_RUNMODE { get; set; }
+        public int CALIB_MEASURE_DELAY { get; set; }
+        public int VREF_READ_DELAY_STARTMODE { get; set; }
+        public int VREF_READ_DELAY_RUNMODE { get; set; }
 
     }
 
     public class CalibrationDelaysPR43
     {
-        public int OnemVOrFiftymVStartModeDelay { get; set; }
-        public int OnemVOrFiftymVRunModeDelay { get; set; }
-        public int ThreeFiftyOhmStartModeDelay { get; set; }
-        public int ThreeFiftyOhmRunModeDelay { get; set; }
+        public int PT100_PR43_DELAY_AFTER_STARTMODE { get; set; }
+        public int PT100_PR43_DELAY_AFTER_RUNMODE { get; set; }
+        public int PT313_DELAY_AFTER_STARTMODE { get; set; }
+        public int PT313_DELAY_AFTER_RUNMODE { get; set; }
        
     }
 
     public class CalibrationDelaysPI
     {
-        public int OnemVOrFiftymVStartModeDelay { get; set; }
-        public int OnemVOrFiftymVRunModeDelay { get; set; }
-        public int ThreeFiftyOhmStartModeDelay { get; set; }
-        public int ThreeFiftyOhmRunModeDelay { get; set; }
-        public int FourmAORTwentymAStartModeDelay { get; set; }
-        public int FourmAORTwentymARunModeDelay { get; set; }
-        public int OneVoltOrNineVoltStartModeDelay { get; set; }
-        public int OneVoltOrNineVoltRunModeDelay { get; set; }
-        public int AnalogOutputObservedValueDelay { get; set; }
+        public int ONEmV_DELAY_AFTER_STARTMODE { get; set; }
+        public int ONEmV_DELAY_AFTER_RUNMODE { get; set; }
+        public int PT100_DELAY_AFTER_STARTMODE { get; set; }
+        public int PT100_DELAY_AFTER_RUNMODE { get; set; }
+        public int FOURmA_DELAY_AFTER_STARTMODE { get; set; }
+        public int FOURmA_DELAY_AFTER_RUNMODE { get; set; }
+        public int ONEVolt_DELAY_AFTER_STARTMODE { get; set; }
+        public int ONEVolt_DELAY_AFTER_RUNMODE { get; set; }
+        public int CALIB_MEASURE_DELAY { get; set; }
        
-
     }
 
     public class TolerancesOfPI

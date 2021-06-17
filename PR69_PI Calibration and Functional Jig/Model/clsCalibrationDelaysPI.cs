@@ -87,16 +87,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         {
             try
             {
-                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].OnemVOrFiftymVStartModeDelay;
-                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].OnemVOrFiftymVRunModeDelay;
-                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ThreeFiftyOhmStartModeDelay;
-                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ThreeFiftyOhmRunModeDelay;
-                FourmAORTwentymAStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].FourmAORTwentymAStartModeDelay;
-                FourmAORTwentymARunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].FourmAORTwentymARunModeDelay;
+                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEmV_DELAY_AFTER_STARTMODE;
+                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEmV_DELAY_AFTER_RUNMODE;
+                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_STARTMODE;
+                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_RUNMODE;
+                FourmAORTwentymAStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].FOURmA_DELAY_AFTER_STARTMODE;
+                FourmAORTwentymARunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].FOURmA_DELAY_AFTER_RUNMODE;
                
-                OneVoltOrNineVoltStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].OneVoltOrNineVoltStartModeDelay;
-                OneVoltOrNineVoltRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].OneVoltOrNineVoltRunModeDelay;
-                AnalogOutputObservedValueDelay = ModifiedCatId[0].CalibrationDelaysPI[0].AnalogOutputObservedValueDelay;
+                OneVoltOrNineVoltStartModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_STARTMODE;
+                OneVoltOrNineVoltRunModeDelay = ModifiedCatId[0].CalibrationDelaysPI[0].ONEVolt_DELAY_AFTER_RUNMODE;
+                AnalogOutputObservedValueDelay = ModifiedCatId[0].CalibrationDelaysPI[0].CALIB_MEASURE_DELAY;
             }
             catch (Exception)
             {
@@ -110,15 +110,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 CalibrationDelaysPI CalibConstdelays = new CalibrationDelaysPI()
                 {
-                    OnemVOrFiftymVStartModeDelay = OnemVOrFiftymVStartModeDelay,
-                    OnemVOrFiftymVRunModeDelay = OnemVOrFiftymVRunModeDelay,
-                    ThreeFiftyOhmStartModeDelay = ThreeFiftyOhmStartModeDelay,
-                    ThreeFiftyOhmRunModeDelay = ThreeFiftyOhmRunModeDelay,
-                    FourmAORTwentymAStartModeDelay = FourmAORTwentymAStartModeDelay,
-                    FourmAORTwentymARunModeDelay = FourmAORTwentymARunModeDelay,
-                    OneVoltOrNineVoltStartModeDelay = OneVoltOrNineVoltStartModeDelay,
-                    OneVoltOrNineVoltRunModeDelay = OneVoltOrNineVoltRunModeDelay,
-                    AnalogOutputObservedValueDelay = AnalogOutputObservedValueDelay
+                    ONEmV_DELAY_AFTER_STARTMODE = OnemVOrFiftymVStartModeDelay,
+                    ONEmV_DELAY_AFTER_RUNMODE = OnemVOrFiftymVRunModeDelay,
+                    ONEVolt_DELAY_AFTER_STARTMODE = ThreeFiftyOhmStartModeDelay,
+                    ONEVolt_DELAY_AFTER_RUNMODE = ThreeFiftyOhmRunModeDelay,
+                    FOURmA_DELAY_AFTER_STARTMODE = FourmAORTwentymAStartModeDelay,
+                    FOURmA_DELAY_AFTER_RUNMODE = FourmAORTwentymARunModeDelay,
+                    PT100_DELAY_AFTER_RUNMODE = OneVoltOrNineVoltStartModeDelay,
+                    PT100_DELAY_AFTER_STARTMODE = OneVoltOrNineVoltRunModeDelay,
+                    CALIB_MEASURE_DELAY = AnalogOutputObservedValueDelay
                     
                 };
 

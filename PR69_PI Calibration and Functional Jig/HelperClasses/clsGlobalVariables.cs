@@ -151,6 +151,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int SUCCESS = 0;
 
         public static string AccuracyStopwatchTime = ""; 
+        public static bool ComPortJIGforProgramming = false; 
 
         public static CatIdList Selectedcatid = new CatIdList();
         public static string SelectedDeviceNameOfTreeView = "";
@@ -802,6 +803,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static int PT100_PR43_DELAY_AFTER_RUNMODE = 30000;
         public static int ONEmV_DELAY_AFTER_STARTMODE = 20000;
         public static int ONEmV_DELAY_AFTER_RUNMODE = 20000;
+        public static int FOURTY_SEVEN_DELAY_AFTER_RUNMODE = 20000;
         public static int FOURmA_DELAY_AFTER_STARTMODE = 20000;
         public static int FOURmA_DELAY_AFTER_RUNMODE = 20000;
         public static int ONEVolt_DELAY_AFTER_STARTMODE = 20000;
@@ -991,32 +993,42 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public static byte[] Relay_SSR_OP2_OP3_TEST = new byte[] {10, 14, 18, 22 }; //Optimisation
         public static byte[] OP_SSR_TEST = new byte[] {9, 13, 17, 21 }; //Optimisation
+        public static byte[] OP1_DUT1_PLC_ON_Number = new byte[] {24, 28, 32, 36 }; //Optimisation
+        public static byte[] OP1_DUT1_NC_PLC_ON_Number = new byte[] {40, 44, 48, 52 }; //Optimisation
+        public static byte[] OP2_DUT1_PLC_ON_Number = new byte[] {26, 30, 34, 38 }; //Optimisation
+        public static byte[] OP3_DUT1_PLC_ON_Number = new byte[] {25, 29, 33, 37 }; //Optimisation
 
         public static Int32 PLC_ZIG_COMM_DELAY = 100;
         public static Int32 PLC_ZIG_MODBUS_DELAY = 100;
-        internal static byte OP1_DUT1_PLC_ON_Number = 24;
-        internal static byte OP1_DUT2_PLC_ON_Number = 28;
-        internal static byte OP1_DUT3_PLC_ON_Number = 32;
-        internal static byte OP1_DUT4_PLC_ON_Number = 36;
+        //internal static byte OP1_DUT1_PLC_ON_Number = 24;
+        //internal static byte OP1_DUT2_PLC_ON_Number = 28;
+        //internal static byte OP1_DUT3_PLC_ON_Number = 32;
+        //internal static byte OP1_DUT4_PLC_ON_Number = 36;
 
-        internal static byte OP1_DUT1_NC_PLC_ON_Number = 40;
-        internal static byte OP1_DUT2_NC_PLC_ON_Number = 44;
-        internal static byte OP1_DUT3_NC_PLC_ON_Number = 48;
-        internal static byte OP1_DUT4_NC_PLC_ON_Number = 52;
+        //internal static byte OP1_DUT1_NC_PLC_ON_Number = 40;
+        //internal static byte OP1_DUT2_NC_PLC_ON_Number = 44;
+        //internal static byte OP1_DUT3_NC_PLC_ON_Number = 48;
+        //internal static byte OP1_DUT4_NC_PLC_ON_Number = 52;
 
-        internal static byte OP2_DUT1_PLC_ON_Number = 26;
-        internal static byte OP2_DUT2_PLC_ON_Number = 30;
-        internal static byte OP2_DUT3_PLC_ON_Number = 34;
-        internal static byte OP2_DUT4_PLC_ON_Number = 38;
+        //internal static byte OP2_DUT1_PLC_ON_Number = 26;
+        //internal static byte OP2_DUT2_PLC_ON_Number = 30;
+        //internal static byte OP2_DUT3_PLC_ON_Number = 34;
+        //internal static byte OP2_DUT4_PLC_ON_Number = 38;
 
-        internal static byte OP3_DUT1_PLC_ON_Number = 25;
-        internal static byte OP3_DUT2_PLC_ON_Number = 29;
-        internal static byte OP3_DUT3_PLC_ON_Number = 33;
-        internal static byte OP3_DUT4_PLC_ON_Number = 37;
-        internal static int DUT1=1;
-        internal static int DUT2=2;
-        internal static int DUT3=3;
-        internal static int DUT4=4;
+        //internal static byte OP3_DUT1_PLC_ON_Number = 25;
+        //internal static byte OP3_DUT2_PLC_ON_Number = 29;
+        //internal static byte OP3_DUT3_PLC_ON_Number = 33;
+        //internal static byte OP3_DUT4_PLC_ON_Number = 37;
+
+        internal const int DUT1 = 1;
+        internal const int DUT2 = 2;
+        internal const int DUT3 = 3;
+        internal const int DUT4 = 4;
+
+        internal const int AllDUTON = 5;
+        internal const int ALLDUTOFF = 6;
+
+
 
         public static bool IsFileChanged = false;
 

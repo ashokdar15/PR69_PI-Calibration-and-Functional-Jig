@@ -23,8 +23,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             strtestReport = "Start Program";
             _btnStartProgram = new RelayCommand(btnStartProgramClk);
             _StopProgramBtn = new RelayCommand(btnStopProgramClk);
-            IsStartBtnEnable = true;
-            IsStopBtnEnable = false;
+            EnableUI(true);
 
             if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
             { 
@@ -48,7 +47,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
         private void btnStopProgramClk(object obj)
         {
-            
+            clsGlobalVariables.StopButtonFlagPIProgramming = true;
+            EnableUI(true);
         }
 
         private async void btnStartProgramClk(object obj)
@@ -59,7 +59,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 CurrentValue = 0;// clsGlobalVariables.objfrmProgramming.prgBar.Minimum;                 
                 StatusInPercentage = 0;
                 strtestReport = "";
-                IsStartBtnEnable = false;
+                EnableUI(false);
 
                 clsGlobalVariables.objGlobalFunction.GetAvailablePortName("");
 
@@ -72,8 +72,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     ExecuteProgramPI();
                 }
-                
-                IsStartBtnEnable = true;
+
+                EnableUI(true);
             }
             catch (Exception ex)
             {
@@ -87,7 +87,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             byte btmRetVal;
             string strmPath = "";
-            if (clsGlobalVariables.strgComPortJIG == null || clsGlobalVariables.strgComPortJIG == "")
+            if (clsGlobalVariables.ComPortJIGforProgramming == true)
             {
                 btmRetVal = CheckCOMPORT();
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -95,7 +95,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.DisplayMessage(clsMessageIDs.UNABLE_TO_CONNECT);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
             }            
@@ -179,7 +179,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //thread1.Priority = ThreadPriority.Highest;
             //thread1.Start();
 
-            StartProgram();
+            StartProgram(FilePath);
         }
 
         private void ClearLog()
@@ -187,19 +187,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             strtestReport = "";
         }
 
-        private void _EnableUI(bool state)
+        private void EnableUI(bool state)
         {
            IsStartBtnEnable = state;
            IsStopBtnEnable = !state;
-           chkbatchProgramming = state;
-           chkSkipCalibration = state;
+           IsBatchProgEnable = state;
         }
 
         private void AddMessageOnUI(string sTOP_PROGRAMMING, int value)
         {
             System.Windows.Application.Current.Dispatcher.Invoke(delegate {
                 // update UI
-                clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
+               clsGlobalVariables.objGlobalFunction.Refresh();
                strtestReport += sTOP_PROGRAMMING;
                CurrentValue = value;
                StatusInPercentage = value;
@@ -227,7 +226,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FAIL_TO_CONNECT);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -242,7 +241,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FAIL_TO_SET_BAUDRATE);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -259,7 +258,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CODE_LOCK_NOT_MATCH);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -274,7 +273,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FAILED_TO_ERASE);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -289,7 +288,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FAIL_TO_PROGRAM);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -304,7 +303,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.FAIL_ENDPROGRAM);
                     clsMessages.ShowMessageInProgressWindow(clsMessageIDs.CHECK_CONNECTIONS);
                     clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
-                    IsStartBtnEnable = true;
+                    EnableUI(true);
                     return;
                 }
                 else
@@ -319,7 +318,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 
                 clsMessages.DisplayMessage(clsMessageIDs.FAIL_TO_PROGRAM);
                 // throw ex;
-                IsStartBtnEnable = true;
+                EnableUI(true);
             }
         }
 
@@ -357,6 +356,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                     }
                                 }
                                 clsGlobalVariables.strgComPortJIG = clsGlobalVariables.algAvailableComPorts[imCounter].ToString();
+                                clsGlobalVariables.ComPortJIGforProgramming = true;
                                 MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 10;
                                 return btmRetVal;
                             }
@@ -513,7 +513,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _StartBtnVis = value; OnPropertyChanged("StartProgramBtnVis"); }
         }
 
-        private bool _IsBatchProgEnable;
+        private bool _IsBatchProgEnable =true;
 
         public bool IsBatchProgEnable
         {
@@ -525,6 +525,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 OnPropertyChanged("IsBatchProgEnable");
             }
         }
+
+        private string _backclr;
+
+        public string backclr
+        {
+            get { return _backclr; }
+            set { _backclr = value; OnPropertyChanged("backclr"); }
+        }
+
 
         private bool _IsStopBtnEnable;
 
@@ -553,9 +562,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
-
-
-
+        
         private string NuLinkEXE = "NuLink.exe";
         private string PartNumber = " M0516LDE";
         private string ReadPartNo = "NuLink -p";
@@ -572,9 +579,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         string YELLOW = "yellow";
         string WHITE = "white";
         string ERROR = "Error";
-
-
-
+        
 
         // private string  CHIP_NOT_FOUND + Environment.NewLine +COMM_FAIL + Environment.NewLine + Environment.NewLine = CHIP_NOT_FOUND + Environment.NewLine +COMM_FAIL + Environment.NewLine + Environment.NewLine;
         private string ErrorMessage = " >>> Cannot find target IC chip connect with NuLink.!!! <<<";
@@ -682,14 +687,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
 
 
-        public void StartProgram()
+        public void StartProgram(string filepath)
         {
+            clsGlobalVariables.StopButtonFlagPIProgramming = false;
+
             if (SkipCalibrationConst)
                 EraseAllData = "NuLink -e APROM";
             else
                 EraseAllData = "NuLink -e ALL";
 
             //_ChangeShapeColor(None);
+            backclr = "#fafafa";
             //int retryCount = 0;
             bool FirstIteration = true;
             do
@@ -698,7 +706,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (clsGlobalVariables.StopButtonFlagPIProgramming)
                 {
                     AddMessageOnUI(STOP_PROGRAMMING, 0);
-                    _EnableUI(true);
+                    EnableUI(true);
                     break;
                 }
                 if (FirstIteration)
@@ -713,14 +721,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     bool evenOddIteration = true;
                     do
                     {
+                        clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
+                        IsStopBtnEnable = true;
                         if (evenOddIteration)
-                        {
-                            //_ChangeShapeColor(RED);
-                            evenOddIteration = false;
+                        {                                                 
+                            backclr = "#673ab7";
+                            evenOddIteration = false;                           
                         }
                         else
                         {
-                            //_ChangeShapeColor(YELLOW);
+                            backclr = "#fff176";
                             evenOddIteration = true;
                         }
                         result = ExecuteCMD(ReadPartNo);
@@ -736,14 +746,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         if (clsGlobalVariables.StopButtonFlagPIProgramming)
                         {
                             AddMessageOnUI(STOP_PROGRAMMING, 0);
-                            _EnableUI(true);
+                            EnableUI(true);
                             // _ChangeShapeColor(None);
+                            backclr = "#fafafa";
                             return;
                         }
                     } while (true);
 
                 }
                 ClearLog();
+                backclr = "#fafafa";
+                IsStopBtnEnable = true;
                 //_ChangeShapeColor(None);
                 if (result.Contains(ERROR) || result.Contains(ErrorMessage) || result == "")
                 {
@@ -758,7 +771,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     if (clsGlobalVariables.StopButtonFlagPIProgramming)
                     {
                         AddMessageOnUI(STOP_PROGRAMMING, 0);
-                        _EnableUI(true);
+                        EnableUI(true);
                         return;
                     }
                     result = ExecuteCMD(ResetDevice);
@@ -773,7 +786,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         if (clsGlobalVariables.StopButtonFlagPIProgramming)
                         {
                             AddMessageOnUI(STOP_PROGRAMMING, 0);
-                            _EnableUI(true);
+                            EnableUI(true);
                             return;
                         }
 
@@ -790,7 +803,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             if (clsGlobalVariables.StopButtonFlagPIProgramming)
                             {
                                 AddMessageOnUI(STOP_PROGRAMMING, 0);
-                                _EnableUI(true);
+                                EnableUI(true);
                                 return;
                             }
 
@@ -806,7 +819,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 if (clsGlobalVariables.StopButtonFlagPIProgramming)
                                 {
                                     AddMessageOnUI(STOP_PROGRAMMING, 0);
-                                    _EnableUI(true);
+                                    EnableUI(true);
                                     return;
                                 }
 
@@ -822,11 +835,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                     if (clsGlobalVariables.StopButtonFlagPIProgramming)
                                     {
                                         AddMessageOnUI(STOP_PROGRAMMING, 0);
-                                        _EnableUI(true);
+                                        EnableUI(true);
                                         return;
                                     }
                                     //AddMessageOnUI("Start write APROM.", 72);
-                                    result = ExecuteCMD(WriteFileCmd + FilePath);
+                                    result = ExecuteCMD(WriteFileCmd + filepath);
                                     if (result.Contains(ERROR) || result.Contains(ErrorMessage) || result == "" || result == " \f>>> !!!    Please check command again. !!! <<<\r \n")
                                     {
                                         AddMessageOnUI(CHIP_NOT_FOUND + Environment.NewLine + COMM_FAIL + Environment.NewLine + Environment.NewLine, 0);
@@ -838,12 +851,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                         if (clsGlobalVariables.StopButtonFlagPIProgramming)
                                         {
                                             AddMessageOnUI(STOP_PROGRAMMING, 0);
-                                            _EnableUI(true);
+                                            EnableUI(true);
                                             return;
                                         }
                                         // AddMessageOnUI("Start read APROM.", 84);
-                                        result = ExecuteCMD(VerifyFileCmd + FilePath);
-                                        if (result.Contains(ERROR) || result.Contains(ErrorMessage) || result == "" || result == " \f>>> !!!    Please check command again. !!! <<<\r \n")
+                                        result = ExecuteCMD(VerifyFileCmd + filepath);
+                                        //if (result.Contains(ERROR) || result.Contains(ErrorMessage) || result == "" || result == " \f>>> !!!    Please check command again. !!! <<<\r \n")
+                                        if (!result.Contains("Verify APROM data success"))
                                         {
                                             AddMessageOnUI(CHIP_NOT_FOUND + Environment.NewLine + COMM_FAIL + Environment.NewLine + Environment.NewLine, 0);
                                             //_ChangeShapeColor("red");
@@ -854,7 +868,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                             if (clsGlobalVariables.StopButtonFlagPIProgramming)
                                             {
                                                 AddMessageOnUI(STOP_PROGRAMMING, 0);
-                                                _EnableUI(true);
+                                                EnableUI(true);
                                                 return;
                                             }
                                             result = ExecuteCMD(ResetDevice);
@@ -866,9 +880,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                             else
                                             {
                                                 //retryCount = 0;
+
                                                 AddMessageOnUI(ChipResetFinish8, 100);
-                                                AddMessageOnUI(Environment.NewLine + PROGRAM_COMPLETE + Environment.NewLine, 100);
-                                                // _ChangeShapeColor(WHITE);
+                                                //AddMessageOnUI(PROGRAM_COMPLETE, 100);
+                                                //clsGlobalVariables.objGlobalFunction.ApplyDelay(1000);
+                                                AddMessageOnUI(PROGRAM_COMPLETE, 100);
+                                                
                                             }
                                         }
                                     }
@@ -878,14 +895,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                 }
 
-            } while (false);
+            } while (BatchProgFlag);
             //CA55 true above condition
-            _EnableUI(true);
+            EnableUI(true);
         
 
 
     }
-
-
-}
+                
+    }
 }

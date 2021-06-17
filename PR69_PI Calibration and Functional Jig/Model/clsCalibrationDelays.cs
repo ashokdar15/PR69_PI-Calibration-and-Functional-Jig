@@ -102,17 +102,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         {
             try
             {
-                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].OnemVOrFiftymVStartModeDelay;
-                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].OnemVOrFiftymVRunModeDelay;
-                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].ThreeFiftyOhmStartModeDelay;
-                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].ThreeFiftyOhmRunModeDelay;
-                FourmAORTwentymAStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].FourmAORTwentymAStartModeDelay;
-                FourmAORTwentymARunModeDelay = ModifiedCatId[0].CalibrationDelays[0].FourmAORTwentymARunModeDelay;
-                VREFReadDelayStartMode = ModifiedCatId[0].CalibrationDelays[0].VREFReadDelayStartMode;
-                VREFReadDelayRunMode = ModifiedCatId[0].CalibrationDelays[0].VREFReadDelayRunMode;
-                OneVoltOrNineVoltStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].OneVoltOrNineVoltStartModeDelay;
-                OneVoltOrNineVoltRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].OneVoltOrNineVoltRunModeDelay;
-                AnalogOutputObservedValueDelay = ModifiedCatId[0].CalibrationDelays[0].AnalogOutputObservedValueDelay;
+                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].ONEmV_DELAY_AFTER_STARTMODE;
+                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].ONEmV_DELAY_AFTER_RUNMODE;
+                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].PT100_DELAY_AFTER_STARTMODE;
+                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].PT100_DELAY_AFTER_RUNMODE;
+                FourmAORTwentymAStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].FOURmA_DELAY_AFTER_STARTMODE;
+                FourmAORTwentymARunModeDelay = ModifiedCatId[0].CalibrationDelays[0].FOURmA_DELAY_AFTER_RUNMODE;
+                VREFReadDelayStartMode = ModifiedCatId[0].CalibrationDelays[0].VREF_READ_DELAY_STARTMODE;
+                VREFReadDelayRunMode = ModifiedCatId[0].CalibrationDelays[0].VREF_READ_DELAY_RUNMODE;
+                OneVoltOrNineVoltStartModeDelay = ModifiedCatId[0].CalibrationDelays[0].ONEVolt_DELAY_AFTER_STARTMODE;
+                OneVoltOrNineVoltRunModeDelay = ModifiedCatId[0].CalibrationDelays[0].ONEVolt_DELAY_AFTER_RUNMODE;
+                AnalogOutputObservedValueDelay = ModifiedCatId[0].CalibrationDelays[0].CALIB_MEASURE_DELAY;
             }
             catch (Exception)
             {
@@ -126,17 +126,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 CalibrationDelays CalibConstdelays = new CalibrationDelays()
                 {
-                    OnemVOrFiftymVStartModeDelay = OnemVOrFiftymVStartModeDelay,
-                    OnemVOrFiftymVRunModeDelay = OnemVOrFiftymVRunModeDelay,
-                    ThreeFiftyOhmStartModeDelay =ThreeFiftyOhmStartModeDelay,
-                    ThreeFiftyOhmRunModeDelay = ThreeFiftyOhmRunModeDelay,
-                    FourmAORTwentymAStartModeDelay = FourmAORTwentymAStartModeDelay,
-                    FourmAORTwentymARunModeDelay = FourmAORTwentymARunModeDelay,
-                    OneVoltOrNineVoltStartModeDelay = OneVoltOrNineVoltStartModeDelay,
-                    OneVoltOrNineVoltRunModeDelay = OneVoltOrNineVoltRunModeDelay,
-                    AnalogOutputObservedValueDelay = AnalogOutputObservedValueDelay,
-                    VREFReadDelayStartMode = VREFReadDelayStartMode,
-                    VREFReadDelayRunMode = VREFReadDelayRunMode
+                    ONEmV_DELAY_AFTER_STARTMODE = OnemVOrFiftymVStartModeDelay,
+                    ONEmV_DELAY_AFTER_RUNMODE = OnemVOrFiftymVRunModeDelay,
+                    PT100_DELAY_AFTER_STARTMODE = ThreeFiftyOhmStartModeDelay,
+                    PT100_DELAY_AFTER_RUNMODE = ThreeFiftyOhmRunModeDelay,
+                    FOURmA_DELAY_AFTER_STARTMODE = FourmAORTwentymAStartModeDelay,
+                    FOURmA_DELAY_AFTER_RUNMODE = FourmAORTwentymARunModeDelay,
+                    ONEVolt_DELAY_AFTER_STARTMODE = OneVoltOrNineVoltStartModeDelay,
+                    ONEVolt_DELAY_AFTER_RUNMODE = OneVoltOrNineVoltRunModeDelay,
+                    CALIB_MEASURE_DELAY = AnalogOutputObservedValueDelay,
+                    VREF_READ_DELAY_STARTMODE = VREFReadDelayStartMode,
+                    VREF_READ_DELAY_RUNMODE = VREFReadDelayRunMode
                 };
 
                 return CalibConstdelays;
@@ -162,34 +162,34 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
     {
         private int _OnemVOrFiftymVStartModeDelay;
 
-        public int OnemVOrFiftymVStartModeDelay
+        public int PT100_Start_Delay
         {
             get { return _OnemVOrFiftymVStartModeDelay; }
-            set { _OnemVOrFiftymVStartModeDelay = value; OnPropertyChanged("OnemVOrFiftymVStartModeDelay"); }
+            set { _OnemVOrFiftymVStartModeDelay = value; OnPropertyChanged("PT100_Start_Delay"); }
         }
 
         private int _OnemVOrFiftymVRunModeDelay;
 
-        public int OnemVOrFiftymVRunModeDelay
+        public int PT100_Run_Delay
         {
             get { return _OnemVOrFiftymVRunModeDelay; }
-            set { _OnemVOrFiftymVRunModeDelay = value; OnPropertyChanged("OnemVOrFiftymVRunModeDelay"); }
+            set { _OnemVOrFiftymVRunModeDelay = value; OnPropertyChanged("PT100_Run_Delay"); }
         }
 
         private int _ThreeFiftyOhmStartModeDelay;
 
-        public int ThreeFiftyOhmStartModeDelay
+        public int PT313_Start_Delay
         {
             get { return _ThreeFiftyOhmStartModeDelay; }
-            set { _ThreeFiftyOhmStartModeDelay = value; OnPropertyChanged("ThreeFiftyOhmStartModeDelay"); }
+            set { _ThreeFiftyOhmStartModeDelay = value; OnPropertyChanged("PT313_Start_Delay"); }
         }
 
         private int _ThreeFiftyOhmRunModeDelay;
 
-        public int ThreeFiftyOhmRunModeDelay
+        public int PT313_Run_Delay
         {
             get { return _ThreeFiftyOhmRunModeDelay; }
-            set { _ThreeFiftyOhmRunModeDelay = value; OnPropertyChanged("ThreeFiftyOhmRunModeDelay"); }
+            set { _ThreeFiftyOhmRunModeDelay = value; OnPropertyChanged("PT313_Run_Delay"); }
         }
 
         
@@ -197,10 +197,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         {
             try
             {
-                OnemVOrFiftymVStartModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].OnemVOrFiftymVStartModeDelay;
-                OnemVOrFiftymVRunModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].OnemVOrFiftymVRunModeDelay;
-                ThreeFiftyOhmStartModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].ThreeFiftyOhmStartModeDelay;
-                ThreeFiftyOhmRunModeDelay = ModifiedCatId[0].CalibrationDelaysPR43[0].ThreeFiftyOhmRunModeDelay;
+                PT100_Start_Delay = ModifiedCatId[0].CalibrationDelaysPR43[0].PT100_PR43_DELAY_AFTER_RUNMODE;
+                PT100_Run_Delay = ModifiedCatId[0].CalibrationDelaysPR43[0].PT100_PR43_DELAY_AFTER_STARTMODE;
+                PT313_Start_Delay = ModifiedCatId[0].CalibrationDelaysPR43[0].PT313_DELAY_AFTER_RUNMODE;
+                PT313_Run_Delay = ModifiedCatId[0].CalibrationDelaysPR43[0].PT313_DELAY_AFTER_STARTMODE;
                 
             }
             catch (Exception)
@@ -215,10 +215,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 CalibrationDelaysPR43 CalibConstdelays = new CalibrationDelaysPR43()
                 {
-                    OnemVOrFiftymVStartModeDelay = OnemVOrFiftymVStartModeDelay,
-                    OnemVOrFiftymVRunModeDelay = OnemVOrFiftymVRunModeDelay,
-                    ThreeFiftyOhmStartModeDelay = ThreeFiftyOhmStartModeDelay,
-                    ThreeFiftyOhmRunModeDelay = ThreeFiftyOhmRunModeDelay,
+                    PT100_PR43_DELAY_AFTER_RUNMODE = PT100_Run_Delay,
+                    PT100_PR43_DELAY_AFTER_STARTMODE = PT100_Start_Delay,
+                    PT313_DELAY_AFTER_RUNMODE = PT313_Run_Delay,
+                    PT313_DELAY_AFTER_STARTMODE = PT313_Start_Delay,
                    
                 };
 

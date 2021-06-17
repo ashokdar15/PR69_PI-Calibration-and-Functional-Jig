@@ -341,6 +341,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                   objResManager.GetString("Main_ERR_MSG8", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine +
                                   objResManager.GetString("Main_ERR_MSG9", clsGlobalVariables.objCultureinfo);
                         MessageBox.Show(strmessage, clsGlobalVariables.strg_Application, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
                         break;
                     //-------Changed By Shubham
                     //Date:- 28-04-2018
