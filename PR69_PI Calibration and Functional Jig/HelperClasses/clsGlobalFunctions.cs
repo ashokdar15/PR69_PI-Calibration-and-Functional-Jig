@@ -1564,8 +1564,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             {
                 if (clsGlobalVariables.blngIsComportDetected == false)
                 {
-
-
                     int imTimeout = 50;
                     clsGlobalVariables.algAvailableComPorts.Clear();
                     //This function gets all the available ports of the system and saves in the array list.
@@ -1593,7 +1591,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     SetCalibratorCOMPort(item.ToString(), CalibratorSerialNumber);
                                     MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.CloseCommPort();
 
-                                   // break;
+                                    // break;
                                 }
                                 MainWindowVM.initilizeCommonObject.objCalibratorSerialDUT1.CloseCommPort();
                             }
@@ -1603,9 +1601,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         if (!CheckAllCalibratorConnected())
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-                        
-                        RemoveClibratorPort();   
-                        
+
+                        RemoveClibratorPort();
+
                         //Intercharacter delay is set here. For programming this delay is set to 10msec.
                         MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = imTimeout;
                         clsGlobalVariables.strgComPortJIG = "";
@@ -1623,31 +1621,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MVER_ADDRESS, 1);
-                                    }                                     
+                                    }
                                 }
                                 else
                                 {
-                                      btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1);
+                                    btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + 1);
                                 }
-                               
+
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     clsGlobalVariables.strgComPortJIG = item.ToString();
-                                    for (byte DUT = 1; DUT < clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                                    for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                                     {
                                         if (clsModelSettings.blnRS485Flag)
                                         {
                                             btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
-                                            if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                                            {
-                                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-                                            }
+                                            //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                            //{
+                                            //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                            //}
                                         }
                                         else
                                         {
                                             btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
                                         }
-                                        
+
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
                                             MessageBox.Show("com port fail with DUT number :" + (DUT).ToString());
@@ -1661,6 +1659,38 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
                             }
                         }
+                    }
+                }
+                else
+                {
+
+                    if (MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false, true))
+                    {
+                        //JIG query timeout is reduced because if timeout is kept as original then it will take long time to detect the port itself.
+                        clsGlobalVariables.ig_Query_TimeOut = 1000;
+
+                        byte btmRetVal = 1;
+
+                        for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
+                        {
+                            if (clsModelSettings.blnRS485Flag)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
+                                if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
+                                }
+                            }
+                            
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                MessageBox.Show("com port fail with DUT number :" + (DUT).ToString());
+                                clsGlobalVariables.blngIsComportDetected = false;
+                                return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                            }
+                        }
+                        //now check all DUT is connected or Not...
+                        MainWindowVM.initilizeCommonObject.objJIGSerialComm.CloseCommPort();
                     }
                 }
                 

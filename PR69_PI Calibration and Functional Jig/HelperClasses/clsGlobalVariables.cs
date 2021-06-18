@@ -35,6 +35,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
         public static bool Validateaccuracytestbackcolor = false;
 
+        public static bool DisplayTestOk = false;
+        public static bool DisplayTestFail = false;
+        public static bool DisplayTestRetry = false;
+
+
         #region"-----Enum------"
         //This enum is used for response error handling
         public enum enmResponseError

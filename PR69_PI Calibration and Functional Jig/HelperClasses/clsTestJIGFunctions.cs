@@ -105,11 +105,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
-                            DialogResult dlgMsgBxRslt;
-                            bool blnmStatus;
-                            blnmStatus = false;
+                            
                             //Display bypass logic is added here. 
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", true);
+                            int retryCnt = 0;
                             Repeat:
                             /*Here two tests gets carried out inside display test.
                              1.Display Test 
@@ -132,19 +131,22 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.START_TEST_FUNC_CODE, clsGlobalVariables.CHK_LEAKY_MOSFET);
                                 }
                             }
-                            if (blnmStatus == false)
-                            {
-                                //Requirement in the display test was to ask user to perform disply test once again.
-                                //Also software must ask this only once.
-                                blnmStatus = true;
-                                dlgMsgBxRslt = MessageBox.Show("Do you want to test display again?", clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-                                //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-                                if (dlgMsgBxRslt == DialogResult.OK)
-                                {
-                                    goto Repeat;
-                                }
-                            }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            retryCnt++;
+                            DisplayTest dsptest = new DisplayTest(retryCnt);
+                            dsptest.ShowDialog();                                                         
+
+                            //dlgMsgBxRslt = MessageBox.Show(objResManager.GetString("REPEAT_DISP_TEST", clsGlobalVariables.objCultureinfo), clsGlobalVariables.strg_Application, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                            if (clsGlobalVariables.DisplayTestRetry == true)                                                           
+                                goto Repeat;
+                            
+
+                            if (clsGlobalVariables.DisplayTestOk == true)
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            else if(clsGlobalVariables.DisplayTestFail == true)
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                            else if (!clsGlobalVariables.DisplayTestOk && !clsGlobalVariables.DisplayTestFail)
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+
                             clsGlobalVariables.mainWindowVM.DisplayKeypadTest(DUT, "Display Test", false);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
@@ -1141,15 +1143,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                 //This function "ValidateAnalogVal" validates the value given by the calibrator's measure. 
                                 btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.FOUR_mAMP, DUT);
-
+                                //Log objDataLog[DUT - 1]
+                                clsGlobalVariables.objDataLog[DUT - 1].InputCurrent4mA = Convert.ToDouble(clsGlobalVariables.strgAnalogData);
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 4mA Analog OP sensor is saved in log object
                                     // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_4 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
 
-                                    //Log objDataLog[DUT - 1]
-
+                                   
 
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
@@ -1225,14 +1227,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                 //This function "ValidateAnalogVal" validates the value given by the calibrator's measure.
                                 btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.TWENTY_mAMP, DUT);
+                                //log
+                                clsGlobalVariables.objDataLog[DUT - 1].InputCurrent20mA = Convert.ToDouble(clsGlobalVariables.strgAnalogData);
+
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 20mA Analog OP sensor is saved in log object
-                                  //  clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_20 = clsGlobalVariables.strgAnalogData;
+                                    //  clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_mA_20 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
 
-                                    //log
-
+                                   
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBWriteMeasuredAnlopVal(clsGlobalVariables.MB_SET_CURRENT_OBSERVED_COUNT, clsGlobalVariables.MA_20, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1269,12 +1273,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                 //This function "ValidateAnalogVal" validates the value given by the calibrator's measure.
                                 btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.One_Volt, DUT);
-
+                                clsGlobalVariables.objDataLog[DUT - 1].InputVoltage1V = Convert.ToDouble(clsGlobalVariables.strgAnalogData);
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 1V Analog OP sensor is saved in log object
                                     //clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_1 = clsGlobalVariables.strgAnalogData;
-                                    //This check is for device having modbus.
+                                    //This check is for device having modbus.                                    
+
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBWriteMeasuredAnlopVal(clsGlobalVariables.MB_SET_VOLTAGE_OBSERVED_COUNT, clsGlobalVariables.VOLT_1, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1315,12 +1320,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsModelSettings.imAnalOpVal[DUT - 1] = clsGlobalVariables.objGlobalFunction.ConvertStringToInt(clsGlobalVariables.strgAnalogData);
                                 //This function "ValidateAnalogVal" validates the value given by the calibrator's measure.
                                 btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsGlobalVariables.TEN_Volt, DUT);
+                                clsGlobalVariables.objDataLog[DUT - 1].InputVoltage10V = Convert.ToDouble(clsGlobalVariables.strgAnalogData);
 
                                 if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                 {
                                     //Value read from calibrator for 10V Analog OP sensor is saved in log object
-                                   // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_10 = clsGlobalVariables.strgAnalogData;
+                                    // clsGlobalVariables.objDataLog[DUT - 1].StrmAnalogOP_Volt_10 = clsGlobalVariables.strgAnalogData;
                                     //This check is for device having modbus.
+
+
                                     if (clsModelSettings.blnRS485Flag == true)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBWriteMeasuredAnlopVal(clsGlobalVariables.MB_SET_VOLTAGE_OBSERVED_COUNT, clsGlobalVariables.VOLT_10, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
@@ -1453,11 +1461,18 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
                             //In manual calibration mode this test is present. for 12 mA and 5Volts analog output validation.  
                             btmRetVal = clsGlobalVariables.objGlobalFunction.ValidateAnalogVal(clsModelSettings.btmAnalogsetVal, DUT);
+
+                            if (strmTest == "12mA_ANALOG_OP_TEST")
+                                clsGlobalVariables.objDataLog[DUT - 1].InputCurrent12mA = Convert.ToDouble(clsModelSettings.btmAnalogsetVal);
+                            else
+                                clsGlobalVariables.objDataLog[DUT - 1].InputVoltage5V = Convert.ToDouble(clsModelSettings.btmAnalogsetVal);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
+                           
+
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();

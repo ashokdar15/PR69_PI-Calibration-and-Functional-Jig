@@ -357,7 +357,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P1)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P1) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P1) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -373,7 +373,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P2)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P2) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P2) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -390,7 +390,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P3)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P3) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P3) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -407,7 +407,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P4)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P4) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P4) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -424,7 +424,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P5)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P5) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P5) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -441,7 +441,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P6)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P6) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P6) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -458,7 +458,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P7)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P7) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P7) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -475,7 +475,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P8)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P8) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P8) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -492,7 +492,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P9)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P9) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P9) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))
@@ -509,7 +509,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
                     if (enmpointcalibration == clsGlobalVariables.Enmpointcalibration.P10)
                     {
-                        if (output != null)
+                        if (output != null && output != "")
                         {
                             if ((Convert.ToDouble(test[0].P10) - Convert.ToDouble(test[0].Tolerance) <= Convert.ToDouble(output)) &&
                             (Convert.ToDouble(test[0].P10) + Convert.ToDouble(test[0].Tolerance) >= Convert.ToDouble(output)))

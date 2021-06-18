@@ -27,6 +27,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             stopBtnPress = false;
             StartStopWatch(true);
 
+            ClearData();
+
             clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
             for (int i = 1; i <= clsGlobalVariables.NUMBER_OF_DUTS; i++)
             {
@@ -415,6 +417,96 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }            
                         
            // MainWindowVM.initilizeCommonObject.clsLoggingDatas[0] = clsLoggingData;
+        }
+
+        private void ClearData()
+        {
+            string bkColorwhite = "#fafafa";
+            foreach (var item in AccuracymAmpTestsDetails)
+            {
+                item.TestresultDevice1 = "";
+                item.TestresultDevice2 = "";
+                item.TestresultDevice3 = "";
+                item.TestresultDevice4 = "";
+                item.TestresultDevice5 = "";
+                item.TestresultDevice6 = "";
+
+                item.BackcolorDevice1 = bkColorwhite;
+                item.BackcolorDevice2 = bkColorwhite;
+                item.BackcolorDevice3 = bkColorwhite;
+                item.BackcolorDevice4 = bkColorwhite;
+                item.BackcolorDevice5 = bkColorwhite;
+                item.BackcolorDevice6 = bkColorwhite;
+
+            }
+
+            foreach (var item in AccuracyVoltTestsDetails)
+            {
+                item.TestresultDevice1 = "";
+                item.TestresultDevice2 = "";
+                item.TestresultDevice3 = "";
+                item.TestresultDevice4 = "";
+                item.TestresultDevice5 = "";
+                item.TestresultDevice6 = "";
+
+                item.BackcolorDevice1 = bkColorwhite;
+                item.BackcolorDevice2 = bkColorwhite;
+                item.BackcolorDevice3 = bkColorwhite;
+                item.BackcolorDevice4 = bkColorwhite;
+                item.BackcolorDevice5 = bkColorwhite;
+                item.BackcolorDevice6 = bkColorwhite;
+            }
+
+            foreach (var item in AccuracyPT100SnsrTestsDetails)
+            {
+                item.TestresultDevice1 = "";
+                item.TestresultDevice2 = "";
+                item.TestresultDevice3 = "";
+                item.TestresultDevice4 = "";
+                item.TestresultDevice5 = "";
+                item.TestresultDevice6 = "";
+
+                item.BackcolorDevice1 = bkColorwhite;
+                item.BackcolorDevice2 = bkColorwhite;
+                item.BackcolorDevice3 = bkColorwhite;
+                item.BackcolorDevice4 = bkColorwhite;
+                item.BackcolorDevice5 = bkColorwhite;
+                item.BackcolorDevice6 = bkColorwhite;
+            }
+
+            foreach (var item in AccuracyRSensorTestsDetails)
+            {
+                item.TestresultDevice1 = "";
+                item.TestresultDevice2 = "";
+                item.TestresultDevice3 = "";
+                item.TestresultDevice4 = "";
+                item.TestresultDevice5 = "";
+                item.TestresultDevice6 = "";
+
+                item.BackcolorDevice1 = bkColorwhite;
+                item.BackcolorDevice2 = bkColorwhite;
+                item.BackcolorDevice3 = bkColorwhite;
+                item.BackcolorDevice4 = bkColorwhite;
+                item.BackcolorDevice5 = bkColorwhite;
+                item.BackcolorDevice6 = bkColorwhite;
+            }
+
+            foreach (var item in AccuracyJSensorTestsDetails)
+            {
+                item.TestresultDevice1 = "";
+                item.TestresultDevice2 = "";
+                item.TestresultDevice3 = "";
+                item.TestresultDevice4 = "";
+                item.TestresultDevice5 = "";
+                item.TestresultDevice6 = "";
+
+                item.BackcolorDevice1 = bkColorwhite;
+                item.BackcolorDevice2 = bkColorwhite;
+                item.BackcolorDevice3 = bkColorwhite;
+                item.BackcolorDevice4 = bkColorwhite;
+                item.BackcolorDevice5 = bkColorwhite;
+                item.BackcolorDevice6 = bkColorwhite;
+            }
         }
 
         private void AddAccuracyDataInDatabase(Dictionary<string, List<string>> AccuracyList)
@@ -1153,52 +1245,59 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_PI);
                 }
-            }
-            foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
-            {
-                btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
-                
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_RTD_KNOB_POS_ACC, clsGlobalVariables.SOURCE_RTD_KNOB_POS_ACC, DUT);
-                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                    continue;
-                }
 
-                btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
-                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 {
-                    UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                    continue;
+                    btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
+                    //Make zero
+
+                    btmRetVal = clsGlobalVariables.objCalibQueriescls.CheckSourceSetPosition(clsGlobalVariables.SOURCE_RTD_KNOB_POS_ACC, clsGlobalVariables.SOURCE_RTD_KNOB_POS_ACC, DUT);
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                        continue;
+                    }
+
+                    btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                        continue;
+                    }
+                    btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE, DUT);
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                        continue;
+                    }
+                    //This check is for device having modbus.                        
+                    if (clsModelSettings.blnRS485Flag == true)
+                    {
+                        btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_PT100_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
+                    }
+                    else//Device without modbus
+                    {
+                        btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_PT100_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
+                    }
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                        continue;
+                    }
+                    btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO, DUT);
+                    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                    {
+                        UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
+                        continue;
+                    }
                 }
-                btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_PT100_TYPE, DUT);
-                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                    continue;
-                }
-                //This check is for device having modbus.                        
-                if (clsModelSettings.blnRS485Flag == true)
-                {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeDoubleActing(clsGlobalVariables.SENSOR_PT100_TYPE_DOUBLE_ACTING, (byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT));
-                }
-                else//Device without modbus
-                {
-                    btmRetVal = clsGlobalVariables.objQueriescls.ReadSensorTypeSingleActing(clsGlobalVariables.SENSOR_PT100_TYPE, (byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT));
-                }
-                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                    continue;
-                }
-                btmRetVal = ChangeDP(clsGlobalVariables.DP_VAL_ZERO, DUT);
-                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-                {
-                    UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
-                    continue;
-                }
+                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
             }
-            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+
+           
+
+           
             clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_PT100, testPoint + "°C.");
             blnmDivideBy100 = false;
             btmRetVal = TestAccuracy(testPoint, currentTestNumber, clsGlobalVariables.PT100_SENSOR, sensorType);

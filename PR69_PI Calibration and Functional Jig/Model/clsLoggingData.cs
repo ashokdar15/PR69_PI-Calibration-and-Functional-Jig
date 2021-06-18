@@ -31,18 +31,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
        
         public double VDC24Volt { get; set; }
         
-        public double AnalogInputCurrent1 { get; set; }
-        
-        public double AnalogInputCurrent2 { get; set; }
-        
-        public double AnalogInputCurrent3 { get; set; }
-        
-        public double OutputVoltage1 { get; set; }
-        
-        public double OutputVoltage2 { get; set; }
-        
-        public double OutputVoltage3 { get; set; }
-        
+               
         public double InputCurrent4mA { get; set; }
         
         public double InputCurrent12mA { get; set; }
@@ -54,7 +43,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public double InputVoltage5V { get; set; }
         
         public double InputVoltage10V { get; set; }
-        
+
+        public double AnalogInputCurrent1 { get; set; }
+
+        public double AnalogInputCurrent2 { get; set; }
+
+        public double AnalogInputCurrent3 { get; set; }
+
+        public double OutputVoltage1 { get; set; }
+
+        public double OutputVoltage2 { get; set; }
+
+        public double OutputVoltage3 { get; set; }
+
         public double PT100SensTemp1 { get; set; }
         
         public double PT100SensTemp2 { get; set; }
@@ -190,19 +191,5 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         }
 
     }
-
-    public class CalibrationPoints
-    {
-        public string BatchNumber { get; set; }
-        public string CatlogId { get; set; }
-        public string Date { get; set; }
-        public string IPAddress { get; set; }
-        public string Current4mA { get; set; }
-        public string Current12mA { get; set; }
-        public string Current20mA { get; set; }
-        public string Voltage1V { get; set; }
-        public string Voltage5V { get; set; }
-        public string Voltage10V { get; set; }
-    }
-
+    
 }

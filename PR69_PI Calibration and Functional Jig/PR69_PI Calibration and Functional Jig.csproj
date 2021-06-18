@@ -131,11 +131,18 @@
     </ApplicationDefinition>
     <Compile Include="Model\clsLoggingData.cs" />
     <Compile Include="ViewModel\DisplayMessageVM.cs" />
+    <Compile Include="ViewModel\ExportLogVM.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DisplayMessage.xaml.cs">
       <DependentUpon>DisplayMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DisplayTest.xaml.cs">
+      <DependentUpon>DisplayTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExportLog.xaml.cs">
+      <DependentUpon>ExportLog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PasswordWindow.xaml.cs">
       <DependentUpon>PasswordWindow.xaml</DependentUpon>
@@ -162,6 +169,14 @@
     <Page Include="Views\DisplayMessageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DisplayTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExportLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

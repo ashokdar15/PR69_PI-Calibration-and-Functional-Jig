@@ -26,6 +26,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         //Constructor
         private async void btnStartClk(object obj)
         {
+            
             CatIdList catId = clsGlobalVariables.Selectedcatid;
 
             clsGlobalVariables.accuracyWindow = new AccuracyWindow(); 
@@ -303,7 +304,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                 }
 
-
                 SelectedIndexDG1 = imLoopCntr;
 
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
@@ -319,7 +319,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 {
                     //
                     // txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
-
+                    EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
                     clsMessages.DisplayMessage(clsMessageIDs.CALIBRATED_BUT_ACCURACY_ISNOTDONE);
 
                     clsGlobalVariables.NUMBER_OF_DUTS_List.Clear();
@@ -484,15 +484,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
         }
 
-        private ObservableCollection<CalibrationPoints> _ListCalibrationPoints;
-
-        public ObservableCollection<CalibrationPoints> ListCalibrationPoints
-        {
-            get { return _ListCalibrationPoints; }
-            set { _ListCalibrationPoints = value; OnPropertyChanged("ListCalibrationPoints"); }
-        }
-
-
+        
         public MainWindowVM()
         {
             
@@ -505,6 +497,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             OpenAccuracyWindow = new RelayCommand(OpenAccuracyWindowClk);
             OpenProgrammingWindow = new RelayCommand(OpenProgrammingWindowClk);
             OpenAboutWindow = new RelayCommand(OpenAboutWindowClk);
+            OpenExportLogWindow = new RelayCommand(OpenExportLogWindowClk);
 
             _btnStart = new RelayCommand(btnStartClk);
             _BtnStopCmd = new RelayCommand(btnStopClk);
@@ -517,7 +510,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _clsTotalTestsGroups = new ObservableCollection<clsTotalTestsGroups>();
             _TotalConnectedDevicesList = new ObservableCollection<clsTotalConnectedDevices>();
             _ListOfTests = new ObservableCollection<string>();
-            _ListCalibrationPoints = new ObservableCollection<CalibrationPoints>();
 
             ShowProductSelectionWindow();
 
@@ -576,8 +568,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             GIFImgVisDUT2 = false;
             GIFImgVisDUT3 = false;
             GIFImgVisDUT4 = false;
+        }
 
-
+        private void OpenExportLogWindowClk(object obj)
+        {
+            ExportLog exportLog = new ExportLog();
+            exportLog.ShowDialog();
         }
 
         public void EnableProcessingWindow(int DutNumber)
@@ -1968,6 +1964,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public RelayCommand OpenProdConfigWindow { get; set; }
         public RelayCommand OpenAccuracyWindow { get; set; }
         public RelayCommand OpenProgrammingWindow { get; set; }
+        public RelayCommand OpenExportLogWindow { get; set; }
         public RelayCommand OpenAboutWindow { get; set; }
 
         private void btnStopClk(object obj)
