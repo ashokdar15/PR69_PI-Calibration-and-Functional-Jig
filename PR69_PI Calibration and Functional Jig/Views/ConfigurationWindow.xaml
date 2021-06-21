@@ -191,7 +191,7 @@
                         </Border>
                     </StackPanel>
 
-                    <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 0"                            
+                    <StackPanel MinWidth="300" Width="auto"  Margin="20 20 20 10" Height="auto"                            
                                 Visibility="{Binding Path=RelayOrSSRTestsVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="Edit Output Tests Details" HorizontalAlignment="Center" Margin="10" FontSize="15"
                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
@@ -203,6 +203,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
@@ -300,6 +301,13 @@
                                       ItemsSource="{Binding Path=RelayTypeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding clsRelayORSSRTests.SelectedOP3RelayType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedIndex="{Binding clsRelayORSSRTests.SelectedIndexOP3Relay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <CheckBox Content="CatID_151E12B_151K42B" 
+                                      Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" 
+                                      HorizontalAlignment="Left" Width="auto"
+                                      IsEnabled="True"
+                                      IsChecked="{Binding clsRelayORSSRTests.CatID_151E12B_151K42B, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
                             </Grid>
                         </Border>
                     </StackPanel>

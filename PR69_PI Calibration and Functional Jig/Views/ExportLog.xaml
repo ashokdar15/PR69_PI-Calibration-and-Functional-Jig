@@ -45,13 +45,7 @@
                                 <materialDesign:PackIcon Kind="MinusBox" Padding="0" Height="1" Width="6" Foreground="White" Background="White"/>
                             </Button.Content>
                         </Button>
-                        <!--<Button Name="maximize" Click="maximize_Click" Height="15" Width="15" Background="LightGreen" Margin="5 0 0 0"
-                                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-
-                                <Button.Content>
-                                    <materialDesign:PackIcon Kind="Minus" Padding="0" Height="6" Width="6" Foreground="White" Background="White"/>
-                                </Button.Content>
-                            </Button>-->
+                       
                         <Button Name="Close" Click="Close_Click" Height="20" Width="20" Background="IndianRed" Margin="5 0 0 0"
                                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                                     IsEnabled="{Binding StartBtnVis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White">
@@ -74,10 +68,43 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Row="2" Grid.Column="2" Width="75" Height="30" Padding="5" Margin="10 10" HorizontalAlignment="Left"
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="From : " Margin="12 40 0 0" Grid.Column="0"/>
+                                <DatePicker Width="100" Margin="15 0 0 0" Grid.Column="1"
+                                        SelectedDate="{Binding FromSelecteddate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                
+                            </Grid>
+                            
+                           
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="To : " Margin="12 40 0 0" Grid.Column="0"/>
+                                <DatePicker Width="100" Margin="18 0 0 0" Grid.Column="1"
+                                        SelectedDate="{Binding ToSelecteddate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                
+                            </Grid>
+                            
+                           
+                        </StackPanel>
+
+                        <Button Grid.Row="2" Grid.Column="2" Width="auto" Height="30" Padding="5" Margin="10 10" HorizontalAlignment="Left"
                             Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Export Log"
                             Command="{Binding btnExport}" Foreground="WhiteSmoke" Background="#26c6da"
-                            Visibility="{Binding Path=ExportBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">Export</Button>
+                            IsEnabled="{Binding btnExportEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">Export Log</Button>
                     </Grid>
                         
                 </Grid>

@@ -54,7 +54,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             AccuracyStopwatchTime = "00:00:00";
             TotalStopwatchTime = "00:00:00";
             clsGlobalVariables._StopFlag = false;
-
+            clsGlobalVariables.IsAccuracytestDone = false;
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
             //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
             ListOfTests.Clear();
@@ -410,7 +410,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
             //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
+            
             StartStopWatch(false);
+
+
 
             clsGlobalVariables.accuracyWindow.ShowDialog();
 

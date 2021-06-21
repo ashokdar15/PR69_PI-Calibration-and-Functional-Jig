@@ -103,7 +103,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice1 = value;
 
-                if (_TestresultDevice1 != null)
+                if (_TestresultDevice1 != null && _TestresultDevice1 != "")
                 {
                     if (_TestresultDevice1 != clsGlobalVariables.FAIL)
                     {
@@ -128,9 +128,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     else
                         BackcolorDevice1 = BgColorred;
 
-                    if (BackcolorDevice1 == BgColorred)                    
-                        clsGlobalVariables.listAccTest.Add(false);
-                    
+                    if (BackcolorDevice1 == BgColorred)
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(1);
+
                 }
 
                 OnPropertyChanged("TestresultDevice1");
@@ -146,7 +146,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice2 = value;
 
-                if (_TestresultDevice2 != null)
+                if (_TestresultDevice2 != null && _TestresultDevice2 != "")
                 {
                     if (_TestresultDevice2 != clsGlobalVariables.FAIL)
                     {
@@ -172,7 +172,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         BackcolorDevice2 = BgColorred;
 
                     if (BackcolorDevice2 == BgColorred)
-                        clsGlobalVariables.listAccTest.Add(false);
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(2);
                 }
 
                 OnPropertyChanged("TestresultDevice2");
@@ -214,7 +214,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         BackcolorDevice3 = BgColorred;
 
                     if (BackcolorDevice3 == BgColorred)
-                        clsGlobalVariables.listAccTest.Add(false);
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(3);
                 }
 
                 OnPropertyChanged("TestresultDevice3");
@@ -230,7 +230,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice4 = value;
 
-                if (_TestresultDevice4 != null)
+                if (_TestresultDevice4 != null && _TestresultDevice4 != "")
                 {
                     if (_TestresultDevice4 != clsGlobalVariables.FAIL)
                     {
@@ -256,7 +256,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         BackcolorDevice4 = BgColorred;
 
                     if (BackcolorDevice4 == BgColorred)
-                        clsGlobalVariables.listAccTest.Add(false);
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(4);
                 }
 
                 OnPropertyChanged("TestresultDevice4");
@@ -272,7 +272,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice5 = value;
 
-                if (_TestresultDevice5 != null)
+                if (_TestresultDevice5 != null && _TestresultDevice5 != "")
                 {
                     if (_TestresultDevice5 != clsGlobalVariables.FAIL)
                     {
@@ -298,7 +298,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         BackcolorDevice5 = BgColorred;
 
                     if (BackcolorDevice5 == BgColorred)
-                        clsGlobalVariables.listAccTest.Add(false);
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(5);
                 }
 
                 OnPropertyChanged("TestresultDevice5");
@@ -314,7 +314,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 _TestresultDevice6 = value;
 
-                if (_TestresultDevice6 != null)
+                if (_TestresultDevice6 != null && _TestresultDevice6 != "")
                 {
                     if (_TestresultDevice6 != clsGlobalVariables.FAIL)
                     {
@@ -340,7 +340,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         BackcolorDevice6 = BgColorred;
 
                     if (BackcolorDevice6 == BgColorred)
-                        clsGlobalVariables.listAccTest.Add(false);
+                        clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Add(6);
                 }
 
                 OnPropertyChanged("TestresultDevice6");

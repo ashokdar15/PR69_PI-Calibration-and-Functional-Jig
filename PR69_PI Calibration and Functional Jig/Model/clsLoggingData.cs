@@ -87,12 +87,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 
         public static clsGlobalVariables.DataLogStatus addDataLog(clsLoggingData Datalogging)
         {
-            Datalogging.BatchNumber = "123";
+            Datalogging.BatchNumber = clsGlobalVariables.mainWindowVM.BatchNumber;
+
+            Datalogging.CatlogId = clsGlobalVariables.Selectedcatid.DeviceName;
+
+            Datalogging.Date = DateTime.Now;
             
-            Datalogging.CatlogId= "123";
-            
-            DateTime FromDate = new DateTime(2021, 6, 14);
-            DateTime ToDate = new DateTime(2021, 6, 24);
             try
             {
                 clsGlobalVariables.DatabasePath = "temp.db";
@@ -139,10 +139,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         //conn.CreateTable<clsLoggingData>();
                         //int rows = conn.Insert(Datalogging);
                         //conn.Query()
-                        var Get = from s in conn.Table<clsLoggingData>()
-                                    where s.Date >= date1 && s.Date <= date2
-                                    select s;
+                        var res = from s in conn.Table<clsLoggingData>().ToList()
+                                  where s.Date >= date1 && s.Date <= date2
+                                  select s;
 
+                        //if (res.Count == 0)
+                        //{
+
+                        //}
 
                         //InvoiceDate BETWEEN '2010-01-01' AND '2010-01-31'
                     }

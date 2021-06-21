@@ -9,6 +9,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
 {
     public class clsRelayORSSRTests : INotifyPropertyChanged
     {
+        private bool _CatID_151E12B_151K42B;
+
+        public bool CatID_151E12B_151K42B
+        {
+            get { return _CatID_151E12B_151K42B; }
+            set { _CatID_151E12B_151K42B = value; OnPropertyChanged("CatID_151E12B_151K42B"); }
+        }
+
+
         private bool _OP1;
 
         public bool OP1
@@ -230,6 +239,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SelectedOP2RelayType = catId.RelayOrSSRTests[0].SelectedOP2RelayType;
                     SelectedOP3RelayType = catId.RelayOrSSRTests[0].SelectedOP3RelayType;
 
+                    CatID_151E12B_151K42B = catId.RelayOrSSRTests[0].CatID_151E12B_151K42B;
                 }
             }
         }
@@ -251,8 +261,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                     SelectedOP3Type=SelectedOP3Type,
                     SelectedOP1RelayType=SelectedOP1RelayType,
                     SelectedOP2RelayType=SelectedOP2RelayType,
-                    SelectedOP3RelayType=SelectedOP3RelayType
-                };
+                    SelectedOP3RelayType=SelectedOP3RelayType,
+
+                    CatID_151E12B_151K42B = CatID_151E12B_151K42B
+            };
 
                 return RelayOrSSRTests;
             }

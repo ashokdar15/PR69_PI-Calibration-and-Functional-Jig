@@ -29,11 +29,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
         public static Enmpointcalibration enmpointcalibration;
 
-        public static List<bool> listAccTest = new List<bool>();
+        //public static List<bool> listAccTest = new List<bool>();
 
         public static IList<AccuracyTests> accuracyTests = null;
 
         public static bool Validateaccuracytestbackcolor = false;
+        public static bool IsAccuracytestDone = false;
 
         public static bool DisplayTestOk = false;
         public static bool DisplayTestFail = false;
@@ -288,6 +289,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string CLIBRATOR_SR6 = "HKX1SA008";
         public static int NUMBER_OF_DUTS = 0;
         public static List<byte> NUMBER_OF_DUTS_List = new List<byte>();
+        public static List<byte> NUMBER_OF_DUTS_List_Temp = new List<byte>();
         public static List<byte> NUMBER_OF_FAIL_DUTS_List = new List<byte>();
         public static int OLD_NUMBER_OF_DUTS = 0;
         public static int igTYPE_OF_DEVICE = 1;
@@ -1002,6 +1004,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static byte[] OP1_DUT1_NC_PLC_ON_Number = new byte[] {40, 44, 48, 52 }; //Optimisation
         public static byte[] OP2_DUT1_PLC_ON_Number = new byte[] {26, 30, 34, 38 }; //Optimisation
         public static byte[] OP3_DUT1_PLC_ON_Number = new byte[] {25, 29, 33, 37 }; //Optimisation
+        public static byte[] Switch_On_Off_for151E12B_151K42B = new byte[] {64, 68, 72, 76 }; //Optimisation
 
         public static Int32 PLC_ZIG_COMM_DELAY = 100;
         public static Int32 PLC_ZIG_MODBUS_DELAY = 100;

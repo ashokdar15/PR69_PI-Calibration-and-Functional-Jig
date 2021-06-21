@@ -125,7 +125,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool OP3{ get; set; }
         public string SelectedOP3Type { get; set; }
         public string SelectedOP3RelayType { get; set; }
+
+        public bool CatID_151E12B_151K42B { get; set; }
+
         
+
 
     }
 

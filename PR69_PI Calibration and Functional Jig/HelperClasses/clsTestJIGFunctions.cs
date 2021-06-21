@@ -430,9 +430,31 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                     case "OP2_OP3_TEST":
                         clsGlobalVariables.ig_Query_TimeOut = 5000;
+
+                      
+
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
                             clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
+                            if (clsGlobalVariables.Selectedcatid.RelayOrSSRTests[0].CatID_151E12B_151K42B)
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.Switch_On_Off_for151E12B_151K42B[(DUT - 1)]);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.Switch_On_Off_for151E12B_151K42B[(DUT - 1)]);
+                                if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                                {
+                                    clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                    continue;
+                                }
+                            }
+
                             btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.Relay_SSR_OP2_OP3_TEST[(DUT - 1)]);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -921,7 +943,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            if (clsGlobalVariables.IsAccuracytestDone != true)
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;                                      
@@ -939,7 +962,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBQueryForWOModbusDevices((byte)(clsGlobalVariables.MB_SLAVE_ID_WO_BASE + DUT), clsGlobalVariables.SET_WRITE_FUNC_CODE, clsGlobalVariables.CALIB_STAGE);
                             }
-                            clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            if (clsGlobalVariables.IsAccuracytestDone != true)                            
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
+                            
+                            
                         }
                         clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;

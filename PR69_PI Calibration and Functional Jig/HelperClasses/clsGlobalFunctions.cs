@@ -1538,9 +1538,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.fltgvPrConfigRtdCurrentDUT4 = (float)(2 * flmCJCLdCmpAnlOp - flmLdCmp) / (float)350;
                         break;
                 }
-
-
-                
+                                
             }
             catch (Exception ex)
             {
