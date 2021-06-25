@@ -83,12 +83,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 if (catId.CommonCalibTests.Count != 0)
                 {
-                    READ_DEVICE_ID = catId.CommonCalibTests[0].READ_DEVICE_ID;
-                                    
-                    READ_CALIB_CONST = catId.CommonCalibTests[0].READ_CALIB_CONST;
-                   
-                    START_DISP_TEST = catId.CommonCalibTests[0].START_DISP_TEST;
-                    START_KEYPAD_TEST = catId.CommonCalibTests[0].START_KEYPAD_TEST;
+                    READ_DEVICE_ID = catId.CommonCalibTests[0].READ_DEVICE_ID;                                    
+                    READ_CALIB_CONST = catId.CommonCalibTests[0].READ_CALIB_CONST;                   
                     SWITCH_SENSOR_RELAY = catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY;
                     Vtg24V_OP_TEST = catId.CommonCalibTests[0].Vtg24V_OP_TEST;
                     START_MODBUS_TEST = catId.CommonCalibTests[0].START_MODBUS_TEST;
@@ -103,12 +99,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             {
                 CommonTests CommonTests = new CommonTests()
                 {
-                    READ_DEVICE_ID = READ_DEVICE_ID,
-                  
-                    READ_CALIB_CONST = READ_CALIB_CONST,
-                   
-                    START_DISP_TEST = START_DISP_TEST,
-                    START_KEYPAD_TEST = START_KEYPAD_TEST,
+                    READ_DEVICE_ID = READ_DEVICE_ID,                  
+                    READ_CALIB_CONST = READ_CALIB_CONST, 
                     SWITCH_SENSOR_RELAY = SWITCH_SENSOR_RELAY,
                     Vtg24V_OP_TEST = Vtg24V_OP_TEST,
                     START_MODBUS_TEST = START_MODBUS_TEST,

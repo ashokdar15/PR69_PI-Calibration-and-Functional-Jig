@@ -129,6 +129,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\clsDispKeypadTests.cs" />
     <Compile Include="Model\clsLoggingData.cs" />
     <Compile Include="ViewModel\DisplayMessageVM.cs" />
     <Compile Include="ViewModel\ExportLogVM.cs" />

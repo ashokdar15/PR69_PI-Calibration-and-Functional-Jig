@@ -36,7 +36,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
             }
         }
 
-        internal void ParseRelayOrSSRDetails(CatIdList catId)
+        internal void ParseCalibConstantDetails(CatIdList catId)
         {
             if (catId.CalibrationConstantsTests != null)
             {

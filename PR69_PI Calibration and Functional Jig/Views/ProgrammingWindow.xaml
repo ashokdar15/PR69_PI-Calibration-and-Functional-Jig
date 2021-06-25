@@ -92,11 +92,13 @@
                             <CheckBox Content="Skip calibration constant erase"                                      
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="{Binding IsBatchProgEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Visibility="{Binding IsBatchProgVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
                                       IsChecked="{Binding chkSkipCalibration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <CheckBox Content="Batch Programming" Margin="18 5"                                 
                                       HorizontalAlignment="Left" Width="auto"
                                       IsEnabled="{Binding IsBatchProgEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Visibility="{Binding IsBatchProgVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
                                       IsChecked="{Binding chkbatchProgramming, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Button  Width="85" Height="30" Padding="5" Margin="18 5"
@@ -107,9 +109,10 @@
 
                             <Button  Width="85" Height="30" Padding="5" Margin="20 5 0 0"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
-                                Command="{Binding StopProgramBtn}" Foreground="WhiteSmoke" Background="#26c6da"                                
+                                Command="{Binding StopProgramBtn}" Foreground="WhiteSmoke" Background="#26c6da"      
+                                Visibility="{Binding IsBatchProgVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVis}}"
                                 IsEnabled="{Binding IsStopBtnEnable, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >Stop</Button>
-                               
+                            
                         </StackPanel>
 
 

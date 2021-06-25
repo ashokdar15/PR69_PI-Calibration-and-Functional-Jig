@@ -31,16 +31,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 //Stop btn
                 //Setting
                 IsBatchProgEnable = true;
+                IsBatchProgVisible = true;
             }
             else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96 ||
-                clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
             {
                 IsBatchProgEnable = false;
+                IsBatchProgVisible = false;
             }
             else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_96x96 ||
                clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR43_48x48)
             {
                 IsBatchProgEnable = false;
+                IsBatchProgVisible = false;
             }
 
         }
@@ -52,8 +55,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         }
 
         private async void btnStartProgramClk(object obj)
-        {
-           
+        {           
             try
             {
                 CurrentValue = 0;// clsGlobalVariables.objfrmProgramming.prgBar.Minimum;                 
@@ -87,7 +89,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         {
             byte btmRetVal;
             string strmPath = "";
-            if (clsGlobalVariables.ComPortJIGforProgramming == true)
+            if (clsGlobalVariables.ComPortJIGforProgramming == false)
             {
                 btmRetVal = CheckCOMPORT();
                 if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -98,7 +100,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     EnableUI(true);
                     return;
                 }
-            }            
+            }
+            else
+            {
+                MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false);
+
+            }
            
             //strgMotFileFolderPath_PR69_48x48
             //strgMotFileFolderPath_PR69_96x96
@@ -327,7 +334,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             byte btmRetVal;
             try
             {
-                if (clsGlobalVariables.blngIsComportDetected == false)
+                //if (clsGlobalVariables.blngIsComportDetected == false)
                 {
                     byte[] btmarrAsciiBytes = Encoding.ASCII.GetBytes("PR69");
 
@@ -355,6 +362,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                         return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                     }
                                 }
+                                
                                 clsGlobalVariables.strgComPortJIG = clsGlobalVariables.algAvailableComPorts[imCounter].ToString();
                                 clsGlobalVariables.ComPortJIGforProgramming = true;
                                 MainWindowVM.initilizeCommonObject.objJIGSerialComm.uiDataEndTimeout = 10;
@@ -365,10 +373,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                     return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                 }
-                else
-                {
-                    return (byte)clsGlobalVariables.enmResponseError.Success;
-                }
+                //else
+                //{
+                //    return (byte)clsGlobalVariables.enmResponseError.Success;
+                //}
             }
             catch (Exception ex)
             {
@@ -525,6 +533,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 OnPropertyChanged("IsBatchProgEnable");
             }
         }
+
+        private bool _IsBatchProgVisible;
+
+        public bool IsBatchProgVisible
+        {
+            get { return _IsBatchProgVisible; }
+            set { _IsBatchProgVisible = value; OnPropertyChanged("IsBatchProgVisible"); }
+        }
+
 
         private string _backclr;
 

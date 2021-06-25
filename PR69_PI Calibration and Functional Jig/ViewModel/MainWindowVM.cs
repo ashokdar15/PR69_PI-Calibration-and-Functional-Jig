@@ -57,7 +57,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             clsGlobalVariables.IsAccuracytestDone = false;
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
             //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
-            ListOfTests.Clear();
+            
             if (ListOfTests.Count == 0)
             {
                 GetListOfAllEnabledtests(catId);
@@ -202,11 +202,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsModelSettings.igDutID = clsGlobalVariables.Selectedcatid.DeviceId;
             //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_48x48;
             clsGlobalVariables.objGlobalFunction.LoadKeypadData();
-          
-            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                clsGlobalVariables.MB_MASTER_TO_DUT = 200;
-            else
-                clsGlobalVariables.MB_MASTER_TO_DUT = 100;
+
+            //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+            //    clsGlobalVariables.MB_MASTER_TO_DUT = 200;
+            //else
+            //    clsGlobalVariables.MB_MASTER_TO_DUT = 100;
 
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(Convert.ToInt32(NumberOfDUTs)) != (byte)clsGlobalVariables.enmResponseError.Success)
             {
@@ -357,19 +357,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 else if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                 {
-                    //In case of error response below changes are done in the software.
-                    clsGlobalVariables.objGlobalFunction.PLC_OFF();
-                    CloseAllComport();
-                    EnableDisableUI(true);
-                    StartStopWatch(false);
-                    //txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
-                    clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
+                    ////In case of error response below changes are done in the software.
+                    //clsGlobalVariables.objGlobalFunction.PLC_OFF();
+                    //CloseAllComport();
+                    //EnableDisableUI(true);
+                    //StartStopWatch(false);
+                    ////txtProgressInfo.Text = txtProgressInfo.Text + Environment.NewLine + "Test" + (imLoopCntr + 1) + " Fail." + "(" + almTempTestList[imLoopCntr] + ")";
+                    //clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
 
-                    clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_FAILED);
+                    //clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_FAILED);
 
                     //CA55 ClearSerialComPort();
 
-                    return;
+                    //return;
                 }
                 else
                 {
@@ -412,9 +412,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
             
             StartStopWatch(false);
-
-
-
+                        
             clsGlobalVariables.accuracyWindow.ShowDialog();
 
             AccuracyStopwatchTime = clsGlobalVariables.AccuracyStopwatchTime;
@@ -485,6 +483,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             EnableDisableUI(true);
             EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
+                       
         }
 
         
@@ -748,7 +747,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 TotalStopwatchTime = TotalReqTime.ToString();
             }
-            
+
+            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.ALLDUTOFF);
         }
 
         private void OkTestClk(object obj)
@@ -2248,6 +2248,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         AddCalibConstantTests(catId);
                         break;
 
+                    case "Display,Keypad Tests":
+                        AddDispKeypadTests(catId);
+                        break;
+
                     default:
                         break;
                 }
@@ -2267,13 +2271,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 if (catId.CommonCalibTests[0].SWITCH_SENSOR_RELAY)
                     ListOfTests.Add("SWITCH_SENSOR_RELAY");
-
-                if (catId.CommonCalibTests[0].START_DISP_TEST)
-                    ListOfTests.Add("DISPLAY_TEST");
-
-                if (catId.CommonCalibTests[0].START_KEYPAD_TEST)
-                    ListOfTests.Add("KEYPAD_TEST");
-
+                              
                 if (catId.CommonCalibTests[0].Vtg24V_OP_TEST)
                     ListOfTests.Add("24V_OP_TEST");
 
@@ -2283,6 +2281,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 if (catId.CommonCalibTests[0].CJC_TEST)
                     ListOfTests.Add("CJC_TEST");
             }
+
+        }
+
+        public void AddDispKeypadTests(CatIdList catId)
+        {
+            if (catId.DispKeypadTests[0].START_DISP_TEST)
+                ListOfTests.Add("DISPLAY_TEST");
+
+            if (catId.DispKeypadTests[0].START_KEYPAD_TEST)
+                ListOfTests.Add("KEYPAD_TEST");
 
         }
 

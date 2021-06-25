@@ -25,6 +25,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _relayOrSSRTestsDetails = new ObservableCollection<RelayORSSRTests>();
             _calibrationconstDetails = new ObservableCollection<CalibrationConstants>();
             _commonTestsDetails = new ObservableCollection<CommonTests>();
+            _dispKeypadDetails = new ObservableCollection<DispKeypadTests>();
 
             //_OP1subtestList = new ObservableCollection<string>();
             //_OP2subtestList = new ObservableCollection<string>();
@@ -55,6 +56,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             _RelayTypeList = new ObservableCollection<string>();
             _EditCalibConstantTestsCmd = new RelayCommand(EditCalibConstantTestsClk);
             _EditCommonTestsCmd = new RelayCommand(EditCommonTestsClk);
+            _EditDispKeypadCmd = new RelayCommand(EditDispKeypadClk);
 
             _EditmAmpInputTestsCmd = new RelayCommand(EditmAmpInputTestsClk);
             _EditVoltInputTestsCmd = new RelayCommand(EditVoltInputTestsClk);
@@ -98,6 +100,49 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             IsSaveBtnVis = false;            
         }
 
+        private void EditDispKeypadClk(object obj)
+        {
+            clsDispKeypadTests = new clsDispKeypadTests();
+            int found = 0;
+
+            for (int CounterCatId = 0; CounterCatId < ModifiedCatId.Count; CounterCatId++)
+            {
+                for (int CounterConfigData = 0; CounterConfigData < ModifiedCatId[CounterCatId].ConfigurationData.Count; CounterConfigData++)
+                {
+                    for (int CounterCatIdList = 0; CounterCatIdList < ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists.Count; CounterCatIdList++)
+                    {
+                        if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
+                        {
+                            SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
+                            clsDispKeypadTests.ParseRelayOrSSRDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
+                            found = 1;
+                        }
+                    }
+                    if (found == 1) { break; }
+                }
+                if (found == 1) { break; }
+            }
+
+            EventSender = "SaveDispKeypadTests";
+            AnalogIPTestsEditVis = false;
+            AnalogOPTestsEditVis = false;
+            TC_RTDTestsVis = false;
+            RelayOrSSRTestsVis = false;
+            CalibConstTestsVis = false;
+            CommonTestsVis = false;
+            DispKeypadTestsVis = true;
+            AccuracyDetailsEditVis = false;
+            CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
+            CalibDelaysPIEditVis = false;
+            ToleranceEditVis = false;
+            ToleranceofPR69EditVis = false;
+            IsDialogOpen = true;
+            MsgVis = true;
+            MesssageVis = false;
+            PopupBtnVisibility(true);
+
+        }
+
         private void EditCalibrationDelaysPR43Clk(object obj)
         {
             clsCalibrationDelaysPR43 = new clsCalibrationDelaysPR43();
@@ -109,7 +154,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false; DispKeypadTestsVis=false;
             AccuracyDetailsEditVis = false;
 
             CalibDelaysPR43EditVis = true;
@@ -238,7 +283,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             TC_RTDTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
             ToleranceEditVis = false;
@@ -729,6 +774,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _CommonTestsVis = value; OnPropertyChanged("CommonTestsVis"); }
         }
 
+        private bool _DispKeypadTestsVis;
+
+        public bool DispKeypadTestsVis
+        {
+            get { return _DispKeypadTestsVis; }
+            set { _DispKeypadTestsVis = value; OnPropertyChanged("DispKeypadTestsVis"); }
+        }
+
+
         private bool _CalibDelaysEditVis;
 
         public bool CalibDelaysEditVis
@@ -831,8 +885,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     if (IsCalibConstantTest)
                     {
                         ListOfGroupSequence.Add(clsGlobalVariables.strCalibConstTests);
-                    }                                    
-                    
+                    }
+                    if (IsDispKeypadTest)
+                    {
+                        ListOfGroupSequence.Add(clsGlobalVariables.strDispKeypadTests);
+                    }
                 }
                 else
                     IsSequencebtnEnabled = true;
@@ -1063,6 +1120,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _EditCommonTestsCmd = value; OnPropertyChanged("EditCommonTestsCmd"); }
         }
 
+        private RelayCommand _EditDispKeypadCmd;
+
+        public RelayCommand EditDispKeypadCmd
+        {
+            get { return _EditDispKeypadCmd; }
+            set { _EditDispKeypadCmd = value; }
+        }
+
+
         private RelayCommand _EditUptestgrpCmd;
 
         public RelayCommand EditUptestgrpCmd
@@ -1242,6 +1308,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _commonTestsDetails = value; OnPropertyChanged("commonTestsDetails"); }
         }
 
+        private ObservableCollection<DispKeypadTests> _dispKeypadDetails;
+
+        public ObservableCollection<DispKeypadTests> dispKeypadDetails
+        {
+            get { return _dispKeypadDetails; }
+            set { _dispKeypadDetails = value; OnPropertyChanged("dispKeypadDetails"); }
+        }
+
+
         private ObservableCollection<AccuracyTests> _AccuracymAmpTestsDetails;
 
         public ObservableCollection<AccuracyTests> AccuracymAmpTestsDetails
@@ -1372,6 +1447,58 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 OnPropertyChanged("IsAnalogInputTest");
             }
         }
+
+        private bool _IsDispKeypadTest;
+
+        public bool IsDispKeypadTest
+        {
+            get { return _IsDispKeypadTest; }
+            set
+            {
+                _IsDispKeypadTest = value;
+
+                if (_IsDispKeypadTest)
+                {
+                    IsDispKeypadTestVis = true;
+                    if (!ListOfGroupSequence.Contains(clsGlobalVariables.strDispKeypadTests))
+                    {
+                        ListOfGroupSequence.Add(clsGlobalVariables.strDispKeypadTests);
+                    }
+                }
+                else
+                {
+                    IsDispKeypadTestVis = false;
+                    if (ListOfGroupSequence.Contains(clsGlobalVariables.strDispKeypadTests))
+                    {
+                        int index = 0;
+                        foreach (string testgrp in ListOfGroupSequence)
+                        {
+                            if (testgrp == clsGlobalVariables.strDispKeypadTests)
+                            {
+                                ListOfGroupSequence.RemoveAt(index);
+                                break;
+                            }
+                            index++;
+                        }
+                    }
+                }
+
+                OnPropertyChanged("IsDispKeypadTest");
+            }
+        }
+
+        private bool _IsDispKeypadTestVis;
+
+        public bool IsDispKeypadTestVis
+        {
+            get { return _IsDispKeypadTestVis; }
+            set
+            {
+                _IsDispKeypadTestVis = value;
+                OnPropertyChanged("IsDispKeypadTestVis");
+            }
+        }
+
 
         private bool _IsAnalogInputTestsVis;
 
@@ -1603,7 +1730,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 else
                 {
-                    IsCommonTestsVis = false; AccuracyDetailsEditVis =false;
+                    IsCommonTestsVis = false;DispKeypadTestsVis=false; AccuracyDetailsEditVis =false;
 
                     if (ListOfGroupSequence.Contains(clsGlobalVariables.strCommonTests))
                     {
@@ -1803,6 +1930,13 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _clsCommonTests = value; OnPropertyChanged("clsCommonTests"); }
         }
 
+        private clsDispKeypadTests _clsDispKeypadTests;
+
+        public clsDispKeypadTests clsDispKeypadTests
+        {
+            get { return _clsDispKeypadTests; }
+            set { _clsDispKeypadTests = value; OnPropertyChanged("clsDispKeypadTests"); }
+        }
 
         private clsCalibrationDelays _clsCalibrationDelays;
 
@@ -1879,7 +2013,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             TC_RTDTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -1921,7 +2055,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             TC_RTDTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -1963,7 +2097,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
             TC_RTDTestsVis = true;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2031,7 +2165,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = true;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2058,7 +2192,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         if (ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList].DeviceName == obj.ToString())
                         {
                             SelDeviceType(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].DeviceType);
-                            clsCalibrationConstantTests.ParseRelayOrSSRDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
+                            clsCalibrationConstantTests.ParseCalibConstantDetails(ModifiedCatId[CounterCatId].ConfigurationData[CounterConfigData].CatIdLists[CounterCatIdList]);
                             found = 1;
                         }
                     }
@@ -2073,7 +2207,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = true;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2118,6 +2252,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
             CommonTestsVis = true;
+            DispKeypadTestsVis = false;
             AccuracyDetailsEditVis = false;
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
             CalibDelaysPIEditVis = false;
@@ -2356,6 +2491,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     IsRelayTest = _catList.IsRelayOrSSRTestsApplicable;
                     IsCalibConstantTest = _catList.IsCalibrationConstApplicable;
                     IsCommonTests = _catList.IsCommonTestsApplicable;
+                    IsDispKeypadTest = _catList.IsDispKeypadApplicable;
 
                     analogInputTestsDetails.Clear();
                     if (_catList.AnalogIpTests != null)
@@ -2410,7 +2546,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             commonTestsDetails.Add(test);
                         }
                     }
-                    
+
+                    dispKeypadDetails.Clear();
+                    if (_catList.DispKeypadTests != null)
+                    {
+                        foreach (DispKeypadTests test in _catList.DispKeypadTests)
+                        {
+                            dispKeypadDetails.Add(test);
+                        }
+                    }
+
+
                     //List of group sequence
                     ListOfGroupSequence.Clear();
                     if (_catList.ListOfGroupSequence != null)
@@ -2582,6 +2728,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         CommonTests commonTests = clsCommonTests.SaveCalibConstantsTests();
                         commonTestsDetails.Clear();
                         commonTestsDetails.Add(commonTests);
+                        break;
+
+                    case "SaveDispKeypadTests":
+                        DispKeypadTests DispKeypadTests = clsDispKeypadTests.SaveCalibConstantsTests();
+                        dispKeypadDetails.Clear();
+                        dispKeypadDetails.Add(DispKeypadTests);
                         break;
 
                     case "SaveCalibDelays":
@@ -2860,7 +3012,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     calibrationconstDetails = null;
                 if (!IsCommonTests)
                     commonTestsDetails = null;
-                
+                if (!IsDispKeypadTest)
+                    dispKeypadDetails = null;
 
                 CatIdList EditedcatidObj = new CatIdList()
                 {
@@ -2879,8 +3032,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     RelayOrSSRTests = relayOrSSRTestsDetails,
                     IsCalibrationConstApplicable = IsCalibConstantTest,
                     CalibrationConstantsTests = calibrationconstDetails,
-                    IsCommonTestsApplicable = IsCommonTests,
+                    IsCommonTestsApplicable = IsCommonTests,                    
                     CommonCalibTests = commonTestsDetails,
+                    IsDispKeypadApplicable = IsDispKeypadTest,
+                    DispKeypadTests = dispKeypadDetails,
                     ListOfGroupSequence = ListOfGroupSequence,
 
                     IsmAmpTestEnabled = IsmAmpInputTest,
@@ -2998,8 +3153,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 RelayOrSSRTests = relayOrSSRTestsDetails,
                 IsCalibrationConstApplicable = IsCalibConstantTest,
                 CalibrationConstantsTests = calibrationconstDetails,
-                IsCommonTestsApplicable = IsCommonTests,
+                IsCommonTestsApplicable = IsCommonTests,                
                 CommonCalibTests = commonTestsDetails,
+                IsDispKeypadApplicable = IsDispKeypadTest,
+                DispKeypadTests = dispKeypadDetails,
                 ListOfGroupSequence = ListOfGroupSequence,
 
                 IsmAmpTestEnabled = IsmAmpInputTest,
@@ -3058,6 +3215,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
             CommonTestsVis = false;
+            DispKeypadTestsVis =false;
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
@@ -3206,7 +3364,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
@@ -3233,7 +3391,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;
@@ -3258,7 +3416,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = true;
@@ -3285,7 +3443,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             TC_RTDTestsVis = false;
             RelayOrSSRTestsVis = false;
             CalibConstTestsVis = false;
-            CommonTestsVis = false;
+            CommonTestsVis = false;DispKeypadTestsVis=false;
             AccuracyDetailsEditVis =false;
 
             CalibDelaysEditVis = false; CalibDelaysPR43EditVis = false;

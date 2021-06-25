@@ -142,12 +142,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                         var res = from s in conn.Table<clsLoggingData>().ToList()
                                   where s.Date >= date1 && s.Date <= date2
                                   select s;
+                        if (res.Count<clsLoggingData>() > 0)
+                        {
+                            //List<clsLoggingData> obj = res;
 
-                        //if (res.Count == 0)
-                        //{
+                            List<clsLoggingData> resu = res.ToList<clsLoggingData>();
 
-                        //}
-
+                            return clsGlobalVariables.DataLogStatus.Valid;
+                        }
+                        
                         //InvoiceDate BETWEEN '2010-01-01' AND '2010-01-31'
                     }
                 }

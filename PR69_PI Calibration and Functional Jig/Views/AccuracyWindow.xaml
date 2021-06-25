@@ -35,7 +35,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>                            
+                            <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="220" />
@@ -88,16 +88,12 @@
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>-->
                                                         <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                           
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
 
@@ -115,16 +111,12 @@
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>-->
                                                         <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                            
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -140,16 +132,12 @@
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>-->
                                                         <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                            
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -160,21 +148,14 @@
                                                         <Label Content="DUT4" FontSize="15" FontWeight="Bold"/>
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
-                                                        <!--<Style TargetType="DataGridCell">
-                                                            <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
-                                                            <Setter Property="Margin" Value="1 1 1 1"/>
-                                                        </Style>-->
+                                                      
                                                         <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                           
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -189,17 +170,12 @@
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>-->
-                                                        <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                        <Style  TargetType="{x:Type DataGridCell}">                                                            
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -214,17 +190,12 @@
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>-->
-                                                        <Style  TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                        <Grid Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter VerticalAlignment="Center" />
-                                                                        </Grid>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
+                                                        <Style  TargetType="{x:Type DataGridCell}">                                                            
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -265,6 +236,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -277,6 +252,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -289,6 +268,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -301,6 +284,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -313,6 +300,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -325,6 +316,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -366,6 +361,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -378,6 +377,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -390,6 +393,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -402,6 +409,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -413,7 +424,11 @@
                                                     </DataGridTextColumn.Header>
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -426,6 +441,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -465,6 +484,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -477,6 +500,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -489,6 +516,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -501,6 +532,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -513,6 +548,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -525,6 +564,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -567,6 +610,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice1}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -579,6 +626,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice2}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -591,6 +642,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice3}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -603,6 +658,10 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice4}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
@@ -615,7 +674,11 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice5}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
                                                 </DataGridTextColumn>
@@ -627,7 +690,11 @@
                                                     <DataGridTextColumn.CellStyle>
                                                         <Style TargetType="DataGridCell">
                                                             <Setter Property="Background" Value="{Binding BackcolorDevice6}"/>
+                                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
                                                             <Setter Property="Margin" Value="1 1 1 1"/>
+                                                            <Setter Property="FontSize" Value="14"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
                                                         </Style>
                                                     </DataGridTextColumn.CellStyle>
                                                 </DataGridTextColumn>
@@ -684,15 +751,15 @@
                                 </StackPanel>
                             </StackPanel>
 
-                            
-                        </StackPanel>
-                       
 
-                        
-                           
+                        </StackPanel>
+
+
+
+
                     </Grid>
-                    
-                    
+
+
                 </Grid>
             </Border>
         </materialDesign:DialogHost.Content>

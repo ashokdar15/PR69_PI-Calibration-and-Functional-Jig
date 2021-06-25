@@ -457,13 +457,28 @@
                                                 </Run>
                                         </TextBlock>
 
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 25 0 5"
+                                                        FontWeight="Bold" 
+                                                        Text="{Binding Path=DUT1Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT1Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                                
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 2 0 5"
+                                                        FontWeight="Bold" 
+                                                        Text="DUT1">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                           Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
 
 
                                         <MediaElement Source="loadingspinner.gif" x:Name="gif" 
@@ -525,13 +540,27 @@
                                                 </Run>
                                         </TextBlock>
 
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 25 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT2Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT2Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 2 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="DUT2">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                           Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
 
                                         <MediaElement Source="loadingspinner.gif" x:Name="gif2" 
                                                       UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif2_MediaEnded"
@@ -591,13 +620,27 @@
                                                 </Run>
                                         </TextBlock>
 
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 25 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT3Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT3Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 2 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="DUT3">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                           Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
 
                                         <MediaElement Source="loadingspinner.gif" x:Name="gif3" 
                                                       UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="None" MediaEnded="gif3_MediaEnded"
@@ -656,13 +699,27 @@
                                                     </Run.Foreground>
                                                 </Run>
                                         </TextBlock>
-                                        
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
+
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 25 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT4Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT4Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 2 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="DUT4">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
 
 
                                         <MediaElement Source="loadingspinner.gif" x:Name="gif4" 
@@ -724,12 +781,26 @@
 
                                         </TextBlock>
 
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45"  Margin="5 25 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT5Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT5Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 2 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="DUT5">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="2" Grid.ColumnSpan="2"
                                                     Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25"  Grid.Row="2" Grid.ColumnSpan="2"                                                   
@@ -782,13 +853,27 @@
                                                     </Run.Foreground>
                                                 </Run>
                                         </TextBlock>
-                                       
-                                        <xctk:RichTextBox Text="{Binding Path=strmsgDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
+
+                                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 25 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Path=DUT6Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="{Binding Path=DUT6Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                            <TextBlock  TextAlignment="Center" Width="100" Height="45" Margin="5 2 0 5"
+                                                        FontWeight="Bold"
+                                                        Text="DUT6">
+                                                <TextBlock.FontSize>25</TextBlock.FontSize>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
                                             <xctk:RichTextBoxFormatBarManager.FormatBar>
                                                 <xctk:RichTextBoxFormatBar />
                                             </xctk:RichTextBoxFormatBarManager.FormatBar>
-                                        </xctk:RichTextBox>
+                                        </xctk:RichTextBox>-->
                                         <!--<TextBlock Text="{Binding Path=strmsgDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="2"
                                                    Margin="20 5 0 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}"/>-->
                                         <!--<Button Content="OK" Foreground="WhiteSmoke" Width="55" Height="25" Grid.Row="2" Grid.ColumnSpan="2"                                                   
@@ -819,7 +904,7 @@
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <DataGrid ScrollViewer.CanContentScroll="True" 
+                                            <DataGrid ScrollViewer.CanContentScroll="True"  CanUserSortColumns="False"
                                                       Width="auto" Height="auto" Grid.Column="0"  Grid.Row="0"                                        
                                                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Margin="1 1"                                                     
                                                       Name="DG1"
@@ -842,7 +927,7 @@
                                                 </DataGrid.Columns>
                                             </DataGrid>
 
-                                            <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" Name="DG2"
+                                            <DataGrid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" AutoGenerateColumns="False" Name="DG2" CanUserSortColumns="False"
                                                       ItemsSource="{Binding Path=clsTotalConnectedDevicesList,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}">
@@ -1009,10 +1094,10 @@
                                             </StackPanel>
                                         </Border>
 
-                                        <StackPanel Orientation="Horizontal" Margin="15 10 0 10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="3">
+                                        <StackPanel Orientation="Horizontal" Margin="15 10 0 10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="4">
                                             <StackPanel Orientation="Vertical">
                                                 <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                                    <Button  Width="75" Height="30" Padding="5" 
+                                                    <Button  Width="75" Height="30" Padding="5" VerticalAlignment="Top"
                                                         Style="{StaticResource MaterialDesignRaisedButton}"
                                                         Command="{Binding btnStart}" Foreground="WhiteSmoke" Background="#26c6da"
                                                         Visibility="{Binding Path=StartBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">START</Button>
@@ -1022,99 +1107,40 @@
                                                         Command="{Binding BtnStopCmd}" Foreground="WhiteSmoke" Background="Red"
                                                         Visibility="{Binding Path=StopBtnVis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">STOP</Button>
 
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <TextBlock Text="Calibration Time : "  Margin="10 10 0 0"/>
-                                                        <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="20 -25 0 0"
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal"  Margin="10 0 0 0">
+                                                            <TextBlock Text="Calibration Time : "  Margin="10 5 0 0"/>
+                                                            <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="10 -25 0 0"
                                                         FontWeight="Bold"
                                                         Text="{Binding Path=StopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         IsReadOnly="True"                                     
                                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                                            <TextBox.FontSize>16</TextBox.FontSize>
-                                                        </TextBox>
-                                                    </StackPanel>
-
-                                                </StackPanel>
-                                                
-                                                <StackPanel Orientation="Horizontal">
-                                                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                        <TextBlock Text="Accuracy Time : " Margin="0 15 0 0"/>
-                                                        <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="5 -15 0 0"
+                                                                <TextBox.FontSize>16</TextBox.FontSize>
+                                                            </TextBox>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                                                            <TextBlock Text="Accuracy Time : " Margin="10 15 0 0"/>
+                                                            <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="20 -15 0 0"
                                                         FontWeight="Bold"
                                                         Text="{Binding Path=AccuracyStopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         IsReadOnly="True"                                     
                                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                                            <TextBox.FontSize>16</TextBox.FontSize>
-                                                        </TextBox>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                        <TextBlock Text="Total Time : " Margin="0 15 0 0"/>
-                                                        <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="5 -15 0 0"
+                                                                <TextBox.FontSize>16</TextBox.FontSize>
+                                                            </TextBox>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                                                            <TextBlock Text="Total Time : " Margin="10 15 0 0"/>
+                                                            <TextBox  Width="80" Height="50" materialDesign:HintAssist.Hint="" Margin="50 -15 0 0"
                                                         FontWeight="Bold"
                                                         Text="{Binding Path=TotalStopwatchTime,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         IsReadOnly="True"                                     
                                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                                            <TextBox.FontSize>16</TextBox.FontSize>
-                                                        </TextBox>
+                                                                <TextBox.FontSize>16</TextBox.FontSize>
+                                                            </TextBox>
+                                                        </StackPanel>
                                                     </StackPanel>
                                                 </StackPanel>
-
-
-                                                <StackPanel Orientation="Horizontal" Margin="0 0 0 2" >
-                                                    <TextBlock Text="Final Status : " Margin="0 29 0 0"/>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT1Status" Margin="5 30 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Path=DUT1Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Background="{Binding Path=DUT1Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                            <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT1Status" Margin="5 2 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="DUT1">
-                                                        <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT2Status" Margin="15 30 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Path=DUT2Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Background="{Binding DUT2Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  >
-                                                            <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT1Status" Margin="15 2 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="DUT2">
-                                                        <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT3Status" Margin="15 30 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Path=DUT3Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Background="{Binding DUT3Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
-                                                            <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT1Status" Margin="15 2 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="DUT3">
-                                                            <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT4Status" Margin="15 30 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Path=DUT4Status,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Background="{Binding DUT4Statusbk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   >
-                                                            <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                        <TextBlock  Width="55" Height="25" materialDesign:HintAssist.Hint="DUT1Status" Margin="15 2 0 5"
-                                                        FontWeight="Bold"
-                                                        Text="DUT4">
-                                                        <TextBlock.FontSize>15</TextBlock.FontSize>
-                                                        </TextBlock>
-                                                    </StackPanel>
-
-                                                </StackPanel>
+                                                                                                
                                             </StackPanel>
                                         </StackPanel>
 

@@ -43,10 +43,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
             //clsModelSettings.blnRS485Flag = false;
 
-            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                clsGlobalVariables.MB_MASTER_TO_DUT = 200;
-            else
-                clsGlobalVariables.MB_MASTER_TO_DUT = 100;
+            //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+            //    clsGlobalVariables.MB_MASTER_TO_DUT = 200;
+            //else
+            //    clsGlobalVariables.MB_MASTER_TO_DUT = 100;
 
             //Auto com port detection
             if (clsGlobalVariables.objGlobalFunction.AutomaticCOMPortDetections(clsGlobalVariables.NUMBER_OF_DUTS) != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -100,7 +100,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                     UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.mAmp);                                                                                                          
                                 
                             }
-                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
 
                             if (clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Contains(1) || clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Contains(2) ||
@@ -157,7 +157,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                 
                                 
                             }
-                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
 
                             if (!DoneFlag)
@@ -216,7 +216,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                         
                             }
 
-                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
 
                             if (!DoneFlag)
@@ -272,7 +272,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                     UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.RSensor);                                   
                                                               
                             }
-                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
 
                             if (!DoneFlag)
@@ -330,7 +330,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                                                                                 
                             }                                                       
 
-                            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
                             if (!DoneFlag)
                             {
@@ -814,7 +814,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         }
 
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 clsMessages.DisplayMessage(clsMessageIDs.VOLT_CALIBRATION_MSG_ID);
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
             }
@@ -899,7 +899,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     continue;
                 }
             }
-            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
 
             blnmDivideBy100 = true;
             btmRetVal = TestAccuracy(testPoint, currentTestNumber, clsGlobalVariables.mV_SENSOR, sensorType);
@@ -924,7 +924,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     
                     clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.ThermoCouple_AccuracyDelay;
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                     clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
                 else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
@@ -958,12 +958,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         UpdateTestResult(DUT, currentTestNumber, clsGlobalVariables.FAIL, sensorType);
                         continue;
                     }
-                    if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
-                    {
-                        System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of calibrator"+ DUT.ToString() +".");
-                    }
-                    else
-                        System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator" + DUT.ToString() + ".");
+
+                    //CJC On OFF Message
+                    //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                    //{
+                    //    System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of calibrator"+ DUT.ToString() +".");
+                    //}
+                    //else
+                    //    System.Windows.Forms.MessageBox.Show("Please turn off the cjc.....of all calibrator" + DUT.ToString() + ".");
 
                     //
                     btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
@@ -1006,7 +1008,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     
                 }
             }
-            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
             //clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_R, testPoint + "°C.");
             blnmDivideBy100 = false;
             btmRetVal = TestAccuracy(testPoint, currentTestNumber, clsGlobalVariables.R_SENSOR, sensorType);
@@ -1030,7 +1032,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                 //    clsMessages.DisplayMessage(clsMessageIDs.TWO_WIRE_MSG_96x96);
                 //else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48)
@@ -1092,7 +1094,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
                 }
             }
-            clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+            //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
             clsMessages.ShowMessageInProgressWindowForAccuracy(clsMessageIDs.ACCURACY_J, testPoint + "°C.");
             blnmDivideBy100 = false;
             btmRetVal = TestAccuracy(testPoint, currentTestNumber, clsGlobalVariables.J_SENSOR, sensorType);
@@ -1117,7 +1119,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 clsMessages.DisplayMessage(clsMessageIDs.MA_CALIBRATION_MSG_ID);
                 clsGlobalVariables.igPV_TIMEOUT_DELAY = clsGlobalVariables.mA_V_AccuracyDelay;
             }
@@ -1201,7 +1203,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
             }
             blnmDivideBy100 = true;
             btmRetVal = TestAccuracy(testPoint, currentTestNumber, clsGlobalVariables.mV_SENSOR, sensorType);
@@ -1229,7 +1231,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                 {
                     clsMessages.DisplayMessage(clsMessageIDs.ALL_WIRE_MSG_96x96);
@@ -1296,7 +1298,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
 
             }
 
@@ -1327,7 +1329,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         continue;
                     }
                 }
-                clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 //Start timer here, time is given in database
                 EnablePVTimeoutTimer();
                 blnTimerElapsed = true;
@@ -1391,7 +1393,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             return (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                         }
                     }
-                    clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
+                    //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                 }
 
                  return btmRetVal;

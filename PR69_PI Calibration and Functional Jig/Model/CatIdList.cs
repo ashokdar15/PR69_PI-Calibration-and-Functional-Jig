@@ -28,6 +28,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public IList<CalibrationConstants> CalibrationConstantsTests { get; set; }
         public bool IsCommonTestsApplicable { get; set; }
         public IList<CommonTests> CommonCalibTests { get; set; }
+
+        public bool IsDispKeypadApplicable { get; set; }
+        public IList<DispKeypadTests> DispKeypadTests { get; set; }
+
         public IList<string> ListOfGroupSequence { get; set; }
 
         public bool IsmAmpTestEnabled { get; set; }        
@@ -127,10 +131,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public string SelectedOP3RelayType { get; set; }
 
         public bool CatID_151E12B_151K42B { get; set; }
-
         
-
-
     }
 
     public class CalibrationConstants
@@ -144,11 +145,17 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         public bool READ_DEVICE_ID { get; set; }
         public bool READ_CALIB_CONST { get; set; }
         public bool SWITCH_SENSOR_RELAY { get; set; }       
-        public bool START_DISP_TEST { get; set; }
-        public bool START_KEYPAD_TEST { get; set; }
+        
         public bool Vtg24V_OP_TEST { get; set; }
         public bool START_MODBUS_TEST { get; set; }
         public bool CJC_TEST { get; set; }
+    }
+
+    public class DispKeypadTests
+    {
+        public bool START_DISP_TEST { get; set; }
+        public bool START_KEYPAD_TEST { get; set; }
+
     }
 
     public class AccuracyTests
