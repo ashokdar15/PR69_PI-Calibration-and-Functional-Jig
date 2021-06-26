@@ -58,20 +58,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsMessages.DisplayMessage(clsMessageIDs.TWOWIRE_MSG_ID);
             //clsGlobalVariables.objGlobalFunction.DisplayImgMessageBox(clsMessages.objResManager.GetString("TWOWIRE_MSG_ID1", clsGlobalVariables.objCultureinfo) + System.Environment.NewLine + clsMessages.objResManager.GetString("TWOWIRE_MSG_ID2", clsGlobalVariables.objCultureinfo);
             
-            if (ListOfTests.Count == 0)
-            {
-                GetListOfAllEnabledtests(catId);
-                if (ListOfTests.Count == 0)
-                {
-                    //MessageBox.Show("Please select at least one group of tests");
-                    ShowMessageBox("Please select at least one group of tests",false,"",MsgIcon.Error);
-                    return;
-                }
-            }
-
-            clsTotalTestsGroups.Clear();
-            int count = 0;
-
             clsGlobalVariables.algTests_Auto.Clear();
             //    //PIB12C
 
@@ -159,16 +145,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             //clsGlobalVariables.algTests_Auto.Add("CALIB_PT100_313");
             //clsGlobalVariables.algTests_Auto.Add("WRITE_CALIB_CONST");
             #endregion
-            //
             
-            //clsGlobalVariables.algTests_Auto.Add("CALIB_TC");
-     
-            
-            foreach (string test in clsGlobalVariables.algTests_Auto)
-            {
-                clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
-                count++;
-            }
             TestsDetailsVis = true;
             IsProductSelected = true;
             clsTotalConnectedDevicesList.Clear();
@@ -263,20 +240,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     EnableDisableUI(true);
                     return;
                 }
-                //show current test on each DUT
-                //if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(1))                
-                //    CurrentTestStatusDUT1 = almTempTestList[imLoopCntr].ToString();
-                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(2))
-                //    CurrentTestStatusDUT2 = almTempTestList[imLoopCntr].ToString();
-                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(3))
-                //    CurrentTestStatusDUT3 = almTempTestList[imLoopCntr].ToString();
-                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(4))
-                //    CurrentTestStatusDUT4 = almTempTestList[imLoopCntr].ToString();
-                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(5))
-                //    CurrentTestStatusDUT5 = almTempTestList[imLoopCntr].ToString();
-                //else if (!clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Contains(6))
-                //    CurrentTestStatusDUT6 = almTempTestList[imLoopCntr].ToString();
-
+               
                 foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 {
                     switch (DUT)
@@ -303,12 +267,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             break;
                     }
                 }
-
                 SelectedIndexDG1 = imLoopCntr;
-
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
-                clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
+                //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
 
                 if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0 && btmRetVal != (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)
                 {
@@ -329,12 +291,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                         clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
                     }
                     clsGlobalVariables.objGlobalFunction.PLC_OFF();
-                    CloseAllComport();
-                    //CA 55
-                    //if (mnuAutoCalibration.Checked == true)
-                    //{
-                    //    objfrmAccTest.ShowDialog();
-                    //}
+                    CloseAllComport();                   
                     EnableDisableUI(true);
                     
                     clsGlobalVariables.accuracyWindow.ShowDialog();
@@ -381,36 +338,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 }
                 //CA55 prgbar.Value = imLoopCntr;
             }
-            //CA55 
-            //This function performs JIG Initialization tests. this is only for PR69 devices and not for PI.
-            //if (Program.objMainForm.rad48by48DUT.Checked || Program.objMainForm.rad96by96DUT.Checked)
-            //{
-            //    //This function performs JIG Initialization tests.
-            //    btmRetVal = JIGInitializationTests();
-            //    if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
-            //    {
-            //        clsMessages.DisplayMessage(clsMessageIDs.Main_ERR_MSG);
-            //        frmMain.objCalibratorSerialComm.CloseCommPort();
-            //        frmMain.objJIGSerialComm.CloseCommPort();
-            //        ClearSerimalComPort();
-            //        clsMessages.ShowMessageInProgressWindow(clsMessageIDs.JIG_INITIALZATION_FAILED);
-            //        EnableControls(true);
-            //        return;
-            //    }
-            //}
-            //btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT("SOURCE_OFF");
-            //shpPassFail.ShapeColor = Color.Green;
-            //shpPassFail.TextONShape = "PASS";
-            //shpPassFail.FontColor = Color.White;
+            
             foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                 clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT);
             clsMessages.ShowMessageInProgressWindow(clsMessageIDs.DUT_CALIB_COMPLETED);
             CloseAllComport();
             ///IsProcessOn = false;
             clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(false);
-            //clsGlobalVariables.objGlobalFunction.ApplyDelay(5000);
-            //clsGlobalVariables.objGlobalFunction.PLC_ON_OFF_QUERY(true);
-            
+                       
             StartStopWatch(false);
                         
             clsGlobalVariables.accuracyWindow.ShowDialog();
@@ -433,7 +368,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 switch (DUT)
                 {
                     case 1:
-
                         DUT1Status = "PASS";
                         DUT1Statusbk = "#43a047";
                         break;
@@ -2745,7 +2679,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void BtnOkclk(object obj)
         { 
             clsGlobalVariables.NUMBER_OF_DUTS = Convert.ToInt32(NumberOfDUTs);
-
+            int count = 0;
             switch (obj.ToString())
             {
                 case "Ok":
@@ -2754,6 +2688,26 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     clsGlobalVariables.selectedDeviceType = GetDevicetypeFromString(SelectedDeviceType);
                     clsModelSettings.blnRS485Flag = Selectedcatid.ModbusSupport;
 
+                    ListOfTests.Clear();
+                    GetListOfAllEnabledtests(Selectedcatid);
+                    if (ListOfTests.Count == 0)
+                    {
+                        //MessageBox.Show("Please select at least one group of tests");
+                        System.Windows.Forms.MessageBox.Show("Please select at least one group of tests");
+                        hide();
+                        return;
+                    }
+                    else
+                    {
+                        clsTotalTestsGroups.Clear();
+                        foreach (string test in ListOfTests)
+                        {
+                            clsTotalTestsGroups.Add(new clsTotalTestsGroups() { TestNumber = count + 1, Test = test });
+                            count++;
+                        }
+                    }
+                    
+                   
                     ApplyCalibrationDelays(clsGlobalVariables.selectedDeviceType);
 
                     hide();

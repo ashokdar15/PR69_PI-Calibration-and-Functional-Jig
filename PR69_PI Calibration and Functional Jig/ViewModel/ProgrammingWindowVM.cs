@@ -45,7 +45,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 IsBatchProgEnable = false;
                 IsBatchProgVisible = false;
             }
-
+            textboxVis = false;
         }
 
         private void btnStopProgramClk(object obj)
@@ -551,6 +551,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             set { _backclr = value; OnPropertyChanged("backclr"); }
         }
 
+        private bool _textboxVis;
+
+        public bool textboxVis
+        {
+            get { return _textboxVis; }
+            set { _textboxVis = value; OnPropertyChanged("textboxVis"); }
+        }
+
 
         private bool _IsStopBtnEnable;
 
@@ -740,6 +748,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     {
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(100);
                         IsStopBtnEnable = true;
+                        textboxVis = true;
                         if (evenOddIteration)
                         {                                                 
                             backclr = "#673ab7";
@@ -766,6 +775,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             EnableUI(true);
                             // _ChangeShapeColor(None);
                             backclr = "#fafafa";
+                            textboxVis = false;
                             return;
                         }
                     } while (true);

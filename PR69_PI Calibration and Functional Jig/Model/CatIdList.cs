@@ -18,14 +18,19 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         
         public bool IsAnalogInputTestApplicable { get; set; }
         public IList<AnalogInputTests> AnalogIpTests { get; set; }
+
         public bool IsAnalogOutputTestApplicable { get; set; }
         public IList<AnalogOutputTests> AnalogOpTests { get; set; }
+
         public bool IsTC_RTDTestApplicable { get; set; }
         public IList<TC_RTDCalibTests> TC_RTDTests { get; set; }
+
         public bool IsRelayOrSSRTestsApplicable { get; set; }
         public IList<RelayORSSRTests> RelayOrSSRTests { get; set; }
+
         public bool IsCalibrationConstApplicable { get; set; }
         public IList<CalibrationConstants> CalibrationConstantsTests { get; set; }
+
         public bool IsCommonTestsApplicable { get; set; }
         public IList<CommonTests> CommonCalibTests { get; set; }
 

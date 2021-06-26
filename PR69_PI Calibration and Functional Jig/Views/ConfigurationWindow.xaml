@@ -1113,7 +1113,7 @@
                                 </StackPanel>
 
                                 <GroupBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3" Padding="0"
-                                         Width="365" Height="120" Margin="170 0 0 0" BorderThickness="2">
+                                         Width="365" Height="120" Margin="185 0 0 0" BorderThickness="2">
                                     <GroupBox.Header>
                                         <TextBlock Text="Input Accuracy Details" FontSize="15"></TextBlock>
                                     </GroupBox.Header>

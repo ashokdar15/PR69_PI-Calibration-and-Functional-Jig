@@ -78,7 +78,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
                 if (_CALIB_PT100_PR69_PI)
                 {
                     CALIB_PT100 = true;
-                    CALIB_TC = true;
+                    if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 ||
+                        clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                        CALIB_TC = true;
+                    else
+                        CALIB_TC = false;
                     CALIB_100_OHM = false;
                     CALIB_313_71_OHM = false;
                 }

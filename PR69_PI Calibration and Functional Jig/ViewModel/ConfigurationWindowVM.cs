@@ -2944,7 +2944,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         private void DeleteSeriesClk(object obj)
         {
             ShowMessageBox("Do you want to delete Devicetype: " + obj.ToString() + " ? ", true, "DeleteDeviceType", obj.ToString(), clsGlobalVariables.MsgIcon.Question);
-
         }
 
         private void AddCatIdClk(object obj)

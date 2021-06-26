@@ -57,8 +57,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
             // clsModelSettings.blnRS485Flag = false;
             clsGlobalVariables.NUMBER_OF_DUTS_List_Temp.Clear();
-
-
+            
             clsGlobalVariables.mainWindowVM.OpenJigCOMPort();
            // clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;           
             Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
@@ -116,7 +115,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                             {
                                 DisplayMsg = false;
                                 DialogResult dlgMsgBxRslt = System.Windows.Forms.MessageBox.Show("Do you want to abort the test?", clsGlobalVariables.strg_Application, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-                                if (dlgMsgBxRslt==DialogResult.Yes)
+                                if (dlgMsgBxRslt == DialogResult.Yes)
                                     break;
                             }
                             

@@ -471,7 +471,7 @@
                                                 <TextBlock.FontSize>25</TextBlock.FontSize>
                                             </TextBlock>
                                         </StackPanel>
-
+                                        
                                         <!--<xctk:RichTextBox Text="{Binding Path=strmsgDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                           Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="White"
                                                              IsReadOnly="True" FontWeight="Normal" Margin="15 -2 10 0" Foreground="Red" Visibility="{Binding Path=OkTestBtnVisDUT1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">

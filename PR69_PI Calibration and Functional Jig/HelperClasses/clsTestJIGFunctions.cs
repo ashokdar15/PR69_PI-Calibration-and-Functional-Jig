@@ -1215,7 +1215,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             //Value present on the calibrator measure has been read and saved in a global variable.
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1256,7 +1256,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //Delay of 12 Seconds has been added here.                                            
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1832,7 +1832,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             //CA55 Program.objMainForm.ShowStatus(Program.objMainForm.ShpOneV, clsGlobalVariables.enmStatus.INPROGRESS);
                             btmRetVal = clsGlobalVariables.objQueriescls.ChangeSensor(clsGlobalVariables.SENSOR_0_10V_TYPE, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1888,7 +1888,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //chkVtg test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.NINE_VOLT_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1918,7 +1918,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //chkCurrent test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                                 break;
@@ -1979,7 +1979,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //chkCurrent test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.TWENTY_mA_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -3123,7 +3123,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "OP2_1NC_NO_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
+                            //26,30,34,38
                             clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            btmRetVal = clsGlobalVariables.objPLCQueriescls.MBStartPLC_ON(clsGlobalVariables.OP1_DUT1_PLC_ON_Number[DUT - 1]);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue; ;
+                            }
+
                             if (clsModelSettings.blnRS485Flag)
                             {
                                 btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.OP2_ADDRESS, clsGlobalVariables.OP2_ON);
@@ -3241,7 +3249,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
                         //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
-
+                        for (int DUT = 0; DUT < clsGlobalVariables.OP1_DUT1_PLC_ON_Number.Length; DUT++)
+                        {
+                            clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(clsGlobalVariables.OP1_DUT1_PLC_ON_Number[DUT]);
+                        }
                         break;
 
                     case "OP3_1NC_NO_TEST":
@@ -4385,6 +4396,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                             }
                             clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.PASS);
                         }
+
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(9);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(13);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(17);
+                        clsGlobalVariables.objPLCQueriescls.MBStartPLC_OFF(21);
                         //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
                     case "CJC_TEST":
@@ -4447,6 +4463,12 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                                 continue;
                             }
+                            btmRetVal = clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOn(DUT);
+                            if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
+                            {
+                                clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
+                                continue;
+                            }
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.strgONE_MV, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -4457,6 +4479,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         }
                         //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                         break;
+                    //case default:
+                    //    MessageBox.Show("This test is not implemented");
+                    //    break;
                 }
                 return btmRetVal;
             }

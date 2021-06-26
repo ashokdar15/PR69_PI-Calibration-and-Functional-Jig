@@ -662,7 +662,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         }
 
 
-        public byte MBWriteChangeCommMode(byte btmSlaveID, int imTTLModeOrOnewire)
+        public byte MBWriteChangeCommMode(byte btmSlaveID, int imTTLModeOrOnewire,byte MB_WRITE_CHANGE_COMM_MODE)
         {
             byte btmRetVal;
 
@@ -672,7 +672,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 Array.Resize(ref clsGlobalVariables.btgTxBuffer, 6);
 
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_ID_POS] = btmSlaveID;
-                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = clsGlobalVariables.MB_WRITE_CHANGE_COMM_MODE;
+                clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_FUNCTION_POS] = MB_WRITE_CHANGE_COMM_MODE;
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS] = (byte)(imTTLModeOrOnewire / 256);
                 clsGlobalVariables.btgTxBuffer[(int)clsGlobalVariables.enmQueryPosition.MB_DATA_POS + 1] = (byte)(imTTLModeOrOnewire & 0xFF);
               

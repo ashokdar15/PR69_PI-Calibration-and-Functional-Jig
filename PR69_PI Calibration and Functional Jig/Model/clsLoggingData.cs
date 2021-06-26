@@ -74,17 +74,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Model
         
         public double JSensTemp3 { get; set; }
 
-        //public clsAnalogOPCurrrent clsAnalogOPCurrrent { get; set; }
-        //public clsAnalogOPVoltage clsAnalogOPVoltage { get; set; }       
-        //public clsAnalogIPCurrrent clsAnalogIPCurrrent { get; set; }
-        //public clsAnalogIPVoltage clsAnalogIPVoltage { get; set; }
-        //public PT100Sensor PT100Sensor { get; set; }
-        //public RSensor RSensor { get; set; }
-        //public JSensor JSensor { get; set; }
-
-
-
-
         public static clsGlobalVariables.DataLogStatus addDataLog(clsLoggingData Datalogging)
         {
             Datalogging.BatchNumber = clsGlobalVariables.mainWindowVM.BatchNumber;

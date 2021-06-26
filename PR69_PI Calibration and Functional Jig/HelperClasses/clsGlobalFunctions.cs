@@ -423,9 +423,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     {
                         clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
                         continue;
-
                     }
-
                 }
                 //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
 
@@ -1616,7 +1614,15 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                 byte btmRetVal = (byte)clsGlobalVariables.enmResponseError.Invalid_data;
                                 if (clsModelSettings.blnRS485Flag)
                                 {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MB_TTL_COM_MODE);
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MB_TTL_COM_MODE, clsGlobalVariables.MB_WRITE_CHANGE_COMM_MODE);
+                                    if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
+                                    {
+                                        btmRetVal = clsGlobalVariables.objQueriescls.MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MVER_ADDRESS, 1);
+                                    }
+                                }
+                                else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                                {
+                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MB_TTL_COM_MODE,clsGlobalVariables.MB_WRITE_CHANGE_COMM_FOR_PI);
                                     if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
                                     {
                                         btmRetVal = clsGlobalVariables.objQueriescls.MBReadHoldingReg(clsGlobalVariables.MB_DUT_ID_WM_BASE + 1, clsGlobalVariables.MVER_ADDRESS, 1);
@@ -1634,21 +1640,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                                     {
                                         if (clsModelSettings.blnRS485Flag)
                                         {
-                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
-                                            //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                                            //{
-                                            //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-                                            //}
+                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE,clsGlobalVariables.MB_WRITE_CHANGE_COMM_MODE);
+                                        }
+                                        else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                                        {
+                                            btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE, clsGlobalVariables.MB_WRITE_CHANGE_COMM_FOR_PI);                                            
                                         }
                                         else
-                                        {
-                                            if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                                            {
-                                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
-                                            }
-                                            else
-                                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
-                                        }
+                                            btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
 
                                         if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                                         {
@@ -1668,7 +1667,6 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                 }
                 else
                 {
-
                     if (MainWindowVM.initilizeCommonObject.objJIGSerialComm.OpenCommPort(clsGlobalVariables.strgComPortJIG, false, true))
                     {
                         //JIG query timeout is reduced because if timeout is kept as original then it will take long time to detect the port itself.
@@ -1678,25 +1676,16 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
 
                         for (byte DUT = 1; DUT <= clsGlobalVariables.NUMBER_OF_DUTS; DUT++)
                         {
-
                             if (clsModelSettings.blnRS485Flag)
                             {
-
-                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
-                                //if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
-                                //{
-                                //    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteHoldingReg((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.ALM1_TYPE, clsGlobalVariables.SET_ALM_TYPE_VAL);
-                                //}
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE,clsGlobalVariables.MB_WRITE_CHANGE_COMM_MODE);
+                            }
+                            else if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
+                            {
+                                btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE,clsGlobalVariables.MB_WRITE_CHANGE_COMM_FOR_PI);
                             }
                             else
-                            {
-                                if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PI)
-                                {
-                                    btmRetVal = clsGlobalVariables.objQueriescls.MBWriteChangeCommMode((byte)(clsGlobalVariables.MB_DUT_ID_WM_BASE + DUT), clsGlobalVariables.MB_TTL_COM_MODE);
-                                }
-                                else
-                                    btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
-                            }
+                                btmRetVal = clsGlobalVariables.objQueriescls.ReadDeviceIDSalveToDutPortDetection(DUT + clsGlobalVariables.MB_SLAVE_ID_WO_BASE);
 
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -1887,11 +1876,11 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
             int imCnt;
             byte btmAttemptCounter = 1;
             byte btmKeyCnt = 0;
-            byte btmMaxAttempt = 40;
-            if (clsModelSettings.blnRS485Flag == true)
-                btmMaxAttempt = 70;
-            else
-                btmMaxAttempt = 70;
+            byte btmMaxAttempt = 100;
+            //if (clsModelSettings.blnRS485Flag == true)
+            //    btmMaxAttempt = 70;
+            //else
+                //btmMaxAttempt = 70;
 
             try
             {

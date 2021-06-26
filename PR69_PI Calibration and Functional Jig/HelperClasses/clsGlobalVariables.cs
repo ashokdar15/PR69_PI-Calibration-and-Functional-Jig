@@ -240,7 +240,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string strg_Application = "PR69 JIG Software";
         public static byte[] btgTxBuffer = new byte[10];                             //This array is used to send the data.
         public static byte[] btgRxBuffer = new byte[10];                             //This array is used to Receive the data.
-        public const byte MAX_NO_RETRIES = 1;                  //Value of maximum retries if device does not sent valid response.
+        public const byte MAX_NO_RETRIES = 3;                  //Value of maximum retries if device does not sent valid response.
         //btgPassData = 1 means passowrd has to be entered for adding INI file.
         //btgPassData = 1 means passowrd has to be entered for debug.
         //btgPassData = 1 means passowrd has to be entered for Data Logging.
@@ -431,9 +431,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string[] arrstrgKeysNames = new string[4];
         public const byte NUM_OF_KEYS = 4;
         public const string strgEnter = "    ENTER";
-        public const string strgUP    = "        UP";
-        public const string strgDOWN  = "     DOWN";
-        public const string strgESC   = "      ESC";
+        public const string strgUP    = "     UP";
+        public const string strgDOWN  = "    DOWN";
+        public const string strgESC   = "     ESC";
 
         public const int igESCVal = 0x10;        
         public const int igUPKeyVal = 0x40;
@@ -507,6 +507,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public const byte MB_READ_HOLDIND_REG = 3;
         public const byte MB_WRITE_HOLDIND_REG = 6;
         public const byte MB_WRITE_CHANGE_COMM_MODE = 120;
+        public const byte MB_WRITE_CHANGE_COMM_FOR_PI = 121;
 
         public static byte MB_MASTER_TO_DUT = 100;
         public const byte MB_READ_CALIB_CONST_STATUS = 101;
