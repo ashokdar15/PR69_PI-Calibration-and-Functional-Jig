@@ -37,7 +37,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             }
 
             clsGlobalVariables.strAccuracyParameter = clsGlobalVariables.AccuracyParameter.RSensor;
-            clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Clear();
+            clsGlobalVariables.NUMBER_OF_FAIL_DUTS_IN_ACCURACY_List.Clear();
             //UpdateTestResult(2, 2, "10.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //UpdateTestResult(1,2,"15.12", clsGlobalVariables.AccuracyParameter.RSensor);
             //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PI;
@@ -63,7 +63,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             Dictionary<string, List<string>> AccuracyList = new Dictionary<string, List<string>>();
             GetAccuracyDataFromJSON(AccuracyList);
             int currentTestNumber = 1;
-                        
+            
             foreach (var item in AccuracyList)
             {
                 if (stopBtnPress)
@@ -271,6 +271,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                                     UpdateTestResult(DUT, currentTestNumber, DUT4Result, clsGlobalVariables.AccuracyParameter.RSensor);                                   
                                                               
                             }
+
                             //clsGlobalVariables.objGlobalFunction.RemoveFailedDUT();
                             clsGlobalVariables.Validateaccuracytestbackcolor = false;
 
@@ -397,10 +398,10 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
                 AddAccuracyDataInDatabase(AccuracyList);
 
-                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[0]);
-                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[1]);
-                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[2]);
-                clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[3]);
+                for (int i = 0; i < clsGlobalVariables.objDataLog.Length; i++)
+                {
+                    clsLoggingData.addDataLog(clsGlobalVariables.objDataLog[i]);
+                }                
             }
 
             //start accuracy with user define point
@@ -959,6 +960,14 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                     }
 
                     //CJC On OFF Message
+                    string msg = "Please turn on the cjc.....of calibrator" + DUT.ToString() + ".";
+                    if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
+                    {
+                        clsGlobalVariables.objGlobalFunction.DisplayMessageBox("Please turn on the cjc.....of calibrator" + DUT.ToString() + ".", clsGlobalVariables.strNotifyMsg);
+                    }
+                    else
+                        clsGlobalVariables.objGlobalFunction.DisplayMessageBox("Please turn off the cjc.....of calibrator" + DUT.ToString() + ".", clsGlobalVariables.strNotifyMsg);
+
                     //if (clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_48x48 || clsGlobalVariables.selectedDeviceType == clsGlobalVariables.SelectedDeviceType.PR69_96x96)
                     //{
                     //    System.Windows.Forms.MessageBox.Show("Please turn on the cjc.....of calibrator"+ DUT.ToString() +".");
@@ -2452,7 +2461,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
         public bool UpdateTestResult(int DUTNumber, int testnumber, string result, clsGlobalVariables.AccuracyParameter accuracyParameter)
         {
             if (result ==clsGlobalVariables.FAIL)                          
-                clsGlobalVariables.NUMBER_OF_FAIL_DUTS_List.Add((byte)DUTNumber);
+                clsGlobalVariables.NUMBER_OF_FAIL_DUTS_IN_ACCURACY_List.Add((byte)DUTNumber);
                             
             switch (accuracyParameter)
             {

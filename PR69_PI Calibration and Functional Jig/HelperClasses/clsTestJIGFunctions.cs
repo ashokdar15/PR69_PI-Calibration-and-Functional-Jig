@@ -1171,7 +1171,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.objGlobalFunction.ApplyDelay(clsGlobalVariables.CALIB_MEASURE_DELAY);//Delay of 12 Seconds has been added here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             //Value present on the calibrator measure has been read and saved in a global variable.
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.ReadCalibratorMeasureValue(DUT);
                             if (btmRetVal == (byte)clsGlobalVariables.enmResponseError.Success)
@@ -1396,7 +1396,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         //analog op test bypass logic is present here.
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             //This check is for device having modbus.
                             if (clsModelSettings.blnRS485Flag == true)
                             {
@@ -3986,7 +3986,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "PI_1V_ANALOG_IP_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.ONE_VOLT_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
@@ -4001,7 +4001,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgOngoingTestName = "Analog Input Volt Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);
@@ -4066,7 +4066,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                         clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             clsGlobalVariables.strgOngoingTestName = "Analog Input mA Calibration";
                             btmRetVal = clsGlobalVariables.objCalibQueriescls.MBAdjustCalibratorVoltageOrResistance(clsGlobalVariables.ONE_mA_INPUT_CAL, DUT);
                             if (btmRetVal != (byte)clsGlobalVariables.enmResponseError.Success)
@@ -4087,7 +4087,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
                     case "PI_20mA_ANALOG_IP_TEST":
                         foreach (var DUT in clsGlobalVariables.NUMBER_OF_DUTS_List)
                         {
-                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(DUT);
+                            clsGlobalVariables.mainWindowVM.EnableProcessingWindow(clsGlobalVariables.AllDUTON);
                             if (clsGlobalVariables.objCalibQueriescls.MakeCalibratorSourceOFF(DUT) != (byte)clsGlobalVariables.enmResponseError.Success)
                             {
                                 clsGlobalVariables.mainWindowVM.UpdateTestResult(DUT, clsGlobalVariables.FAIL);

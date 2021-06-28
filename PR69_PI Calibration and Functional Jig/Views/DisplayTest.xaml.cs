@@ -29,6 +29,8 @@ namespace PR69_PI_Calibration_and_Functional_Jig.Views
             else
                 Retry.Visibility = Visibility.Visible;
 
+            BtnOkDispTest.Focus();
+            Keyboard.Focus(BtnOkDispTest);
         }
 
         private void minimize_Click(object sender, RoutedEventArgs e)

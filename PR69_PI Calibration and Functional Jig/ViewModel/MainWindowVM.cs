@@ -211,7 +211,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
             {
                 clsGlobalVariables.NUMBER_OF_DUTS_List.Add((byte)i);
             }
-
+           
             imNumOfTests = clsGlobalVariables.algTests_Auto.Count;
             almTempTestList = new ArrayList(clsGlobalVariables.algTests_Auto);
 
@@ -227,7 +227,9 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
 
             //prgbar.Maximum = imNumOfTests;
             //prgbar.Value = prgbar.Minimum;
-            //This timeout is resseted here to original.           
+            //This timeout is resseted here to original.        
+
+           
 
             for (imLoopCntr = 0; imLoopCntr < imNumOfTests; ++imLoopCntr)
             {
@@ -270,6 +272,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.ViewModel
                 SelectedIndexDG1 = imLoopCntr;
                 clsGlobalVariables.ig_Query_TimeOut = 1200;
                 btmRetVal = clsGlobalVariables.objTestJIGFunctions.TestDUT(almTempTestList[imLoopCntr].ToString());
+
                 //clsGlobalVariables.selectedDeviceType = clsGlobalVariables.SelectedDeviceType.PR69_96x96;
 
                 if (clsGlobalVariables.NUMBER_OF_DUTS_List.Count == 0 && btmRetVal != (byte)clsGlobalVariables.enmResponseError.Accuracy_Test_Not_Done)

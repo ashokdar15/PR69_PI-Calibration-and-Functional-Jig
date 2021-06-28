@@ -68,7 +68,7 @@
                             Text="Is Display test ok? If not ok, do you want to retry?"  Foreground="Red" FontSize="16"/>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                            <Button  Width="55" Height="30" Padding="5" Name="Ok" Margin="60 0 0 0"
+                            <Button  Width="55" Height="30" Padding="5" Margin="60 0 0 0" Name="BtnOkDispTest"
                             Style="{StaticResource MaterialDesignRaisedButton}" Click="Ok_Click" 
                             Foreground="WhiteSmoke" Background="#26c6da">PASS</Button>
 

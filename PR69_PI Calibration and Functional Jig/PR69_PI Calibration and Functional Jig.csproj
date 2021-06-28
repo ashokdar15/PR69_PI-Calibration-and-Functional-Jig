@@ -55,7 +55,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>iconfinder-technologymachineelectronicdevice10-4026450_113340.ico</ApplicationIcon>
+    <ApplicationIcon>PR_69_ICON_NEW.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>PR69_PI_Calibration_and_Functional_Jig.App</StartupObject>
@@ -286,7 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.jfif" />
-    <Resource Include="iconfinder-technologymachineelectronicdevice10-4026450_113340.ico" />
+    <Resource Include="PR_69_ICON_NEW.ico" />
     <Resource Include="server_green_clean_energy_eco_ecology_icon_185999.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

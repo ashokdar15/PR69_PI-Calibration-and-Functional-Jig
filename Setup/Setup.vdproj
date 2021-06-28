@@ -147,6 +147,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1B99D043168046E4B261227CCC05EA58"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1CD64A6E821C2F9C7A39EE57A928FF03"
         "OwnerKey" = "8:_9D4D9DF8716760218B69FE2BF1FF3D95"
         "MsmSig" = "8:_UNDEFINED"
@@ -587,12 +593,6 @@
         {
         "MsmKey" = "8:_72330807577723FC9D47638032A21A20"
         "OwnerKey" = "8:_87210BC39A654B0AA13F151127452C03"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72330807577723FC9D47638032A21A20"
-        "OwnerKey" = "8:_803498E40634D176F5BF17C533E6F186"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2230,6 +2230,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -2826,6 +2834,26 @@
             "TargetName" = "8:All_Wires_Connected_PI.jpg"
             "Tag" = "8:"
             "Folder" = "8:_617B16A6171042B29ADB355F5C745EC1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B99D043168046E4B261227CCC05EA58"
+            {
+            "SourcePath" = "8:..\\PR69_PI Calibration and Functional Jig\\bin\\Debug\\PR_69_ICON_NEW.ico"
+            "TargetName" = "8:PR_69_ICON_NEW.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_5BDC9725FB3B4020BEF3FEBAACA0A8A0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8174,7 +8202,7 @@
             "Target" = "8:_B86269D14ACE4A62B13C49B132D8255D"
             "Folder" = "8:_ED5B1F5E973E4997BBB9732FD8C017A5"
             "WorkingFolder" = "8:_5BDC9725FB3B4020BEF3FEBAACA0A8A0"
-            "Icon" = "8:"
+            "Icon" = "8:_1B99D043168046E4B261227CCC05EA58"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_12E143522F024B068AC75523C4EE6574"
@@ -8188,7 +8216,7 @@
             "Target" = "8:_B86269D14ACE4A62B13C49B132D8255D"
             "Folder" = "8:_66A32D78ECC942C39FCF83AC301597E7"
             "WorkingFolder" = "8:_5BDC9725FB3B4020BEF3FEBAACA0A8A0"
-            "Icon" = "8:"
+            "Icon" = "8:_1B99D043168046E4B261227CCC05EA58"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_557F1A493EAD40E688328764CBF83056"
@@ -8202,7 +8230,7 @@
             "Target" = "8:_818BA1E10FC846BAA5AC21312C8DC989"
             "Folder" = "8:_66A32D78ECC942C39FCF83AC301597E7"
             "WorkingFolder" = "8:_5BDC9725FB3B4020BEF3FEBAACA0A8A0"
-            "Icon" = "8:"
+            "Icon" = "8:_C0168EF1863D4F7A807AA16F461B416B"
             "Feature" = "8:"
             }
         }

@@ -240,7 +240,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static string strg_Application = "PR69 JIG Software";
         public static byte[] btgTxBuffer = new byte[10];                             //This array is used to send the data.
         public static byte[] btgRxBuffer = new byte[10];                             //This array is used to Receive the data.
-        public const byte MAX_NO_RETRIES = 3;                  //Value of maximum retries if device does not sent valid response.
+        public const byte MAX_NO_RETRIES = 1;                  //Value of maximum retries if device does not sent valid response.
         //btgPassData = 1 means passowrd has to be entered for adding INI file.
         //btgPassData = 1 means passowrd has to be entered for debug.
         //btgPassData = 1 means passowrd has to be entered for Data Logging.
@@ -292,6 +292,7 @@ namespace PR69_PI_Calibration_and_Functional_Jig.HelperClasses
         public static List<byte> NUMBER_OF_DUTS_List = new List<byte>();
         public static List<byte> NUMBER_OF_DUTS_List_Temp = new List<byte>();
         public static List<byte> NUMBER_OF_FAIL_DUTS_List = new List<byte>();
+        public static List<byte> NUMBER_OF_FAIL_DUTS_IN_ACCURACY_List = new List<byte>();
         public static int OLD_NUMBER_OF_DUTS = 0;
         public static int igTYPE_OF_DEVICE = 1;
         public static int ig_Query_TimeOut = 16000;
